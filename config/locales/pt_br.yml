@@ -1,0 +1,50 @@
+pt_br:
+  yes: "sim"
+  no: "não"
+  which: "qual?"
+  core:
+    name: "Nome completo da instituição"
+    responsible: "Responsável"
+    phones: "Telefones"
+    email: "E-mail"
+    main_activity: "Qual a atividade principal? (Associação de bairro; cooperativa; Igreja; salão de festas, etc)"
+    physical_conditions: "Condições físicas do espaço para funcionamento da sala de aula"
+    total_seats: "Quantidade de assentos"
+    coordenation_analysis: "Parecer da coordenação do projeto"
+    visit_on: "Visita realizada em"
+    who_visited: "Parecer elaborado por"
+    size:
+      title: "Tamanho"
+      until_20: "Até 20 m²"
+      between_20_30: "De 20 a 30 m²"
+      up_30: "Acima de 30 m²"
+    board_type:
+      blackboard: "Quadro negro"
+      whiteboard: "Quadro branco"
+    community_type:
+      fishing: "Pesqueira"
+      rural: "Rural"
+      urban: "Urbana"
+    local:
+      association: "Associação"
+      church_hall: "Salão de igreja"
+      cruch: "Igreja"
+      cooperative: "Cooperativa"
+      union: "Sindicato"
+      outdoor: "Ao ar livre"
+    illumination_type:
+      electric_power: "Energia elétrica"
+      lamp: "Lampião ou zé gás"
+      other: "Outra fonte"
+    illumination_condition:
+      ok: "É adequada para leitura e escrita"
+      nok: "A posição da lâmpadas produz sombra para escrever"
+  seat_type:
+    which_material: "Qual material"
+    seats: "Cadeiras"
+    wooden_bench: "Banco de madeira"
+    elementar_seats: "Cadeiras escolares"
+    university_seats: "Cadeiras universitárias"
+    other: "Outros"
+    without: "não tem mobiliário"
+

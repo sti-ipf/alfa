@@ -12,8 +12,8 @@ class CreateCores < ActiveRecord::Migration
       t.string :email
       t.string :main_activity
       t.integer :size
-      t.boolean :blackboard
-      t.integer :blackboard_type
+      t.boolean :board
+      t.integer :board_type
       t.integer :total_seats
       t.integer :illumination_type
       t.string :illumination_type_desc
@@ -23,6 +23,8 @@ class CreateCores < ActiveRecord::Migration
       t.boolean :bathroom
       t.boolean :kitchen
       t.text :coordenation_analysis
+      t.date :visit_on
+      t.string :who_visited
 
       t.timestamps
     end
