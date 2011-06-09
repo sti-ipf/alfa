@@ -2,7 +2,7 @@
 class CreateDisplacements < ActiveRecord::Migration
   def self.up
     create_table :displacements do |t|
-      t.references :core
+      t.string :displacement
 
       t.timestamps
     end

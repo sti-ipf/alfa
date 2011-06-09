@@ -1,7 +1,11 @@
 # -*- encoding : utf-8 -*-
 class CoresController < ApplicationController
+
+  before_filter :load_data, :only => [:edit, :new, :update, :create]
   # GET /cores
   # GET /cores.xml
+
+
   def index
     @cores = Core.all
 
@@ -81,6 +85,11 @@ class CoresController < ApplicationController
       format.html { redirect_to(cores_url) }
       format.xml  { head :ok }
     end
+  end
+
+  def load_data
+    @displacements = Displacement.all
+    @desk_types = DeskType.all
   end
 end
 

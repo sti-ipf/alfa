@@ -22,3 +22,13 @@ PartnerResource.create(:resource => "Infra-estrutura")
 PartnerResource.create(:resource => "Mobiliário")
 PartnerResource.create(:resource => "Recursos Humanos")
 
+Displacement.create(:displacement => "A pé")
+Displacement.create(:displacement => "De motocicleta")
+Displacement.create(:displacement => "De barco")
+Displacement.create(:displacement => "De bicicleta")
+Displacement.create(:displacement => "Carro")
+Displacement.create(:displacement => "Charrete")
+Displacement.create(:displacement => "Em lombo de animal")
+Displacement.create(:displacement => "Ônibus")
+Displacement.create(:displacement => "Outro")
+
