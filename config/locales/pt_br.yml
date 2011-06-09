@@ -106,6 +106,7 @@ pt_br:
     wednesday: "quarta-feira"
     thursday: "quinta-feira"
     friday: "sexta-feira"
+    new: "Novo período"
   partner_resource:
     infra_structure: "Infra-estrutura"
     furnitures: "Mobiliário"

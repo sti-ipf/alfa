@@ -30,7 +30,7 @@ class Core < ActiveRecord::Base
 
 #nested attributes
 
-  accepts_nested_attributes_for :periods, :reject_if => lambda { |a| a[:start_time].blank? }, :allow_destroy => true
+  accepts_nested_attributes_for :periods, :reject_if => lambda { |a| a[:day_of_week].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :partner_resources, :reject_if => lambda { |a| a[:resource].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :phones, :reject_if => lambda { |a| a[:number].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :seat_types , :reject_if => lambda { |a| a[:seat_type].blank? }, :allow_destroy => true

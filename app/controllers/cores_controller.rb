@@ -26,7 +26,7 @@ class CoresController < ApplicationController
   # GET /cores/new.xml
   def new
     @core = Core.new
-    5.times {@core.periods.build}
+    @core.periods.build
     @core.phones.build
     respond_to do |format|
       format.html # new.html.erb

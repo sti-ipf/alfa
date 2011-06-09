@@ -1,0 +1,19 @@
+<div class='fields'>
+  <div>
+    <%= t('period.day_of_week') %><br />
+    <%= f.select :day_of_week, Period::DAYS_OF_WEEK %>
+  </div>
+
+  <div>
+    <%= t('period.start_time') %><br />
+    <%= f.time_select :start_time, {:minute_step => 10} %>
+  </div>
+
+  <div>
+    <%= t('period.end_time') %><br />
+    <%= f.time_select :end_time, {:minute_step => 10} %>
+  </div>
+
+  <div class= "link_on_form"> <%= link_to_remove_fields t('remove'), f %> </div>
+</div>
+

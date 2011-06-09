@@ -38,10 +38,9 @@
 
   <div>
     <%= t('core.period_field') %><br />
-    <% day_of_weeks = 0 %>
     <% f.fields_for :periods do |builder| %>
-      <%= render "periods_fields", :f => builder, :day_of_weeks_number => day_of_weeks%>
-      <% day_of_weeks += 1 %>
+      <%= render "period_fields", :f => builder %>
+      <div> <%= link_to_add_fields t('period.new'), f, :periods %></div>
     <% end %>
   </div>
 
