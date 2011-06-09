@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreatePhones < ActiveRecord::Migration
   def self.up
     create_table :phones do |t|

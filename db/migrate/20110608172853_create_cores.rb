@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateCores < ActiveRecord::Migration
   def self.up
     create_table :cores do |t|

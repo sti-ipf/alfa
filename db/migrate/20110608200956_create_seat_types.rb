@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateSeatTypes < ActiveRecord::Migration
   def self.up
     create_table :seat_types do |t|

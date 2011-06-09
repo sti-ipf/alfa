@@ -1,0 +1,169 @@
+<%= form_for(@core) do |f| %>
+  <% if @core.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@core.errors.count, "error") %> <%= t.('core.errors') %> </h2>
+
+      <ul>
+      <% @core.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label :city, t('core.city') %><br />
+    <%= f.text_field :city %>
+  </div>
+
+  <div>
+    <%= f.label :community, t('core.community') %><br />
+    <%= f.text_field :community %>
+  </div>
+
+  <div>
+    <%= f.label :address, t('core.address') %><br />
+    <%= f.text_field :address, :size => 100%>
+  </div>
+
+  <div>
+    <%= f.label :community_type, t('core.community_field') %><br />
+    <%= f.select :community_type, Core::COMMUNITY_TYPES %>
+  </div>
+
+  <div>
+    <%= f.label :place, t('core.place_field') %><br />
+    <%= f.select :place, Core::PLACES %>
+  </div>
+
+  <div>
+    <%= t('core.period_field') %><br />
+    <% day_of_weeks = 0 %>
+    <% f.fields_for :periods do |builder| %>
+      <%= render "periods_fields", :f => builder, :day_of_weeks_number => day_of_weeks%>
+      <% day_of_weeks += 1 %>
+    <% end %>
+  </div>
+
+  <div>
+    <b><%= t('core.partner_title') %></b><br />
+    <%= t('core.partner_resource_field') %><br />
+    <% resource = 0 %>
+    <% f.fields_for :partner_resources do |builder| %>
+      <%= render "partner_resources_fields", :f => builder, :resource_number => resource %>
+      <% resource += 1 %>
+    <% end %>
+  </div>
+
+  <div>
+    <%= f.label :name, t('core.name_field') %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :responsible, t('core.responsible_field') %><br />
+    <%= f.text_field :responsible %>
+  </div>
+
+  <div>
+    <%= t('core.phones_field') %><br />
+    <% f.fields_for :phones do |builder| %>
+      <%= render "phone_fields", :f => builder %>
+      <div> <%= link_to_add_fields t('phone.new'), f, :phones %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= f.label :email, t('core.email_field') %><br />
+    <%= f.text_field :email %>
+  </div>
+
+  <div>
+    <%= f.label :main_activity, t('core.main_activity_field') %><br />
+    <%= f.text_field :main_activity, :size => 100 %>
+  </div>
+
+
+  <div>
+    <b><%= t('core.physical_conditions_field') %></b><br />
+    <%= f.label :size, t('core.size.title') %><br />
+    <%= f.select :size, Core::SIZES %>
+  </div>
+
+  <div>
+    <%= f.label :board, t('core.board_field') %><br />
+    <%= f.check_box :board, :value => false %>
+    <%= t('yyes') %>
+  </div>
+
+  <div>
+    <%= f.label :board_type, t('core.board_type_field') %><br />
+    <%= f.select :board_type, Core::BOARD_TYPES  %>
+  </div>
+
+  <div>
+    <%= t('core.seat_type_field') %><br />
+    <% seat_type = 0 %>
+    <% f.fields_for :seat_types do |builder| %>
+      <%= render "seat_types_fields", :f => builder, :seat_type_number => seat_type %>
+      <% seat_type += 1 %>
+    <% end %>
+  </div>
+
+  <div>
+    <%= f.label :total_seats, t('core.total_seats_field') %><br />
+    <%= f.select :total_seats, Core::TOTAL_SEATS  %>
+  </div>
+
+  <div>
+    <%= render "desk_types_fields" %>
+  </div>
+
+  <div>
+    <%= f.label :illumination_type, t('core.illumination_field') %><br />
+    <%= f.select :illumination_type, Core::ILLUMINATION_TYPES  %>
+  </div>
+
+  <div>
+    <%= f.label :illumination_condition, t('core.illumination_condition_field') %><br />
+    <%= f.select :illumination_condition, Core::ILLUMINATION_CONDITIONS  %>
+  </div>
+
+  <div>
+    <%= f.label :another_place, t('core.another_place_field') %><br />
+    <%= f.check_box :another_place, :value => false %>
+    <%= t('yyes') %>
+  </div>
+
+  <div>
+    <%= f.label :bathroom, t('core.bathroom_field') %><br />
+    <%= f.check_box :bathroom, :value => false %>
+    <%= t('yyes') %>
+  </div>
+
+  <div>
+    <%= f.label :kitchen, t('core.kitchen_field') %><br />
+    <%= f.check_box :kitchen, :value => false %>
+    <%= t('yyes') %>
+  </div>
+
+  <div>
+    <%= f.label :coordenation_analysis, t('core.coordenation_analysis_field') %><br />
+    <%= f.text_area :coordenation_analysis %>
+  </div>
+
+  <div>
+    <%= f.label :visit_on, t('core.visit_on_field') %><br />
+    <%= f.date_select :visit_on %>
+  </div>
+
+  <div>
+    <%= f.label :who_visited, t('core.who_visited_field') %><br />
+    <%= f.text_field :who_visited %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit t('create') %>
+  </div>
+<% end %>
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateDisplacements < ActiveRecord::Migration
   def self.up
     create_table :displacements do |t|

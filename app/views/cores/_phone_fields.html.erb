@@ -1,0 +1,14 @@
+<div class='fields'>
+  <div>
+    <%= t('phone.dd') %><br />
+    <%= f.text_field  :dd, :size => 3 %>
+  </div>
+
+  <div>
+    <%= t('phone.number') %><br />
+    <%= f.text_field  :number %>
+  </div>
+
+  <div class= "link_on_form"> <%= link_to_remove_fields t('remove'), f %> </div>
+</div>
+

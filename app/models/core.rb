@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Core < ActiveRecord::Base
 
 #relationships
@@ -6,7 +7,7 @@ class Core < ActiveRecord::Base
   has_many :phones
   has_many :partner_resources
   has_many :seat_types
-  has_many :desk_types
+  has_and_belongs_to_many :desk_types
   has_many :displacements
   has_many :periods
 
@@ -31,6 +32,5 @@ class Core < ActiveRecord::Base
   accepts_nested_attributes_for :partner_resources, :reject_if => lambda { |a| a[:resource].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :phones, :reject_if => lambda { |a| a[:number].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :seat_types , :reject_if => lambda { |a| a[:seat_type].blank? }, :allow_destroy => true
-  accepts_nested_attributes_for :desk_types , :reject_if => lambda { |a| a[:desk_type].blank? }, :allow_destroy => true
 end
 

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class PartnerResource < ActiveRecord::Base
   belongs_to :core
 

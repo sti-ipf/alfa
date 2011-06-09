@@ -1,8 +1,8 @@
+# -*- encoding : utf-8 -*-
 class CreateDeskTypes < ActiveRecord::Migration
   def self.up
     create_table :desk_types do |t|
-      t.integer :desk_type
-      t.references :core
+      t.string :desk_type
 
       t.timestamps
     end

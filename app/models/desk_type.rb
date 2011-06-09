@@ -1,4 +1,5 @@
+# -*- encoding : utf-8 -*-
 class DeskType < ActiveRecord::Base
-  belongs_to :core
+  has_and_belongs_to_many :cores
 end
 

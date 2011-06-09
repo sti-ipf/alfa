@@ -36,7 +36,7 @@ pt_br:
     desk_type_field: "Tipo de mesas"
     illumination_field: "Iluminação da sala"
     illumination_condition_field: "Condições da iluminação"
-    another_place_field: "Há Outros espaços que podem ser utilizados pelo educador?"
+    another_place_field: "Há outros espaços que podem ser utilizados pelo educador?"
     bathroom_field: "Banheiros"
     kitchen_field: "Cozinha"
     displacement_title: "Deslocamento"
