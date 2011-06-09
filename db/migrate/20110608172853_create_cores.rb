@@ -6,7 +6,7 @@ class CreateCores < ActiveRecord::Migration
       t.string :community
       t.string :address
       t.integer :community_type
-      t.integer :local
+      t.integer :place
       t.string :name
       t.string :responsible
       t.string :email
@@ -18,8 +18,8 @@ class CreateCores < ActiveRecord::Migration
       t.integer :illumination_type
       t.string :illumination_type_desc
       t.integer :illumination_condition
-      t.boolean :another_local
-      t.string :another_local_desc
+      t.boolean :another_place
+      t.string :another_place_desc
       t.boolean :bathroom
       t.boolean :kitchen
       t.text :coordenation_analysis

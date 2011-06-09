@@ -1,18 +1,50 @@
+# encoding: UTF-8
 pt_br:
-  yes: "sim"
-  no: "não"
+  yyes: "sim"
+  nno: "não"
   which: "qual?"
+  which_s: "quais?"
+  are_you_sure: "Você tem certeza?"
+  edit: "Editar"
+  delete: "Apagar"
+  back: "Voltar"
+  show: "Visualizar"
+  other: "Outro"
+  remove: "Remover"
+  create: "Cadastrar"
   core:
-    name: "Nome completo da instituição"
-    responsible: "Responsável"
-    phones: "Telefones"
-    email: "E-mail"
-    main_activity: "Qual a atividade principal? (Associação de bairro; cooperativa; Igreja; salão de festas, etc)"
-    physical_conditions: "Condições físicas do espaço para funcionamento da sala de aula"
-    total_seats: "Quantidade de assentos"
-    coordenation_analysis: "Parecer da coordenação do projeto"
-    visit_on: "Visita realizada em"
-    who_visited: "Parecer elaborado por"
+    educator_name: "Nome do Educador(a)"
+    coordenator_name: "Coordenador(a) local"
+    city: "Município"
+    community: "Comunidade"
+    address: "Endereço"
+    community_field: "Trata-se de uma comunidade"
+    place_field: "Local de funcionamento da sala"
+    period_field: "Período e horário de funcionamento"
+    partner_title: "Relação com os parceiros"
+    partner_resource_field: "Quais os recursos disponibilizados pelo parceiro para a realização do projeto"
+    name_field: "Nome completo da instituição"
+    responsible_field: "Responsável"
+    phones_field: "Telefones"
+    email_field: "E-mail"
+    main_activity_field: "Qual a atividade principal? (Associação de bairro; cooperativa; Igreja; salão de festas, etc)"
+    physical_conditions_field: "Condições físicas do espaço para funcionamento da sala de aula"
+    board_field: "Existe lousa?"
+    board_type_field: "Qual o tipo de lousa?"
+    seat_type_field: "Tipo de assentos"
+    total_seats_field: "Quantidade de assentos"
+    desk_type_field: "Tipo de mesas"
+    illumination_field: "Iluminação da sala"
+    illumination_condition_field: "Condições da iluminação"
+    another_place_field: "Há Outros espaços que podem ser utilizados pelo educador?"
+    bathroom_field: "Banheiros"
+    kitchen_field: "Cozinha"
+    displacement_title: "Deslocamento"
+    educators: "Educadores"
+    students: "Educandos"
+    coordenation_analysis_field: "Parecer da coordenação do projeto"
+    visit_on_field: "Visita realizada em"
+    who_visited_field: "Parecer elaborado por"
     size:
       title: "Tamanho"
       until_20: "Até 20 m²"
@@ -25,13 +57,16 @@ pt_br:
       fishing: "Pesqueira"
       rural: "Rural"
       urban: "Urbana"
-    local:
+    place:
       association: "Associação"
       church_hall: "Salão de igreja"
       cruch: "Igreja"
       cooperative: "Cooperativa"
       union: "Sindicato"
       outdoor: "Ao ar livre"
+    total_seats:
+      until_10: "Até 10"
+      between_10_20: "De 10 a 20"
     illumination_type:
       electric_power: "Energia elétrica"
       lamp: "Lampião ou zé gás"
@@ -39,6 +74,11 @@ pt_br:
     illumination_condition:
       ok: "É adequada para leitura e escrita"
       nok: "A posição da lâmpadas produz sombra para escrever"
+    listing: "Núcleos"
+    new: "Novo núcleo"
+    new_title: "Novo núcleo"
+    errors: "não deixam o Núcleo ser salvo:"
+    edit_title: "Editando núcleo"
   seat_type:
     which_material: "Qual material"
     seats: "Cadeiras"
@@ -46,5 +86,237 @@ pt_br:
     elementar_seats: "Cadeiras escolares"
     university_seats: "Cadeiras universitárias"
     other: "Outros"
-    without: "não tem mobiliário"
+    without: "Não tem mobiliário"
+  displacement:
+    on_foot: "A pé"
+    motocycle: "De motocicleta"
+    boat: "Barco"
+    bike: "De bicicleta"
+    car: "Carro"
+    cart: "Charrete"
+    animal: "Em lombo de animal"
+    bus: "Ônibus"
+    other: "Outro"
+  period:
+    start_time: "Horário de início"
+    end_time: "Horário de término"
+    day_of_week: "Dia da semana"
+    monday: "segunda-feira"
+    tuesday: "terça-feira"
+    wednesday: "quarta-feira"
+    thursday: "quinta-feira"
+    friday: "sexta-feira"
+  partner_resource:
+    infra_structure: "Infra-estrutura"
+    furnitures: "Mobiliário"
+    hr: "Recursos Humanos"
+  phone:
+    dd: "DD"
+    number: "Número"
+    new: "Novo telefone"
+  desk_type:
+    elementar_desks: "Carteiras escolares"
+    round_tables: "Mesas redondas"
+    plastic_tables: "Mesas de plástico"
+    easel: "Tábua e cavalete"
+  activerecord:
+    models:
+      core: "Núcleo"
+
+  # formatos de data e hora
+  date:
+    formats:
+      default: "%d/%m/%Y"
+      short: "%d de %B"
+      long: "%d de %B de %Y"
+
+    day_names: [Domingo, Segunda, Terça, Quarta, Quinta, Sexta, Sábado]
+    abbr_day_names: [Dom, Seg, Ter, Qua, Qui, Sex, Sáb]
+
+    month_names: [~, Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro]
+    abbr_month_names: [~, Jan, Fev, Mar, Abr, Mai, Jun, Jul, Ago, Set, Out, Nov, Dez]
+    order:
+      - :day
+      - :month
+      - :year
+
+  time:
+    formats:
+      default: "%A, %d de %B de %Y, %H:%M h"
+      short: "%d/%m, %H:%M h"
+      long: "%A, %d de %B de %Y, %H:%M h"
+    am: ''
+    pm: ''
+
+  # Usado no Array.to_sentence
+  support:
+    array:
+      words_connector: ", "
+      two_words_connector: " e "
+      last_word_connector: " e "
+
+    select:
+      prompt: "Por favor selecione"
+
+  number:
+    format:
+      separator: ','
+      delimiter: '.'
+      precision: 3
+      significant: false
+      strip_insignificant_zeros: false
+
+    currency:
+      format:
+        format: '%u %n'
+        unit: 'R$'
+        separator: ','
+        delimiter: '.'
+        precision: 2
+        significant: false
+        strip_insignificant_zeros: false
+
+    percentage:
+      format:
+        delimiter: '.'
+
+    precision:
+      format:
+        delimiter: '.'
+
+    human:
+      format:
+        delimiter: '.'
+        precision: 2
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: "Byte"
+            other: "Bytes"
+          kb: "KB"
+          mb: "MB"
+          gb: "GB"
+          tb: "TB"
+      # number_to_human()
+      # new in rails 3: please add to other locales
+      decimal_units:
+        format: "%n %u"
+        units:
+          unit: ""
+          thousand: "mil"
+          million:
+            one: milhão
+            other: milhões
+          billion:
+            one: bilhão
+            other: bilhões
+          trillion:
+            one: trilhão
+            other: trilhões
+          quadrillion:
+            one: quatrilhão
+            other: quatrilhões
+
+  # distancia do tempo em palavras
+  datetime:
+    distance_in_words:
+      half_a_minute: 'meio minuto'
+      less_than_x_seconds:
+        one: 'menos de 1 segundo'
+        other: 'menos de %{count} segundos'
+      x_seconds:
+        one: '1 segundo'
+        other: '%{count} segundos'
+      less_than_x_minutes:
+        one: 'menos de um minuto'
+        other: 'menos de %{count} minutos'
+      x_minutes:
+        one: '1 minuto'
+        other: '%{count} minutos'
+      about_x_hours:
+        one: 'aproximadamente 1 hora'
+        other: 'aproximadamente %{count} horas'
+      x_days:
+        one: '1 dia'
+        other: '%{count} dias'
+      about_x_months:
+        one: 'aproximadamente 1 mês'
+        other: 'aproximadamente %{count} meses'
+      x_months:
+        one: '1 mês'
+        other: '%{count} meses'
+      about_x_years:
+        one: 'aproximadamente 1 ano'
+        other: 'aproximadamente %{count} anos'
+      over_x_years:
+        one: 'mais de 1 ano'
+        other: 'mais de %{count} anos'
+      almost_x_years:
+        one: 'quase 1 ano'
+        other: 'quase %{count} anos'
+    prompts:
+      year: "Ano"
+      month: "Mês"
+      day: "Dia"
+      hour: "Hora"
+      minute: "Minuto"
+      second: "Segundo"
+
+  helpers:
+    select:
+      prompt: "Por favor selecione"
+
+    submit:
+      create: 'Criar %{model}'
+      update: 'Atualizar %{model}'
+      submit: 'Salvar %{model}'
+
+  errors:
+    format: "%{attribute} %{message}"
+
+    template:
+      header:
+        one: "Não foi possível gravar %{model}: 1 erro"
+        other: "Não foi possível gravar %{model}: %{count} erros."
+      body: "Por favor, verifique o(s) seguinte(s) campo(s):"
+
+    messages: &errors_messages
+      inclusion: "não está incluído na lista"
+      exclusion: "não está disponível"
+      invalid: "não é válido"
+      confirmation: "não está de acordo com a confirmação"
+      accepted: "deve ser aceito"
+      empty: "não pode ficar vazio"
+      blank: "não pode ficar em branco"
+      too_long: "é muito longo (máximo: %{count} caracteres)"
+      too_short: "é muito curto (mínimo: %{count} caracteres)"
+      wrong_length: "não possui o tamanho esperado (%{count} caracteres)"
+      not_a_number: "não é um número"
+      not_an_integer: "não é um número inteiro"
+      greater_than: "deve ser maior que %{count}"
+      greater_than_or_equal_to: "deve ser maior ou igual a %{count}"
+      equal_to: "deve ser igual a %{count}"
+      less_than: "deve ser menor que %{count}"
+      less_than_or_equal_to: "deve ser menor ou igual a %{count}"
+      odd: "deve ser ímpar"
+      even: "deve ser par"
+
+  activerecord:
+    errors:
+      template:
+        header:
+          one: "Não foi possível gravar %{model}: 1 erro"
+          other: "Não foi possível gravar %{model}: %{count} erros."
+        body: "Por favor, verifique o(s) seguinte(s) campo(s):"
+
+      messages:
+        taken: "já está em uso"
+        record_invalid: "A validação falhou: %{errors}"
+        <<: *errors_messages
+
+      full_messages:
+        format: "%{attribute} %{message}"
 
