@@ -1,4 +1,3 @@
-
 <%= t('core.desk_type_field') %><br />
 <% DeskType.all.each do |d| %>
   <%= check_box_tag 'core[desk_type_ids][]', d.id, @core.desk_types.include?(d) %>

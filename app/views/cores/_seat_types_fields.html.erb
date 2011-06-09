@@ -1,3 +1,6 @@
-<%= f.check_box :seat_type, :value => seat_type_number %>
-<%= get_seat_type(seat_type_number) %>
+<%= t('core.seat_type_field') %><br />
+<% SeatType.all.each do |s| %>
+  <%= check_box_tag 'core[seat_type_ids][]', s.id, @core.seat_types.include?(s) %>
+  <%= s.seat_type %>
+<% end %>
 

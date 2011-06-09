@@ -1,3 +1,7 @@
-<%= f.check_box :resource, :value => resource_number %>
-<%= get_resource(resource_number) %>
+<b><%= t('core.partner_title') %></b><br />
+<%= t('core.partner_resource_field') %><br />
+<% PartnerResource.all.each do |p| %>
+  <%= check_box_tag 'core[partner_resource_ids][]', p.id, @core.partner_resources.include?(p) %>
+  <%= p.resource %>
+<% end %>
 

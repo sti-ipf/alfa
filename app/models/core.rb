@@ -5,11 +5,13 @@ class Core < ActiveRecord::Base
   has_many :educators
   has_many :coordinators
   has_many :phones
-  has_many :partner_resources
-  has_many :seat_types
-  has_and_belongs_to_many :desk_types
   has_many :displacements
   has_many :periods
+  has_and_belongs_to_many :desk_types
+  has_many :partner_resources, :through => :cores_partner_resources
+  has_many :cores_partner_resources
+  has_many :seat_types, :through => :cores_seat_types
+  has_many :cores_seat_types
 
 #constants
 

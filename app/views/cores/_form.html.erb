@@ -46,13 +46,7 @@
   </div>
 
   <div>
-    <b><%= t('core.partner_title') %></b><br />
-    <%= t('core.partner_resource_field') %><br />
-    <% resource = 0 %>
-    <% f.fields_for :partner_resources do |builder| %>
-      <%= render "partner_resources_fields", :f => builder, :resource_number => resource %>
-      <% resource += 1 %>
-    <% end %>
+    <%= render "partner_resources_fields" %>
   </div>
 
   <div>
@@ -102,14 +96,7 @@
   </div>
 
   <div>
-    <%= t('core.seat_type_field') %><br />
-    <% seat_type = 0 %>
-    <% f.fields_for :seat_types do |builder| %>
-      <%= render "seat_types_fields", :f => builder, :seat_type_number => seat_type %>
-      <% seat_type += 1 %>
-    <% end %>
-  </div>
-
+    <%= render "seat_types_fields" %>
   <div>
     <%= f.label :total_seats, t('core.total_seats_field') %><br />
     <%= f.select :total_seats, Core::TOTAL_SEATS  %>

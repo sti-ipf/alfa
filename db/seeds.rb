@@ -11,3 +11,14 @@ DeskType.create(:desk_type => "Mesas redondas")
 DeskType.create(:desk_type => "Mesas de plástico")
 DeskType.create(:desk_type => "Tábua e cavalete")
 
+SeatType.create(:seat_type => "Cadeiras")
+SeatType.create(:seat_type => "Bancos de madeira")
+SeatType.create(:seat_type => "Cadeiras escolares")
+SeatType.create(:seat_type => "Cadeiras universitárias")
+SeatType.create(:seat_type => "Outros")
+SeatType.create(:seat_type => "Não tem mobiliário")
+
+PartnerResource.create(:resource => "Infra-estrutura")
+PartnerResource.create(:resource => "Mobiliário")
+PartnerResource.create(:resource => "Recursos Humanos")
+
