@@ -47,10 +47,10 @@ class CoresController < ApplicationController
   # POST /cores.xml
   def create
     @core = Core.new(params[:core])
-
     respond_to do |format|
       if @core.save
-        format.html { redirect_to(@core, :notice => 'Core was successfully created.') }
+        CoresDisplacement.create_displacements(params[:displacement_ids], @core.id)
+        format.html { redirect_to(@core, :notice => t('core.created')) }
         format.xml  { render :xml => @core, :status => :created, :location => @core }
       else
         format.html { render :action => "new" }

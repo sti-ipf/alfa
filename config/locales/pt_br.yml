@@ -79,6 +79,7 @@ pt_br:
     new_title: "Novo núcleo"
     errors: "não deixam o Núcleo ser salvo:"
     edit_title: "Editando núcleo"
+    created: "Núcleo criado com sucesso."
   seat_type:
     which_material: "Qual material"
     seats: "Cadeiras"
