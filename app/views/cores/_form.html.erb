@@ -1,3 +1,31 @@
+<script>
+  $(document).ready(function() {
+    if ($("#core_place").val() == 6){
+      jQuery('#core_place_desc_div').attr('style','visibility:visible; !important');
+    }
+
+    if ($("#partner_resource_id_1").is(':checked')){
+      jQuery('#core_resource_desc_div').attr('style','visibility:visible; !important');
+    }
+
+    if ($("#seat_type_id_1").is(':checked')){
+      jQuery('#core_seat_type_desc_div').attr('style','visibility:visible; !important');
+    }
+
+    if ($("#core_illumination_type").val() == 2){
+      jQuery('#core_illumination_type_desc_div').attr('style','visibility:visible; !important');
+    }
+
+    if ($("#displacement_id_0_9").is(':checked')){
+      jQuery('#core_displacement_desc_0_div').attr('style','visibility:visible; !important');
+    }
+
+    if ($("#displacement_id_1_9").is(':checked')){
+      jQuery('#core_displacement_desc_1_div').attr('style','visibility:visible; !important');
+    }
+  });
+</script>
+
 <%= form_for(@core) do |f| %>
   <% if @core.errors.any? %>
     <div id="error_explanation">
