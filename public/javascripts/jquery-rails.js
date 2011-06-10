@@ -12,6 +12,8 @@ function remove_fields(link) {
 }
 
 function add_fields(link, association, content) {
-  $(link).parent().html(content.unescapeHtml());
+  content = content.unescapeHtml();
+  $(content).insertBefore($(link));
+
 }
 
