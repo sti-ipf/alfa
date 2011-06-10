@@ -40,7 +40,21 @@ class CoresController < ApplicationController
 
   # GET /cores/1/edit
   def edit
-    @core = Core.find(params[:id])
+    @core = Core.find(params[:id], :include => [:cores_displacements, :cores_partner_resources, :cores_seat_types])
+
+    @core.cores_partner_resources.each do |c|
+      @resource_desc = c.resource_desc if !c.resource_desc.nil?
+    end
+
+    @core.cores_seat_types.each do |c|
+      @seat_type_desc = c.seat_type_desc if !c.seat_type_desc.nil?
+    end
+
+    @core.cores_displacements.each do |c|
+      @displacement_desc_0 = c.displacement_desc if !c.displacement_desc.nil? && c.displacement_type == 0
+      @displacement_desc_1 = c.displacement_desc if !c.displacement_desc.nil? && c.displacement_type == 1
+    end
+
   end
 
   # POST /cores
@@ -73,7 +87,7 @@ class CoresController < ApplicationController
 
     respond_to do |format|
       if @core.update_attributes(params[:core])
-        format.html { redirect_to(@core, :notice => 'Core was successfully updated.') }
+        format.html { redirect_to(@core, :notice => t('core.updated')) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

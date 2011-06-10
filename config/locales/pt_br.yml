@@ -12,6 +12,7 @@ pt_br:
   other: "Outro"
   remove: "Remover"
   create: "Cadastrar"
+  update: "Atualizar"
   core:
     educator_name: "Nome do Educador(a)"
     coordenator_name: "Coordenador(a) local"
@@ -80,6 +81,7 @@ pt_br:
     errors: "não deixam o Núcleo ser salvo:"
     edit_title: "Editando núcleo"
     created: "Núcleo criado com sucesso."
+    updated: "Núcleo atualizado com sucesso."
   seat_type:
     which_material: "Qual material"
     seats: "Cadeiras"
