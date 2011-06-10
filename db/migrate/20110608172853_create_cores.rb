@@ -8,6 +8,7 @@ class CreateCores < ActiveRecord::Migration
       t.string :address
       t.integer :community_type
       t.integer :place
+      t.string :place_desc
       t.string :name
       t.string :responsible
       t.string :email

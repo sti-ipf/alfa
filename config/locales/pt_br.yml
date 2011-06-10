@@ -1,9 +1,9 @@
 # encoding: UTF-8
 pt_br:
-  yyes: "sim"
-  nno: "não"
-  which: "qual?"
-  which_s: "quais?"
+  yyes: "Sim"
+  nno: "Não"
+  which: "Qual?"
+  which_s: "Quais?"
   are_you_sure: "Você tem certeza?"
   edit: "Editar"
   delete: "Apagar"

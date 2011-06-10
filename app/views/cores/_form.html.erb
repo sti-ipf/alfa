@@ -36,6 +36,27 @@
     <%= f.select :place, Core::PLACES %>
   </div>
 
+  <script>
+    $(document).ready(function() {
+        $("#core_place").change(function() {
+            var value = $(this).val();
+            if (value == 6){
+              jQuery('#core_place_desc_div').attr('style','visibility:visible; !important');
+              jQuery('#core_place_desc').focus();
+            }
+            else{
+              jQuery('#core_place_desc_div').attr('style','visibility:hidden; !important');
+            }
+        });
+    });
+  </script>
+
+  <div class="invisible" id="core_place_desc_div">
+    <%= f.label :place_desc, t('which') %><br />
+    <%= f.text_field :place_desc %>
+  </div>
+
+
   <div>
     <%= t('core.period_field') %><br />
     <% f.fields_for :periods do |builder| %>
@@ -119,6 +140,25 @@
     <%= f.label :another_place, t('core.another_place_field') %><br />
     <%= f.check_box :another_place, :value => false %>
     <%= t('yyes') %>
+  </div>
+
+  <script>
+    $(document).ready(function() {
+        $("#core_another_place").change(function() {
+            if ($("#core_another_place").is(':checked')){
+              jQuery('#core_another_place_desc_div').attr('style','visibility:visible; !important');
+              jQuery('#another_place_desc').focus();
+            }
+            else{
+              jQuery('#core_another_place_desc_div').attr('style','visibility:hidden; !important');
+            }
+        });
+    });
+  </script>
+
+  <div class="invisible" id="core_another_place_desc_div">
+    <%= f.label :another_place_desc, t('which_s') %><br />
+    <%= f.text_field :another_place_desc %>
   </div>
 
   <div>
