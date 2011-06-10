@@ -1,13 +1,53 @@
 <b><%= t('core.displacement_title') %></b><br />
 <%= t('core.educators') %><br />
 <% @displacements.each do |d| %>
-  <%= check_box_tag 'displacement_ids[]', "#{d.id}.0", @core.displacements.include?(d) %>
+  <%= check_box_tag 'displacement_ids[]', "#{d.id}.0", @core.displacements.include?(d), :id => "displacement_id_0_#{d.id}" %>
   <%= d.displacement %>
 <% end %>
+
+<script>
+  $(document).ready(function() {
+      $("#displacement_id_0_9").change(function() {
+          if ($("#displacement_id_0_9").is(':checked')){
+            jQuery('#core_displacement_desc_0_div').attr('style','visibility:visible; !important');
+            jQuery('#displacement_desc_0').focus();
+          }
+          else{
+            jQuery('#core_displacement_desc_0_div').attr('style','visibility:hidden; !important');
+          }
+      });
+  });
+</script>
+
+<div class="invisible" id="core_displacement_desc_0_div">
+  <%= label_tag :displacement_desc, t('which') %><br />
+  <%= text_field_tag :displacement_desc, nil, :id => "displacement_desc_0" %>
+</div>
+
+
 <br />
 <%= t('core.students') %><br />
 <% @displacements.each do |d| %>
-  <%= check_box_tag 'displacement_ids[]', "#{d.id}.1" , @core.displacements.include?(d) %>
+  <%= check_box_tag 'displacement_ids[]', "#{d.id}.1" , @core.displacements.include?(d), :id => "displacement_id_1_#{d.id}" %>
   <%= d.displacement %>
 <% end %>
+
+<script>
+  $(document).ready(function() {
+      $("#displacement_id_1_9").change(function() {
+          if ($("#displacement_id_1_9").is(':checked')){
+            jQuery('#core_displacement_desc_1_div').attr('style','visibility:visible; !important');
+            jQuery('#displacement_desc_1').focus();
+          }
+          else{
+            jQuery('#core_displacement_desc_1_div').attr('style','visibility:hidden; !important');
+          }
+      });
+  });
+</script>
+
+<div class="invisible" id="core_displacement_desc_1_div">
+  <%= label_tag :displacement_desc, t('which') %><br />
+  <%= text_field_tag :displacement_desc, nil, :id => "displacement_desc_1" %>
+</div>
 

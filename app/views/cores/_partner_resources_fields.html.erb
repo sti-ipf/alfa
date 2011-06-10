@@ -1,7 +1,26 @@
 <b><%= t('core.partner_title') %></b><br />
 <%= t('core.partner_resource_field') %><br />
 <% PartnerResource.all.each do |p| %>
-  <%= check_box_tag 'core[partner_resource_ids][]', p.id, @core.partner_resources.include?(p) %>
+  <%= check_box_tag 'core[partner_resource_ids][]', p.id, @core.partner_resources.include?(p), :id => "partner_resource_id_#{p.id}" %>
   <%= p.resource %>
 <% end %>
+
+<script>
+  $(document).ready(function() {
+      $("#partner_resource_id_1").change(function() {
+          if ($("#partner_resource_id_1").is(':checked')){
+            jQuery('#core_resource_desc_div').attr('style','visibility:visible; !important');
+            jQuery('#resource_desc').focus();
+          }
+          else{
+            jQuery('#core_resource_desc_div').attr('style','visibility:hidden; !important');
+          }
+      });
+  });
+</script>
+
+<div class="invisible" id="core_resource_desc_div">
+  <%= label_tag :resource_desc, t('which') %><br />
+  <%= text_field_tag :resource_desc %>
+</div>
 

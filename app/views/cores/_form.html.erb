@@ -52,7 +52,7 @@
   </script>
 
   <div class="invisible" id="core_place_desc_div">
-    <%= f.label :place_desc, t('which') %><br />
+    <%= f.label :place_desc, t('which') %>
     <%= f.text_field :place_desc %>
   </div>
 
@@ -131,6 +131,27 @@
     <%= f.select :illumination_type, Core::ILLUMINATION_TYPES  %>
   </div>
 
+  <script>
+    $(document).ready(function() {
+        $("#core_illumination_type").change(function() {
+            var value = $(this).val();
+            if (value == 2){
+              jQuery('#core_illumination_type_desc_div').attr('style','visibility:visible; !important');
+              jQuery('#core_illumination_type_desc').focus();
+            }
+            else{
+              jQuery('#core_illumination_type_desc_div').attr('style','visibility:hidden; !important');
+            }
+        });
+    });
+  </script>
+
+  <div class="invisible" id="core_illumination_type_desc_div">
+    <%= f.label :illumination_type_desc, t('which') %>
+    <%= f.text_field :illumination_type_desc %>
+  </div>
+
+
   <div>
     <%= f.label :illumination_condition, t('core.illumination_condition_field') %><br />
     <%= f.select :illumination_condition, Core::ILLUMINATION_CONDITIONS  %>
@@ -157,7 +178,7 @@
   </script>
 
   <div class="invisible" id="core_another_place_desc_div">
-    <%= f.label :another_place_desc, t('which_s') %><br />
+    <%= f.label :another_place_desc, t('which_s') %>
     <%= f.text_field :another_place_desc %>
   </div>
 
