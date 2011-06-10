@@ -1,9 +1,11 @@
 <b><%= t('core.displacement_title') %></b><br />
-<%= t('core.educators') %><br />
-<% @displacements.each do |d| %>
-  <%= check_box_tag 'displacement_ids[]', "#{d.id}.0", @core.displacements.include?(d), :id => "displacement_id_0_#{d.id}" %>
-  <%= d.displacement %>
-<% end %>
+<div class= "field_with_complement_info">
+  <%= t('core.educators') %><br />
+  <% @displacements.each do |d| %>
+    <%= check_box_tag 'displacement_ids[]', "#{d.id}.0", @core.displacements.include?(d), :id => "displacement_id_0_#{d.id}" %>
+    <%= d.displacement %>
+  <% end %>
+</div>
 
 <script>
   $(document).ready(function() {
@@ -26,11 +28,13 @@
 
 
 <br />
-<%= t('core.students') %><br />
-<% @displacements.each do |d| %>
-  <%= check_box_tag 'displacement_ids[]', "#{d.id}.1" , @core.displacements.include?(d), :id => "displacement_id_1_#{d.id}" %>
-  <%= d.displacement %>
-<% end %>
+<div class= "field_with_complement_info">
+  <%= t('core.students') %><br />
+  <% @displacements.each do |d| %>
+    <%= check_box_tag 'displacement_ids[]', "#{d.id}.1" , @core.displacements.include?(d), :id => "displacement_id_1_#{d.id}" %>
+    <%= d.displacement %>
+  <% end %>
+</div>
 
 <script>
   $(document).ready(function() {

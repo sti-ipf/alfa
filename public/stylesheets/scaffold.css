@@ -1,5 +1,14 @@
 .invisible{visibility: hidden;}
 
+.field_with_complement_info{
+  float: left;
+  margin-right: 30px;
+}
+
+#new_core div{
+  padding: 10px 0 10px 0;
+}
+
 body { background-color: #fff; color: #333; }
 
 body, p, ol, ul, td {

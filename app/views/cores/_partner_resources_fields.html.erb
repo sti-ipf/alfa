@@ -1,9 +1,12 @@
 <b><%= t('core.partner_title') %></b><br />
-<%= t('core.partner_resource_field') %><br />
-<% PartnerResource.all.each do |p| %>
-  <%= check_box_tag 'core[partner_resource_ids][]', p.id, @core.partner_resources.include?(p), :id => "partner_resource_id_#{p.id}" %>
-  <%= p.resource %>
-<% end %>
+
+<div class= "field_with_complement_info">
+  <%= t('core.partner_resource_field') %><br />
+  <% PartnerResource.all.each do |p| %>
+    <%= check_box_tag 'core[partner_resource_ids][]', p.id, @core.partner_resources.include?(p), :id => "partner_resource_id_#{p.id}" %>
+    <%= p.resource %>
+  <% end %>
+</div>
 
 <script>
   $(document).ready(function() {

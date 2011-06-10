@@ -33,9 +33,8 @@
 
   <div>
     <%= f.label :place, t('core.place_field') %><br />
-    <%= f.select :place, Core::PLACES %>
+    <div class= "field_with_complement_info"><%= f.select :place, Core::PLACES %></div>
   </div>
-
   <script>
     $(document).ready(function() {
         $("#core_place").change(function() {
@@ -83,9 +82,9 @@
     <%= t('core.phones_field') %><br />
     <% f.fields_for :phones do |builder| %>
       <%= render "phone_fields", :f => builder %>
-      <div> <%= link_to_add_fields t('phone.new'), f, :phones %></div>
     <% end %>
   </div>
+  <div> <%= link_to_add_fields t('phone.new'), f, :phones %></div>
 
   <div>
     <%= f.label :email, t('core.email_field') %><br />
@@ -128,7 +127,7 @@
 
   <div>
     <%= f.label :illumination_type, t('core.illumination_field') %><br />
-    <%= f.select :illumination_type, Core::ILLUMINATION_TYPES  %>
+    <div class= "field_with_complement_info"><%= f.select :illumination_type, Core::ILLUMINATION_TYPES  %></div>
   </div>
 
   <script>
@@ -159,8 +158,10 @@
 
   <div>
     <%= f.label :another_place, t('core.another_place_field') %><br />
-    <%= f.check_box :another_place, :value => false %>
-    <%= t('yyes') %>
+    <div class= "field_with_complement_info">
+      <%= f.check_box :another_place, :value => false %>
+      <%= t('yyes') %>
+    </div>
   </div>
 
   <script>
