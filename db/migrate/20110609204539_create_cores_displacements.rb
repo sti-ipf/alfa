@@ -1,6 +1,6 @@
 class CreateCoresDisplacements < ActiveRecord::Migration
   def self.up
-    create_table :cores_displacements, :id => false do |t|
+    create_table :cores_displacements do |t|
       t.string :displacement_desc
       t.integer :displacement_type
       t.references :core

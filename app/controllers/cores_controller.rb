@@ -47,9 +47,16 @@ class CoresController < ApplicationController
   # POST /cores.xml
   def create
     @core = Core.new(params[:core])
+    seat_type_desc = params[:seat_type_desc]
+    resource_desc = params[:resource_desc]
+
     respond_to do |format|
       if @core.save
-        CoresDisplacement.create_displacements(params[:displacement_ids], @core.id)
+        CoresDisplacement.create_displacements(params[:displacement_ids], @core.id,
+          params[:displacement_desc_0], params[:displacement_desc_1])
+        CoresSeatType.update_seat_type_desc(seat_type_desc, @core.id) if !seat_type_desc.blank?
+        CoresPartnerResource.update_resource_desc(resource_desc, @core.id) if !resource_desc.blank?
+
         format.html { redirect_to(@core, :notice => t('core.created')) }
         format.xml  { render :xml => @core, :status => :created, :location => @core }
       else

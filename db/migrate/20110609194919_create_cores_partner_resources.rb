@@ -1,6 +1,6 @@
 class CreateCoresPartnerResources < ActiveRecord::Migration
   def self.up
-    create_table :cores_partner_resources, :id => false do |t|
+    create_table :cores_partner_resources do |t|
       t.string :resource_desc
       t.references :core
       t.references :partner_resource
