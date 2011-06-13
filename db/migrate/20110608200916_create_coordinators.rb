@@ -22,10 +22,15 @@ class CreateCoordinators < ActiveRecord::Migration
       t.string :birth_or_marriage_certificate_id
       t.string :social_id
       t.integer :sons_number
+      t.integer :first_son_age
+      t.integer :second_son_age
+      t.integer :third_son_age
+      t.integer :forth_son_age
       t.integer :education_level
       t.string :education_level_desc
       t.integer :familiar_income
       t.integer :house
+      t.string :house_desc
       t.integer :house_type
       t.boolean :special_need
       t.integer :political_affiliation      

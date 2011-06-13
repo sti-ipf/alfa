@@ -1,0 +1,5 @@
+<% @professional_exps.each do |p| %>
+  <%= check_box_tag 'coordinator[professional_exp_ids][]', p.id, @coordinator.professional_exps.include?(p) %>
+  <%= p.area %>
+<% end %>
+

@@ -3,7 +3,7 @@ class CreateEducators < ActiveRecord::Migration
   def self.up
     create_table :educators do |t|
       t.string :name
-      t.string :class
+      t.string :c_class
       t.date :start_date_to_students
       t.integer :age
       t.integer :gender
@@ -22,11 +22,16 @@ class CreateEducators < ActiveRecord::Migration
       t.string :birth_or_marriage_certificate_id
       t.string :social_id
       t.integer :sons_number
+      t.integer :first_son_age
+      t.integer :second_son_age
+      t.integer :third_son_age
+      t.integer :forth_son_age
       t.integer :education_level
+      t.string :education_level_desc
       t.integer :familiar_income
       t.integer :house
       t.integer :house_type
-      t.boolean :with_disability
+      t.boolean :special_need
       t.integer :political_affiliation      
       t.integer :political_party
       t.string :political_desc
@@ -35,10 +40,6 @@ class CreateEducators < ActiveRecord::Migration
       t.string :association_desc
       t.integer :cooperative
       
-      t.references :social_participation
-      t.references :professional_exp
-      t.references :education_exp
-      t.references :phone
       t.references :core
 
       t.timestamps

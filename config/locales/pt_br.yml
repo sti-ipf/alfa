@@ -118,6 +118,9 @@ pt_br:
     dd: "DD"
     number: "Número"
     new: "Novo telefone"
+    mobile: "Celular"
+    house: "Residencial"
+    to_note: "Para recados"
   desk_type:
     elementar_desks: "Carteiras escolares"
     round_tables: "Mesas redondas"
@@ -150,7 +153,9 @@ pt_br:
     sons_number: 
       title: "Número de filhos"
       without: "nenhum"
-      more_than_4: "mais de 4"
+      more_than_four: "mais de 4"
+    age_of_sons: "Idade dos filhos"
+    occupation: "Ocupação"
     education_level: "Grau de escolaridade"
     familiar_income: 
       title: "Renda familiar"
@@ -191,6 +196,7 @@ pt_br:
       rural: "De trabalhadores rurais"
       neighborhood: "De bairro"
       artisans: "De artesãos"
+      other: "Outra"
     cooperative:
       title: "Cooperativas"
       work: "De trabalho"
@@ -204,6 +210,22 @@ pt_br:
     edit_title: "Editando coordenador"
     created: "Coordenador criado com sucesso."
     updated: "Coordenador atualizado com sucesso."
+  professional_exp:
+    title: "Experiências profissionais anteriores"
+  education_exp:
+    title: "Experiência na educação"
+    one_year: "1 ano"
+    2_to_3: "2 a 3 anos"
+    4_to_5: "4 a 5 anos"
+    more_than_5: "Mais de 5 anos"
+    without: "Nenhuma"
+    popular_education_years: "Educação Popular"
+    learning_network: "Rede de Ensino"
+  social_participation:
+    title: "Participação social"
+    union_movement: "Movimento sindical"
+    popular_social_movement: "Movimento social popular (de jovens, mulheres, negros, ambientalista, sem terra, sem teto, de GLBTT)"
+    ong: "ONG"
   activerecord:
     models:
       core: "Núcleo"

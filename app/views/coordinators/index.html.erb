@@ -2,8 +2,7 @@
 
 <table>
   <tr>
-    <th><%= t('coordinator.city')%></th>
-    <th><%= t('coordinator.community')%></th>
+    <th><%= t('coordinator.name')%></th>
     <th></th>
     <th></th>
     <th></th>
@@ -11,8 +10,7 @@
 
 <% @coordinators.each do |coordinator| %>
   <tr>
-    <td><%= coordinator.city%></td>
-    <td><%= coordinator.community%></td>
+    <td><%= coordinator.name%></td>
     <td><%= link_to t('show'), coordinator %></td>
     <td><%= link_to t('edit'), edit_coordinator_path(coordinator) %></td>
     <td><%= button_to t('delete'), coordinator, :confirm => t('are_you_sure'), :method => :delete %></td>

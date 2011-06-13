@@ -32,3 +32,12 @@ Displacement.create(:displacement => "Em lombo de animal")
 Displacement.create(:displacement => "Ônibus")
 Displacement.create(:displacement => "Outro")
 
+ProfessionalExp.create(:area => "Na agricultura")
+ProfessionalExp.create(:area => "Na indústria")
+ProfessionalExp.create(:area => "No comércio")
+ProfessionalExp.create(:area => "Outros")
+ProfessionalExp.create(:area => "Nenhuma anterior")
+
+EducationExp.create(:education_type => "Pública")
+EducationExp.create(:education_type => "Privada")
+EducationExp.create(:education_type => "Estágio")

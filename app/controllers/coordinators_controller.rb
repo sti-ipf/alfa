@@ -30,7 +30,8 @@ class CoordinatorsController < ApplicationController
   # GET /coordinators/new.xml
   def new
     @coordinator = Coordinator.new
-    @coordinator.phones.build
+    3.times {@coordinator.phones.build}
+    @coordinator.social_participations.build
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @coordinator }
@@ -60,16 +61,8 @@ class CoordinatorsController < ApplicationController
   # POST /coordinators.xml
   def create
     @coordinator = Coordinator.new(params[:coordinator])
-    seat_type_desc = params[:seat_type_desc]
-    resource_desc = params[:resource_desc]
-
     respond_to do |format|
       if @coordinator.save
-        CoordinatorsDisplacement.create_displacements(params[:displacement_ids], @coordinator.id,
-          params[:displacement_desc_0], params[:displacement_desc_1])
-        CoordinatorsSeatType.update_seat_type_desc(seat_type_desc, @coordinator.id) if !seat_type_desc.blank?
-        CoordinatorsPartnerResource.update_resource_desc(resource_desc, @coordinator.id) if !resource_desc.blank?
-
         format.html { redirect_to(@coordinator, :notice => t('coordinator.created')) }
         format.xml  { render :xml => @coordinator, :status => :created, :location => @coordinator }
       else
@@ -123,6 +116,8 @@ class CoordinatorsController < ApplicationController
     @religions = Coordinator::RELIGIONS
     @associations = Coordinator::ASSOCIATIONS
     @cooperatives = Coordinator::COOPERATIVES
+    @professional_exps = ProfessionalExp.all
+    @education_exps = EducationExp.all
   end
 end
 
