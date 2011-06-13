@@ -10,10 +10,7 @@ module ApplicationHelper
         render(association.to_s.singularize + "_fields", :f => builder)
       end
       fields = fields.gsub("\"","'").gsub("&",'&amp;').gsub("<",'&lt;').gsub(">",'&gt;').gsub("\n", '')
-      puts fields
-#      link_to_function(name, ("add_fields(this, '#{association}', '#{escape_javascript(fields)}')"))
       link_to_function(name, ("add_fields(this, '#{association}', \"#{raw(fields)}\")"))
-      #link_to_function(name, ("add_fields(this, \"#{association}\", \"#{raw(fields)}\")"))
     end
 end
 

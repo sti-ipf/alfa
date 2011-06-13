@@ -1,0 +1,202 @@
+<script>
+  $(document).ready(function() {
+    if ($("#coordinator_place").val() == 6){
+      jQuery('#coordinator_place_desc_div').attr('style','visibility:visible; !important');
+    }
+
+    if ($("#partner_resource_id_1").is(':checked')){
+      jQuery('#coordinator_resource_desc_div').attr('style','visibility:visible; !important');
+    }
+
+    if ($("#seat_type_id_1").is(':checked')){
+      jQuery('#coordinator_seat_type_desc_div').attr('style','visibility:visible; !important');
+    }
+
+    if ($("#coordinator_illumination_type").val() == 2){
+      jQuery('#coordinator_illumination_type_desc_div').attr('style','visibility:visible; !important');
+    }
+
+    if ($("#displacement_id_0_9").is(':checked')){
+      jQuery('#coordinator_displacement_desc_0_div').attr('style','visibility:visible; !important');
+    }
+
+    if ($("#displacement_id_1_9").is(':checked')){
+      jQuery('#coordinator_displacement_desc_1_div').attr('style','visibility:visible; !important');
+    }
+  });
+</script>
+
+<%= form_for(@coordinator) do |f| %>
+  <% if @coordinator.errors.any? %>
+    <div id="error_explanation">
+
+
+      <ul>
+      <% @coordinator.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label :name, t('coordinator.name') %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :c_class, t('coordinator.c_class') %><br />
+    <%= f.text_field :c_class %>
+  </div>
+
+  <div>
+    <%= f.label :start_date_to_students, t('coordinator.start_date_to_students') %><br />
+    <%= f.text_field :start_date_to_students %>
+  </div>
+
+  <div>
+    <%= f.label :core_id, t('coordinator.core') %><br />
+    <%= f.select :core_id, @cores %>
+  </div>
+
+  <div>
+    <%= f.label :gender, t('coordinator.gender') %><br />
+    <%= f.select :gender, @genders %>
+  </div>
+
+  <div>
+    <%= f.label :dob, t('coordinator.dob') %><br />
+    <%= f.date_select :dob %>
+  </div>
+
+  <div>
+    <%= f.label :ethnicity, t('coordinator.ethnicity') %><br />
+    <%= f.select :ethnicity, @ethnicities %>
+  </div>
+
+  <div>
+    <%= f.label :hometown, t('coordinator.hometown') %><br />
+    <%= f.text_field :hometown %>
+  </div>
+
+  <div>
+    <%= f.label :state, t('coordinator.state') %><br />
+    <%= f.text_field :state %>
+  </div>
+
+  <div>
+    <%= f.label :zone, t('coordinator.zone') %><br />
+    <%= f.select :zone, @zones %>
+  </div>
+
+  <div>
+    <%= f.label :address, t('coordinator.address') %><br />
+    <%= f.text_field :address, :size => 100 %>
+  </div>
+
+  <div>
+    <%= t('core.phones_field') %><br />
+    <% f.fields_for :phones do |builder| %>
+      <%= render "phone_fields", :f => builder %>
+    <% end %>
+  </div>
+  <div> <%= link_to_add_fields t('phone.new'), f, :phones %></div>
+
+  <div>
+    <%= f.label :civil_status, t('coordinator.civil_status') %><br />
+    <%= f.select :civil_status, @civil_status %>
+  </div>
+
+  <b><%= t('coordinator.personal_doc')%></b>
+
+  <div>
+    <%= f.label :rg, t('coordinator.rg') %><br />
+    <%= f.text_field :rg %>
+  </div>
+
+  <div>
+    <%= f.label :cpf, t('coordinator.cpf') %><br />
+    <%= f.text_field :cpf %>
+  </div>
+
+  <div>
+    <%= f.label :voter_id, t('coordinator.voter_id') %><br />
+    <%= f.text_field :voter_id %>
+  </div>
+
+  <div>
+    <%= f.label :professional_id, t('coordinator.professional_id') %><br />
+    <%= f.text_field :professional_id %>
+  </div>
+
+  <div>
+    <%= f.label :professional_serie, t('coordinator.professional_serie') %><br />
+    <%= f.text_field :professional_serie %>
+  </div>
+
+  <div>
+    <%= f.label :birth_or_marriage_certificate_id, t('coordinator.birth_or_marriage_certificate_id') %><br />
+    <%= f.text_field :birth_or_marriage_certificate_id %>
+  </div>
+
+  <div>
+    <%= f.label :social_id, t('coordinator.social_id') %><br />
+    <%= f.text_field :social_id %>
+  </div>
+
+  <div>
+    <%= f.label :sons_number, t('coordinator.sons_number.title') %><br />
+    <%= f.select :sons_number, @sons_number %>
+  </div>
+
+  <div>
+    <%= f.label :education_level, t('coordinator.education_level') %><br />
+    <%= f.select :education_level, @education_levels %>
+  </div>
+
+  <div>
+    <%= f.label :house, t('coordinator.house.title') %><br />
+    <%= f.select :house, @houses %>
+  </div>
+
+  <div>
+    <%= f.label :house_type, t('coordinator.house_type') %><br />
+    <%= f.select :house_type, @house_types %>
+  </div>
+
+  <div>
+    <%= f.label :special_need, t('coordinator.special_need') %><br />
+    <%= f.check_box :special_need, :value => false %>
+    <%= t('yyes') %>
+  </div>
+
+  <div>
+    <%= f.label :political_affiliation, t('coordinator.political_affiliation.title') %><br />
+    <%= f.select :political_affiliation, @political_affiliations %>
+  </div>
+
+  <div>
+    <%= f.label :political_party, t('coordinator.political_party.title') %><br />
+    <%= f.select :political_party, @political_parties %>
+  </div>
+
+  <div>
+    <%= f.label :religion, t('coordinator.religion.title') %><br />
+    <%= f.select :religion, @religions %>
+  </div>
+
+  <div>
+    <%= f.label :association, t('coordinator.association.title') %><br />
+    <%= f.select :association, @associations %>
+  </div>
+
+  <div>
+    <%= f.label :cooperative, t('coordinator.cooperative.title') %><br />
+    <%= f.select :cooperative, @cooperatives %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit button %>
+  </div>
+<% end %>
+

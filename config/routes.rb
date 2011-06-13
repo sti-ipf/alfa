@@ -2,7 +2,7 @@
 Alfa::Application.routes.draw do
   root :to => "cores#index"
   resources :cores
-
+  resources :coordinators
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

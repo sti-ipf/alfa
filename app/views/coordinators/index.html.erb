@@ -1,0 +1,26 @@
+<h1><%= t('coordinator.listing')%></h1>
+
+<table>
+  <tr>
+    <th><%= t('coordinator.city')%></th>
+    <th><%= t('coordinator.community')%></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @coordinators.each do |coordinator| %>
+  <tr>
+    <td><%= coordinator.city%></td>
+    <td><%= coordinator.community%></td>
+    <td><%= link_to t('show'), coordinator %></td>
+    <td><%= link_to t('edit'), edit_coordinator_path(coordinator) %></td>
+    <td><%= button_to t('delete'), coordinator, :confirm => t('are_you_sure'), :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to t('coordinator.new'), new_coordinator_path %>
+

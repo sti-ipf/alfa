@@ -4,7 +4,9 @@ class CreatePhones < ActiveRecord::Migration
     create_table :phones do |t|
       t.integer :dd
       t.string :number
+      t.integer :phone_type
       t.references :core
+      t.references :coordinator
 
       t.timestamps
     end
