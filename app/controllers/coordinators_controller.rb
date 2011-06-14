@@ -40,29 +40,30 @@ class CoordinatorsController < ApplicationController
 
   # GET /coordinators/1/edit
   def edit
-    @coordinator = Coordinator.find(params[:id], :include => [:coordinators_displacements, :coordinators_partner_resources, :coordinators_seat_types])
-
-    @coordinator.coordinators_partner_resources.each do |c|
-      @resource_desc = c.resource_desc if !c.resource_desc.nil?
-    end
-
-    @coordinator.coordinators_seat_types.each do |c|
-      @seat_type_desc = c.seat_type_desc if !c.seat_type_desc.nil?
-    end
-
-    @coordinator.coordinators_displacements.each do |c|
-      @displacement_desc_0 = c.displacement_desc if !c.displacement_desc.nil? && c.displacement_type == 0
-      @displacement_desc_1 = c.displacement_desc if !c.displacement_desc.nil? && c.displacement_type == 1
-    end
-
+    @coordinator = Coordinator.find(params[:id], :include => [:social_participations, :phones, 
+      :coordinators_education_exps, :coordinators_education_exps])
+    @union_movement_desc = @coordinator.social_participations.first.union_movement_desc
+    @ong_desc = @coordinator.social_participations.first.ong_desc
+    @years = @coordinator.coordinators_education_exps.first.years
+    @popular_education_years = @coordinator.coordinators_education_exps.first.popular_education_years
   end
 
   # POST /coordinators
   # POST /coordinators.xml
   def create
     @coordinator = Coordinator.new(params[:coordinator])
+    ong_desc = params[:ong_desc]
+    union_movement_desc = params[:union_movement_desc]
+    coordinator_years = params[:coordinator_years]
+    coordinator_popular_education_years = params[:coordinator_popular_education_years]
     respond_to do |format|
       if @coordinator.save
+        if !@coordinator.social_participations.first.nil?
+          @coordinator.social_participations.first.save_with_descs(ong_desc, union_movement_desc)
+        end
+        if !@coordinator.coordinators_education_exps.first.nil?
+          @coordinator.coordinators_education_exps.first.update_with_years(coordinator_years, coordinator_popular_education_years)
+        end
         format.html { redirect_to(@coordinator, :notice => t('coordinator.created')) }
         format.xml  { render :xml => @coordinator, :status => :created, :location => @coordinator }
       else
@@ -76,9 +77,18 @@ class CoordinatorsController < ApplicationController
   # PUT /coordinators/1.xml
   def update
     @coordinator = Coordinator.find(params[:id])
-
+    ong_desc = params[:ong_desc]
+    union_movement_desc = params[:union_movement_desc]
+    coordinator_years = params[:coordinator_years]
+    coordinator_popular_education_years = params[:coordinator_popular_education_years]
     respond_to do |format|
       if @coordinator.update_attributes(params[:coordinator])
+        if !@coordinator.social_participations.first.nil?
+          @coordinator.social_participations.first.save_with_descs(ong_desc, union_movement_desc)
+        end
+        if !@coordinator.coordinators_education_exps.first.nil?
+          @coordinator.coordinators_education_exps.first.update_with_years(coordinator_years, coordinator_popular_education_years)
+        end
         format.html { redirect_to(@coordinator, :notice => t('coordinator.updated')) }
         format.xml  { head :ok }
       else
@@ -101,7 +111,7 @@ class CoordinatorsController < ApplicationController
   end
 
   def load_data
-    @cores = Core.all
+    @cores = Core.all.collect {|c| ["#{c.city} - #{c.community}", c.id]}
     @genders = Coordinator::GENDERS
     @ethnicities = Coordinator::ETHNICITIES
     @zones = Coordinator::ZONES

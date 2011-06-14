@@ -1,27 +1,23 @@
 <script>
   $(document).ready(function() {
-    if ($("#coordinator_place").val() == 6){
-      jQuery('#coordinator_place_desc_div').attr('style','visibility:visible; !important');
+    if ($("#coordinator_association").val() == 4){
+      jQuery('#coordinator_association_desc_div').attr('style','visibility:visible; !important');
     }
 
-    if ($("#partner_resource_id_1").is(':checked')){
-      jQuery('#coordinator_resource_desc_div').attr('style','visibility:visible; !important');
+    if ($("#coordinator_social_participations_attributes_0_union_movement").is(':checked')){
+      jQuery('#union_movement_desc_div').attr('style','visibility:visible; !important');
     }
 
-    if ($("#seat_type_id_1").is(':checked')){
-      jQuery('#coordinator_seat_type_desc_div').attr('style','visibility:visible; !important');
+    if ($("#coordinator_social_participations_attributes_0_ong").is(':checked')){
+      jQuery('#ong_desc_div').attr('style','visibility:visible; !important');
     }
 
-    if ($("#coordinator_illumination_type").val() == 2){
-      jQuery('#coordinator_illumination_type_desc_div').attr('style','visibility:visible; !important');
+    if ($("#coordinator_house").val() == 5){
+      jQuery('#coordinator_house_desc_div').attr('style','visibility:visible; !important');
     }
 
-    if ($("#displacement_id_0_9").is(':checked')){
-      jQuery('#coordinator_displacement_desc_0_div').attr('style','visibility:visible; !important');
-    }
-
-    if ($("#displacement_id_1_9").is(':checked')){
-      jQuery('#coordinator_displacement_desc_1_div').attr('style','visibility:visible; !important');
+    if ($("#coordinator_education_level").val() > 1){
+      jQuery('#coordinator_education_level_desc_div').attr('style','visibility:visible; !important');
     }
   });
 </script>
@@ -134,10 +130,7 @@
   <div>
     <%= f.label :professional_id, t('coordinator.professional_id') %><br />
     <%= f.text_field :professional_id %>
-  </div>
-
-  <div>
-    <%= f.label :professional_serie, t('coordinator.professional_serie') %><br />
+    <%= f.label :professional_serie, t('coordinator.professional_serie') %>
     <%= f.text_field :professional_serie %>
   </div>
 

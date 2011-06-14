@@ -3,14 +3,16 @@
   <%= e.education_type %>
 <% end %>
 <br />
+
 <% 5.times do |i| %>
-	<%= check_box_tag 'coordinator[years][]', i, false%>
-	<%= get_label_with_years(i) %>
+
+	<%= radio_button_tag 'coordinator_years', i, @years == i%>
+	<%= get_label_with_years(i)%>
 <% end %>
 
 <br />
 <%=t('education_exp.popular_education_years')%><br />
 <% 5.times do |i| %>
-	<%= check_box_tag 'coordinator[popular_education_years][]', i, false%>
+	<%= radio_button_tag 'coordinator_popular_education_years', i, @popular_education_years == i%>
 	<%= get_label_with_years(i) %>
 <% end %>
