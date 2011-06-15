@@ -7,7 +7,6 @@ class CoresSeatType < ActiveRecord::Base
     c = CoresSeatType.first(:conditions => "core_id = #{core_id}")
     if !c.nil?
       c.seat_type_desc = desc
-      puts c.inspect
       c.save
     end
   end

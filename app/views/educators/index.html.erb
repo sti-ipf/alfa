@@ -1,0 +1,23 @@
+<h1><%= t('educator.listing')%></h1>
+
+<table>
+  <tr>
+    <th><%= t('educator.name')%></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @educators.each do |educator| %>
+  <tr>
+    <td><%= educator.name%></td>
+    <td><%= link_to t('show'), educator %></td>
+    <td><%= link_to t('edit'), edit_educator_path(educator) %></td>
+    <td><%= link_to t('delete'), educator, :confirm => t('are_you_sure'), :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+

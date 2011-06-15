@@ -45,7 +45,7 @@ class CoordinatorsController < ApplicationController
   def edit
     @coordinator = Coordinator.find(params[:id], :include => [:social_participations, :phones, 
       :coordinators_education_exps, :coordinators_education_exps])
-    @union_movement_desc = @coordinator.social_participations.first.union_movement_desc
+    @union_movement_desc = @coordinator.social_participations.first.union_movement_desc if !@coordinator.social_participations.first.nil?
     @ong_desc = @coordinator.social_participations.first.ong_desc if !@coordinator.social_participations.first.nil?
     @years = @coordinator.coordinators_education_exps.first.years if !@coordinator.coordinators_education_exps.first.nil?
     @popular_education_years = @coordinator.coordinators_education_exps.first.popular_education_years if !@coordinator.coordinators_education_exps.first.nil?

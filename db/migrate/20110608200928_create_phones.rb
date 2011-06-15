@@ -7,6 +7,7 @@ class CreatePhones < ActiveRecord::Migration
       t.integer :phone_type
       t.references :core
       t.references :coordinator
+      t.references :educator
 
       t.timestamps
     end
