@@ -1,0 +1,8 @@
+<div>
+  <b><%= t('room.name') %></b>
+  <%= @room.name %>
+</div>
+
+
+<%= link_to t('edit'), edit_room_path(@room) %> |
+<%= link_to t('back'), rooms_path %>

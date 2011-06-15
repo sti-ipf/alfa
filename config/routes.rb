@@ -1,5 +1,7 @@
 # -*- encoding : utf-8 -*-
 Alfa::Application.routes.draw do
+  resources :rooms
+
   root :to => "cores#index"
   resources :cores
   resources :coordinators

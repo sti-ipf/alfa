@@ -5,7 +5,7 @@
   margin-right: 30px;
 }
 
-#new_core div{
+#new_core div, #new_coordinator div{
   padding: 10px 0 10px 0;
 }
 

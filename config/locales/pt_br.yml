@@ -82,6 +82,7 @@ pt_br:
     edit_title: "Editando núcleo"
     created: "Núcleo criado com sucesso."
     updated: "Núcleo atualizado com sucesso."
+    view: "Visualizar núcleos"
   seat_type:
     which_material: "Qual material"
     seats: "Cadeiras"
@@ -129,7 +130,7 @@ pt_br:
   coordinator:
     name: "Nome"
     core: "Núcleo"
-    c_class: "Turma"
+    room: "Turma"
     start_date_to_students: "Data do início das aulas para o educando"
     student_name: "Nome do educando(a)"
     age: "Faixa etária"
@@ -210,6 +211,7 @@ pt_br:
     edit_title: "Editando coordenador"
     created: "Coordenador criado com sucesso."
     updated: "Coordenador atualizado com sucesso."
+    view: "Visualizar coordenadores"
   professional_exp:
     title: "Experiências profissionais anteriores"
   education_exp:
@@ -226,9 +228,21 @@ pt_br:
     union_movement: "Movimento sindical"
     popular_social_movement: "Movimento social popular (de jovens, mulheres, negros, ambientalista, sem terra, sem teto, de GLBTT)"
     ong: "ONG"
+  room:
+    listing: "Turmas"
+    new: "Nova turma"
+    new_title: "Nova turma"
+    errors: "não deixam a Turma ser salva:"
+    edit_title: "Editando turma"
+    created: "Turma criada com sucesso."
+    updated: "Turma atualizada com sucesso."
+    view: "Visualizar turmas"
+    name: "Nome"
   activerecord:
     models:
       core: "Núcleo"
+      coordinator: "Coordenador"
+      room: "Turma"
 
   # formatos de data e hora
   date:

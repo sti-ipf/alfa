@@ -3,7 +3,6 @@ class CreateCoordinators < ActiveRecord::Migration
   def self.up
     create_table :coordinators do |t|
       t.string :name
-      t.string :c_class
       t.date :start_date_to_students
       t.integer :age
       t.integer :gender

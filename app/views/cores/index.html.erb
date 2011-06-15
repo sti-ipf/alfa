@@ -15,7 +15,7 @@
     <td><%= core.community%></td>
     <td><%= link_to t('show'), core %></td>
     <td><%= link_to t('edit'), edit_core_path(core) %></td>
-    <td><%= button_to t('delete'), core, :confirm => t('are_you_sure'), :method => :delete %></td>
+    <td><%= link_to t('delete'), core, :confirm => t('are_you_sure'), :method => :delete %></td>
   </tr>
 <% end %>
 </table>

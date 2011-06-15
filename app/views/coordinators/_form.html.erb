@@ -41,9 +41,12 @@
   </div>
 
   <div>
-    <%= f.label :c_class, t('coordinator.c_class') %><br />
-    <%= f.text_field :c_class %>
-  </div>
+    <%= t('coordinator.room') %><br />
+		<% @rooms.each do |r| %>
+		  <%= check_box_tag 'coordinator[room_ids][]', r.id, @coordinator.rooms.include?(r) %>
+		  <%= r.name %>
+		<% end %>
+	</div>
 
   <div>
     <%= f.label :start_date_to_students, t('coordinator.start_date_to_students') %><br />
