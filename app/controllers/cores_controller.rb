@@ -18,11 +18,14 @@ class CoresController < ApplicationController
   # GET /cores/1
   # GET /cores/1.xml
   def show
-    @core = Core.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @core }
+    @core = Core.first(:conditions => "id = #{params[:id]}")
+    if @core.nil?
+      redirect_to cores_path 
+    else
+      respond_to do |format|
+        format.html # show.html.erb
+        format.xml  { render :xml => @core }
+      end
     end
   end
 
@@ -71,7 +74,7 @@ class CoresController < ApplicationController
         CoresSeatType.update_seat_type_desc(seat_type_desc, @core.id) if !seat_type_desc.blank?
         CoresPartnerResource.update_resource_desc(resource_desc, @core.id) if !resource_desc.blank?
 
-        format.html { redirect_to(@core, :notice => t('core.created')) }
+        format.html { redirect_to(cores_path, :notice => t('core.created')) }
         format.xml  { render :xml => @core, :status => :created, :location => @core }
       else
         format.html { render :action => "new" }
@@ -87,7 +90,7 @@ class CoresController < ApplicationController
 
     respond_to do |format|
       if @core.update_attributes(params[:core])
-        format.html { redirect_to(@core, :notice => t('core.updated')) }
+        format.html { redirect_to(cores_path, :notice => t('core.updated')) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

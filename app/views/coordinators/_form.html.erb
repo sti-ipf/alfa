@@ -91,12 +91,6 @@
   </div>
 
   <div>
-    <%= t('coordinator.has_phone') %><br />
-    <%= check_box_tag :has_phone %>
-    <%= t('yyes') %>
-  </div>
-
-  <div>
 	<% phone_number = 0 %>
     <%= t('core.phones_field') %><br />
     <% f.fields_for :phones do |builder| %>

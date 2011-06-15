@@ -9,7 +9,9 @@
 
 </head>
 <body>
-
+<%= link_to t('core.new'), new_core_path %> |
+<%= link_to t('coordinator.new'), new_coordinator_path %>
+<p id="notice"><%= notice %></p>
 <%= yield %>
 
 </body>

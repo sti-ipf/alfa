@@ -18,11 +18,14 @@ class CoordinatorsController < ApplicationController
   # GET /coordinators/1
   # GET /coordinators/1.xml
   def show
-    @coordinator = Coordinator.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @coordinator }
+    @coordinator = Coordinator.first(:conditions => "id = #{params[:id]}")
+    if @coordinator.nil?
+      redirect_to coordinators_path 
+    else
+      respond_to do |format|
+        format.html # show.html.erb
+        format.xml  { render :xml => @coordinator }
+      end
     end
   end
 
@@ -64,7 +67,7 @@ class CoordinatorsController < ApplicationController
         if !@coordinator.coordinators_education_exps.first.nil?
           @coordinator.coordinators_education_exps.first.update_with_years(coordinator_years, coordinator_popular_education_years)
         end
-        format.html { redirect_to(@coordinator, :notice => t('coordinator.created')) }
+        format.html { redirect_to(coordinators_path, :notice => t('coordinator.created')) }
         format.xml  { render :xml => @coordinator, :status => :created, :location => @coordinator }
       else
         format.html { render :action => "new" }
@@ -89,7 +92,7 @@ class CoordinatorsController < ApplicationController
         if !@coordinator.coordinators_education_exps.first.nil?
           @coordinator.coordinators_education_exps.first.update_with_years(coordinator_years, coordinator_popular_education_years)
         end
-        format.html { redirect_to(@coordinator, :notice => t('coordinator.updated')) }
+        format.html { redirect_to(coordinators_path, :notice => t('coordinator.updated')) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
