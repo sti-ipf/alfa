@@ -34,8 +34,8 @@ class CreateWorldReadings < ActiveRecord::Migration
       t.boolean :share_photos_videos
       t.boolean :e_learning
       t.string :e_learning_desc
-      t.refereces :educator
-      t.refences :coordinator
+      t.references :educator
+      t.references :coordinator
 
       t.timestamps
     end

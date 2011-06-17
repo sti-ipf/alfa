@@ -1,4 +1,7 @@
 class WorldReadingsController < ApplicationController
+  
+  before_filter :load_data, :only => [:edit, :new, :update, :create]
+  
   # GET /world_readings
   # GET /world_readings.xml
   def index
@@ -80,4 +83,18 @@ class WorldReadingsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def load_data
+    @educators = Educator.all.collect {|e| [e.name, e.id]}
+    @coordinators = Coordinator.all.collect {|c| [c.name, c.id]}
+    @computer_uses = WorldReading::COMPUTER_USES
+    @what_uses = WorldReading::WHAT_USES
+    @about_internet_uses = WorldReading::ABOUT_INTERNET_USES
+    @internet_connection_types = WorldReading::INTERNET_CONNECTION_TYPES
+    @what_you_do_in_internet = WorldReading::WHAT_YOU_DO_IN_INTERNET
+    @frequency_email_reading = WorldReading::FREQUENCY_EMAIL_READING
+    @social_networking = WorldReading::SOCIAL_NETWORKING
+    @discussion_lists = WorldReading::DISCUSSION_LISTS
+  end
+  
 end

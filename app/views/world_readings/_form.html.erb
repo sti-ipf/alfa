@@ -1,8 +1,6 @@
 <%= form_for(@world_reading) do |f| %>
   <% if @world_reading.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@world_reading.errors.count, "error") %> prohibited this world_reading from being saved:</h2>
-
       <ul>
       <% @world_reading.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -11,145 +9,149 @@
     </div>
   <% end %>
 
-  <div class="field">
+	<%= t('world_reading.who_i_am')%>
+  <div>
     <%= f.label :email %><br />
     <%= f.text_field :email %>
   </div>
-  <div class="field">
+  <div>
     <%= f.label :have_experience %><br />
     <%= f.text_area :have_experience %>
   </div>
-  <div class="field">
+  <div>
     <%= f.label :availability %><br />
     <%= f.text_area :availability %>
   </div>
-  <div class="field">
+  <div>
     <%= f.label :availability_to_travel %><br />
     <%= f.check_box :availability_to_travel %>
+		<%= t('yyes')%>
   </div>
-  <div class="field">
+  <div>
     <%= f.label :need_for_literacy %><br />
     <%= f.text_area :need_for_literacy %>
   </div>
-  <div class="field">
+  <div>
     <%= f.label :can_organize_rooms %><br />
     <%= f.text_area :can_organize_rooms %>
   </div>
-  <div class="field">
+  <div>
     <%= f.label :educator_wish %><br />
     <%= f.text_area :educator_wish %>
   </div>
-  <div class="field">
+  <div>
     <%= f.label :any_time %><br />
     <%= f.text_area :any_time %>
   </div>
-  <div class="field">
+  <div>
     <%= f.label :what_teach %><br />
     <%= f.text_area :what_teach %>
   </div>
-  <div class="field">
+  <div>
     <%= f.label :young_and_old_together %><br />
     <%= f.text_area :young_and_old_together %>
   </div>
-  <div class="field">
+  <div>
     <%= f.label :list_subjects %><br />
     <%= f.text_area :list_subjects %>
   </div>
-  <div class="field">
+	<b><%= t('word_reading.computer_knowledge')%></b><br />
+	<b><%= t('word_reading.computer_knowledge_field')%></b><br />
+  <div>
     <%= f.label :computer_use %><br />
-    <%= f.text_field :computer_use %>
+    <%= f.select :computer_use, @computer_uses %>
   </div>
-  <div class="field">
+  <div>
     <%= f.label :what_use %><br />
-    <%= f.text_field :what_use %>
+    <%= f.select :what_use, @what_uses %>
   </div>
-  <div class="field">
+  <div>
     <%= f.label :about_internet_use %><br />
-    <%= f.text_field :about_internet_use %>
+    <%= f.select :about_internet_use, @about_internet_uses %>
   </div>
-  <div class="field">
+  <div>
     <%= f.label :about_internet_use_desc %><br />
     <%= f.text_field :about_internet_use_desc %>
   </div>
-  <div class="field">
+  <div>
     <%= f.label :internet_connection_type %><br />
-    <%= f.text_field :internet_connection_type %>
+    <%= f.select :internet_connection_type, @internet_connection_types %>
   </div>
-  <div class="field">
+  <div>
     <%= f.label :what_you_do_in_internet %><br />
-    <%= f.text_field :what_you_do_in_internet %>
+    <%= f.select :what_you_do_in_internet, @what_you_do_in_internet %>
   </div>
-  <div class="field">
+  <div>
     <%= f.label :frequency_email_reading %><br />
-    <%= f.text_field :frequency_email_reading %>
+    <%= f.select :frequency_email_reading, @frequency_email_reading %>
   </div>
-  <div class="field">
+  <div>
     <%= f.label :make_searches %><br />
     <%= f.check_box :make_searches %>
   </div>
-  <div class="field">
+  <div>
     <%= f.label :prefered_search_engine %><br />
     <%= f.text_field :prefered_search_engine %>
   </div>
-  <div class="field">
+  <div>
     <%= f.label :social_networking %><br />
-    <%= f.text_field :social_networking %>
+    <%= f.select :social_networking, @social_networking %>
   </div>
-  <div class="field">
+  <div>
     <%= f.label :social_networking_desc %><br />
     <%= f.text_field :social_networking_desc %>
   </div>
-  <div class="field">
+  <div>
     <%= f.label :discussion_list %><br />
-    <%= f.text_field :discussion_list %>
+    <%= f.select :discussion_list, @discussion_lists %>
   </div>
-  <div class="field">
+  <div>
     <%= f.label :discussion_list_desc %><br />
     <%= f.text_field :discussion_list_desc %>
   </div>
-  <div class="field">
+  <div>
     <%= f.label :forum %><br />
     <%= f.text_field :forum %>
   </div>
-  <div class="field">
+  <div>
     <%= f.label :forum_desc %><br />
     <%= f.text_field :forum_desc %>
   </div>
-  <div class="field">
+  <div>
     <%= f.label :chat %><br />
     <%= f.check_box :chat %>
   </div>
-  <div class="field">
+  <div>
     <%= f.label :msn %><br />
     <%= f.check_box :msn %>
   </div>
-  <div class="field">
+  <div>
     <%= f.label :use_msn_with_frequency %><br />
     <%= f.check_box :use_msn_with_frequency %>
   </div>
-  <div class="field">
+  <div>
     <%= f.label :has_blog %><br />
     <%= f.check_box :has_blog %>
   </div>
-  <div class="field">
+  <div>
     <%= f.label :share_photos_videos %><br />
     <%= f.check_box :share_photos_videos %>
   </div>
-  <div class="field">
+  <div>
     <%= f.label :e_learning %><br />
     <%= f.check_box :e_learning %>
   </div>
-  <div class="field">
+  <div>
     <%= f.label :e_learning_desc %><br />
     <%= f.text_field :e_learning_desc %>
   </div>
-  <div class="field">
-    <%= f.label :educator %><br />
-    <%= f.text_field :educator %>
+  <div>
+    <%= f.label :educator_id %><br />
+    <%= f.text_field :educator_id %>
   </div>
-  <div class="field">
-    <%= f.label :coordinator %><br />
-    <%= f.text_field :coordinator %>
+  <div>
+    <%= f.label :coordinator_id %><br />
+    <%= f.text_field :coordinator_id %>
   </div>
   <div class="actions">
     <%= f.submit %>
