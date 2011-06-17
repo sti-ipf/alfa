@@ -1,5 +1,13 @@
 <script>
   $(document).ready(function() {
+		if (<%=@world_reading.coordinator.nil? %> == false){
+			$("#who_i_am").val('1');
+		}
+		if (<%=@world_reading.educator.nil? %> == false ){
+			$("#who_i_am").val('2');
+		}
+		
+	
     if ($("#who_i_am").val() == 1){
       jQuery('#coordinator_id_div').attr('style','visibility:visible; !important');
     }
