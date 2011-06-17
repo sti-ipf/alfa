@@ -1,3 +1,19 @@
+<script>
+  $(document).ready(function() {
+    if ($("#student_house").val() == 5){
+      jQuery('#student_house_desc_div').attr('style','visibility:visible; !important');
+    }
+
+    if ($("#student_special_need").is(':checked')){
+      jQuery('#student_special_need_desc_div').attr('style','visibility:visible; !important');
+    }
+
+    if ($("#student_religion").val() == 7){
+      jQuery('#student_religion_desc_div').attr('style','visibility:visible; !important');
+    }
+  });
+</script>
+
 <%= form_for(@student) do |f| %>
   <% if @student.errors.any? %>
     <div id="error_explanation">

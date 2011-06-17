@@ -1,6 +1,5 @@
-<h1>Editing world_reading</h1>
+<h1><%= t('world_reading.edit')%></h1>
 
-<%= render 'form' %>
+<%= render 'form', :button => t('update')  %>
 
-<%= link_to 'Show', @world_reading %> |
-<%= link_to 'Back', world_readings_path %>
+<%= link_to t('back'), world_readings_path %>

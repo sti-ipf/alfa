@@ -1,42 +1,8 @@
-<h1>Listing world_readings</h1>
+<h1><%= t('world_reading.listing')%></h1>
 
 <table>
   <tr>
     <th>Email</th>
-    <th>Have experience</th>
-    <th>Availability</th>
-    <th>Availability to travel</th>
-    <th>Need for literacy</th>
-    <th>Can organize rooms</th>
-    <th>Educator wish</th>
-    <th>Any time</th>
-    <th>What teach</th>
-    <th>Young and old together</th>
-    <th>List subjects</th>
-    <th>Computer use</th>
-    <th>What use</th>
-    <th>About internet use</th>
-    <th>About internet use desc</th>
-    <th>Internet connection type</th>
-    <th>What you do in internet</th>
-    <th>Frequency email reading</th>
-    <th>Make searches</th>
-    <th>Prefered search engine</th>
-    <th>Social networking</th>
-    <th>Social networking desc</th>
-    <th>Discussion list</th>
-    <th>Discussion list desc</th>
-    <th>Forum</th>
-    <th>Forum desc</th>
-    <th>Chat</th>
-    <th>Msn</th>
-    <th>Use msn with frequency</th>
-    <th>Has blog</th>
-    <th>Share photos videos</th>
-    <th>E learning</th>
-    <th>E learning desc</th>
-    <th>Educator</th>
-    <th>Coordinator</th>
     <th></th>
     <th></th>
     <th></th>
@@ -45,47 +11,12 @@
 <% @world_readings.each do |world_reading| %>
   <tr>
     <td><%= world_reading.email %></td>
-    <td><%= world_reading.have_experience %></td>
-    <td><%= world_reading.availability %></td>
-    <td><%= world_reading.availability_to_travel %></td>
-    <td><%= world_reading.need_for_literacy %></td>
-    <td><%= world_reading.can_organize_rooms %></td>
-    <td><%= world_reading.educator_wish %></td>
-    <td><%= world_reading.any_time %></td>
-    <td><%= world_reading.what_teach %></td>
-    <td><%= world_reading.young_and_old_together %></td>
-    <td><%= world_reading.list_subjects %></td>
-    <td><%= world_reading.computer_use %></td>
-    <td><%= world_reading.what_use %></td>
-    <td><%= world_reading.about_internet_use %></td>
-    <td><%= world_reading.about_internet_use_desc %></td>
-    <td><%= world_reading.internet_connection_type %></td>
-    <td><%= world_reading.what_you_do_in_internet %></td>
-    <td><%= world_reading.frequency_email_reading %></td>
-    <td><%= world_reading.make_searches %></td>
-    <td><%= world_reading.prefered_search_engine %></td>
-    <td><%= world_reading.social_networking %></td>
-    <td><%= world_reading.social_networking_desc %></td>
-    <td><%= world_reading.discussion_list %></td>
-    <td><%= world_reading.discussion_list_desc %></td>
-    <td><%= world_reading.forum %></td>
-    <td><%= world_reading.forum_desc %></td>
-    <td><%= world_reading.chat %></td>
-    <td><%= world_reading.msn %></td>
-    <td><%= world_reading.use_msn_with_frequency %></td>
-    <td><%= world_reading.has_blog %></td>
-    <td><%= world_reading.share_photos_videos %></td>
-    <td><%= world_reading.e_learning %></td>
-    <td><%= world_reading.e_learning_desc %></td>
-    <td><%= world_reading.educator %></td>
-    <td><%= world_reading.coordinator %></td>
-    <td><%= link_to 'Show', world_reading %></td>
-    <td><%= link_to 'Edit', edit_world_reading_path(world_reading) %></td>
-    <td><%= link_to 'Destroy', world_reading, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to t('show'), world_reading %></td>
+    <td><%= link_to t('edit'), edit_world_reading_path(world_reading) %></td>
+    <td><%= link_to t('delete'), world_reading, :confirm => t('are_you_sure'), :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New World reading', new_world_reading_path %>

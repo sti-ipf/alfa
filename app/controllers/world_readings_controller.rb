@@ -47,7 +47,7 @@ class WorldReadingsController < ApplicationController
 
     respond_to do |format|
       if @world_reading.save
-        format.html { redirect_to(@world_reading, :notice => 'World reading was successfully created.') }
+        format.html { redirect_to(world_readings_path, :notice => t('world_reading.created')) }
         format.xml  { render :xml => @world_reading, :status => :created, :location => @world_reading }
       else
         format.html { render :action => "new" }
@@ -63,7 +63,7 @@ class WorldReadingsController < ApplicationController
 
     respond_to do |format|
       if @world_reading.update_attributes(params[:world_reading])
-        format.html { redirect_to(@world_reading, :notice => 'World reading was successfully updated.') }
+        format.html { redirect_to(world_readings_path, :notice => t('world_reading.updated')) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
