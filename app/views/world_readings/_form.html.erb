@@ -1,0 +1,157 @@
+<%= form_for(@world_reading) do |f| %>
+  <% if @world_reading.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@world_reading.errors.count, "error") %> prohibited this world_reading from being saved:</h2>
+
+      <ul>
+      <% @world_reading.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :have_experience %><br />
+    <%= f.text_area :have_experience %>
+  </div>
+  <div class="field">
+    <%= f.label :availability %><br />
+    <%= f.text_area :availability %>
+  </div>
+  <div class="field">
+    <%= f.label :availability_to_travel %><br />
+    <%= f.check_box :availability_to_travel %>
+  </div>
+  <div class="field">
+    <%= f.label :need_for_literacy %><br />
+    <%= f.text_area :need_for_literacy %>
+  </div>
+  <div class="field">
+    <%= f.label :can_organize_rooms %><br />
+    <%= f.text_area :can_organize_rooms %>
+  </div>
+  <div class="field">
+    <%= f.label :educator_wish %><br />
+    <%= f.text_area :educator_wish %>
+  </div>
+  <div class="field">
+    <%= f.label :any_time %><br />
+    <%= f.text_area :any_time %>
+  </div>
+  <div class="field">
+    <%= f.label :what_teach %><br />
+    <%= f.text_area :what_teach %>
+  </div>
+  <div class="field">
+    <%= f.label :young_and_old_together %><br />
+    <%= f.text_area :young_and_old_together %>
+  </div>
+  <div class="field">
+    <%= f.label :list_subjects %><br />
+    <%= f.text_area :list_subjects %>
+  </div>
+  <div class="field">
+    <%= f.label :computer_use %><br />
+    <%= f.text_field :computer_use %>
+  </div>
+  <div class="field">
+    <%= f.label :what_use %><br />
+    <%= f.text_field :what_use %>
+  </div>
+  <div class="field">
+    <%= f.label :about_internet_use %><br />
+    <%= f.text_field :about_internet_use %>
+  </div>
+  <div class="field">
+    <%= f.label :about_internet_use_desc %><br />
+    <%= f.text_field :about_internet_use_desc %>
+  </div>
+  <div class="field">
+    <%= f.label :internet_connection_type %><br />
+    <%= f.text_field :internet_connection_type %>
+  </div>
+  <div class="field">
+    <%= f.label :what_you_do_in_internet %><br />
+    <%= f.text_field :what_you_do_in_internet %>
+  </div>
+  <div class="field">
+    <%= f.label :frequency_email_reading %><br />
+    <%= f.text_field :frequency_email_reading %>
+  </div>
+  <div class="field">
+    <%= f.label :make_searches %><br />
+    <%= f.check_box :make_searches %>
+  </div>
+  <div class="field">
+    <%= f.label :prefered_search_engine %><br />
+    <%= f.text_field :prefered_search_engine %>
+  </div>
+  <div class="field">
+    <%= f.label :social_networking %><br />
+    <%= f.text_field :social_networking %>
+  </div>
+  <div class="field">
+    <%= f.label :social_networking_desc %><br />
+    <%= f.text_field :social_networking_desc %>
+  </div>
+  <div class="field">
+    <%= f.label :discussion_list %><br />
+    <%= f.text_field :discussion_list %>
+  </div>
+  <div class="field">
+    <%= f.label :discussion_list_desc %><br />
+    <%= f.text_field :discussion_list_desc %>
+  </div>
+  <div class="field">
+    <%= f.label :forum %><br />
+    <%= f.text_field :forum %>
+  </div>
+  <div class="field">
+    <%= f.label :forum_desc %><br />
+    <%= f.text_field :forum_desc %>
+  </div>
+  <div class="field">
+    <%= f.label :chat %><br />
+    <%= f.check_box :chat %>
+  </div>
+  <div class="field">
+    <%= f.label :msn %><br />
+    <%= f.check_box :msn %>
+  </div>
+  <div class="field">
+    <%= f.label :use_msn_with_frequency %><br />
+    <%= f.check_box :use_msn_with_frequency %>
+  </div>
+  <div class="field">
+    <%= f.label :has_blog %><br />
+    <%= f.check_box :has_blog %>
+  </div>
+  <div class="field">
+    <%= f.label :share_photos_videos %><br />
+    <%= f.check_box :share_photos_videos %>
+  </div>
+  <div class="field">
+    <%= f.label :e_learning %><br />
+    <%= f.check_box :e_learning %>
+  </div>
+  <div class="field">
+    <%= f.label :e_learning_desc %><br />
+    <%= f.text_field :e_learning_desc %>
+  </div>
+  <div class="field">
+    <%= f.label :educator %><br />
+    <%= f.text_field :educator %>
+  </div>
+  <div class="field">
+    <%= f.label :coordinator %><br />
+    <%= f.text_field :coordinator %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

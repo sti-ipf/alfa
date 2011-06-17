@@ -36,6 +36,7 @@ class CreateEducators < ActiveRecord::Migration
       t.integer :political_party
       t.string :political_desc
       t.integer :religion
+      t.string :religion_desc
       t.integer :association
       t.string :association_desc
       t.integer :cooperative

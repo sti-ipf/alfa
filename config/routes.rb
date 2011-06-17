@@ -1,5 +1,9 @@
 # -*- encoding : utf-8 -*-
 Alfa::Application.routes.draw do
+  resources :world_readings
+
+  resources :students
+
   resources :rooms
 
   root :to => "cores#index"

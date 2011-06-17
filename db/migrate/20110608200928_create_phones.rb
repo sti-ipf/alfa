@@ -8,6 +8,7 @@ class CreatePhones < ActiveRecord::Migration
       t.references :core
       t.references :coordinator
       t.references :educator
+      t.references :student
 
       t.timestamps
     end

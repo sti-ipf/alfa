@@ -250,7 +250,27 @@
 
   <div>
     <%= f.label :religion, t('educator.religion.title') %><br />
-    <%= f.select :religion, @religions %>
+    <div class= "field_with_complement_info"><%= f.select :religion, @religions %></div>
+  </div>
+
+  <script>
+    $(document).ready(function() {
+        $("#educator_religion").change(function() {
+            var value = $(this).val();
+            if (value == 7){
+              jQuery('#educator_religion_desc_div').attr('style','visibility:visible; !important');
+              jQuery('#educator_religion_desc').focus();
+            }
+            else{
+              jQuery('#educator_religion_desc_div').attr('style','visibility:hidden; !important');
+            }
+        });
+    });
+  </script>
+
+  <div class="invisible" id="educator_religion_desc_div">
+    <%= t('which')  %>
+    <%= f.text_field :religion_desc %>
   </div>
 
   <div>

@@ -36,7 +36,7 @@ class Coordinator < ActiveRecord::Base
       [I18n.t('coordinator.religion.evangelical'), 1], [I18n.t('coordinator.religion.spiritualist'), 2],
       [I18n.t('coordinator.religion.afro_brazillian'), 3], 
       [I18n.t('coordinator.religion.jehovah'), 4], [I18n.t('coordinator.religion.preotestant'), 5],
-      [I18n.t('coordinator.religion.pentecostal'), 6]]
+      [I18n.t('coordinator.religion.pentecostal'), 6], ["Outra", 7]]
   ASSOCIATIONS = [[I18n.t('coordinator.association.community'), 0], 
       [I18n.t('coordinator.association.rural'), 1], [I18n.t('coordinator.association.neighborhood'), 2],
       [I18n.t('coordinator.association.artisans'), 3], [I18n.t('coordinator.association.other'), 4]]
