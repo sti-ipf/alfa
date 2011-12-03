@@ -1,0 +1,38 @@
+.field_with_complement_info
+  = f.check_box :union_movement, :value => false
+  = t('social_participation.union_movement')
+#union_movement_desc_div.invisible
+  = label_tag :union_movement_desc, t('which')
+  = text_field_tag :union_movement_desc, @union_movement_desc
+%br/
+%div
+  = f.check_box :popular_social_movement, :value => false
+  = t('social_participation.popular_social_movement')
+%br/
+.field_with_complement_info
+  = f.check_box :ong, :value => false
+  = t('social_participation.ong')
+#ong_desc_div.invisible
+  = label_tag :ong_desc, t('which')
+  = text_field_tag :ong_desc, @ong_desc
+:javascript
+  $(document).ready(function() {
+      $("#coordinator_social_participations_attributes_0_union_movement").change(function() {
+          if ($("#coordinator_social_participations_attributes_0_union_movement").is(':checked')){
+            jQuery('#union_movement_desc_div').attr('style','visibility:visible; !important');
+            jQuery('#union_movement_desc').focus();
+          }
+          else{
+            jQuery('#union_movement_desc_div').attr('style','visibility:hidden; !important');
+          }
+      });
+      $("#coordinator_social_participations_attributes_0_ong").change(function() {
+          if ($("#coordinator_social_participations_attributes_0_ong").is(':checked')){
+            jQuery('#ong_desc_div').attr('style','visibility:visible; !important');
+            jQuery('#ong_desc').focus();
+          }
+          else{
+            jQuery('#ong_desc_div').attr('style','visibility:hidden; !important');
+          }
+      });
+  });

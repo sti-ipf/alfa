@@ -1,0 +1,14 @@
+%h1= t('world_reading.listing')
+%table
+  %tr
+    %th Email
+    %th
+    %th
+    %th
+  - @world_readings.each do |world_reading|
+    %tr
+      %td= world_reading.email
+      %td= link_to t('show'), world_reading
+      %td= link_to t('edit'), edit_world_reading_path(world_reading)
+      %td= link_to t('delete'), world_reading, :confirm => t('are_you_sure'), :method => :delete
+%br/

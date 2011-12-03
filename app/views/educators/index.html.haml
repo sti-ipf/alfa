@@ -1,0 +1,14 @@
+%h1= t('educator.listing')
+%table
+  %tr
+    %th= t('educator.name')
+    %th
+    %th
+    %th
+  - @educators.each do |educator|
+    %tr
+      %td= educator.name
+      %td= link_to t('show'), educator
+      %td= link_to t('edit'), edit_educator_path(educator)
+      %td= link_to t('delete'), educator, :confirm => t('are_you_sure'), :method => :delete
+%br/

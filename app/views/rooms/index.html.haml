@@ -1,0 +1,14 @@
+%h1= t('room.listing')
+%table
+  %tr
+    %th= t('room.name')
+    %th
+    %th
+    %th
+  - @rooms.each do |room|
+    %tr
+      %td= room.name
+      %td= link_to t('show'), room
+      %td= link_to t('edit'), edit_room_path(room)
+      %td= link_to t('delete'), room, :confirm => t('are_you_sure'), :method => :delete
+%br/

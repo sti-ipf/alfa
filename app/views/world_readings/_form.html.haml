@@ -1,0 +1,267 @@
+:javascript
+  $(document).ready(function() {
+    if (#{@world_reading.coordinator.nil?} == false){
+    $("#who_i_am").val('1');
+    }
+    if (#{@world_reading.educator.nil?} == false ){
+    $("#who_i_am").val('2');
+    }
+
+
+    if ($("#who_i_am").val() == 1){
+    jQuery('#coordinator_id_div').attr('style','visibility:visible; !important');
+    }
+
+    if ($("#who_i_am").val() == 2){
+    jQuery('#educator_id_div').attr('style','visibility:visible; !important');
+    }
+
+    if ($("#world_reading_about_internet_use").val() == 4){
+    jQuery('#world_reading_about_internet_use_desc_div').attr('style','visibility:visible; !important');
+    }
+
+    if ($("#world_reading_social_networking").val() == 4){
+    jQuery('#world_reading_social_networking_desc_div').attr('style','visibility:visible; !important');
+    }
+
+    if ($("#world_reading_discussion_list").val() == 3){
+    jQuery('#world_reading_discussion_list_desc_div').attr('style','visibility:visible; !important');
+    }
+    if ($("#world_reading_e_learning").is(':checked')){
+    jQuery('#world_reading_e_learning_desc_div').attr('style','visibility:visible; !important');
+    }
+
+  });
+= semantic_form_for(@world_reading) do |f|
+  - if @world_reading.errors.any?
+    #error_explanation
+      %ul
+        - @world_reading.errors.full_messages.each do |msg|
+          %li= msg
+  = t('world_reading.who_i_am')
+  %br
+  = select_tag :who_i_am, options_for_select([['Selecione', 0],['Coordenador', 1], ['Educador', 2]])
+  :javascript
+    $(document).ready(function() {
+      $("#who_i_am").change(function() {
+        var value = $(this).val();
+        if (value == 1){
+          jQuery('#educator_id_div').attr('style','visibility:hidden; !important');
+          jQuery('#coordinator_id_div').attr('style','visibility:visible; !important');
+          jQuery('#world_reading_coordinator_id').focus();
+        }
+        if (value == 2){
+          jQuery('#coordinator_id_div').attr('style','visibility:hidden; !important');
+          jQuery('#educator_id_div').attr('style','visibility:visible; !important');
+          jQuery('#world_reading_educator_id').focus();
+        }
+        if (valeu == 0){
+          jQuery('#coordinator_id_div').attr('style','visibility:hidden; !important');
+          jQuery('#educator_id_div').attr('style','visibility:hidden; !important');
+        }
+      });
+    });
+    #coordinator_id_div.invisible
+    = f.label :coordinator_id
+    %br
+    = f.select :coordinator_id, @coordinators, :prompt => t("select")
+  #educator_id_div.invisible
+    = f.label :educator_id
+    %br
+    = f.select :educator_id, @educators, :prompt => t("select")
+  %div
+    = f.label :email, t('world_reading.email')
+    %br
+    = f.text_field :email
+  %div
+    = f.label :have_experience, t('world_reading.have_experience')
+    %br
+    = f.text_area :have_experience
+  %div
+    = f.label :availability , t('world_reading.availability')
+    %br
+    = f.text_area :availability
+  %div
+    = f.label :availability_to_travel, t('world_reading.availability_to_travel')
+    %br
+    = f.check_box :availability_to_travel
+    = t('yyes')
+  %div
+    = f.label :need_for_literacy, t('world_reading.need_for_literacy')
+    %br
+    = f.text_area :need_for_literacy
+  %div
+    = f.label :can_organize_rooms, t('world_reading.can_organize_rooms')
+    %br
+    = f.text_area :can_organize_rooms
+  %div
+    = f.label :educator_wish, t('world_reading.educator_wish')
+    %br
+    = f.text_area :educator_wish
+  %div
+    = f.label :any_time, t('world_reading.any_time')
+    %br
+    = f.text_area :any_time
+  %div
+    = f.label :what_teach, t('world_reading.what_teach')
+    %br
+    = f.text_area :what_teach
+  %div
+    = f.label :young_and_old_together, t('world_reading.young_and_old_together')
+    %br
+    = f.text_area :young_and_old_together
+  %div
+    = f.label :list_subjects, t('world_reading.list_subjects')
+    %br
+    = f.text_area :list_subjects
+  %b= t('world_reading.computer_knowledge')
+  %br
+  %b= t('world_reading.computer_knowledge_field')
+  %br
+  %div
+    = f.label :computer_use, t('world_reading.cu_title')
+    %br
+    = f.select :computer_use, @computer_uses
+  %div
+    = f.label :what_use, t('world_reading.wu_title')
+    %br
+    = f.select :what_use, @what_uses
+  %div
+    = f.label :about_internet_use, t('world_reading.aiu_title')
+    %br
+    .field_with_complement_info
+      = f.select :about_internet_use, @about_internet_uses
+  :javascript
+    $(document).ready(function() {
+      $("#world_reading_about_internet_use").change(function() {
+        var value = $(this).val();
+        if (value == 4){
+          jQuery('#world_reading_about_internet_use_desc_div').attr('style','visibility:visible; !important');
+          jQuery('#world_reading_about_internet_use_desc').focus();
+        }
+        else{
+          jQuery('#world_reading_about_internet_use_desc_div').attr('style','visibility:hidden; !important');
+        }
+      });
+    });
+    #world_reading_about_internet_use_desc_div.invisible
+    = f.label :about_internet_use_desc, t('which_s')
+    = f.text_field :about_internet_use_desc
+  %div
+    = f.label :internet_connection_type, t('world_reading.ict_title')
+    %br
+    = f.select :internet_connection_type, @internet_connection_types, :prompt => ' '
+  %div
+    = f.label :what_you_do_in_internet, t('world_reading.wydii_title')
+    %br
+    = f.select :what_you_do_in_internet, @what_you_do_in_internet, :prompt => ' '
+  %div
+    = f.label :frequency_email_reading, t('world_reading.fer_title')
+    %br
+    = f.select :frequency_email_reading, @frequency_email_reading, :prompt => ' '
+  %div
+    %b= t('world_reading.ms_title')
+    %br
+    = f.input :make_searches, :as => :radio, :collection => [t('yyes'), t('nno')]
+  %div
+    = f.label :prefered_search_engine, t('world_reading.prefered_search_engine')
+    %br
+    = f.text_field :prefered_search_engine
+  %div
+    = f.label :social_networking, t('world_reading.sn_title')
+    %br
+    .field_with_complement_info
+      = f.select :social_networking, @social_networking
+    :javascript
+      $(document).ready(function() {
+        $("#world_reading_social_networking").change(function() {
+          var value = $(this).val();
+          if (value == 4){
+            jQuery('#world_reading_social_networking_desc_div').attr('style','visibility:visible; !important');
+            jQuery('#world_reading_social_networking_desc').focus();
+          }
+          else{
+            jQuery('#world_reading_social_networking_desc_div').attr('style','visibility:hidden; !important');
+          }
+        });
+      });
+    #world_reading_social_networking_desc_div.invisible
+    = f.label :social_networking_desc, t('which_s')
+    = f.text_field :social_networking_desc
+  %div
+    = f.label :discussion_list, t('world_reading.dl_title')
+    %br
+    .field_with_complement_info
+      = f.select :discussion_list, @discussion_lists
+    :javascript
+      $(document).ready(function() {
+        $("#world_reading_discussion_list").change(function() {
+          var value = $(this).val();
+          if (value == 3){
+            jQuery('#world_reading_discussion_list_desc_div').attr('style','visibility:visible; !important');
+            jQuery('#world_reading_discussion_list_desc').focus();
+          }
+          else{
+            jQuery('#world_reading_discussion_list_desc_div').attr('style','visibility:hidden; !important');
+          }
+        });
+      });
+    #world_reading_discussion_list_desc_div.invisible
+    = f.label :discussion_list_desc, t('which')
+    = f.text_field :discussion_list_desc
+  %div
+    %br
+    .field_with_complement_info
+      = f.input :forum, :as => :radio, :collection => [t('yyes'), t('nno')]
+    :javascript
+        $(document).ready(function() {
+          $("#world_reading_forum").change(function() {
+          if ($("#world_reading_forum").is(':checked')){
+            jQuery('#world_reading_forum_desc_div').attr('style','visibility:visible; !important');
+            jQuery('#world_reading_forum_desc').focus();
+          }
+          else{
+            jQuery('#world_reading_forum_desc_div').attr('style','visibility:hidden; !important');
+          }
+        });
+      });
+    #world_reading_forum_desc_div.invisible
+    = f.label :forum_desc, t('which')
+    %br
+    = f.text_field :forum_desc
+  %div
+    %br
+    = f.input :chat, :as => :radio, :collection => [t('yyes'), t('nno')]
+  %div
+    %br
+    = f.input :msn, :as => :radio, :collection => [t('yyes'), t('nno')]
+  %div
+    %br
+    = f.input :use_msn_with_frequency, :as => :radio, :collection => [t('yyes'), t('nno')]
+  %div
+    %br
+    = f.input :has_blog, :as => :radio, :collection => [t('yyes'), t('nno')]
+  %div
+    %br
+    = f.input :share_photos_videos, :as => :radio, :collection => [t('yyes'), t('nno')]
+  %div
+    %br
+    .field_with_complement_info
+      = f.input :e_learning, :as => :radio, :collection => [t('yyes'), t('nno')]
+    :javascript
+      $(document).ready(function() {
+        $("#world_reading_e_learning").change(function() {
+          if ($("#world_reading_e_learning").is(':checked')){
+            jQuery('#world_reading_e_learning_desc_div').attr('style','visibility:visible; !important');
+            jQuery('#world_reading_e_learning_desc').focus();
+          }
+          else{
+            jQuery('#world_reading_e_learning_desc_div').attr('style','visibility:hidden; !important');
+          }
+        });
+      });
+    #world_reading_e_learning_desc_div.invisible
+    = f.label :e_learning_desc, t('which')
+    = f.text_field :e_learning_desc
+  .actions
+    = f.submit button

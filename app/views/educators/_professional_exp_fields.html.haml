@@ -1,0 +1,3 @@
+- @professional_exps.each do |p|
+  = check_box_tag 'educator[professional_exp_ids][]', p.id, @educator.professional_exps.include?(p)
+  = p.area

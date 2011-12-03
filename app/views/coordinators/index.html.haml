@@ -1,0 +1,14 @@
+%h1= t('coordinator.listing')
+%table
+  %tr
+    %th= t('coordinator.name')
+    %th
+    %th
+    %th
+  - @coordinators.each do |coordinator|
+    %tr
+      %td= coordinator.name
+      %td= link_to t('show'), coordinator
+      %td= link_to t('edit'), edit_coordinator_path(coordinator)
+      %td= link_to t('delete'), coordinator, :confirm => t('are_you_sure'), :method => :delete
+%br/

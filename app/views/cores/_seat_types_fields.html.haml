@@ -1,0 +1,22 @@
+.field_with_complement_info
+  = t('core.seat_type_field')
+  %br/
+  - SeatType.all.each do |s|
+    = check_box_tag 'core[seat_type_ids][]', s.id, @core.seat_types.include?(s), :id => "seat_type_id_#{s.id}"
+    = s.seat_type
+:javascript
+  $(document).ready(function() {
+      $("#seat_type_id_1").change(function() {
+          if ($("#seat_type_id_1").is(':checked')){
+            jQuery('#core_seat_type_desc_div').attr('style','visibility:visible; !important');
+            jQuery('#seat_type_desc').focus();
+          }
+          else{
+            jQuery('#core_seat_type_desc_div').attr('style','visibility:hidden; !important');
+          }
+      });
+  });
+#core_seat_type_desc_div.invisible
+  = label_tag :seat_type_desc, t('seat_type.which_material')
+  %br/
+  = text_field_tag :seat_type_desc, @seat_type_desc

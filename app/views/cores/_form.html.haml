@@ -1,0 +1,178 @@
+:javascript
+  $(document).ready(function() {
+    if ($("#core_place").val() == 6){
+      jQuery('#core_place_desc_div').attr('style','visibility:visible; !important');
+    }
+
+    if ($("#partner_resource_id_1").is(':checked')){
+      jQuery('#core_resource_desc_div').attr('style','visibility:visible; !important');
+    }
+
+    if ($("#seat_type_id_1").is(':checked')){
+      jQuery('#core_seat_type_desc_div').attr('style','visibility:visible; !important');
+    }
+
+    if ($("#core_illumination_type").val() == 2){
+      jQuery('#core_illumination_type_desc_div').attr('style','visibility:visible; !important');
+    }
+
+    if ($("#displacement_id_0_9").is(':checked')){
+      jQuery('#core_displacement_desc_0_div').attr('style','visibility:visible; !important');
+    }
+
+    if ($("#displacement_id_1_9").is(':checked')){
+      jQuery('#core_displacement_desc_1_div').attr('style','visibility:visible; !important');
+    }
+  });
+= semantic_form_for(@core) do |f|
+  - if @core.errors.any?
+    #error_explanation
+      %ul
+        - @core.errors.full_messages.each do |msg|
+          %li= msg
+  %div
+    = f.label :city, t('core.city')
+    %br
+    = f.text_field :city
+  %div
+    = f.label :community, t('core.community')
+    %br
+    = f.text_field :community
+  %div
+    = f.label :address, t('core.address')
+    %br
+    = f.text_field :address, :size => 100
+  %div
+    = f.label :community_type, t('core.community_field')
+    %br
+    = f.select :community_type, Core::COMMUNITY_TYPES
+  %div
+    = f.label :place, t('core.place_field')
+    %br
+    .field_with_complement_info
+      = f.select :place, Core::PLACES
+      :javascript
+        $(document).ready(function() {
+            $("#core_place").change(function() {
+                var value = $(this).val();
+                if (value == 6){
+                  jQuery('#core_place_desc_div').attr('style','visibility:visible; !important');
+                  jQuery('#core_place_desc').focus();
+                }
+                else{
+                  jQuery('#core_place_desc_div').attr('style','visibility:hidden; !important');
+                }
+            });
+        });
+    #core_place_desc_div.invisible
+      = f.label :place_desc, t('which')
+      = f.text_field :place_desc
+  %div
+    = label_tag t('core.period_field')
+    %br
+    - f.fields_for :periods do |builder|
+      = render "period_fields", :f => builder
+      %div
+        = link_to_add_fields t('period.new'), f, :periods
+  %div
+    = render "partner_resources_fields"
+  %div
+    = f.label :name, t('core.name_field')
+    %br
+    = f.text_field :name
+  %div
+    = f.label :responsible, t('core.responsible_field')
+    %br
+    = f.text_field :responsible
+  %div
+    = t('core.phones_field')
+    %br
+    - f.fields_for :phones do |builder|
+      = render "phone_fields", :f => builder
+  %div
+    = link_to_add_fields t('phone.new'), f, :phones
+  %div
+    = f.label :email, t('core.email_field')
+    %br
+    = f.text_field :email
+  %div
+    = f.label :main_activity, t('core.main_activity_field')
+    %br
+    = f.text_field :main_activity, :size => 100
+  %div
+    %b= t('core.physical_conditions_field')
+    %br
+    = f.label :size, t('core.size.title')
+    %br
+    = f.select :size, Core::SIZES
+  %div
+    = f.input :board, :as => :radio, :collection => [t('yyes'), t('nno')]
+  %div
+    = f.label :board_type, t('core.board_type_field')
+    %br
+    = f.select :board_type, Core::BOARD_TYPES
+  %div
+    = render "seat_types_fields"
+    %div
+      = f.label :total_seats, t('core.total_seats_field')
+      %br
+      = f.select :total_seats, Core::TOTAL_SEATS
+    %div
+      = render "desk_types_fields"
+    %div
+      = f.label :illumination_type, t('core.illumination_field')
+      %br
+      .field_with_complement_info
+        = f.select :illumination_type, Core::ILLUMINATION_TYPES
+        :javascript
+          $(document).ready(function() {
+              $("#core_illumination_type").change(function() {
+                  var value = $(this).val();
+                  if (value == 2){
+                    jQuery('#core_illumination_type_desc_div').attr('style','visibility:visible; !important');
+                    jQuery('#core_illumination_type_desc').focus();
+                  }
+                  else{
+                    jQuery('#core_illumination_type_desc_div').attr('style','visibility:hidden; !important');
+                  }
+              });
+          });
+      #core_illumination_type_desc_div.invisible
+        = f.label :illumination_type_desc, t('which')
+        = f.text_field :illumination_type_desc
+    %div
+      = f.label :illumination_condition, t('core.illumination_condition_field')
+      %br
+      = f.select :illumination_condition, Core::ILLUMINATION_CONDITIONS
+    %div
+      .field_with_complement_info
+        = f.input :another_place, :as => :radio, :collection => [t('yyes'), t('nno')]
+        :javascript
+          $(document).ready(function() {
+              $("#core_another_place").change(function() {
+                  if ($("#core_another_place").is(':checked')){
+                    jQuery('#core_another_place_desc_div').attr('style','visibility:visible; !important');
+                    jQuery('#another_place_desc').focus();
+                  }
+                  else{
+                    jQuery('#core_another_place_desc_div').attr('style','visibility:hidden; !important');
+                  }
+              });
+          });
+      #core_another_place_desc_div.invisible
+        = f.label :another_place_desc, t('which_s')
+        = f.text_field :another_place_desc
+    .textarea_div
+      = f.label :coordenation_analysis, t('core.coordenation_analysis_field')
+      %br
+      = f.text_area :coordenation_analysis
+    %div
+      = f.label :visit_on, t('core.visit_on_field')
+      %br
+      = f.date_select :visit_on
+    %div
+      = f.label :who_visited, t('core.who_visited_field')
+      %br
+      = f.text_field :who_visited
+    .actions
+      = f.submit button

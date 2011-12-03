@@ -1,0 +1,13 @@
+- @education_exps.each do |e|
+  = check_box_tag 'coordinator[education_exp_ids][]', e.id, @coordinator.education_exps.include?(e)
+  = e.education_type
+%br/
+- 5.times do |i|
+  = radio_button_tag 'coordinator_years', i, @years == i
+  = get_label_with_years(i)
+%br/
+= t('education_exp.popular_education_years')
+%br/
+- 5.times do |i|
+  = radio_button_tag 'coordinator_popular_education_years', i, @popular_education_years == i
+  = get_label_with_years(i)

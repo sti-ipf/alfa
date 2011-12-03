@@ -65,3 +65,21 @@ div.field, div.actions {
   font-size: 12px;
   list-style: square;
 }
+
+li{list-style:none;}
+
+/** FORM **/
+
+.textarea_div{
+  display: block;
+  clear: left;
+}
+input{
+  border: 1px solid #D8DEE2;
+  margin: 0.2em 0 1em;
+  padding: 5px;
+}
+
+fieldset{border:none;}
+
+legend{ margin-left: -11px;}

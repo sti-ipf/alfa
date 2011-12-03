@@ -1,0 +1,58 @@
+%p#notice= notice
+%p
+  %b Educator:
+  = @student.educator
+%p
+  %b Core:
+  = @student.core
+%p
+  %b Room:
+  = @student.room
+%p
+  %b Sign up date on:
+  = @student.sign_up_date_on
+%p
+  %b Class start date on:
+  = @student.class_start_date_on
+%p
+  %b Name:
+  = @student.name
+%p
+  %b Age:
+  = @student.age
+%p
+  %b Gender:
+  = @student.gender
+%p
+  %b Dob:
+  = @student.dob
+%p
+  %b Ethnicity:
+  = @student.ethnicity
+%p
+  %b Hometown:
+  = @student.hometown
+%p
+  %b State:
+  = @student.state
+%p
+  %b Zone:
+  = @student.zone
+%p
+  %b Address:
+  = @student.address
+%p
+  %b Civil status:
+  = @student.civil_status
+%p
+  %b Education level:
+  = @student.education_level
+%p
+  %b Actual condition:
+  = @student.actual_condition
+%p
+  %b Profession:
+  = @student.profession
+= link_to 'Edit', edit_student_path(@student)
+|
+\#{link_to 'Back', students_path}

@@ -1,0 +1,21 @@
+%h1= t('student.listing')
+%table
+  %tr
+    %th= t('student.educator')
+    %th= t('student.core')
+    %th= t('student.room')
+    %th= t('student.name')
+    %th
+    %th
+    %th
+  - @students.each do |student|
+    %tr
+      %td= student.educator.name if !student.educator.nil?
+      %td= student.core.name if !student.core.nil?
+      %td= student.room.name if !student.room.nil?
+      %td= student.name
+      %td= link_to t('show'), student
+      %td= link_to t('edit'), edit_student_path(student)
+      %td= link_to t('delete'), student, :confirm => t('are_you_sure'), :method => :delete
+%br/
+= link_to t('student.new'), new_student_path

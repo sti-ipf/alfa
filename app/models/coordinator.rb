@@ -18,7 +18,8 @@ class Coordinator < ActiveRecord::Base
   CIVIL_STATUS = [["Casado", 0], ["Solteiro", 1], ["Viúvo", 2], ["Separado/Divorciado/Desquitado", 3], ["Outros", 4]] 
   SONS_NUMBER =  [[I18n.t('coordinator.sons_number.without'), 0], ["1", 1], ["2", 2], 
     ["3", 3], ["4", 4], [I18n.t("coordinator.sons_number.more_than_four"), 5]] 
-  EDUCATION_LEVELS = [["Ensino médio incompleto", 0], ["Ensino médio completo", 1], 
+  EDUCATION_LEVELS = [["Não frequentou", 7], ["Frequentou até 1 ano", 5], ["Frequentou mais que o 1 ano ", 6], 
+    ["Ensino médio incompleto", 0], ["Ensino médio completo", 1], 
     ["Ensino superior incompleto", 2], ["Ensino superior completo", 3], ["Pós-graduação", 4]] 
   FAMILIAR_INCOME = [[I18n.t('coordinator.familiar_income.without'), 0], [I18n.t('coordinator.familiar_income.until_1'), 1], 
       [I18n.t('coordinator.familiar_income.1_to_2'), 2], [I18n.t('coordinator.familiar_income.2_to_2'), 3], 
