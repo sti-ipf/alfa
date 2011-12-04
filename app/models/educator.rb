@@ -7,5 +7,8 @@ class Educator < ActiveRecord::Base
   has_many :phones
   has_many :education_exps, :through => :educators_education_exps
   has_many :educators_education_exps
+
+  accepts_nested_attributes_for :phones, :reject_if => lambda { |a| a[:number].blank? }, :allow_destroy => true
+  accepts_nested_attributes_for :social_participations, :allow_destroy => true
 end
 
