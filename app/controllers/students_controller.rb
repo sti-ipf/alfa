@@ -84,8 +84,8 @@ class StudentsController < ApplicationController
   end
 
   def load_data
-    @cores = Core.all.collect {|c| ["#{c.city} - #{c.community}", c.id]}
-    @educators = Educator.all
+    @cores = Core.all.collect{|c| ["#{c.city} - #{c.community}", c.id]}
+    @educators = Educator.all.collect{|c| [c.name, c.id]}
     @genders = Coordinator::GENDERS
     @ethnicities = Coordinator::ETHNICITIES
     @ages = Student::AGES
@@ -98,7 +98,7 @@ class StudentsController < ApplicationController
     @houses = Coordinator::HOUSES
     @house_types = Coordinator::HOUSE_TYPES
     @religions = Coordinator::RELIGIONS
-    @rooms = Room.all
+    @rooms = Room.all.collect{|c| [c.name, c.id]}
   end
   
 end

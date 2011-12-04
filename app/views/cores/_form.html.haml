@@ -23,6 +23,9 @@
     if ($("#displacement_id_1_9").is(':checked')){
       jQuery('#core_displacement_desc_1_div').attr('style','visibility:visible; !important');
     }
+    if ($("#core_another_place_sim").is(':checked')){
+      jQuery('#core_another_place_desc_div').attr('style','visibility:visible; !important');
+    }
   });
 = semantic_form_for(@core) do |f|
   - if @core.errors.any?
@@ -149,12 +152,17 @@
         = f.input :another_place, :as => :radio, :collection => [t('yyes'), t('nno')]
         :javascript
           $(document).ready(function() {
-              $("#core_another_place").change(function() {
-                  if ($("#core_another_place").is(':checked')){
+              $("#core_another_place_sim").change(function() {
+                  if ($("#core_another_place_sim").is(':checked')){
                     jQuery('#core_another_place_desc_div').attr('style','visibility:visible; !important');
                     jQuery('#another_place_desc').focus();
                   }
                   else{
+                    jQuery('#core_another_place_desc_div').attr('style','visibility:hidden; !important');
+                  }
+              });
+              $("#core_another_place_não").change(function() {
+                  if ($("#core_another_place_não").is(':checked')){
                     jQuery('#core_another_place_desc_div').attr('style','visibility:hidden; !important');
                   }
               });

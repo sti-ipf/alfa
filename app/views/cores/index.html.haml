@@ -1,16 +1,50 @@
+:javascript
+  $(document).ready(function(){
+    var oTable = $('.list').dataTable({
+      "iDisplayLength": -1,
+      "bAutoWidth": false,
+      "bJQueryUI": true,
+      "bSort": true,
+      "sDom": '<"H"lTfr>t<"F"ip>',
+      "oTableTools": {
+         "sSwfPath": "DataTables-1.8.1/media/swf/copy_cvs_xls_pdf.swf"
+      },
+      "aoColumnDefs": [ { "bSortable": false, "aTargets": [ 2, 3, 4] }],
+      'oLanguage': {
+        'oPaginate': {
+          'sFirst': 'primeira',
+          'sLast': 'ultima',
+          'sNext': 'próxima',
+          'sPrevious': 'anterior'
+        },
+        'sInfo': 'exibindo de _START_ até _END_ do total de _TOTAL_ registros',
+        'sEmptyTable': 'não há registros para exibir',
+        'sInfoFiltered': '- filtrando de _MAX_ registros',
+        'sInfoPostFix': '',
+        'sLengthMenu': 'exibe _MENU_ registros',
+        'sProcessing': 'processando',
+        'sSearch': 'filtrar',
+        'sZeroRecords': 'não há registros para exibir'
+      }
+    });
+  });
+
+
 %h1= t('core.listing')
-%table
-  %tr
-    %th= t('core.city')
-    %th= t('core.community')
-    %th
-    %th
-    %th
-  - @cores.each do |core|
+%table{:class => 'list'}
+  %thead
     %tr
-      %td= core.city
-      %td= core.community
-      %td= link_to t('show'), core
-      %td= link_to t('edit'), edit_core_path(core)
-      %td= link_to t('delete'), core, :confirm => t('are_you_sure'), :method => :delete
-%br/
+      %th= t('core.city')
+      %th= t('core.community')
+      %th
+      %th
+      %th
+  %tbody
+    - @cores.each do |core|
+      %tr
+        %td= core.city
+        %td= core.community
+        %td= link_to t('show'), core
+        %td= link_to t('edit'), edit_core_path(core)
+        %td= link_to t('delete'), core, :confirm => t('are_you_sure'), :method => :delete
+%br

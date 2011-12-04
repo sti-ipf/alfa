@@ -1,14 +1,47 @@
+:javascript
+  $(document).ready(function(){
+    var oTable = $('.list').dataTable({
+      "iDisplayLength": -1,
+      "bAutoWidth": false,
+      "bJQueryUI": true,
+      "bSort": true,
+      "sDom": '<"H"lTfr>t<"F"ip>',
+      "oTableTools": {
+         "sSwfPath": "DataTables-1.8.1/media/swf/copy_cvs_xls_pdf.swf"
+      },
+      "aoColumnDefs": [ { "bSortable": false, "aTargets": [ 1, 2, 3] }],
+      'oLanguage': {
+        'oPaginate': {
+          'sFirst': 'primeira',
+          'sLast': 'ultima',
+          'sNext': 'próxima',
+          'sPrevious': 'anterior'
+        },
+        'sInfo': 'exibindo de _START_ até _END_ do total de _TOTAL_ registros',
+        'sEmptyTable': 'não há registros para exibir',
+        'sInfoFiltered': '- filtrando de _MAX_ registros',
+        'sInfoPostFix': '',
+        'sLengthMenu': 'exibe _MENU_ registros',
+        'sProcessing': 'processando',
+        'sSearch': 'filtrar',
+        'sZeroRecords': 'não há registros para exibir'
+      }
+    });
+  });
+
 %h1= t('world_reading.listing')
-%table
-  %tr
-    %th Email
-    %th
-    %th
-    %th
-  - @world_readings.each do |world_reading|
+%table{:class => 'list'}
+  %thead
     %tr
-      %td= world_reading.email
-      %td= link_to t('show'), world_reading
-      %td= link_to t('edit'), edit_world_reading_path(world_reading)
-      %td= link_to t('delete'), world_reading, :confirm => t('are_you_sure'), :method => :delete
-%br/
+      %th Email
+      %th
+      %th
+      %th
+  %tbody
+    - @world_readings.each do |world_reading|
+      %tr
+        %td= world_reading.email
+        %td= link_to t('show'), world_reading
+        %td= link_to t('edit'), edit_world_reading_path(world_reading)
+        %td= link_to t('delete'), world_reading, :confirm => t('are_you_sure'), :method => :delete
+%br

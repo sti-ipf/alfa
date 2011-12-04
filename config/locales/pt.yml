@@ -84,7 +84,7 @@ pt:
     edit_title: "Editando núcleo"
     created: "Núcleo criado com sucesso."
     updated: "Núcleo atualizado com sucesso."
-    view: "Visualizar núcleos"
+    view: "Núcleos"
   seat_type:
     which_material: "Qual material"
     seats: "Cadeiras"
@@ -214,7 +214,7 @@ pt:
     edit_title: "Editando coordenador(a)"
     created: "Coordenador(a) criado com sucesso."
     updated: "Coordenador(a) atualizado com sucesso."
-    view: "Visualizar coordenadores(as)"
+    view: "Coordenadores(as)"
   professional_exp:
     title: "Experiências profissionais anteriores"
   education_exp:
@@ -239,7 +239,7 @@ pt:
     edit_title: "Editando turma"
     created: "Turma criada com sucesso."
     updated: "Turma atualizada com sucesso."
-    view: "Visualizar turmas"
+    view: "Turmas"
     name: "Nome"
   educator:
     name: "Nome"
@@ -326,7 +326,7 @@ pt:
     edit_title: "Editando educador"
     created: "Educador criado com sucesso."
     updated: "Educador atualizado com sucesso."
-    view: "Visualizar educadores"
+    view: "Educadores"
   student:
     educator: "Educador(a)"
     core: "Núcleo"
@@ -385,7 +385,7 @@ pt:
     edit_title: "Editando educando"
     created: "Educando criado com sucesso."
     updated: "Educando atualizado com sucesso."
-    view: "Visualizar educandos"
+    view: "Educandos"
   world_reading:
     who_i_am: "Quem sou eu? (Dados pessoais)"
     educator_coordinator: "Coordenador(a)/Educador(a)"
@@ -462,7 +462,7 @@ pt:
     edit_title: "Editando leitura mundo"
     created: "Leitura mundo criada com sucesso."
     updated: "Leitura mundo atualizada com sucesso."
-    view: "Visualizar leituras mundo"
+    view: "Leituras mundo"
   activerecord:
     models:
       core: "Núcleo"
@@ -475,7 +475,13 @@ pt:
         board: "Existe lousa?"
       coordinator:
         special_need: "Possui necessidade educacional especial"
+      educator:
+        special_need: "Possui necessidade educacional especial"
+      student:
+        special_need: "Possui necessidade educacional especial"
       world_reading:
+        coordinator_id: "Coordenador"
+        educator_id: "Educador"
         make_searches: "Realiza pesquisas"
         forum: "Participa(ou) de fórum de discussão em ambiente específico?"
         chat: "Conversa(ou) em salas de bate-papo/chat? "     

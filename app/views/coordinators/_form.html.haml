@@ -33,91 +33,91 @@
           %li= msg
   %div
     = f.label :name, t('coordinator.name')
-    %br/
+    %br
     = f.text_field :name
   %div
     = t('coordinator.room')
-    %br/
+    %br
     - @rooms.each do |r|
       = check_box_tag 'coordinator[room_ids][]', r.id, @coordinator.rooms.include?(r)
       = r.name
   %div
     = f.label :start_date_to_students, t('coordinator.start_date_to_students')
-    %br/
+    %br
     = f.date_select :start_date_to_students, {:start_year => 1900}
   %div
     = f.label :core_id, t('coordinator.core')
-    %br/
+    %br
     = f.select :core_id, @cores
   %div
     = f.label :gender, t('coordinator.gender')
-    %br/
+    %br
     = f.select :gender, @genders
   %div
     = f.label :dob, t('coordinator.dob')
-    %br/
+    %br
     = f.date_select :dob, {:start_year => 1900, :end_year => DateTime.now.year}
   %div
     = f.label :ethnicity, t('coordinator.ethnicity')
-    %br/
+    %br
     = f.select :ethnicity, @ethnicities
   %div
     = f.label :hometown, t('coordinator.hometown')
-    %br/
+    %br
     = f.text_field :hometown
   %div
     = f.label :state, t('coordinator.state')
-    %br/
+    %br
     = f.text_field :state
   %div
     = f.label :zone, t('coordinator.zone')
-    %br/
+    %br
     = f.select :zone, @zones
   %div
     = f.label :address, t('coordinator.address')
-    %br/
+    %br
     = f.text_field :address, :size => 100
   %div
     - phone_number = 0
     = t('core.phones_field')
-    %br/
+    %br
     - f.fields_for :phones do |builder|
       = render "phone_fields", :f => builder, :number => phone_number
       - phone_number += 1
   %div
     = f.label :civil_status, t('coordinator.civil_status')
-    %br/
+    %br
     = f.select :civil_status, @civil_status
   %b= t('coordinator.personal_doc')
   %div
     = f.label :rg, t('coordinator.rg')
-    %br/
+    %br
     = f.text_field :rg
   %div
     = f.label :cpf, t('coordinator.cpf')
-    %br/
+    %br
     = f.text_field :cpf
   %div
     = f.label :voter_id, t('coordinator.voter_id')
-    %br/
+    %br
     = f.text_field :voter_id
   %div
     = f.label :professional_id, t('coordinator.professional_id')
-    %br/
+    %br
     = f.text_field :professional_id
     = f.label :professional_serie, t('coordinator.professional_serie')
     = f.text_field :professional_serie
   %div
     = f.label :birth_or_marriage_certificate_id, t('coordinator.birth_or_marriage_certificate_id')
-    %br/
+    %br
     = f.text_field :birth_or_marriage_certificate_id
   %div
     = f.label :social_id, t('coordinator.social_id')
-    %br/
+    %br
     = f.text_field :social_id
   %div
     = f.label :sons_number, t('coordinator.sons_number.title')
-    %br/
+    %br
     = f.select :sons_number, @sons_number
   %div
     %b
@@ -132,118 +132,123 @@
     \#{f.text_field :forth_son_age, :size => 3}
   %div
     %b= t('coordinator.occupation')
-    %br/
+    %br
     = t('professional_exp.title')
-    %br/
+    %br
     = render "professional_exp_fields"
   %div
     %b= t('education_exp.title')
-    %br/
+    %br
     = t('education_exp.learning_network')
-    %br/
+    %br
     = render "education_exp_fields"
   %div
     = f.label :education_level, t('coordinator.education_level')
-    %br/
-    .field_with_complement_info= f.select :education_level, @education_levels
-  :javascript
-    $(document).ready(function() {
-        $("#coordinator_education_level").change(function() {
-            var value = $(this).val();
-            if (value > 1){
-              jQuery('#coordinator_education_level_desc_div').attr('style','visibility:visible; !important');
-              jQuery('#coordinator_education_level_desc').focus();
-            }
-            else{
-              jQuery('#coordinator_education_level_desc_div').attr('style','visibility:hidden; !important');
-            }
+    %br
+    .field_with_complement_info
+      = f.select :education_level, @education_levels
+      :javascript
+        $(document).ready(function() {
+            $("#coordinator_education_level").change(function() {
+                var value = $(this).val();
+                if (value == 0 || value == 5 || value == 6 || value == 7){
+                  jQuery('#coordinator_education_level_desc_div').attr('style','visibility:hidden; !important');
+                  
+                }
+                else{
+                  jQuery('#coordinator_education_level_desc_div').attr('style','visibility:visible; !important');
+                  jQuery('#coordinator_education_level_desc').focus();
+                }
+            });
         });
-    });
     #coordinator_education_level_desc_div.invisible
-    = f.label :education_level_desc, t('which')
-    = f.text_field :education_level_desc
+      = f.label :education_level_desc, t('which')
+      = f.text_field :education_level_desc
   %div
     = f.label :house, t('coordinator.house.title')
-    %br/
-    .field_with_complement_info= f.select :house, @houses
-  :javascript
-    $(document).ready(function() {
-        $("#coordinator_house").change(function() {
-            var value = $(this).val();
-            if (value == 5){
-              jQuery('#coordinator_house_desc_div').attr('style','visibility:visible; !important');
-              jQuery('#coordinator_house_desc').focus();
-            }
-            else{
-              jQuery('#coordinator_house_desc_div').attr('style','visibility:hidden; !important');
-            }
+    %br
+    .field_with_complement_info
+      = f.select :house, @houses
+      :javascript
+        $(document).ready(function() {
+            $("#coordinator_house").change(function() {
+                var value = $(this).val();
+                if (value == 5){
+                  jQuery('#coordinator_house_desc_div').attr('style','visibility:visible; !important');
+                  jQuery('#coordinator_house_desc').focus();
+                }
+                else{
+                  jQuery('#coordinator_house_desc_div').attr('style','visibility:hidden; !important');
+                }
+            });
         });
-    });
     #coordinator_house_desc_div.invisible
-    = f.label :house_desc, t('which')
-    = f.text_field :house_desc
+      = f.label :house_desc, t('which')
+      = f.text_field :house_desc
   %div
     = f.label :house_type, t('coordinator.house_type')
-    %br/
+    %br
     = f.select :house_type, @house_types
   %div
     = f.input :special_need, :as => :radio, :collection => [t('yyes'), t('nno')]
   %div
     = t('social_participation.title')
-    %br/
+    %br
     - f.fields_for :social_participations do |builder|
       = render "social_participation_fields", :f => builder
   %div
     = f.label :political_affiliation, t('coordinator.political_affiliation.title')
-    %br/
+    %br
     = f.select :political_affiliation, @political_affiliations
   %div
     = f.label :political_party, t('coordinator.political_party')
-    %br/
+    %br
     = f.select :political_party, @political_parties
   %div
     = f.label :religion, t('coordinator.religion.title')
-    %br/
-    .field_with_complement_info= f.select :religion, @religions
-  :javascript
-    $(document).ready(function() {
-        $("#coordinator_religion").change(function() {
-            var value = $(this).val();
-            if (value == 7){
-              jQuery('#coordinator_religion_desc_div').attr('style','visibility:visible; !important');
-              jQuery('#coordinator_religion_desc').focus();
-            }
-            else{
-              jQuery('#coordinator_religion_desc_div').attr('style','visibility:hidden; !important');
-            }
+    %br
+    .field_with_complement_info
+      = f.select :religion, @religions
+      :javascript
+        $(document).ready(function() {
+            $("#coordinator_religion").change(function() {
+                var value = $(this).val();
+                if (value == 7){
+                  jQuery('#coordinator_religion_desc_div').attr('style','visibility:visible; !important');
+                  jQuery('#coordinator_religion_desc').focus();
+                }
+                else{
+                  jQuery('#coordinator_religion_desc_div').attr('style','visibility:hidden; !important');
+                }
+            });
         });
-    });
     #coordinator_religion_desc_div.invisible
-    = t('which')
-    = f.text_field :religion_desc
+      = t('which')
+      = f.text_field :religion_desc
   %div
     = f.label :association, t('coordinator.association.title')
-    %br/
-    .field_with_complement_info= f.select :association, @associations
-  :javascript
-    $(document).ready(function() {
-        $("#coordinator_association").change(function() {
-            var value = $(this).val();
-            if (value == 4){
-              jQuery('#coordinator_association_desc_div').attr('style','visibility:visible; !important');
-              jQuery('#coordinator_association_desc').focus();
-            }
-            else{
-              jQuery('#coordinator_association_desc_div').attr('style','visibility:hidden; !important');
-            }
+    %br
+    .field_with_complement_info
+      = f.select :association, @associations
+      :javascript
+        $(document).ready(function() {
+            $("#coordinator_association").change(function() {
+                var value = $(this).val();
+                if (value == 4){
+                  jQuery('#coordinator_association_desc_div').attr('style','visibility:visible; !important');
+                  jQuery('#coordinator_association_desc').focus();
+                }
+                else{
+                  jQuery('#coordinator_association_desc_div').attr('style','visibility:hidden; !important');
+                }
+            });
         });
-    });
     #coordinator_association_desc_div.invisible
-    = f.label :association_desc, t('which')
-    = f.text_field :association_desc
+      = f.label :association_desc, t('which')
+      = f.text_field :association_desc
   %div
     = f.label :cooperative, t('coordinator.cooperative.title')
-    %br/
+    %br
     = f.select :cooperative, @cooperatives
   .actions
     = f.submit button

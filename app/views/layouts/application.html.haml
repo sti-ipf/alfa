@@ -3,31 +3,68 @@
   %head
     %title Alfa
     = stylesheet_link_tag :all
-    = javascript_include_tag :all
+    - js_files = ['jquery.min.js', 'jquery_ujs.js', 'jquery-rails.js', 'jquery.dataTables.min.js']
+    - js_files.each do |js_file|
+      = javascript_include_tag js_file
     = csrf_meta_tag
+    :javascript
+      $(document).ready(function(){
+
+        $("ul.subnav").parent().append("<span></span>"); //Only shows drop down trigger when js is enabled (Adds empty span tag after ul.subnav*)
+
+        $("ul.topnav li span").click(function() { //When trigger is clicked...
+
+          //Following events are applied to the subnav itself (moving subnav up and down)
+          $(this).parent().find("ul.subnav").slideDown('fast').show(); //Drop down the subnav on click
+
+          $(this).parent().hover(function() {
+          }, function(){
+            $(this).parent().find("ul.subnav").slideUp('slow'); //When the mouse hovers out of the subnav, move it back up
+          });
+
+          //Following events are applied to the trigger (Hover events for the trigger)
+          }).hover(function() {
+            $(this).addClass("subhover"); //On hover over, add class "subhover"
+          }, function(){  //On Hover Out
+            $(this).removeClass("subhover"); //On hover out, remove class "subhover"
+        });
+
+      });
+
   %body
-    = link_to t('core.view'), cores_path
-    |
-    = link_to t('room.view'), rooms_path
-    |
-    = link_to t('coordinator.view'), coordinators_path
-    |
-    = link_to t('educator.view'), educators_path
-    |
-    = link_to t('student.view'), students_path
-    |
-    = link_to t('world_reading.view'), world_readings_path
-    %br
-    = link_to t('core.new'), new_core_path
-    |
-    = link_to t('room.new'), new_room_path
-    |
-    = link_to t('coordinator.new'), new_coordinator_path
-    |
-    = link_to t('educator.new'), new_educator_path
-    |
-    = link_to t('student.new'), new_student_path 
-    |
-    = link_to t('world_reading.new'), new_world_reading_path
-    %p#notice= notice
-    = yield
+    %ul{:class => 'topnav'}
+      %li
+        = link_to t('core.view'), cores_path
+        %ul{:class => 'subnav'} 
+          %li
+            = link_to t('core.new'), new_core_path
+      %li
+        = link_to t('room.view'), rooms_path
+        %ul{:class => 'subnav'} 
+          %li
+            = link_to t('room.new'), new_room_path  
+      %li
+        = link_to t('coordinator.view'), coordinators_path
+        %ul{:class => 'subnav'} 
+          %li
+            = link_to t('coordinator.new'), new_coordinator_path
+      %li
+        = link_to t('educator.view'), educators_path
+        %ul{:class => 'subnav'} 
+          %li
+            = link_to t('educator.new'), new_educator_path
+      %li
+        = link_to t('student.view'), students_path
+        %ul{:class => 'subnav'} 
+          %li
+            = link_to t('student.new'), new_student_path
+      %li
+        = link_to t('world_reading.view'), world_readings_path
+        %ul{:class => 'subnav'} 
+          %li
+            = link_to t('world_reading.new'), new_world_reading_path      
+    %p
+      #notice= notice
+    #main_container
+      = yield
+      .clearfix

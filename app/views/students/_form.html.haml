@@ -12,7 +12,7 @@
       jQuery('#student_religion_desc_div').attr('style','visibility:visible; !important');
     }
   });
-= form_for(@student) do |f|
+= semantic_form_for(@student) do |f|
   - if @student.errors.any?
     #error_explanation
       %ul
@@ -20,160 +20,166 @@
           %li= msg
   %div
     = f.label :educator, t('student.educator')
-    %br/
+    %br
     = f.select :educator, @educators
   %div
     = f.label :core, t('student.core')
-    %br/
+    %br
     = f.select :core, @cores
   %div
     = f.label :room, t('student.room')
-    %br/
+    %br
     = f.select :room, @rooms
   %div
     = f.label :sign_up_date_on, t('student.sign_up_date_on')
-    %br/
+    %br
     = f.date_select :sign_up_date_on
   %div
     = f.label :class_start_date_on, t('student.class_start_date_on')
-    %br/
+    %br
     = f.date_select :class_start_date_on
   %div
     = f.label :name, t('student.name')
-    %br/
+    %br
     = f.text_field :name
   %div
     = f.label :age, t('student.age.title')
-    %br/
+    %br
     = f.select :age, @ages
   %div
     = f.label :gender, t('student.gender')
-    %br/
+    %br
     = f.select :gender, @genders
   %div
     = f.label :dob, t('student.dob')
-    %br/
+    %br
     = f.date_select :dob
   %div
     = f.label :ethnicity, t('student.ethnicity')
-    %br/
+    %br
     = f.select :ethnicity, @ethnicities
   %div
     = f.label :hometown, t('student.hometown')
-    %br/
+    %br
     = f.text_field :hometown
   %div
     = f.label :state, t('student.state')
-    %br/
+    %br
     = f.text_field :state
   %div
     = f.label :zone, t('student.zone')
-    %br/
+    %br
     = f.select :zone, @zones
   %div
     = f.label :address, t('student.address')
-    %br/
+    %br
     = f.text_field :address, :size => 100
   %div
     - phone_number = 0
     = t('student.phones')
-    %br/
+    %br
     - f.fields_for :phones do |builder|
       = render "phone_fields", :f => builder, :number => phone_number
       - phone_number += 1
   %div
     = f.label :civil_status, t('student.civil_status')
-    %br/
+    %br
     = f.select :civil_status, @civil_status
   %div
     = f.label :education_level, t('student.education_level.title')
-    %br/
+    %br
     = f.select :education_level, @education_levels
   %div
     = f.label :actual_condition, t('student.actual_condition.title')
-    %br/
+    %br
     = f.select :actual_condition, @actual_conditions
   %div
     = f.label :profession, t('student.profession.title')
-    %br/
+    %br
     = f.text_field :profession
   %div
     = f.label :actual_occupation, t('student.profession.actual')
-    %br/
+    %br
     = f.text_field :actual_occupation
   %div
     = f.label :worker_situation, t('student.profession.situation')
-    %br/
+    %br
     = f.select :worker_situation, @worker_situations
   %div
     = f.label :worker_situation_type, t('student.profession.type')
-    %br/
+    %br
     = f.select :worker_situation_type, @worker_situation_types
   %div
     = f.label :house, t('student.house')
-    %br/
-    .field_with_complement_info= f.select :house, @houses
-  :javascript
-    $(document).ready(function() {
-        $("#student_house").change(function() {
-            var value = $(this).val();
-            if (value == 5){
-              jQuery('#student_house_desc_div').attr('style','visibility:visible; !important');
-              jQuery('#student_house_desc').focus();
-            }
-            else{
-              jQuery('#student_house_desc_div').attr('style','visibility:hidden; !important');
-            }
-        });
-    });
-    #student_house_desc_div.invisible
-    = t('which')
-    = f.text_field :house_desc
-  %div
-    = f.label :special_need, t('student.special_need')
-    %br/
+    %br
     .field_with_complement_info
-      = f.check_box :special_need
-      = t('yyes')
-  :javascript
-    $(document).ready(function() {
-        $("#student_special_need").change(function() {
-            if ($("#student_special_need").is(':checked')){
-              jQuery('#student_special_need_desc_div').attr('style','visibility:visible; !important');
-              jQuery('#student_special_need_desc').focus();
-            }
-            else{
-              jQuery('#student_special_need_desc_div').attr('style','visibility:hidden; !important');
-            }
+      = f.select :house, @houses
+      :javascript
+        $(document).ready(function() {
+            $("#student_house").change(function() {
+                var value = $(this).val();
+                if (value == 5){
+                  jQuery('#student_house_desc_div').attr('style','visibility:visible; !important');
+                  jQuery('#student_house_desc').focus();
+                }
+                else{
+                  jQuery('#student_house_desc_div').attr('style','visibility:hidden; !important');
+                }
+            });
         });
-    });
-    #student_special_need_desc_div.invisible
-    = t('which')
-    = f.text_field :special_need_desc
-  %br/
+    #student_house_desc_div.invisible
+      = t('which')
+      = f.text_field :house_desc
   %div
-    = f.label :religion, t('student.religion')
-    %br/
-    .field_with_complement_info= f.select :religion, @religions
-  :javascript
-    $(document).ready(function() {
-        $("#student_religion").change(function() {
-            var value = $(this).val();
-            if (value == 7){
-              jQuery('#student_religion_desc_div').attr('style','visibility:visible; !important');
-              jQuery('#student_religion_desc').focus();
-            }
-            else{
-              jQuery('#student_religion_desc_div').attr('style','visibility:hidden; !important');
-            }
+    .field_with_complement_info
+      = f.input :special_need, :as => :radio, :collection => [t('yyes'), t('nno')]
+      :javascript
+        $(document).ready(function() {
+            $("#student_special_need_sim").change(function() {
+                if ($("#student_special_need_sim").is(':checked')){
+                  jQuery('#student_special_need_desc_div').attr('style','visibility:visible; !important');
+                  jQuery('#student_special_need_desc').focus();
+                }
+                else{
+                  jQuery('#student_special_need_desc_div').attr('style','visibility:hidden; !important');
+                }
+            });
+            $("#student_special_need_não").change(function() {
+                if ($("#student_special_need_não").is(':checked')){
+                  jQuery('#student_special_need_desc_div').attr('style','visibility:hidden; !important');
+                }
+            });
         });
-    });
+    #student_special_need_desc_div.invisible
+      = t('which')
+      = f.text_field :special_need_desc
+  %br
+  %div
+    %br
+    = f.label :religion, t('student.religion')
+    %br
+    .field_with_complement_info
+      = f.select :religion, @religions
+      :javascript
+        $(document).ready(function() {
+            $("#student_religion").change(function() {
+                var value = $(this).val();
+                if (value == 7){
+                  jQuery('#student_religion_desc_div').attr('style','visibility:visible; !important');
+                  jQuery('#student_religion_desc').focus();
+                }
+                else{
+                  jQuery('#student_religion_desc_div').attr('style','visibility:hidden; !important');
+                }
+            });
+        });
     #student_religion_desc_div.invisible
-    = t('which')
-    = f.text_field :religion_desc
+      = t('which')
+      = f.text_field :religion_desc
   %div
     = f.label :observations, t('student.observations')
-    %br/
+    %br
     = f.text_area :observations
+    %br
   .actions
     = f.submit button
