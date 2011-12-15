@@ -4,6 +4,10 @@
       %ul
         - @room.errors.full_messages.each do |msg|
           %li= msg
+  .field 
+    = f.input :coordinators, :as => :check_boxes, :collection => @coordinators
+  .field 
+    = f.input :educators, :as => :check_boxes, :collection => @educators
   .field
     = f.label :name, t('room.name')
     %br

@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Presence at:
+  = @presence_list.presence_at
+%p
+  %b Room:
+  = @presence_list.room
+
+= link_to 'Edit', edit_presence_list_path(@presence_list)
+\|
+= link_to 'Back', presence_lists_path

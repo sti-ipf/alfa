@@ -1,0 +1,21 @@
+%h1 Listing presence_lists
+
+%table
+  %tr
+    %th Presence at
+    %th Room
+    %th
+    %th
+    %th
+
+  - @presence_lists.each do |presence_list|
+    %tr
+      %td= presence_list.presence_at
+      %td= presence_list.room
+      %td= link_to 'Show', presence_list
+      %td= link_to 'Edit', edit_presence_list_path(presence_list)
+      %td= link_to 'Destroy', presence_list, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Presence list', new_presence_list_path

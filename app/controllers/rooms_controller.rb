@@ -1,6 +1,7 @@
 class RoomsController < ApplicationController
-  # GET /rooms
-  # GET /rooms.xml
+  
+  before_filter :load_data, :only => [:new, :create, :edit, :update]
+
   def index
     @rooms = Room.all
 
@@ -80,4 +81,12 @@ class RoomsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+protected
+
+  def load_data
+    @coordinators = Coordinator.all
+    @educators = Educator.all
+  end
+
 end

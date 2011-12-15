@@ -1,6 +1,15 @@
-%div
-  %b= t('room.name')
-  = @room.name
 = link_to t('edit'), edit_room_path(@room)
 |
 \#{link_to t('back'), rooms_path}
+%br
+%div
+  %p
+    %b= t('room.name')
+    = @room.name
+  %p
+    %b= t('room.coordinators')
+    = @room.coordinators.collect(&:name).join(', ')
+  %p
+    %b= t('room.educators')
+    = @room.educators.collect(&:name).join(', ')
+

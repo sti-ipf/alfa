@@ -241,6 +241,9 @@ pt:
     updated: "Turma atualizada com sucesso."
     view: "Turmas"
     name: "Nome"
+    update_presence_list: "Atualizar lista de presença"
+    coordinators: "Coordenadores"
+    educators: "Educadores"
   educator:
     name: "Nome"
     core: "Núcleo"
@@ -490,6 +493,9 @@ pt:
         has_blog: "Possui blog?"
         share_photos_videos: "Publica(ou) suas fotos e/ou vídeos?"
         e_learning: "Participa ou já participou de um curso a distância"
+      room:
+        coordinators: "Coordenadores"
+        educators: "Educadores"
   # formatos de data e hora
   date:
     formats:
