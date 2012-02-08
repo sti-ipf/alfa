@@ -19,17 +19,17 @@
         - @student.errors.full_messages.each do |msg|
           %li= msg
   %div
-    = f.label :educator, t('student.educator')
+    = f.label :educator_id, t('student.educator')
     %br
-    = f.select :educator, @educators
+    = f.select :educator_id, @educators
   %div
-    = f.label :core, t('student.core')
+    = f.label :core_id, t('student.core')
     %br
-    = f.select :core, @cores
+    = f.select :core_id, @cores
   %div
-    = f.label :room, t('student.room')
+    = f.label :room_id, t('student.room')
     %br
-    = f.select :room, @rooms
+    = f.select :room_id, @rooms
   %div
     = f.label :sign_up_date_on, t('student.sign_up_date_on')
     %br
