@@ -36,5 +36,42 @@ class Core < ActiveRecord::Base
   accepts_nested_attributes_for :partner_resources, :reject_if => lambda { |a| a[:resource].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :phones, :reject_if => lambda { |a| a[:number].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :seat_types , :reject_if => lambda { |a| a[:seat_type].blank? }, :allow_destroy => true
+
+  def size_to_s
+    get_attribute_value(self.size, SIZES)
+  end
+
+  def board_type_to_s
+    get_attribute_value(self.board_type, BOARD_TYPES)
+  end
+
+  def place_to_s
+    get_attribute_value(self.place, PLACES)
+  end
+
+  def community_type_to_s
+    get_attribute_value(self.community_type, COMMUNITY_TYPES)
+  end
+
+  def illumination_type_to_s
+    get_attribute_value(self.illumination_type, ILLUMINATION_TYPES)
+  end
+
+  def illumination_condition_to_s
+    get_attribute_value(self.illumination_condition, ILLUMINATION_CONDITIONS)
+  end
+
+  def total_seats_to_s
+    get_attribute_value(self.total_seats, TOTAL_SEATS)
+  end
+
+private
+
+  def get_attribute_value(attribute, array)
+    array.each do |a|
+      return a.first if a.last == attribute
+    end
+    ''
+  end
 end
 

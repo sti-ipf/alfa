@@ -45,6 +45,7 @@ pt:
     name: "Nome"
     responsible: "Responsável"
     main_activity: "Atividade principal"
+    board: "Lousa"
     educator_name: "Nome do Educador(a)"
     coordenator_name: "Coordenador(a) local"
     city: "Município"
@@ -69,6 +70,7 @@ pt:
     illumination_field: "Iluminação da sala"
     illumination_condition_field: "Condições da iluminação"
     another_place_field: "Há outros espaços que podem ser utilizados pelo educador?"
+    another_place: "Outros espaços usados pelo educador"
     bathroom_field: "Banheiros"
     kitchen_field: "Cozinha"
     displacement_title: "Deslocamento"
@@ -101,13 +103,16 @@ pt:
     total_seats:
       until_10: "Até 10"
       between_10_20: "De 10 a 20"
+      title: "Quantidade de assentos"
     illumination_type:
       electric_power: "Energia elétrica"
       lamp: "Lampião ou zé gás"
       other: "Outra fonte"
+      title: "Tipo de iluminação"
     illumination_condition:
       ok: "É adequada para leitura e escrita"
       nok: "A posição da lâmpadas produz sombra para escrever"
+      title: "Condições da iluminação"
     listing: "Núcleos"
     new: "Novo núcleo"
     new_title: "Novo núcleo"
