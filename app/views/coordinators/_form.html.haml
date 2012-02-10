@@ -190,7 +190,7 @@
     %br
     = f.select :house_type, @house_types
   %div
-    = f.input :special_need, :as => :radio, :collection => [t('yyes'), t('nno')]
+    = f.input :special_need, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
   %div
     = t('social_participation.title')
     %br

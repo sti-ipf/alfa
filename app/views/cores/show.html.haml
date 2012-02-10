@@ -1,3 +1,70 @@
 = link_to t('edit'), edit_core_path(@core)
 |
 \#{link_to t('back'), cores_path}
+%br
+%p
+  %b= t('core.city')
+  = @core.city.try(:name)
+  %br
+  %b= t('core.community') 
+  = @core.community
+  %br
+  %b= t('core.address') 
+  = @core.address
+  %br
+  %b= t('core.community_type.title')  
+  = @core.community_type
+  %br
+  %b= t('core.place.title') 
+  = @core.place
+  - if !@core.place_desc.blank?
+    = "(#{@core.place_desc})"
+  %br
+  %b= t('core.name')  
+  = @core.name
+  %br
+  %b= t('core.responsible') 
+  = @core.responsible
+  %br
+  %b= t('core.email') 
+  = @core.email
+  %br
+  %b= t('core.main_activity') 
+  = @core.main_activity  
+  %br
+  - if @core.board
+    %b= t('core.board') 
+    = "#{@core.board_type} (#{@core.size})"
+  %br
+  %b= t('core.total_seats')
+  = @core.total_seats
+  %br
+  %b= t('core.illumination_type')
+  = @core.illumination_type
+  %br
+  %b= t('core.illumination_type_desc')
+  = @core.illumination_type_desc
+  %br
+  %b= t('core.illumination_condition')
+  = @core.illumination_condition
+  %br
+  %b= t('core.another_place')
+  = @core.another_place
+  %br
+  %b= t('core.another_place_desc')
+  = @core.another_place_desc
+  %br
+  %b= t('core.bathroom')
+  = @core.bathroom
+  %br
+  %b= t('core.kitchen')
+  = @core.kitchen
+  %br
+  %b= t('core.coordenation_analysis')
+  = @core.coordenation_analysis
+  %br
+  %b= t('core.visit_on')
+  = @core.visit_on
+  %br
+  %b= t('core.who_visited')
+  = @core.who_visited

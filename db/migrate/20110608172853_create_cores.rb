@@ -3,7 +3,6 @@ class CreateCores < ActiveRecord::Migration
   def self.up
     create_table :cores do |t|
 
-      t.string :city
       t.string :community
       t.string :address
       t.integer :community_type
@@ -27,6 +26,7 @@ class CreateCores < ActiveRecord::Migration
       t.text :coordenation_analysis
       t.date :visit_on
       t.string :who_visited
+      t.references :city
 
       t.timestamps
     end

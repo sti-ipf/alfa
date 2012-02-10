@@ -4,7 +4,7 @@ class StudentsController < ApplicationController
   before_filter :load_data, :only => [:edit, :new, :update, :create]
   
   def index
-    @students = Student.all
+    @students = Student.all(:conditions => "core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -84,8 +84,8 @@ class StudentsController < ApplicationController
   end
 
   def load_data
-    @cores = Core.all.collect{|c| ["#{c.city} - #{c.community}", c.id]}
-    @educators = Educator.all.collect{|c| [c.name, c.id]}
+    @cores = Core.all(:conditions => "city_id IN (#{@cities_ids})").collect{|c| ["#{c.city.try(:name)} - #{c.community}", c.id]}
+    @educators = Educator.all(:conditions => "core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))").collect{|c| [c.name, c.id]}
     @genders = Coordinator::GENDERS
     @ethnicities = Coordinator::ETHNICITIES
     @ages = Student::AGES
@@ -98,7 +98,8 @@ class StudentsController < ApplicationController
     @houses = Coordinator::HOUSES
     @house_types = Coordinator::HOUSE_TYPES
     @religions = Coordinator::RELIGIONS
-    @rooms = Room.all.collect{|c| [c.name, c.id]}
+    @rooms = Room.all(:conditions => "id IN (SELECT room_id FROM coordinators_rooms WHERE coordinator_id IN (SELECT id FROM coordinators WHERE core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))))
+      OR id IN (SELECT room_id FROM educators_rooms WHERE educator_id IN (SELECT id FROM educators WHERE core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))))").collect{|c| [c.name, c.id]}
   end
   
 end

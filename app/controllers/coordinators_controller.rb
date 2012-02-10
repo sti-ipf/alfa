@@ -7,7 +7,7 @@ class CoordinatorsController < ApplicationController
 
 
   def index
-    @coordinators = Coordinator.all
+    @coordinators = Coordinator.all(:conditions => "core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -114,7 +114,7 @@ class CoordinatorsController < ApplicationController
   end
 
   def load_data
-    @cores = Core.all.collect {|c| ["#{c.city} - #{c.community}", c.id]}
+    @cores = Core.all(:conditions => "city_id IN (#{@cities_ids})").collect {|c| ["#{c.city.try(:name)} - #{c.community}", c.id]}
     @genders = Coordinator::GENDERS
     @ethnicities = Coordinator::ETHNICITIES
     @zones = Coordinator::ZONES
@@ -131,7 +131,8 @@ class CoordinatorsController < ApplicationController
     @cooperatives = Coordinator::COOPERATIVES
     @professional_exps = ProfessionalExp.all
     @education_exps = EducationExp.all
-    @rooms = Room.all
+    @rooms = Room.all(:conditions => "id IN (SELECT room_id FROM coordinators_rooms WHERE coordinator_id IN (SELECT id FROM coordinators WHERE core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))))
+      OR id IN (SELECT room_id FROM educators_rooms WHERE educator_id IN (SELECT id FROM educators WHERE core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))))")
   end
 end
 

@@ -41,3 +41,9 @@ ProfessionalExp.create(:area => "Nenhuma anterior")
 EducationExp.create(:education_type => "Pública")
 EducationExp.create(:education_type => "Privada")
 EducationExp.create(:education_type => "Estágio")
+
+
+User.create(:username => 'admin', :name => 'Administrador', :password => 'ipf123',
+  :password_confirmation => 'ipf123', :admin => true)
+City.create(:name => "Presidente Kennedy")
+City.create(:name => "São Francisco de Itabapoana")

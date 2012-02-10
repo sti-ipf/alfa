@@ -1,0 +1,43 @@
+.formbody
+
+  = semantic_form_for @user do |f|
+    -if @user.errors.any?
+      #error_explanation
+        %ul
+          - @user.errors.full_messages.each do |msg|
+            - msg = msg.split('base ').last
+            %li= msg
+
+    .field
+      = f.label :name
+      %br
+      = f.text_field :name
+    .field
+      = f.label :username
+      %br
+      = f.text_field :username
+    .field
+      = f.label :email
+      %br
+      = f.text_field :email
+    .field
+      = f.label :password
+      %br
+      = f.password_field :password
+      %br
+    .field
+      = f.label :password_confirmation
+      %br
+      = f.password_field :password_confirmation
+      %br
+    -if current_user.admin
+      .field
+        = f.input :admin
+      .field
+        = 'Cidades'
+        %br/
+        - @cities.each do |c|
+          = check_box_tag 'user[city_ids][]', c.id, @user.cities.include?(c)
+          = c.name
+    = f.commit_button button, :disable_with => t('please_wait')
+

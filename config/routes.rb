@@ -13,6 +13,11 @@ Alfa::Application.routes.draw do
   resources :cores
   resources :coordinators
   resources :educators
+  resources :users
+  resources :user_sessions
+  match 'sign_up' => 'users#sign_up', :as => 'sign_up'
+  match 'sign_in' => 'user_sessions#new', :as => 'sign_in'
+  match 'sign_out' => 'user_sessions#destroy', :as => 'sign_out'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -132,11 +132,11 @@
       = f.text_field :house_desc
   %div
     .field_with_complement_info
-      = f.input :special_need, :as => :radio, :collection => [t('yyes'), t('nno')]
+      = f.input :special_need, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
       :javascript
         $(document).ready(function() {
-            $("#student_special_need_sim").change(function() {
-                if ($("#student_special_need_sim").is(':checked')){
+            $("#student_special_need_true").change(function() {
+                if ($("#student_special_need_true").is(':checked')){
                   jQuery('#student_special_need_desc_div').attr('style','visibility:visible; !important');
                   jQuery('#student_special_need_desc').focus();
                 }
@@ -144,8 +144,8 @@
                   jQuery('#student_special_need_desc_div').attr('style','visibility:hidden; !important');
                 }
             });
-            $("#student_special_need_não").change(function() {
-                if ($("#student_special_need_não").is(':checked')){
+            $("#student_special_need_false").change(function() {
+                if ($("#student_special_need_false").is(':checked')){
                   jQuery('#student_special_need_desc_div').attr('style','visibility:hidden; !important');
                 }
             });

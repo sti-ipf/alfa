@@ -27,10 +27,10 @@
     if ($("#world_reading_discussion_list").val() == 3){
     jQuery('#world_reading_discussion_list_desc_div').attr('style','visibility:visible; !important');
     }
-    if ($("#world_reading_forum_sim").is(':checked')){
+    if ($("#world_reading_forum_true").is(':checked')){
       jQuery('#world_reading_forum_desc_div').attr('style','visibility:visible; !important');
     }
-    if ($("#world_reading_e_learning_sim").is(':checked')){
+    if ($("#world_reading_e_learning_true").is(':checked')){
     jQuery('#world_reading_e_learning_desc_div').attr('style','visibility:visible; !important');
     }
 
@@ -165,7 +165,7 @@
   %div
     %b= t('world_reading.ms_title')
     %br
-    = f.input :make_searches, :as => :radio, :collection => [t('yyes'), t('nno')]
+    = f.input :make_searches, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
   %div
     = f.label :prefered_search_engine, t('world_reading.prefered_search_engine')
     %br
@@ -215,11 +215,11 @@
   %div
     %br
     .field_with_complement_info
-      = f.input :forum, :as => :radio, :collection => [t('yyes'), t('nno')]
+      = f.input :forum, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
       :javascript
           $(document).ready(function() {
             $("#world_reading_forum_sim").change(function() {
-              if ($("#world_reading_forum_sim").is(':checked')){
+              if ($("#world_reading_forum_true").is(':checked')){
                 jQuery('#world_reading_forum_desc_div').attr('style','visibility:visible; !important');
                 jQuery('#world_reading_forum_desc').focus();
               }
@@ -228,7 +228,7 @@
               }
             });
             $("#world_reading_forum_não").change(function() {
-              if ($("#world_reading_forum_não").is(':checked')){
+              if ($("#world_reading_forum_false").is(':checked')){
                 jQuery('#world_reading_forum_desc_div').attr('style','visibility:hidden; !important');
               }
             });
@@ -239,27 +239,27 @@
       = f.text_field :forum_desc
   %div
     %br
-    = f.input :chat, :as => :radio, :collection => [t('yyes'), t('nno')]
+    = f.input :chat, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
   %div
     %br
-    = f.input :msn, :as => :radio, :collection => [t('yyes'), t('nno')]
+    = f.input :msn, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
   %div
     %br
-    = f.input :use_msn_with_frequency, :as => :radio, :collection => [t('yyes'), t('nno')]
+    = f.input :use_msn_with_frequency, :collection => [[t('yyes'), true], [t('nno'), false]]
   %div
     %br
-    = f.input :has_blog, :as => :radio, :collection => [t('yyes'), t('nno')]
+    = f.input :has_blog, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
   %div
     %br
-    = f.input :share_photos_videos, :as => :radio, :collection => [t('yyes'), t('nno')]
+    = f.input :share_photos_videos, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
   %div
     %br
     .field_with_complement_info
-      = f.input :e_learning, :as => :radio, :collection => [t('yyes'), t('nno')]
+      = f.input :e_learning, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
       :javascript
         $(document).ready(function() {
           $("#world_reading_e_learning_sim").change(function() {
-            if ($("#world_reading_e_learning_sim").is(':checked')){
+            if ($("#world_reading_e_learning_true").is(':checked')){
               jQuery('#world_reading_e_learning_desc_div').attr('style','visibility:visible; !important');
               jQuery('#world_reading_e_learning_desc').focus();
             }
@@ -268,7 +268,7 @@
             }
           });
           $("#world_reading_e_learning_não").change(function() {
-            if ($("#world_reading_e_learning_não").is(':checked')){
+            if ($("#world_reading_e_learning_false").is(':checked')){
               jQuery('#world_reading_e_learning_desc_div').attr('style','visibility:hidden; !important');
             }
           });

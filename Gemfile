@@ -9,6 +9,7 @@ gem 'rspec-rails', '2.7.0'
 gem 'formtastic'
 gem 'haml'
 gem 'haml-rails'
+gem 'authlogic', '3.0.3'
 
 group :development do 
   gem 'erb2haml'

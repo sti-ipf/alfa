@@ -5,7 +5,8 @@ class WorldReadingsController < ApplicationController
   # GET /world_readings
   # GET /world_readings.xml
   def index
-    @world_readings = WorldReading.all
+    @world_readings = WorldReading.all(:conditions => "coordinator_id IN (SELECT id FROM coordinators WHERE core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids})))
+      OR educator_id IN (SELECT id FROM educators WHERE core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids})))")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -85,8 +86,8 @@ class WorldReadingsController < ApplicationController
   end
 
   def load_data
-    @educators = Educator.all.collect {|e| [e.name, e.id]}
-    @coordinators = Coordinator.all.collect {|c| [c.name, c.id]}
+    @educators = Educator.all(:conditions => "core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))").collect {|e| [e.name, e.id]}
+    @coordinators = Coordinator.all(:conditions => "core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))").collect {|c| [c.name, c.id]}
     @computer_uses = WorldReading::COMPUTER_USES
     @what_uses = WorldReading::WHAT_USES
     @about_internet_uses = WorldReading::ABOUT_INTERNET_USES

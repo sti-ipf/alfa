@@ -7,8 +7,7 @@ class CoresController < ApplicationController
 
 
   def index
-    @cores = Core.all
-
+    @cores = Core.all(:conditions => "city_id IN (#{@cities_ids})")
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @cores }
@@ -114,6 +113,7 @@ class CoresController < ApplicationController
   def load_data
     @displacements = Displacement.all
     @desk_types = DeskType.all
+    @cities = City.all(:conditions => "id IN (#{@cities_ids})").collect{|c| [c.name, c.id]}
   end
 end
 

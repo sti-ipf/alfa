@@ -3,7 +3,8 @@ class RoomsController < ApplicationController
   before_filter :load_data, :only => [:new, :create, :edit, :update]
 
   def index
-    @rooms = Room.all
+    @rooms = Room.all(:conditions => "id IN (SELECT room_id FROM coordinators_rooms WHERE coordinator_id IN (SELECT id FROM coordinators WHERE core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))))
+      OR id IN (SELECT room_id FROM educators_rooms WHERE educator_id IN (SELECT id FROM educators WHERE core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))))")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -85,8 +86,8 @@ class RoomsController < ApplicationController
 protected
 
   def load_data
-    @coordinators = Coordinator.all
-    @educators = Educator.all
+    @coordinators = Coordinator.all(:conditions => "core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))")
+    @educators = Educator.all(:conditions => "core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))")
   end
 
 end

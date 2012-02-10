@@ -14,7 +14,37 @@ pt:
   create: "Cadastrar"
   update: "Atualizar"
   select: "Selecione"
+  home: "Home"
+  logout: "Sair"
+  edit: "Editar"
+  create: "Criar"
+  delete: "Apagar"
+  remove: "Remover"
+  please_wait: "Aguarde..."
+  exclusion_confirmation: "Você tem certeza que deseja apagar?"
+  welcome: "Seja bem-vindo"
+  logout_message: "Deslogado com sucesso"
+  login_error: "Usuário ou senha inválidos"
+  must_sign_in: "Você deve está logado para acessar essa página"
+  select: "Selecione"
+  search: "Buscar"
+  previous: "Anterior"
+  next: "Próxima"
+  update: "Atualizar"
+  back: "Voltar"
+  save: "Salvar"
+  access_denied: "Acesso negado"
+  show: "Visualizar"
+  destroy: "Apagar"
+  other: "Outro"
+  are_you_sure: "Você tem certeza?"
+  n_no: "Não"
+  y_yes: "Sim"
+  finish: "Finalizar"
   core:
+    name: "Nome"
+    responsible: "Responsável"
+    main_activity: "Atividade principal"
     educator_name: "Nome do Educador(a)"
     coordenator_name: "Coordenador(a) local"
     city: "Município"
@@ -59,6 +89,7 @@ pt:
       fishing: "Pesqueira"
       rural: "Rural"
       urban: "Urbana"
+      title: "Tipo de comunidade"
     place:
       association: "Associação"
       church_hall: "Salão de igreja"
@@ -66,6 +97,7 @@ pt:
       cooperative: "Cooperativa"
       union: "Sindicato"
       outdoor: "Ao ar livre"
+      title: "Local"
     total_seats:
       until_10: "Até 10"
       between_10_20: "De 10 a 20"
@@ -466,12 +498,23 @@ pt:
     created: "Leitura mundo criada com sucesso."
     updated: "Leitura mundo atualizada com sucesso."
     view: "Leituras mundo"
+  user:
+    view: "Usuários"
+    new: "Novo usuário"
+    name: "Nome"
+    admin: "Perfil"
+    access: "Acesso"
+    listing: "Usuários"
+    created: "Usuário criado com sucesso."
+    updated: "Usuário atualizado com sucesso."
   activerecord:
     models:
       core: "Núcleo"
       coordinator: "Coordenador(a)"
       room: "Turma"
       student: "Estudante"
+      user: "Usuário"
+      user_session: "Login"
     attributes:
       core:
         another_place: "Há outros espaços que podem ser utilizados pelo educador?"
@@ -496,6 +539,75 @@ pt:
       room:
         coordinators: "Coordenadores"
         educators: "Educadores"
+      user: 
+        password: "Senha"
+        username:  "Usuário"
+        password_confirmation: "Confirmação da senha"
+        name: "Nome"
+        admin: "é administrador?"
+      user_session: 
+        password: "Senha"
+        username:  "Usuário"
+    errors:
+      template:
+        header:
+          one: "Não foi possível gravar %{model}: 1 erro"
+          other: "Não foi possível gravar %{model}: %{count} erros."
+        body: "Por favor, verifique o(s) seguinte(s) campo(s):"
+      messages:
+        required: "obrigatório"
+        is_required: "obrigatório"
+        isrequired: "obrigatório"
+        inclusion: "não está incluído na lista"
+        exclusion: "não está disponível"
+        invalid: "não é válido"
+        confirmation: "não está de acordo com a confirmação"
+        accepted: "deve ser aceito"
+        empty: "não pode ficar vazio"
+        blank: "não pode ficar em branco"
+        too_long: "é muito longo (máximo: %{count} caracteres)"
+        too_short: "é muito curto (mínimo: %{count} caracteres)"
+        wrong_length: "não possui o tamanho esperado (%{count} caracteres)"
+        taken: "já está em uso"
+        not_a_number: "não é um número"
+        not_an_integer: "não é um número inteiro"
+        greater_than: "deve ser maior do que %{count}"
+        greater_than_or_equal_to: "deve ser maior ou igual a %{count}"
+        equal_to: "deve ser igual a %{count}"
+        less_than: "deve ser menor do que %{count}"
+        less_than_or_equal_to: "deve ser menor ou igual a %{count}"
+        odd: "deve ser ímpar"
+        even: "deve ser par"
+        record_invalid: "A validação falhou: %{errors}"
+        not_positive: "não é um número positivo"
+        not_negative: "não é um número negativo"
+  signed_up: 'Seja bem-vindo(a)'
+  welcome_back: 'Bem-vindo(a) de volta'
+  not_authorized: "Desculpa, você não está autorizado"
+  authorization_destroyed: "Autorização apagada com sucesso"
+  authlogic:
+    error_messages:
+      login_blank: "não pode ficar em branco"
+      login_not_found: "não é válido"
+      login_invalid: "deve usar somente letras, números, espaços e .-_@ por favor."
+      consecutive_failed_logins_limit_exceeded: "Consecutivos logins que falharam limite excedido, a conta está desativada."
+      email_invalid: "deve ser semelhante a um endereço de email."
+      password_blank: "não pode ficar em branco"
+      password_invalid: "não é válido"
+      not_active: "Sua conta não está ativa"
+      not_confirmed: "Sua conta não está confirmada"
+      not_approved: "Sua conta não foi aprovada"
+      no_authentication_details: "Você não forneceu nenhum detalhe para autenticação."
+    models:
+      user_session: "Sessão Usuário"
+    attributes:
+      user_session:
+        login: "Usuário"
+        email: "Email"
+        password: "Senha"
+        password_confirmation: "Confirmação da Senha"
+        remember_me: "Lembrar me"
+        username: "Usuário"
   # formatos de data e hora
   date:
     formats:

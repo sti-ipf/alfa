@@ -13,6 +13,7 @@ class Core < ActiveRecord::Base
   has_many :cores_seat_types
   has_many :displacements, :through => :cores_displacements
   has_many :cores_displacements
+  belongs_to :city
 
 #constants
 

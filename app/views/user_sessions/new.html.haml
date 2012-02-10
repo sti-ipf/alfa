@@ -1,0 +1,20 @@
+#login.login_form
+  %h1 Acesso
+  .formbody
+    - semantic_form_for @user_session do |f|
+      -if @user_session.errors.any?
+        #error_explanation
+          %ul
+            - @user_session.errors.full_messages.each do |msg|
+              - msg = msg.split('base ').last
+              %li= msg
+      .field
+        = f.label :username
+        %br
+        = f.text_field :username
+      .field
+        = f.label :password
+        %br
+        = f.password_field :password
+      = f.commit_button 'Acessar', :disable_with => I18n.t('please_wait')
+

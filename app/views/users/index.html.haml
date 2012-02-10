@@ -1,0 +1,25 @@
+:javascript
+  $(document).ready(function(){
+    datatable_list('.list', [1, 2, 3])
+  });
+
+%h1= t('user.listing')
+%table{:class => 'list'}
+  %thead
+    %tr
+      %th= t('user.name')
+      %th= t('user.admin')
+      %th= t('user.access')
+      %th
+      %th
+      %th
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= user.name
+        %td= user.admin_to_s
+        %td= user.access
+        %td= link_to t('show'), user
+        %td= link_to t('edit'), edit_user_path(user)
+        %td= link_to t('delete'), user, :confirm => t('are_you_sure'), :method => :delete
+%br

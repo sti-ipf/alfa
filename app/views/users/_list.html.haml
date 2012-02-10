@@ -1,0 +1,49 @@
+:javascript
+  $(document).ready(function(){
+    var oTable = $('.list').dataTable({
+      "iDisplayLength": 10,
+      "bAutoWidth": false,
+      "bJQueryUI": true,
+      "bSort": true,
+        "aoColumns": [{ "asSorting": [ "desc", "asc" ] },],
+      "sDom": '<"H"lTfr>t<"F"ip>',
+      "oTableTools": {
+         "sSwfPath": "DataTables-1.8.1/media/swf/copy_cvs_xls_pdf.swf"
+      },
+      "aoColumnDefs": [ { "bSortable": false, "aTargets": [ 2, 3] }],
+              "sPaginationType": "full_numbers",
+        'oLanguage': {
+        'oPaginate': {
+          'sFirst': 'primeira',
+          'sLast': 'última',
+          'sNext': '>',
+          'sPrevious': '<'
+        },
+        'sInfo': 'Mostrando _START_ a _END_ de _TOTAL_ entradas',          
+        'sInfoEmpty': "Mostrando de 0 até 0 de 0 registros",
+        'sEmptyTable': 'não há registros para exibir',
+        'sInfoFiltered': '(filtrando de _MAX_)',
+        'sInfoPostFix': '',
+        'sLengthMenu': 'Exibe _MENU_ registros',
+        'sProcessing': 'processando',
+        'sSearch': 'Pesquisar',
+        'sZeroRecords': 'não há registros para exibir'
+      }
+    });
+  });
+%table.table.grid{:id => 'users', :class => 'list'}
+  %thead
+    %tr
+      %th{:style => 'min-width:120px;'}= t('user.username')
+      %th{:style => 'min-width:120px;'}= t('user.email')
+      %th
+      %th
+  %tbody  
+    - for user in @users
+      %tr
+        %td
+          = user.username
+        %td
+          = user.email
+        %td= link_to t('edit'), edit_user_path(user)
+        %td= link_to t('destroy'), user, :confirm => t('are_you_sure'), :method => :delete

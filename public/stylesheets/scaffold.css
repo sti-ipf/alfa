@@ -95,10 +95,16 @@ h1, h2{
 
 /** MENU **/
 
+li.first{
+  margin-left:20px !important;
+}
+
 ul.topnav {
   list-style: none;
-  padding-bottom: 40px;
-  margin: 0;
+  padding: 0px !important; 
+  margin-top: 0px !important; 
+  margin-bottom: 40px;
+  height: 40px;
   width: 100%;
   background: #222;
   font-size: 14px;
@@ -187,4 +193,8 @@ ol label input{ margin-right: 10px;}
   float: left;
   clear: both;
   margin-top: 15px;
+}
+
+.right_menu{
+  float: right;
 }

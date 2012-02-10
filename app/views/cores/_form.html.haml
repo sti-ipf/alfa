@@ -23,7 +23,7 @@
     if ($("#displacement_id_1_9").is(':checked')){
       jQuery('#core_displacement_desc_1_div').attr('style','visibility:visible; !important');
     }
-    if ($("#core_another_place_sim").is(':checked')){
+    if ($("#core_another_place_true").is(':checked')){
       jQuery('#core_another_place_desc_div').attr('style','visibility:visible; !important');
     }
   });
@@ -34,9 +34,9 @@
         - @core.errors.full_messages.each do |msg|
           %li= msg
   %div
-    = f.label :city, t('core.city')
+    = f.label :city_id, t('core.city')
     %br
-    = f.text_field :city
+    = f.select :city_id, @cities
   %div
     = f.label :community, t('core.community')
     %br
@@ -109,7 +109,7 @@
     %br
     = f.select :size, Core::SIZES
   %div
-    = f.input :board, :as => :radio, :collection => [t('yyes'), t('nno')]
+    = f.input :board, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
   %div
     = f.label :board_type, t('core.board_type_field')
     %br
@@ -149,11 +149,11 @@
       = f.select :illumination_condition, Core::ILLUMINATION_CONDITIONS
     %div
       .field_with_complement_info
-        = f.input :another_place, :as => :radio, :collection => [t('yyes'), t('nno')]
+        = f.input :another_place, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
         :javascript
           $(document).ready(function() {
-              $("#core_another_place_sim").change(function() {
-                  if ($("#core_another_place_sim").is(':checked')){
+              $("#core_another_place_true").change(function() {
+                  if ($("#core_another_place_true").is(':checked')){
                     jQuery('#core_another_place_desc_div').attr('style','visibility:visible; !important');
                     jQuery('#another_place_desc').focus();
                   }
@@ -161,8 +161,8 @@
                     jQuery('#core_another_place_desc_div').attr('style','visibility:hidden; !important');
                   }
               });
-              $("#core_another_place_não").change(function() {
-                  if ($("#core_another_place_não").is(':checked')){
+              $("#core_another_place_false").change(function() {
+                  if ($("#core_another_place_false").is(':checked')){
                     jQuery('#core_another_place_desc_div').attr('style','visibility:hidden; !important');
                   }
               });
