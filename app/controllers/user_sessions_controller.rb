@@ -14,7 +14,7 @@ class UserSessionsController < ApplicationController
       flash[:notice] = I18n.t('welcome_back')
       redirect_to root_path
     else
-      render :action => 'new'
+      render :action => 'new', :layout => 'login'
     end
   end
 

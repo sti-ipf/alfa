@@ -50,5 +50,18 @@ class Coordinator < ActiveRecord::Base
   accepts_nested_attributes_for :phones, :reject_if => lambda { |a| a[:number].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :social_participations, :allow_destroy => true
 
+  def total_seats_to_s
+    get_attribute_value(self.total_seats, TOTAL_SEATS)
+  end
+
+private
+
+  def get_attribute_value(attribute, array)
+    array.each do |a|
+      return a.first if a.last == attribute
+    end
+    ''
+  end
+  
 end
 
