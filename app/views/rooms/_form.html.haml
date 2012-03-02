@@ -4,6 +4,10 @@
       %ul
         - @room.errors.full_messages.each do |msg|
           %li= msg
+  %div
+    = f.label :core_id, t('coordinator.core')
+    %br
+    = f.select :core_id, @cores
   .field 
     = f.input :coordinators, :as => :check_boxes, :collection => @coordinators
   .field 

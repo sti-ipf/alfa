@@ -34,6 +34,10 @@
         - @core.errors.full_messages.each do |msg|
           %li= msg
   %div
+    = f.label :name, 'Nome do núcleo'
+    %br
+    = f.text_field :name
+  %div
     = f.label :city_id, t('core.city')
     %br
     = f.select :city_id, @cities
@@ -80,9 +84,9 @@
   %div
     = render "partner_resources_fields"
   %div
-    = f.label :name, t('core.name_field')
+    = f.label :institution_name, t('core.name_field')
     %br
-    = f.text_field :name
+    = f.text_field :institution_name
   %div
     = f.label :responsible, t('core.responsible_field')
     %br

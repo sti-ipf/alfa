@@ -7,6 +7,9 @@
     %b= t('room.name')
     = @room.name
   %p
+    %b= "Núcleo"
+    = @room.core.try(:name)
+  %p
     %b= t('room.coordinators')
     = @room.coordinators.collect(&:name).join(', ')
   %p

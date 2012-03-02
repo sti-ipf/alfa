@@ -3,6 +3,9 @@
 \#{link_to t('back'), cores_path}
 %br
 %p
+  %b= 'Nome do núcleo'
+  = @core.name
+  %br
   %b= t('core.city')
   = @core.city.try(:name)
   %br
@@ -21,7 +24,7 @@
     = "(#{@core.place_desc})"
   %br
   %b= t('core.name')  
-  = @core.name
+  = @core.institution_name
   %br
   %b= t('core.responsible') 
   = @core.responsible

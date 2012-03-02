@@ -2,6 +2,7 @@
 class Core < ActiveRecord::Base
 
 #relationships
+  has_many :rooms
   has_many :educators
   has_many :coordinators
   has_many :phones
