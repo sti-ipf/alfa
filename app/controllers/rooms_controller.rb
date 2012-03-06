@@ -27,7 +27,7 @@ class RoomsController < ApplicationController
   # GET /rooms/new.xml
   def new
     @room = Room.new
-
+    @room.periods.build
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @room }
@@ -36,7 +36,11 @@ class RoomsController < ApplicationController
 
   # GET /rooms/1/edit
   def edit
-    @room = Room.find(params[:id])
+    @room = Room.find(params[:id], :include => [:periods])
+    if @room.periods.count == 0
+      @room.periods.build
+    end
+
   end
 
   # POST /rooms

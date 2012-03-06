@@ -271,6 +271,7 @@ pt:
   room:
     listing: "Turmas"
     new: "Nova turma"
+    edit: "Alterando turma"
     new_title: "Nova turma"
     errors: "não deixam a Turma ser salva:"
     edit_title: "Editando turma"

@@ -6,7 +6,6 @@ class Core < ActiveRecord::Base
   has_many :educators
   has_many :coordinators
   has_many :phones
-  has_many :periods
   has_and_belongs_to_many :desk_types
   has_many :partner_resources, :through => :cores_partner_resources
   has_many :cores_partner_resources
@@ -33,7 +32,6 @@ class Core < ActiveRecord::Base
 
 #nested attributes
 
-  accepts_nested_attributes_for :periods, :reject_if => lambda { |a| a[:day_of_week].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :partner_resources, :reject_if => lambda { |a| a[:resource].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :phones, :reject_if => lambda { |a| a[:number].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :seat_types , :reject_if => lambda { |a| a[:seat_type].blank? }, :allow_destroy => true

@@ -75,13 +75,6 @@
       = f.label :place_desc, t('which')
       = f.text_field :place_desc
   %div
-    = label_tag t('core.period_field')
-    %br
-    - f.fields_for :periods do |builder|
-      = render "period_fields", :f => builder
-      %div
-        = link_to_add_fields t('period.new'), f, :periods
-  %div
     = render "partner_resources_fields"
   %div
     = f.label :institution_name, t('core.name_field')

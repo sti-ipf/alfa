@@ -16,5 +16,12 @@
     = f.label :name, t('room.name')
     %br
     = f.text_field :name
+  %div
+    = label_tag t('core.period_field')
+    %br
+    - f.fields_for :periods do |builder|
+      = render "period_fields", :f => builder
+      %div
+        = link_to_add_fields t('period.new'), f, :periods
   .actions
     = f.submit button
