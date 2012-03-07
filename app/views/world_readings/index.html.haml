@@ -3,7 +3,11 @@
     datatable_list('.list', [1, 2, 3])
   });
 
+.actions_buttons
+  = link_to t('world_reading.new'), new_world_reading_path, :class => 'formee-button'
+  
 %h1= t('world_reading.listing')
+
 %table{:class => 'list'}
   %thead
     %tr

@@ -35,40 +35,19 @@
     %ul{:class => 'topnav'}
       %li.first
         = link_to t('core.view'), cores_path
-        %ul{:class => 'subnav'} 
-          %li
-            = link_to t('core.new'), new_core_path
       %li
         = link_to t('room.view'), rooms_path
-        %ul{:class => 'subnav'} 
-          %li
-            = link_to t('room.new'), new_room_path  
       %li
         = link_to t('coordinator.view'), coordinators_path
-        %ul{:class => 'subnav'} 
-          %li
-            = link_to t('coordinator.new'), new_coordinator_path
       %li
         = link_to t('educator.view'), educators_path
-        %ul{:class => 'subnav'} 
-          %li
-            = link_to t('educator.new'), new_educator_path
       %li
         = link_to t('student.view'), students_path
-        %ul{:class => 'subnav'} 
-          %li
-            = link_to t('student.new'), new_student_path
       %li
         = link_to t('world_reading.view'), world_readings_path
-        %ul{:class => 'subnav'} 
-          %li
-            = link_to t('world_reading.new'), new_world_reading_path      
       - if current_user.try(:admin)
         %li
           = link_to t('user.view'), users_path
-          %ul{:class => 'subnav'} 
-            %li
-              = link_to t('user.new'), new_user_path      
       .right_menu
         %li
           = link_to current_user.name, edit_user_path(current_user)

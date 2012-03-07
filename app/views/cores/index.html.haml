@@ -3,8 +3,11 @@
     datatable_list('.list', [2, 3, 4])
   });
 
+.actions_buttons
+  = link_to t('core.new'), new_core_path, :class => 'formee-button'
 
 %h1= t('core.listing')
+
 %table{:class => 'list'}
   %thead
     %tr

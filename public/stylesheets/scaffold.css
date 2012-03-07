@@ -181,6 +181,9 @@ ol label{ float: left; margin-right: 10px;}
 
 ol label input{ margin-right: 10px;}
 
+input[type="checkbox"]{
+  margin-right: 5px;
+}
 .actions input[type="submit"]{
   float: left;
   clear: both;
@@ -189,4 +192,17 @@ ol label input{ margin-right: 10px;}
 
 .right_menu{
   float: right;
+}
+
+.actions_buttons{
+  float: right;
+  margin-bottom: 10px;
+}
+
+a.formee-button{
+  text-decoration: none;
+  font-size: 12px;
+  padding: 5px;
+  font-family: verdana, arial, helvetica, sans-serif;
+  color: #FFF;
 }

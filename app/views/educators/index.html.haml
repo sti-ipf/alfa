@@ -2,8 +2,11 @@
   $(document).ready(function(){
     datatable_list('.list', [1, 2, 3])
   });
+.actions_buttons
+  = link_to t('educator.new'), new_educator_path, :class => 'formee-button'
 
 %h1= t('educator.listing')
+
 %table{:class => 'list'}
   %thead
     %tr

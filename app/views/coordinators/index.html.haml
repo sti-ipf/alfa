@@ -3,7 +3,11 @@
     datatable_list('.list', [1, 2, 3])
   });
 
+.actions_buttons
+  = link_to t('coordinator.new'), new_coordinator_path, :class => 'formee-button'
+
 %h1= t('coordinator.listing')
+
 %table{:class => 'list'}
   %thead
     %tr

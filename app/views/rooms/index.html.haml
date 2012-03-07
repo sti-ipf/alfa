@@ -3,7 +3,11 @@
     datatable_list('.list', [1, 2, 3])
   });
 
+.actions_buttons
+  = link_to t('room.new'), new_room_path, :class => 'formee-button'
+
 %h1= t('room.listing')
+
 %table{:class => 'list'}
   %thead
     %tr
