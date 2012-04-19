@@ -54,6 +54,41 @@ class Coordinator < ActiveRecord::Base
     get_attribute_value(self.total_seats, TOTAL_SEATS)
   end
 
+  def gender_to_s
+    get_attribute_value(self.gender, GENDERS)
+  end
+
+  def ethnicity_to_s
+    get_attribute_value(self.ethnicity, ETHNICITIES)
+  end
+
+  def zone_to_s
+  end
+
+  def civil_status_to_s
+  end
+
+  def house_to_s
+  end
+
+  def house_type_to_s
+  end
+
+  def special_need_to_s
+  end
+
+  def political_affiliation_to_s
+  end
+
+  def religion_to_s
+  end
+
+  def association_to_s
+  end
+
+  def cooperative_to_s
+  end
+
 private
 
   def get_attribute_value(attribute, array)
