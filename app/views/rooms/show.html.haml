@@ -8,7 +8,7 @@
     = @room.name
   %p
     %b= "Núcleo"
-    = @room.core.try(:name)
+    = "#{@room.core.city.try(:name)} - #{@room.core.try(:community)}" 
   %p
     %b= t('room.coordinators')
     = @room.coordinators.collect(&:name).join(', ')
@@ -26,6 +26,8 @@
           = p.start_time.try(:strftime, "%H:%M")
           %b Fim
           = p.end_time.try(:strftime, "%H:%M")
+  %b Total de educandos:
+  = @room.students.count
 
         
 

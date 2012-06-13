@@ -53,8 +53,17 @@
           = link_to current_user.name, edit_user_path(current_user)
         %li
           = link_to t('logout'), sign_out_path
-    %p
-      #notice= notice
-    #main_container
-      = yield
-      .clearfix
+    #header_wrapper
+      #header
+      
+    #content_wrapper
+      #content
+        #main_column_wrapper
+          #main_column
+            %p
+              #notice= notice
+            #main_container
+              = yield
+          .clearfix
+    #footer_wrapper
+      #footer

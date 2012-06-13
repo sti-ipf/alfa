@@ -15,7 +15,7 @@ class RoomsController < ApplicationController
   # GET /rooms/1
   # GET /rooms/1.xml
   def show
-    @room = Room.find(params[:id], :include => [:periods])
+    @room = Room.find(params[:id], :include => [:periods, :educators, :coordinators, :core, :students])
 
     respond_to do |format|
       format.html # show.html.erb
