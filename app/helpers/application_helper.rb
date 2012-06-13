@@ -11,6 +11,24 @@ module ApplicationHelper
       end
       fields = fields.gsub("\"","'").gsub("&",'&amp;').gsub("<",'&lt;').gsub(">",'&gt;').gsub("\n", '')
       link_to_function(name, ("add_fields(this, '#{association}', \"#{raw(fields)}\")"))
+  end
+  
+  def show_messages
+    @messages = ''
+    flash.each do |type, message|
+      @messages = "#{@messages}<br>#{message}"
+      @type = type
+
     end
+    javascript = "noty({'text':'#{@messages}',
+          'layout':'bottom','type':'#{@type}','animateOpen':{'height':'toggle'},
+          'animateClose':{'height':'toggle'},'speed':500,'timeout':5000,
+          'closeButton':false,'closeOnSelfClick':true,'closeOnSelfOver':true});"
+    if defined?(@type)
+      return javascript 
+    else
+      ''
+    end
+  end
 end
 
