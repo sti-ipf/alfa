@@ -1,58 +1,55 @@
 %p#notice= notice
 %p
-  %b Educator:
-  = @student.educator
+  %b= t('student.educator')
+  = @student.educator.try(:name)
 %p
-  %b Core:
-  = @student.core
+  %b= t('student.core')
+  = @student.core.try(:name)
 %p
-  %b Room:
-  = @student.room
+  %b= t('student.room')
+  = @student.room.try(:name)
 %p
-  %b Sign up date on:
-  = @student.sign_up_date_on
+  %b= t('student.sign_up_date_on')
+  = @student.sign_up_date_on.try(:strftime, "%d/%m/%Y")
 %p
-  %b Class start date on:
-  = @student.class_start_date_on
+  %b= t('student.class_start_date_on')
+  = @student.class_start_date_on.try(:strftime, "%d/%m/%Y")
 %p
-  %b Name:
+  %b= t('student.name')
   = @student.name
 %p
-  %b Age:
+  %b= t('student.age.title')
   = @student.age
 %p
-  %b Gender:
+  %b= t('student.gender')
   = @student.gender
 %p
-  %b Dob:
-  = @student.dob
+  %b= t('student.dob')
+  = @student.dob.try(:strftime, "%d/%m/%Y")
 %p
-  %b Ethnicity:
+  %b= t('student.ethnicity')
   = @student.ethnicity
 %p
-  %b Hometown:
+  %b= t('student.hometown')
   = @student.hometown
 %p
-  %b State:
+  %b= t('student.state')
   = @student.state
 %p
-  %b Zone:
+  %b= t('student.zone')
   = @student.zone
 %p
-  %b Address:
+  %b= t('student.address')
   = @student.address
 %p
-  %b Civil status:
+  %b= t('student.civil_status')
   = @student.civil_status
 %p
-  %b Education level:
+  %b= t('student.education_level.title')
   = @student.education_level
 %p
-  %b Actual condition:
+  %b= t('student.actual_condition.title')
   = @student.actual_condition
 %p
-  %b Profession:
+  %b= t('student.profession.title')
   = @student.profession
-= link_to 'Edit', edit_student_path(@student)
-|
-\#{link_to 'Back', students_path}
