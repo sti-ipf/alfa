@@ -14,4 +14,41 @@ class Student < ActiveRecord::Base
 
   accepts_nested_attributes_for :phones, :reject_if => lambda { |a| a[:number].blank? }, :allow_destroy => true
   
+
+  def age_to_s
+    get_array_value(AGES, self.age)
+  end
+
+  def gender_to_s
+    get_array_value(Coordinator::GENDERS, self.gender)
+  end
+
+  def ethnicity_to_s
+    get_array_value(Coordinator::ETHNICITIES, self.ethnicity)
+  end
+
+  def zone_to_s
+    get_array_value(Coordinator::ZONES, self.zone)
+  end
+
+  def civil_status_to_s
+    get_array_value(Coordinator::CIVIL_STATUS, self.civil_status)
+  end
+
+  def education_level_to_s
+    get_array_value(Coordinator::EDUCATION_LEVELS, self.education_level)
+  end
+
+  def actual_condition_to_s
+    get_array_value(Student::ACTUAL_CONDITIONS, self.actual_condition)
+  end
+
+private
+
+  def get_array_value(array, value)
+    array.each do |a|
+      return a.first if a.last == value
+    end
+  end
+
 end

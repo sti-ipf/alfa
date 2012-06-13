@@ -19,16 +19,16 @@
   = @student.name
 %p
   %b= t('student.age.title')
-  = @student.age
+  = @student.age_to_s
 %p
   %b= t('student.gender')
-  = @student.gender
+  = @student.gender_to_s
 %p
   %b= t('student.dob')
   = @student.dob.try(:strftime, "%d/%m/%Y")
 %p
   %b= t('student.ethnicity')
-  = @student.ethnicity
+  = @student.ethnicity_to_s
 %p
   %b= t('student.hometown')
   = @student.hometown
@@ -37,19 +37,19 @@
   = @student.state
 %p
   %b= t('student.zone')
-  = @student.zone
+  = @student.zone_to_s
 %p
   %b= t('student.address')
   = @student.address
 %p
   %b= t('student.civil_status')
-  = @student.civil_status
+  = @student.civil_status_to_s
 %p
   %b= t('student.education_level.title')
-  = @student.education_level
+  = @student.education_level_to_s
 %p
   %b= t('student.actual_condition.title')
-  = @student.actual_condition
+  = @student.actual_condition_to_s
 %p
   %b= t('student.profession.title')
   = @student.profession
