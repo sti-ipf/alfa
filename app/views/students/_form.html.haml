@@ -12,7 +12,7 @@
       jQuery('#student_religion_desc_div').attr('style','visibility:visible; !important');
     }
   });
-= semantic_form_for(@student) do |f|
+= semantic_form_for(@student, :html => {:id => 'formframe'}) do |f|
   - if @student.errors.any?
     #error_explanation
       %ul
@@ -76,11 +76,15 @@
     = f.text_field :address, :size => 100
   %div
     - phone_number = 0
-    = t('student.phones')
-    %br
+    .gray_border
+      %h2= t('student.phones')
     - f.fields_for :phones do |builder|
       = render "phone_fields", :f => builder, :number => phone_number
       - phone_number += 1
+    %div
+    .form_actions
+      .add
+        = link_to_add_fields t('phone.new'), f, :phones
   %div
     = f.label :civil_status, t('student.civil_status')
     %br

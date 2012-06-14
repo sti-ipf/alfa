@@ -1,5 +1,4 @@
-%h1= t('student.edit')
-= link_to t('back'), students_path
-%br
+%h1.title= t('student.edit')
+.action_back 
+  = link_to t('back'), students_path, :class => 'back_link'
 = render 'form', :button => t('update')
-

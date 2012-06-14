@@ -1,5 +1,5 @@
 .field_with_complement_info
-  = t('core.seat_type_field')
+  %label= t('core.seat_type_field')
   %br/
   - SeatType.all.each do |s|
     = check_box_tag 'core[seat_type_ids][]', s.id, @core.seat_types.include?(s), :id => "seat_type_id_#{s.id}"

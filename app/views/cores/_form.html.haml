@@ -26,6 +26,9 @@
     if ($("#core_another_place_true").is(':checked')){
       jQuery('#core_another_place_desc_div').attr('style','visibility:visible; !important');
     }
+    if ($("#core_board_true").is(':checked')){
+      jQuery('#board_type_div').attr('style','display:block; !important');
+    }
   });
 = semantic_form_for(@core, :html => {:id => 'formframe'}) do |f|
   - if @core.errors.any?
@@ -111,10 +114,26 @@
     = f.select :size, Core::SIZES
   %div
     = f.input :board, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
+    :javascript
+      $(document).ready(function() {
+          $("#core_board_true").change(function() {
+              if ($("#core_board_true").is(':checked')){
+                jQuery('#board_type_div').attr('style','display:block; !important');
+                jQuery('#core_board_type').focus();
+              }
+          });
+          $("#core_board_false").change(function() {
+              if ($("#core_board_false").is(':checked')){
+                jQuery('#board_type_div').attr('style','display:none; !important');
+              }
+          });
+          
+      });
   %div
-    = f.label :board_type, t('core.board_type_field')
-    %br
-    = f.select :board_type, Core::BOARD_TYPES
+    #board_type_div{:style => "display: none;"}
+      = f.label :board_type, t('core.board_type_field')
+      %br
+      = f.select :board_type, Core::BOARD_TYPES
   %div
     = render "seat_types_fields"
     %div
