@@ -1,5 +1,4 @@
-%h1= t('room.edit')
-= link_to t('back'), rooms_path
-%br
+%h1.title= t('room.edit')
+.action_back 
+  = link_to t('back'), rooms_path, :class => 'back_link'
 = render 'form', :button => t('update')
-

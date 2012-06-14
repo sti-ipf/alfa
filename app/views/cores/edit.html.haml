@@ -1,5 +1,4 @@
-%h1= t('core.edit')
-= link_to t('back'), cores_path
-%br
+%h1.title= t('core.edit')
+.action_back 
+  = link_to t('back'), cores_path, :class => 'back_link'
 = render 'form', :button => t('update')
-

@@ -1,5 +1,4 @@
-%h1= t('world_reading.new')
-= link_to t('back'), world_readings_path
-%br
+%h1.title= t('world_reading.new')
+.action_back 
+  = link_to t('back'), world_readings_path, :class => 'back_link'
 = render 'form', :button => t('create')
-

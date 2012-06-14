@@ -1,6 +1,6 @@
 .formbody
 
-  = semantic_form_for @user do |f|
+  = semantic_form_for(@user, :html => {:id => 'formframe'}) do |f|
     -if @user.errors.any?
       #error_explanation
         %ul
@@ -34,10 +34,11 @@
       .field
         = f.input :admin
       .field
-        = 'Cidades'
+        %label= 'Cidades'
         %br/
         - @cities.each do |c|
           = check_box_tag 'user[city_ids][]', c.id, @user.cities.include?(c)
           = c.name
-    = f.commit_button button, :disable_with => t('please_wait')
+    .actions
+      = f.submit button, :disable_with => t('please_wait')
 

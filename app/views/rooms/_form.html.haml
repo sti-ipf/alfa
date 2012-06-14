@@ -1,4 +1,4 @@
-= semantic_form_for(@room) do |f|
+= semantic_form_for(@room, :html => {:id => 'formframe'}) do |f|
   - if @room.errors.any?
     #error_explanation
       %ul
@@ -6,22 +6,23 @@
           %li= msg
   %div
     = f.label :core_id, t('coordinator.core')
-    %br
     = f.select :core_id, @cores
-  .field 
-    = f.input :coordinators, :as => :check_boxes, :collection => @coordinators
-  .field 
-    = f.input :educators, :as => :check_boxes, :collection => @educators
-  .field
+  %div
     = f.label :name, t('room.name')
-    %br
     = f.text_field :name
   %div
-    = label_tag t('core.period_field')
+    = f.input :coordinators, :as => :check_boxes, :collection => @coordinators
+  %div
+    = f.input :educators, :as => :check_boxes, :collection => @educators
+  %div
+    .gray_border
+      %h2= t('core.period_field')
     %br
     - f.fields_for :periods do |builder|
       = render "period_fields", :f => builder
-      %div
-        = link_to_add_fields t('period.new'), f, :periods
+    %div
+      .form_actions
+        .add
+          = link_to_add_fields t('period.new'), f, :periods
   .actions
     = f.submit button

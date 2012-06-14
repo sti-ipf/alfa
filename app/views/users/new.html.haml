@@ -1,6 +1,2 @@
-#block-tables.block
-  .content
-    %h2{:class => 'form_title'}= 'Criar Conta'
-    = render :partial => "form", :locals => {:button => I18n.t('update'), :action => 'create'}
-    .clearfix
-
+%h1.title= 'Criar Conta'
+= render :partial => "form", :locals => {:button => I18n.t('update'), :action => 'create'}

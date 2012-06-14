@@ -1,11 +1,14 @@
 .fields
-  %div
-    = t('phone.dd')
-    %br/
-    = f.text_field  :dd, :size => 3
-  %div
-    = t('phone.number')
-    %br/
-    = f.text_field  :number
-  .link_on_form
-    = link_to_remove_fields t('remove'), f
+  .fields_wrapper
+    .form_actions
+      .delete
+        = link_to_remove_fields t('remove'), f
+    %div
+      = t('phone.dd')
+      %br/
+      = f.text_field  :dd, :size => 3
+    %div
+      = t('phone.number')
+      %br/
+      = f.text_field  :number
+      

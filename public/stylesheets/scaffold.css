@@ -557,10 +557,10 @@ tbody tr.more-click:hover{
   overflow: hidden;
   padding: 0 20px 0 0;
   text-align: right;
-  width: 160px;
+  width: 300px;
 }
 
-.field{
+.div{
   float: left;
   width: 100%;
   display: inline;
@@ -670,15 +670,7 @@ select {
   margin: 0px -20px;
   padding: 10px 0px;
   border-bottom: 1px solid #A8A8A8;
-}
-
-.profile_form .fields{
-  background-color: #F5F5F5;
-  float: left;
-  width: 729px;
-  margin: 0px -20px;
-  padding: 10px 0px;
-  border-bottom: 1px solid #A8A8A8;
+  margin-bottom: 20px;
 }
 
 .fields .field{
@@ -698,192 +690,27 @@ select {
 }
 
 
-.profiles_list{
-  float: left;
-  margin-left: 22px;
-  min-height: 520px;
-  text-align: left;
-
-}
-
-.list_avatar{
-  display: block;
-  float: left;
-  height: 100px;
-  margin: 0 auto;
-  padding-right: 5px;
-  position: relative;
-  width: 100px;
-}
-
-.list_avatar a img{
-  width: 100px;
-  max-height: 130px;
-  -moz-box-shadow: 0 0 5px #888;
-  -webkit-box-shadow: 0 0 5px#888;
-  box-shadow: 0 0 5px #888;
-  -webkit-border-radius: 6px 6px 6px 6px;
-  -moz-border-radius: 6px 6px 6px 6px;
-  border-radius: 6px 6px 6px 6px;
-}
-.list_avatar a{
-  text-align: center;
-  float: left;
-  display: block;
-}
-.list_avatar a.card{
-  background: none no-repeat scroll right top white;
-  border-bottom: 1px solid white;
-  border-radius: 6px 6px 6px 6px;
-  -webkit-border-radius: 6px 6px 6px 6px;
-  -moz-border-radius: 6px 6px 6px 6px;
-  display: block;
-  height: 100px;
-  overflow: hidden;
-  position: relative;
-  text-decoration: none;
-  top: 0;
-  width: 80px;
-}
-.profile_card {
-  margin-right: 10px;
-  margin-bottom: 60px;
-  float: left;
-  min-height: 110px;
-}
-
-.profile_card .actions_links{
-  float:left;
-}
-
-.profile_card .actions_links a{
-  float:left;
-  clear:both;
-}
 
 form.formtastic legend {
   color: #000000;
   float: left;
   white-space: normal;
+  width: 100%;
 }
 
 fieldset{border: medium none;}
 
-.profile_form{
-  width: 709px !important;
-  float: left !important;
-  border-right: 1px solid #C0C0C0;
-  top:-20px;
-  position:relative;
-  min-height:500px;
-  padding-bottom:50px;
-}
 
-.profile_form h2{
-  padding: 10px 0px;
-}
-
-.field fieldset{
+fieldset.choices{
   border: 0px solid #CCCCCC !important;
   margin: 10px 0px !important;
   padding: 0px !important;
   width: auto !important;
 }
 
-.profile_form label{
-  width: 300px;
-}
-
-.profile_form .choices-group{
-  margin-left: 0px !important;
-  position:relative;
-  margin-top:-8px;
-  margin-right:-8px;
-}
-
-.profile_form li.radio{
-  
-}
-
-.profile_form li.radio fieldset{
-
-}
-
-.profile_form textarea{
-  width: 300px;
-  margin-bottom: 10px !important;
-}
-
-#crew_profile_abilities_profiles_input{
-  width: 700px;
-  float: left;
-}
-
-.profile_form input{
-  margin-bottom:10px;
-}
 
 input{
   margin-bottom:10px;
-}
-
-.profile_form .choice label{
-  width: auto !important;
-}
-
-.profile_form  fieldset label{
-  display: inline;
-  float: left;
-  font-weight: bold;
-  line-height: 32px;
-  overflow: hidden;
-  padding: 0 20px 0 0;
-  text-align: right;
-  width: 300px;
-}
-
-.fields.without_margin{
-
-}
-
-.add.add_margin_right{
-  margin-right: 20px;
-}
-
-.profile_form input[type="text"], .profile_form input[type="email"], .profile_form input[type="tel"]{
-  width: 300px;  
-}
-
-#crew_profile_abilities_profiles_input legend{
-  display: none;
-}
-
-#success_message{
-  border-radius: 0 0 10px 10px;
-  -webkit-border-radius: 0 0 10px 10px;
-  -moz-border-radius: 0 0 10px 10px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-  background-color: #649145;
-  background-image: -moz-linear-gradient(center top , #7AAB47 0pt, #649145 100%);
-  color: #FFFFFF;
-  font-size: 14px;
-  font-weight: bold;
-  height: 43px;
-  margin: 0 auto;
-  position: fixed;
-  text-align: center;
-  text-shadow: 0 0 0 transparent, 0 0 2px rgba(0, 0, 0, 0.3);
-  top: 0;
-  width: 1000px;
-  display:none; 
-  margin-left: -20px;
-  z-index: 1000;
-}
-
-#success_message h4{
-  margin-top: 10px;
 }
 
 .hidden{
@@ -992,3 +819,43 @@ ul.dimensions_menu li:hover{
 }
 
 thead tr.filters{display: none;}
+
+.action_back a{
+  right:0px;  
+  position:absolute;
+  cursor: default !important;
+  display: inline-block;
+  font-weight: bold;
+  height: 16px;
+  min-width: 54px;
+  padding: 9px 44px 9px 22px;
+  text-align: center;
+  text-decoration: none !important;
+  background: url('/images/voltar.png') right top;
+    background: url('/images/voltar.png') right -34px;
+  border: 1px solid 
+  #3079ED;
+  color: #fff !important;
+  font-size:13px;
+  border-top:1px solid #8eb3ed;
+  box-shadow: 0 -1px 0px 0 #3679e5;
+  cursor:pointer;
+}
+
+.action_back a:hover{
+  background: url('/images/voltar.png') right top;
+  cursor:pointer !important;
+}
+
+.fields_wrapper{
+  padding: 20px;
+}
+
+.choices-group li{
+  float: left;
+}
+
+.field{
+  width: 100%;
+  float: left;
+}

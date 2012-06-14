@@ -1,5 +1,4 @@
-%h1= t('coordinator.new_title')
-= link_to t('back'), coordinators_path
-%br
+%h1.title= t('coordinator.new_title')
+.action_back 
+  = link_to t('back'), coordinators_path, :class => 'back_link'
 = render 'form', :button => t('create')
-

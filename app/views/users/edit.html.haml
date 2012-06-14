@@ -1,5 +1,4 @@
-#block-tables.block
-  .content
-    %h2{:class => 'form_title'}= "Editar conta"
-    = render :partial => "form", :locals => {:button => I18n.t('update'), :action => 'update'}
-    .clearfix
+%h1.title= "Editar conta"
+.action_back 
+  = link_to t('back'), cores_path, :class => 'back_link'
+= render :partial => "form", :locals => {:button => I18n.t('update'), :action => 'update'}

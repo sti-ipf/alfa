@@ -27,7 +27,7 @@
       jQuery('#core_another_place_desc_div').attr('style','visibility:visible; !important');
     }
   });
-= semantic_form_for(@core) do |f|
+= semantic_form_for(@core, :html => {:id => 'formframe'}) do |f|
   - if @core.errors.any?
     #error_explanation
       %ul
@@ -85,12 +85,16 @@
     %br
     = f.text_field :responsible
   %div
-    = t('core.phones_field')
+    .gray_border
+      %h2= t('core.phones_field')
     %br
     - f.fields_for :phones do |builder|
       = render "phone_fields", :f => builder
-  %div
-    = link_to_add_fields t('phone.new'), f, :phones
+    %div
+    .form_actions
+      .add
+        = link_to_add_fields t('phone.new'), f, :phones
+    
   %div
     = f.label :email, t('core.email_field')
     %br

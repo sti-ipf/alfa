@@ -1,5 +1,6 @@
-%b= t('core.partner_title')
-%br/
+
+%label
+  = t('core.partner_title')
 .field_with_complement_info
   = t('core.partner_resource_field')
   %br/
@@ -19,6 +20,5 @@
       });
   });
 #core_resource_desc_div.invisible
-  = label_tag :resource_desc, t('which')
-  %br/
+  %label= t('which')
   = text_field_tag :resource_desc, @resource_desc

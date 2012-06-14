@@ -35,7 +35,7 @@
     }
 
   });
-= semantic_form_for(@world_reading) do |f|
+= semantic_form_for(@world_reading, :html => {:id => 'formframe'}) do |f|
   - if @world_reading.errors.any?
     #error_explanation
       %ul
