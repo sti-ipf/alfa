@@ -1,0 +1,108 @@
+%p
+  %b= t('coordinator.core')
+  = coordinator.core.try(:name)
+  %br
+  %b= t('coordinator.name')
+  = coordinator.name
+  %br
+  %b= t('coordinator.start_date_to_students')
+  = coordinator.start_date_to_students.try(:strftime, '%d/%m/%Y')
+  %br
+  %b= t('coordinator.age')
+  = coordinator.age
+  %br
+  %b= t('coordinator.gender')
+  = coordinator.gender_to_s
+  %br
+  %b= t('coordinator.dob')
+  = coordinator.dob.try(:strftime, '%d/%m/%Y')
+  %br
+  %b= t('coordinator.ethnicity')
+  = coordinator.ethnicity_to_s
+  %br
+  %b= t('coordinator.hometown')
+  = coordinator.hometown
+  %br
+  %b= t('coordinator.state')
+  = coordinator.state
+  %br
+  %b= t('coordinator.zone')
+  = coordinator.zone_to_s
+  %br
+  %b= t('coordinator.address')
+  = coordinator.address
+  %br
+  %b= t('coordinator.civil_status')
+  = coordinator.civil_status_to_s
+  %br
+  %b= t('coordinator.rg')
+  = coordinator.rg
+  %br
+  %b= t('coordinator.cpf')
+  = coordinator.cpf
+  %br
+  %b= t('coordinator.voter_id')
+  = coordinator.voter_id
+  %br
+  %b= t('coordinator.professional_id')
+  = coordinator.professional_id
+  %br
+  %b= t('coordinator.professional_serie')
+  = coordinator.professional_serie
+  %br
+  %b= t('coordinator.birth_or_marriage_certificate_id')
+  = coordinator.birth_or_marriage_certificate_id
+  %br
+  %b= t('coordinator.social_id')
+  = coordinator.social_id
+  %br
+  %b= t('coordinator.sons_number.title')
+  = coordinator.sons_number
+  %br
+  - sons_age = [["primeiro", coordinator.first_son_age], ["segundo", coordinator.second_son_age], ["terceiro", coordinator.third_son_age], ["quarto", coordinator.forth_son_age]]
+  - sons_age.each do |s|
+    - if !s.last.blank?
+      %b= "Idade do #{s.first} filho"
+      = s.last
+      %br
+  
+  %b= t('coordinator.education_level')
+  = coordinator.education_level
+  - if !coordinator.education_level_desc.blank?
+    = "(#{coordinator.education_level_desc})"
+  %br
+  %b= t('coordinator.familiar_income.title')
+  = coordinator.familiar_income
+  %br
+  %b= t('coordinator.house.title')
+  = coordinator.house_to_s
+  - if !coordinator.house_desc.blank?
+    = "(#{coordinator.house_desc})"
+  %br
+  %b= t('coordinator.house_type')
+  = coordinator.house_type_to_s
+  %br
+  %b= t('coordinator.special_need')
+  = coordinator.special_need_to_s
+  %br
+  %b= t('coordinator.political_affiliation.title')
+  = coordinator.political_affiliation_to_s
+  %br
+  %b= t('coordinator.political_party')
+  = coordinator.political_party_to_s
+  - if !coordinator.political_desc.blank?
+    = coordinator.political_desc
+  
+  %br
+  %b= t('coordinator.religion.title')
+  = coordinator.religion_to_s
+  - if !coordinator.religion_desc.blank?
+    = "(#{coordinator.religion_desc})"
+  %br
+  %b= t('coordinator.association.title')
+  = coordinator.association_to_s
+  - if !coordinator.association_desc.blank?
+    = coordinator.association_desc
+  %br
+  %b= t('coordinator.cooperative.title')
+  = coordinator.cooperative_to_s

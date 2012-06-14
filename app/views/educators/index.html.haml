@@ -1,24 +1,31 @@
 :javascript
   $(document).ready(function(){
-    datatable_list('.list', [1, 2, 3])
+    $('.more-click').click(function(){
+      $(this).next().children().children().slideToggle();
+    })
+    var options = {additionalFilterTriggers: [$('#filter')], filter: 'false'};
+    $('.list').tableFilter(options);
   });
-.actions_buttons
-  = link_to t('educator.new'), new_educator_path, :class => 'formee-button'
 
-%h1= t('educator.listing')
+%h1.title= t('educator.listing')
+.actions 
+  = link_to t('educator.new'), new_educator_path
+= render '/layouts/shared/filter_bar'
 
 %table{:class => 'list'}
   %thead
     %tr
       %th= t('educator.name')
-      %th
-      %th
-      %th
+      %th{:style => 'width: 20px;'}
+      %th{:style => 'width: 20px;'}
   %tbody
     - @educators.each do |educator|
-      %tr
-        %td= educator.name
-        %td= link_to t('show'), educator
-        %td= link_to t('edit'), edit_educator_path(educator)
-        %td= link_to t('delete'), educator, :confirm => t('are_you_sure'), :method => :delete
+      %tr{:class => 'more-click'}
+        %td{:class => 'first-td'}= educator.name
+        %td{:class => 'td-editar'}= link_to t('edit'), edit_educator_path(educator), :class => 'editar'
+        %td= link_to t('destroy'), educator, :confirm => t('are_you_sure'), :method => :delete, :class => 'apagar'
+      %tr{:class => 'more-info'}
+        %td{:colspan => 3}
+          %div
+            = render 'show', :educator => educator
 %br

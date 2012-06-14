@@ -3,7 +3,7 @@
   %head
     %title Alfa
     = stylesheet_link_tag :all
-    - js_files = ['jquery.min.js', 'jquery_ujs.js', 'jquery-rails.js', 'jquery.dataTables.min.js', 'jquery.noty.js']
+    - js_files = ['jquery.min.js', 'jquery_ujs.js', 'jquery-rails.js', 'picnet.table.filter.min.js', 'jquery.noty.js', 'jquery.maskedinput.js']
     - js_files.each do |js_file|
       = javascript_include_tag js_file
     = csrf_meta_tag
@@ -31,40 +31,42 @@
 
       });
 
+
   %body
-    %ul{:class => 'topnav'}
-      %li.first
-        = link_to t('core.view'), cores_path
-      %li
-        = link_to t('room.view'), rooms_path
-      %li
-        = link_to t('coordinator.view'), coordinators_path
-      %li
-        = link_to t('educator.view'), educators_path
-      %li
-        = link_to t('student.view'), students_path
-      %li
-        = link_to t('world_reading.view'), world_readings_path
-      - if current_user.try(:admin)
-        %li
-          = link_to t('user.view'), users_path
-      .right_menu
-        %li
-          = link_to current_user.name, edit_user_path(current_user)
-        %li
-          = link_to t('logout'), sign_out_path
-    #header_wrapper
-      #header
-      
-    #content_wrapper
-      #content
-        #main_column_wrapper
-          #main_column
-            %p
+    #main
+      .intranet-menu
+        %ul.intranet-menu
+          %li
+            = link_to t('core.view'), cores_path
+          %li
+            = link_to t('room.view'), rooms_path
+          %li
+            = link_to t('coordinator.view'), coordinators_path
+          %li
+            = link_to t('educator.view'), educators_path
+          %li
+            = link_to t('student.view'), students_path
+          %li
+            = link_to t('world_reading.view'), world_readings_path
+          - if current_user.try(:admin)
+            %li
+              = link_to t('user.view'), users_path
+      #header_wrapper
+        #header
+          .logo_header
+        .right_menu
+          %li
+            = link_to current_user.name, edit_user_path(current_user)
+          %li
+            = link_to t('logout'), sign_out_path
+      #content_wrapper
+        .menu-aplicacao
+        #content
+          #main_column_wrapper
+            #main_column
               :javascript
                 #{show_messages}
-            #main_container
               = yield
-              .clearfix
-    #footer_wrapper
-      #footer
+            .clearfix
+      #footer_wrapper
+        #footer

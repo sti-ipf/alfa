@@ -1,25 +1,31 @@
 :javascript
   $(document).ready(function(){
-    datatable_list('.list', [1, 2, 3])
+    $('.more-click').click(function(){
+      $(this).next().children().children().slideToggle();
+    })
+    var options = {additionalFilterTriggers: [$('#filter')], filter: 'false'};
+    $('.list').tableFilter(options);
   });
 
-.actions_buttons
-  = link_to t('room.new'), new_room_path, :class => 'formee-button'
-
-%h1= t('room.listing')
+%h1.title= t('room.listing')
+.actions 
+  = link_to t('room.new'), new_room_path
+= render '/layouts/shared/filter_bar'
 
 %table{:class => 'list'}
   %thead
     %tr
       %th= t('room.name')
-      %th
-      %th
-      %th
+      %th{:style => 'width: 20px;'}
+      %th{:style => 'width: 20px;'}
   %tbody
     - @rooms.each do |room|
-      %tr
-        %td= room.name
-        %td= link_to t('show'), room
-        %td= link_to t('edit'), edit_room_path(room)
-        %td= link_to t('delete'), room, :confirm => t('are_you_sure'), :method => :delete
+      %tr{:class => 'more-click'}
+        %td{:class => 'first-td'}= room.name
+        %td{:class => 'td-editar'}= link_to t('edit'), edit_room_path(room), :class => 'editar'
+        %td= link_to t('destroy'), room, :confirm => t('are_you_sure'), :method => :delete, :class => 'apagar'
+      %tr{:class => 'more-info'}
+        %td{:colspan => 4}
+          %div
+            = render 'show', :room => room
 %br

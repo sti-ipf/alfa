@@ -1,5 +1,5 @@
 #login.login_form
-  %h1 Acesso
+  %h1.title Acesso
   .formbody
     - semantic_form_for @user_session, :html => {:class => 'formee'} do |f|
       -if @user_session.errors.any?

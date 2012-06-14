@@ -1,12 +1,13 @@
 :javascript
   $(document).ready(function(){
-    datatable_list('.list', [1, 2, 3])
+    var options = {additionalFilterTriggers: [$('#filter')], filter: 'false'};
+    $('.list').tableFilter(options);
   });
 
-.actions_buttons
-  = link_to t('user.new'), new_user_path, :class => 'formee-button'
-
-%h1= t('user.listing')
+%h1.title= t('user.listing')
+.actions 
+  = link_to t('user.new'), new_user_path
+= render '/layouts/shared/filter_bar'
 
 %table{:class => 'list'}
   %thead
@@ -14,16 +15,13 @@
       %th= t('user.name')
       %th= t('user.admin')
       %th= t('user.access')
-      %th
-      %th
-      %th
+      %th{:style => 'width: 20px;'}
+      %th{:style => 'width: 20px;'}
   %tbody
     - @users.each do |user|
-      %tr
-        %td= user.name
+      %tr{:class => 'more-click'}
+        %td{:class => 'first-td'}= user.name
         %td= user.admin_to_s
         %td= user.access
-        %td= link_to t('show'), user
-        %td= link_to t('edit'), edit_user_path(user)
-        %td= link_to t('delete'), user, :confirm => t('are_you_sure'), :method => :delete
-%br
+        %td{:class => 'td-editar'}= link_to t('edit'), edit_user_path(user), :class => 'editar'
+        %td= link_to t('destroy'), user, :confirm => t('are_you_sure'), :method => :delete, :class => 'apagar'

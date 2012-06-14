@@ -1,25 +1,31 @@
 :javascript
   $(document).ready(function(){
-    datatable_list('.list', [1, 2, 3])
+    $('.more-click').click(function(){
+      $(this).next().children().children().slideToggle();
+    })
+    var options = {additionalFilterTriggers: [$('#filter')], filter: 'false'};
+    $('.list').tableFilter(options);
   });
 
-.actions_buttons
-  = link_to t('coordinator.new'), new_coordinator_path, :class => 'formee-button'
-
-%h1= t('coordinator.listing')
+%h1.title= t('coordinator.listing')
+.actions 
+  = link_to t('coordinator.new'), new_coordinator_path
+= render '/layouts/shared/filter_bar'
 
 %table{:class => 'list'}
   %thead
     %tr
       %th= t('coordinator.name')
-      %th
-      %th
-      %th
+      %th{:style => 'width: 20px;'}
+      %th{:style => 'width: 20px;'}
   %tbody
     - @coordinators.each do |coordinator|
-      %tr
-        %td= coordinator.name
-        %td= link_to t('show'), coordinator
-        %td= link_to t('edit'), edit_coordinator_path(coordinator)
-        %td= link_to t('delete'), coordinator, :confirm => t('are_you_sure'), :method => :delete
+      %tr{:class => 'more-click'}
+        %td{:class => 'first-td'}= coordinator.name
+        %td{:class => 'td-editar'}= link_to t('edit'), edit_coordinator_path(coordinator), :class => 'editar'
+        %td= link_to t('destroy'), coordinator, :confirm => t('are_you_sure'), :method => :delete, :class => 'apagar'
+      %tr{:class => 'more-info'}
+        %td{:colspan => 3}
+          %div
+            = render 'show', :coordinator => coordinator
 %br

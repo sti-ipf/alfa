@@ -10,19 +10,19 @@
 
 
   %body
-
-    #header_wrapper
-      #header
-      
-    #content_wrapper
-      #content
-        #main_column_wrapper
-          #main_column
-            %p
+    #main
+      #header_wrapper
+        #header
+          .logo_header
+      #content_wrapper
+        .menu-aplicacao
+        #content
+          #main_column_wrapper
+            #main_column
               :javascript
                 #{show_messages}
-            #main_container
               = yield
-          .clearfix
-    #footer_wrapper{:style => "position:absolute; bottom: 0;"}
-      #footer
+            .clearfix
+      #footer_wrapper
+        #footer
+

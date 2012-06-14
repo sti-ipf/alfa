@@ -62,6 +62,10 @@ class Coordinator < ActiveRecord::Base
     get_attribute_value(self.ethnicity, ETHNICITIES)
   end
 
+  def political_party_to_s
+    get_attribute_value(self.political_party, POLITICAL_PARTIES)
+  end
+
   def zone_to_s
   end
 

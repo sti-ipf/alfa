@@ -1,27 +1,32 @@
 :javascript
   $(document).ready(function(){
-    datatable_list('.list', [2, 3, 4])
+    $('.more-click').click(function(){
+      $(this).next().children().children().slideToggle();
+    })
+    var options = {additionalFilterTriggers: [$('#filter')], filter: 'false'};
+    $('.list').tableFilter(options);
   });
 
-.actions_buttons
-  = link_to t('core.new'), new_core_path, :class => 'formee-button'
-
-%h1= t('core.listing')
-
+%h1.title= t('core.listing')
+.actions 
+  = link_to t('core.new'), new_core_path
+= render '/layouts/shared/filter_bar'
 %table{:class => 'list'}
   %thead
     %tr
       %th= t('core.city')
       %th= t('core.community')
-      %th
-      %th
-      %th
+      %th{:style => 'width: 20px;'}
+      %th{:style => 'width: 20px;'}
   %tbody
     - @cores.each do |core|
-      %tr
-        %td= core.city.try(:name)
+      %tr{:class => 'more-click'}
+        %td{:class => 'first-td'}= core.city.try(:name)
         %td= core.community
-        %td= link_to t('show'), core
-        %td= link_to t('edit'), edit_core_path(core)
-        %td= link_to t('delete'), core, :confirm => t('are_you_sure'), :method => :delete
+        %td{:class => 'td-editar'}= link_to t('edit'), edit_core_path(core), :class => 'editar'
+        %td= link_to t('destroy'), core, :confirm => t('are_you_sure'), :method => :delete, :class => 'apagar'
+      %tr{:class => 'more-info'}
+        %td{:colspan => 4}
+          %div
+            = render 'show', :core => core
 %br

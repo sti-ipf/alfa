@@ -1,25 +1,31 @@
 :javascript
   $(document).ready(function(){
-    datatable_list('.list', [1, 2, 3])
+    $('.more-click').click(function(){
+      $(this).next().children().children().slideToggle();
+    })
+    var options = {additionalFilterTriggers: [$('#filter')], filter: 'false'};
+    $('.list').tableFilter(options);
   });
 
-.actions_buttons
-  = link_to t('world_reading.new'), new_world_reading_path, :class => 'formee-button'
+%h1.title= t('world_reading.listing')
+.actions 
+  = link_to t('world_reading.new'), new_world_reading_path
+= render '/layouts/shared/filter_bar'
   
-%h1= t('world_reading.listing')
-
 %table{:class => 'list'}
   %thead
     %tr
       %th Email
-      %th
-      %th
-      %th
+      %th{:style => 'width: 20px;'}
+      %th{:style => 'width: 20px;'}
   %tbody
     - @world_readings.each do |world_reading|
-      %tr
-        %td= world_reading.email
-        %td= link_to t('show'), world_reading
-        %td= link_to t('edit'), edit_world_reading_path(world_reading)
-        %td= link_to t('delete'), world_reading, :confirm => t('are_you_sure'), :method => :delete
+      %tr{:class => 'more-click'}
+        %td{:class => 'first-td'}= world_reading.email
+        %td{:class => 'td-editar'}= link_to t('edit'), edit_world_reading_path(world_reading), :class => 'editar'
+        %td= link_to t('destroy'), world_reading, :confirm => t('are_you_sure'), :method => :delete, :class => 'apagar'
+      %tr{:class => 'more-info'}
+        %td{:colspan => 4}
+          %div
+            = render 'show', :world_reading => world_reading
 %br
