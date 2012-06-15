@@ -1,30 +1,30 @@
 :javascript
   $(document).ready(function() {
     if ($("#core_place").val() == 6){
-      jQuery('#core_place_desc_div').attr('style','visibility:visible; !important');
+      jQuery('#core_place_desc_div').attr('style','display:block; !important');
     }
 
     if ($("#partner_resource_id_1").is(':checked')){
-      jQuery('#core_resource_desc_div').attr('style','visibility:visible; !important');
+      jQuery('#core_resource_desc_div').attr('style','display:block; !important');
     }
 
     if ($("#seat_type_id_1").is(':checked')){
-      jQuery('#core_seat_type_desc_div').attr('style','visibility:visible; !important');
+      jQuery('#core_seat_type_desc_div').attr('style','display:block; !important');
     }
 
     if ($("#core_illumination_type").val() == 2){
-      jQuery('#core_illumination_type_desc_div').attr('style','visibility:visible; !important');
+      jQuery('#core_illumination_type_desc_div').attr('style','display:block; !important');
     }
 
     if ($("#displacement_id_0_9").is(':checked')){
-      jQuery('#core_displacement_desc_0_div').attr('style','visibility:visible; !important');
+      jQuery('#core_displacement_desc_0_div').attr('style','display:block; !important');
     }
 
     if ($("#displacement_id_1_9").is(':checked')){
-      jQuery('#core_displacement_desc_1_div').attr('style','visibility:visible; !important');
+      jQuery('#core_displacement_desc_1_div').attr('style','display:block; !important');
     }
     if ($("#core_another_place_true").is(':checked')){
-      jQuery('#core_another_place_desc_div').attr('style','visibility:visible; !important');
+      jQuery('#core_another_place_desc_div').attr('style','display:block; !important');
     }
     if ($("#core_board_true").is(':checked')){
       jQuery('#board_type_div').attr('style','display:block; !important');
@@ -66,11 +66,11 @@
             $("#core_place").change(function() {
                 var value = $(this).val();
                 if (value == 6){
-                  jQuery('#core_place_desc_div').attr('style','visibility:visible; !important');
+                  jQuery('#core_place_desc_div').attr('style','display:block; !important');
                   jQuery('#core_place_desc').focus();
                 }
                 else{
-                  jQuery('#core_place_desc_div').attr('style','visibility:hidden; !important');
+                  jQuery('#core_place_desc_div').attr('style','display:none; !important');
                 }
             });
         });
@@ -152,11 +152,11 @@
               $("#core_illumination_type").change(function() {
                   var value = $(this).val();
                   if (value == 2){
-                    jQuery('#core_illumination_type_desc_div').attr('style','visibility:visible; !important');
+                    jQuery('#core_illumination_type_desc_div').attr('style','display:block; !important');
                     jQuery('#core_illumination_type_desc').focus();
                   }
                   else{
-                    jQuery('#core_illumination_type_desc_div').attr('style','visibility:hidden; !important');
+                    jQuery('#core_illumination_type_desc_div').attr('style','display:none; !important');
                   }
               });
           });
@@ -174,16 +174,16 @@
           $(document).ready(function() {
               $("#core_another_place_true").change(function() {
                   if ($("#core_another_place_true").is(':checked')){
-                    jQuery('#core_another_place_desc_div').attr('style','visibility:visible; !important');
+                    jQuery('#core_another_place_desc_div').attr('style','display:block; !important');
                     jQuery('#another_place_desc').focus();
                   }
                   else{
-                    jQuery('#core_another_place_desc_div').attr('style','visibility:hidden; !important');
+                    jQuery('#core_another_place_desc_div').attr('style','display:none; !important');
                   }
               });
               $("#core_another_place_false").change(function() {
                   if ($("#core_another_place_false").is(':checked')){
-                    jQuery('#core_another_place_desc_div').attr('style','visibility:hidden; !important');
+                    jQuery('#core_another_place_desc_div').attr('style','display:none; !important');
                   }
               });
           });

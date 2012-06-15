@@ -879,3 +879,5 @@ li.choice label{
 #show_info p{
   width: 100%;
 }
+
+.invisible{display: none;}

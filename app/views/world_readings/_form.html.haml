@@ -9,29 +9,29 @@
 
 
     if ($("#who_i_am").val() == 1){
-    jQuery('#coordinator_id_div').attr('style','visibility:visible; !important');
+    jQuery('#coordinator_id_div').attr('style','display:block; !important');
     }
 
     if ($("#who_i_am").val() == 2){
-    jQuery('#educator_id_div').attr('style','visibility:visible; !important');
+    jQuery('#educator_id_div').attr('style','display:block; !important');
     }
 
     if ($("#world_reading_about_internet_use").val() == 4){
-    jQuery('#world_reading_about_internet_use_desc_div').attr('style','visibility:visible; !important');
+    jQuery('#world_reading_about_internet_use_desc_div').attr('style','display:block; !important');
     }
 
     if ($("#world_reading_social_networking").val() == 4){
-    jQuery('#world_reading_social_networking_desc_div').attr('style','visibility:visible; !important');
+    jQuery('#world_reading_social_networking_desc_div').attr('style','display:block; !important');
     }
 
     if ($("#world_reading_discussion_list").val() == 3){
-    jQuery('#world_reading_discussion_list_desc_div').attr('style','visibility:visible; !important');
+    jQuery('#world_reading_discussion_list_desc_div').attr('style','display:block; !important');
     }
     if ($("#world_reading_forum_true").is(':checked')){
-      jQuery('#world_reading_forum_desc_div').attr('style','visibility:visible; !important');
+      jQuery('#world_reading_forum_desc_div').attr('style','display:block; !important');
     }
     if ($("#world_reading_e_learning_true").is(':checked')){
-    jQuery('#world_reading_e_learning_desc_div').attr('style','visibility:visible; !important');
+    jQuery('#world_reading_e_learning_desc_div').attr('style','display:block; !important');
     }
 
   });
@@ -49,18 +49,18 @@
       $("#who_i_am").change(function() {
         var value = $(this).val();
         if (value == 1){
-          jQuery('#educator_id_div').attr('style','visibility:hidden; !important');
-          jQuery('#coordinator_id_div').attr('style','visibility:visible; !important');
+          jQuery('#educator_id_div').attr('style','display:none; !important');
+          jQuery('#coordinator_id_div').attr('style','display:block; !important');
           jQuery('#world_reading_coordinator_id').focus();
         }
         if (value == 2){
-          jQuery('#coordinator_id_div').attr('style','visibility:hidden; !important');
-          jQuery('#educator_id_div').attr('style','visibility:visible; !important');
+          jQuery('#coordinator_id_div').attr('style','display:none; !important');
+          jQuery('#educator_id_div').attr('style','display:block; !important');
           jQuery('#world_reading_educator_id').focus();
         }
         if (valeu == 0){
-          jQuery('#coordinator_id_div').attr('style','visibility:hidden; !important');
-          jQuery('#educator_id_div').attr('style','visibility:hidden; !important');
+          jQuery('#coordinator_id_div').attr('style','display:none; !important');
+          jQuery('#educator_id_div').attr('style','display:none; !important');
         }
       });
     });
@@ -141,11 +141,11 @@
           $("#world_reading_about_internet_use").change(function() {
             var value = $(this).val();
             if (value == 4){
-              jQuery('#world_reading_about_internet_use_desc_div').attr('style','visibility:visible; !important');
+              jQuery('#world_reading_about_internet_use_desc_div').attr('style','display:block; !important');
               jQuery('#world_reading_about_internet_use_desc').focus();
             }
             else{
-              jQuery('#world_reading_about_internet_use_desc_div').attr('style','visibility:hidden; !important');
+              jQuery('#world_reading_about_internet_use_desc_div').attr('style','display:none; !important');
             }
           });
         });
@@ -182,11 +182,11 @@
           $("#world_reading_social_networking").change(function() {
             var value = $(this).val();
             if (value == 4){
-              jQuery('#world_reading_social_networking_desc_div').attr('style','visibility:visible; !important');
+              jQuery('#world_reading_social_networking_desc_div').attr('style','display:block; !important');
               jQuery('#world_reading_social_networking_desc').focus();
             }
             else{
-              jQuery('#world_reading_social_networking_desc_div').attr('style','visibility:hidden; !important');
+              jQuery('#world_reading_social_networking_desc_div').attr('style','display:none; !important');
             }
           });
         });
@@ -203,11 +203,11 @@
           $("#world_reading_discussion_list").change(function() {
             var value = $(this).val();
             if (value == 3){
-              jQuery('#world_reading_discussion_list_desc_div').attr('style','visibility:visible; !important');
+              jQuery('#world_reading_discussion_list_desc_div').attr('style','display:block; !important');
               jQuery('#world_reading_discussion_list_desc').focus();
             }
             else{
-              jQuery('#world_reading_discussion_list_desc_div').attr('style','visibility:hidden; !important');
+              jQuery('#world_reading_discussion_list_desc_div').attr('style','display:none; !important');
             }
           });
         });
@@ -222,16 +222,16 @@
           $(document).ready(function() {
             $("#world_reading_forum_sim").change(function() {
               if ($("#world_reading_forum_true").is(':checked')){
-                jQuery('#world_reading_forum_desc_div').attr('style','visibility:visible; !important');
+                jQuery('#world_reading_forum_desc_div').attr('style','display:block; !important');
                 jQuery('#world_reading_forum_desc').focus();
               }
               else{
-                jQuery('#world_reading_forum_desc_div').attr('style','visibility:hidden; !important');
+                jQuery('#world_reading_forum_desc_div').attr('style','display:none; !important');
               }
             });
             $("#world_reading_forum_não").change(function() {
               if ($("#world_reading_forum_false").is(':checked')){
-                jQuery('#world_reading_forum_desc_div').attr('style','visibility:hidden; !important');
+                jQuery('#world_reading_forum_desc_div').attr('style','display:none; !important');
               }
             });
           });
@@ -262,16 +262,16 @@
         $(document).ready(function() {
           $("#world_reading_e_learning_sim").change(function() {
             if ($("#world_reading_e_learning_true").is(':checked')){
-              jQuery('#world_reading_e_learning_desc_div').attr('style','visibility:visible; !important');
+              jQuery('#world_reading_e_learning_desc_div').attr('style','display:block; !important');
               jQuery('#world_reading_e_learning_desc').focus();
             }
             else{
-              jQuery('#world_reading_e_learning_desc_div').attr('style','visibility:hidden; !important');
+              jQuery('#world_reading_e_learning_desc_div').attr('style','display:none; !important');
             }
           });
           $("#world_reading_e_learning_não").change(function() {
             if ($("#world_reading_e_learning_false").is(':checked')){
-              jQuery('#world_reading_e_learning_desc_div').attr('style','visibility:hidden; !important');
+              jQuery('#world_reading_e_learning_desc_div').attr('style','display:none; !important');
             }
           });
         });

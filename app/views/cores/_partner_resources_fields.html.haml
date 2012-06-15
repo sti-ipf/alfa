@@ -11,11 +11,11 @@
   $(document).ready(function() {
       $("#partner_resource_id_1").change(function() {
           if ($("#partner_resource_id_1").is(':checked')){
-            jQuery('#core_resource_desc_div').attr('style','visibility:visible; !important');
+            jQuery('#core_resource_desc_div').attr('style','display:block; !important');
             jQuery('#resource_desc').focus();
           }
           else{
-            jQuery('#core_resource_desc_div').attr('style','visibility:hidden; !important');
+            jQuery('#core_resource_desc_div').attr('style','display:none; !important');
           }
       });
   });

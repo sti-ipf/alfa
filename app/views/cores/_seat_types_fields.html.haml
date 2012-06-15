@@ -8,11 +8,11 @@
   $(document).ready(function() {
       $("#seat_type_id_1").change(function() {
           if ($("#seat_type_id_1").is(':checked')){
-            jQuery('#core_seat_type_desc_div').attr('style','visibility:visible; !important');
+            jQuery('#core_seat_type_desc_div').attr('style','display:block; !important');
             jQuery('#seat_type_desc').focus();
           }
           else{
-            jQuery('#core_seat_type_desc_div').attr('style','visibility:hidden; !important');
+            jQuery('#core_seat_type_desc_div').attr('style','display:none; !important');
           }
       });
   });

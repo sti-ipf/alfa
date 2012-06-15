@@ -19,20 +19,20 @@
   $(document).ready(function() {
       $("#educator_social_participations_attributes_0_union_movement").change(function() {
           if ($("#educator_social_participations_attributes_0_union_movement").is(':checked')){
-            jQuery('#union_movement_desc_div').attr('style','visibility:visible; !important');
+            jQuery('#union_movement_desc_div').attr('style','display:block; !important');
             jQuery('#union_movement_desc').focus();
           }
           else{
-            jQuery('#union_movement_desc_div').attr('style','visibility:hidden; !important');
+            jQuery('#union_movement_desc_div').attr('style','display:none; !important');
           }
       });
       $("#educator_social_participations_attributes_0_ong").change(function() {
           if ($("#educator_social_participations_attributes_0_ong").is(':checked')){
-            jQuery('#ong_desc_div').attr('style','visibility:visible; !important');
+            jQuery('#ong_desc_div').attr('style','display:block; !important');
             jQuery('#ong_desc').focus();
           }
           else{
-            jQuery('#ong_desc_div').attr('style','visibility:hidden; !important');
+            jQuery('#ong_desc_div').attr('style','display:none; !important');
           }
       });
   });
