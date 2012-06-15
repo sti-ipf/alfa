@@ -50,9 +50,11 @@ class RoomsController < ApplicationController
 
     respond_to do |format|
       if @room.save
-        format.html { redirect_to(rooms_path, :notice => t('room.created')) }
+        flash[:success] = t('room.created')
+        format.html { redirect_to(rooms_path) }
         format.xml  { render :xml => @room, :status => :created, :location => @room }
       else
+        flash[:error] = t('default_error_message')
         format.html { render :action => "new" }
         format.xml  { render :xml => @room.errors, :status => :unprocessable_entity }
       end
@@ -66,9 +68,11 @@ class RoomsController < ApplicationController
 
     respond_to do |format|
       if @room.update_attributes(params[:room])
-        format.html { redirect_to(rooms_path, :notice => t('room.updated')) }
+        flash[:success] = t('room.updated')
+        format.html { redirect_to(rooms_path) }
         format.xml  { head :ok }
       else
+        flash[:error] = t('default_error_message')
         format.html { render :action => "edit" }
         format.xml  { render :xml => @room.errors, :status => :unprocessable_entity }
       end

@@ -2,12 +2,6 @@
   %h1.title Acesso
   .formbody
     - semantic_form_for @user_session, :html => {:class => 'formee'} do |f|
-      -if @user_session.errors.any?
-        #error_explanation
-          %ul
-            - @user_session.errors.full_messages.each do |msg|
-              - msg = msg.split('base ').last
-              %li= msg
       %ul.formee-list
         .li
           = f.label :username

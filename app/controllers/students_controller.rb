@@ -47,9 +47,11 @@ class StudentsController < ApplicationController
 
     respond_to do |format|
       if @student.save
-        format.html { redirect_to(students_path, :notice => t('student.created')) }
+        flash[:success] = t('student.created')
+        format.html { redirect_to(students_path) }
         format.xml  { render :xml => @student, :status => :created, :location => @student }
       else
+        flash[:error] = t('default_error_message')
         format.html { render :action => "new" }
         format.xml  { render :xml => @student.errors, :status => :unprocessable_entity }
       end
@@ -63,9 +65,11 @@ class StudentsController < ApplicationController
 
     respond_to do |format|
       if @student.update_attributes(params[:student])
-        format.html { redirect_to(students_path, :notice => t('student.updated')) }
+        flash[:success] = t('student.updated')
+        format.html { redirect_to(students_path) }
         format.xml  { head :ok }
       else
+        flash[:error] = t('default_error_message')
         format.html { render :action => "edit" }
         format.xml  { render :xml => @student.errors, :status => :unprocessable_entity }
       end

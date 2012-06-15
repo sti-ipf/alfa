@@ -71,10 +71,11 @@ class CoresController < ApplicationController
           params[:displacement_desc_0], params[:displacement_desc_1])
         CoresSeatType.update_seat_type_desc(seat_type_desc, @core.id) if !seat_type_desc.blank?
         CoresPartnerResource.update_resource_desc(resource_desc, @core.id) if !resource_desc.blank?
-
-        format.html { redirect_to(cores_path, :notice => t('core.created')) }
+        flash[:success] = t('core.created')
+        format.html { redirect_to(cores_path) }
         format.xml  { render :xml => @core, :status => :created, :location => @core }
       else
+        flash[:error] = t('default_error_message')
         format.html { render :action => "new" }
         format.xml  { render :xml => @core.errors, :status => :unprocessable_entity }
       end
@@ -91,9 +92,11 @@ class CoresController < ApplicationController
       if @core.update_attributes(params[:core])
         CoresSeatType.update_seat_type_desc(seat_type_desc, @core.id) if !seat_type_desc.blank?
         CoresPartnerResource.update_resource_desc(resource_desc, @core.id) if !resource_desc.blank?
-        format.html { redirect_to(cores_path, :notice => t('core.updated')) }
+        flash[:success] = t('core.updated')
+        format.html { redirect_to(cores_path) }
         format.xml  { head :ok }
       else
+        flash[:error] = t('default_error_message')
         format.html { render :action => "edit" }
         format.xml  { render :xml => @core.errors, :status => :unprocessable_entity }
       end

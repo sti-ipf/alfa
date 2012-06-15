@@ -1,5 +1,6 @@
 # encoding: UTF-8
 pt:
+  default_error_message: "Há erros no formulário, por favor verifique"
   yyes: "Sim"
   nno: "Não"
   which: "Qual?"

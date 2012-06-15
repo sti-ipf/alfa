@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     respond_to do |format|
       if @user.save
-        flash[:notice] = I18n.t('user.created')
+        flash[:success] = I18n.t('user.created')
         if current_user.created_at > DateTime.now - 2.minute
           format.html { redirect_to( root_path ) }
         else
@@ -41,7 +41,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        flash[:notice] = I18n.t('user.updated')
+        flash[:success] = I18n.t('user.updated')
         format.html { redirect_to(users_path) }
       else
         format.js if request.xhr?
@@ -53,7 +53,7 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    flash[:notice] = I18n.t('user.deleted')
+    flash[:success] = I18n.t('user.deleted')
     redirect_to users_path
   end
 

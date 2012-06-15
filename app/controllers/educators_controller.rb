@@ -67,9 +67,11 @@ class EducatorsController < ApplicationController
         if !@educator.educators_education_exps.first.nil?
           @educator.educators_education_exps.first.update_with_years(educator_years, educator_popular_education_years)
         end
-        format.html { redirect_to(educators_path, :notice => t('educator.created')) }
+        format.html { redirect_to(educators_path) }
         format.xml  { render :xml => @educator, :status => :created, :location => @educator }
       else
+        flash[:success] = t('educator.created')
+        flash[:error] = t('default_error_message')
         format.html { render :action => "new" }
         format.xml  { render :xml => @educator.errors, :status => :unprocessable_entity }
       end
@@ -92,9 +94,11 @@ class EducatorsController < ApplicationController
         if !@educator.educators_education_exps.first.nil?
           @educator.educators_education_exps.first.update_with_years(educator_years, educator_popular_education_years)
         end
-        format.html { redirect_to(educators_path, :notice => t('educator.updated')) }
+        flash[:success] = t('educator.updated')
+        format.html { redirect_to(educators_path) }
         format.xml  { head :ok }
       else
+        flash[:error] = t('default_error_message')
         format.html { render :action => "edit" }
         format.xml  { render :xml => @educator.errors, :status => :unprocessable_entity }
       end

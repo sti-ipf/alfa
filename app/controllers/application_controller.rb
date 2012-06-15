@@ -19,7 +19,7 @@ private
 
   def require_user
     if !current_user
-      flash[:notice] = "Você deve estar logado para acessar essa página"
+      flash[:error] = "Você deve estar logado para acessar essa página"
       redirect_to sign_in_path
       return false
     end

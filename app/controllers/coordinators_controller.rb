@@ -67,9 +67,11 @@ class CoordinatorsController < ApplicationController
         if !@coordinator.coordinators_education_exps.first.nil?
           @coordinator.coordinators_education_exps.first.update_with_years(coordinator_years, coordinator_popular_education_years)
         end
-        format.html { redirect_to(coordinators_path, :notice => t('coordinator.created')) }
+        flash[:success] = t('coordinator.created')
+        format.html { redirect_to(coordinators_path) }
         format.xml  { render :xml => @coordinator, :status => :created, :location => @coordinator }
       else
+        flash[:error] = t('default_error_message')
         format.html { render :action => "new" }
         format.xml  { render :xml => @coordinator.errors, :status => :unprocessable_entity }
       end
@@ -92,9 +94,11 @@ class CoordinatorsController < ApplicationController
         if !@coordinator.coordinators_education_exps.first.nil?
           @coordinator.coordinators_education_exps.first.update_with_years(coordinator_years, coordinator_popular_education_years)
         end
-        format.html { redirect_to(coordinators_path, :notice => t('coordinator.updated')) }
+        flash[:success] = t('coordinator.updated')
+        format.html { redirect_to(coordinators_path) }
         format.xml  { head :ok }
       else
+        flash[:error] = t('default_error_message')
         format.html { render :action => "edit" }
         format.xml  { render :xml => @coordinator.errors, :status => :unprocessable_entity }
       end

@@ -11,9 +11,10 @@ class UserSessionsController < ApplicationController
   def create
     @user_session = UserSession.new(params[:user_session])
     if @user_session.save
-      flash[:notice] = I18n.t('welcome_back')
+      flash[:success] = I18n.t('welcome_back')
       redirect_to root_path
     else
+      flash[:error] = "Informações de acesso inválidas"
       render :action => 'new', :layout => 'login'
     end
   end
@@ -21,7 +22,7 @@ class UserSessionsController < ApplicationController
   def destroy
     @user_session = UserSession.find(params[:id])
     @user_session.destroy
-    flash[:notice] = I18n.t('logout_message')
+    flash[:success] = I18n.t('logout_message')
     redirect_to sign_in_path
   end
 end
