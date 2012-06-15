@@ -4,11 +4,10 @@
       .delete
         = link_to_remove_fields t('remove'), f
     %div
+      = "Tipo do telefone"
+      = f.select :phone_type, Phone::PHONE_TYPES
       = t('phone.dd')
-      %br/
       = f.text_field  :dd, :size => 3
-    %div
       = t('phone.number')
-      %br/
       = f.text_field  :number
       

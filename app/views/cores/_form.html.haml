@@ -92,11 +92,11 @@
       %h2= t('core.phones_field')
     %br
     - f.fields_for :phones do |builder|
-      = render "phone_fields", :f => builder
+      = render "/layouts/shared/phone_fields", :f => builder
     %div
     .form_actions
       .add
-        = link_to_add_fields t('phone.new'), f, :phones
+        = link_to_add_fields t('phone.new'), f, :phones, "/layouts/shared/"
     
   %div
     = f.label :email, t('core.email_field')

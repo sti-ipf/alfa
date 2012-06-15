@@ -108,3 +108,8 @@
       %li= "#{r.name}"
     - else
       %li= "#{r.name} - #{r.core.try(:name)}"
+%p
+  %ul
+  %b= "Telefones"
+  - educator.phones.each do |p|
+    %li= "(#{p.dd}) #{p.number} <i>#{p.phone_type_to_s}</i>".html_safe

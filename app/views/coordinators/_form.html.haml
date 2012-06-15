@@ -82,12 +82,12 @@
     %label= t('core.phones_field')
     %br
     - f.fields_for :phones do |builder|
-      = render "phone_fields", :f => builder, :number => phone_number
+      = render "/layouts/shared/phone_fields", :f => builder, :number => phone_number
       - phone_number += 1
     %div
     .form_actions
       .add
-        = link_to_add_fields t('phone.new'), f, :phones
+        = link_to_add_fields t('phone.new'), f, :phones, "/layouts/shared/"
   %div
     = f.label :civil_status, t('coordinator.civil_status')
     %br
