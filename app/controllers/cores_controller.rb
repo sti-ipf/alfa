@@ -5,6 +5,10 @@ class CoresController < ApplicationController
   # GET /cores
   # GET /cores.xml
 
+  def update_city
+    session[:city_id] = params[:city]
+  end
+
 
   def index
     @cores = Core.all(:conditions => "city_id IN (#{@cities_ids})", :include => [:city])

@@ -31,12 +31,8 @@ private
 
   def get_cities_ids
     if !current_user.nil?
-      if current_user.admin
-        @cities_ids = City.all.collect(&:id)
-      else
-        @cities_ids = current_user.cities.collect(&:id)
-      end
-      @cities_ids = @cities_ids.join(',')
+      session[:city_id] ||= current_user.cities.first.id
+      @cities_ids = session[:city_id]
     end
   end
 
