@@ -6,7 +6,7 @@
           %li= msg
   %div
     = f.label :core_id, t('coordinator.core')
-    = f.select :core_id, @cores
+    = f.select :core_id, @cores, :prompt => "Selecione"
   %div
     = f.label :name, t('room.name')
     = f.text_field :name

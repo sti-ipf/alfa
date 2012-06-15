@@ -10,6 +10,7 @@ gem 'formtastic'
 gem 'haml'
 gem 'haml-rails'
 gem 'authlogic', '3.0.3'
+gem 'fastercsv'
 
 group :development do 
   gem 'erb2haml'
