@@ -1,105 +1,94 @@
 %p
-  %b Email:
+  %b= t('world_reading.email')
   = world_reading.email
 %p
-  %b Have experience:
+  %b= t('world_reading.have_experience')
   = world_reading.have_experience
 %p
-  %b Availability:
+  %b= t('world_reading.availability')
   = world_reading.availability
 %p
-  %b Availability to travel:
-  = world_reading.availability_to_travel
+  %b= t('world_reading.availability_to_travel')
+  = world_reading.availability_to_travel_to_s
 %p
-  %b Need for literacy:
+  %b= t('world_reading.need_for_literacy')
   = world_reading.need_for_literacy
 %p
-  %b Can organize rooms:
+  %b= t('world_reading.can_organize_rooms')
   = world_reading.can_organize_rooms
 %p
-  %b Educator wish:
+  %b= t('world_reading.educator_wish')
   = world_reading.educator_wish
 %p
-  %b Any time:
+  %b= t('world_reading.any_time')
   = world_reading.any_time
 %p
-  %b What teach:
+  %b= t('world_reading.what_teach')
   = world_reading.what_teach
 %p
-  %b Young and old together:
+  %b= t('world_reading.young_and_old_together')
   = world_reading.young_and_old_together
 %p
-  %b List subjects:
+  %b= t('world_reading.list_subjects')
   = world_reading.list_subjects
 %p
-  %b Computer use:
-  = world_reading.computer_use
+  %b= t('world_reading.cu_title')
+  = world_reading.computer_use_to_s
 %p
-  %b What use:
-  = world_reading.what_use
+  %b= t('world_reading.wu_title')
+  = world_reading.what_use_to_s
 %p
-  %b About internet use:
-  = world_reading.about_internet_use
+  %b= t('world_reading.aiu_title')
+  = world_reading.about_internet_use_to_s
+  - if !world_reading.about_internet_use_desc.blank?
+    = "(#{world_reading.about_internet_use_desc})"
 %p
-  %b About internet use desc:
-  = world_reading.about_internet_use_desc
+  %b= t('world_reading.ict_title')
+  = world_reading.internet_connection_type_to_s
 %p
-  %b Internet connection type:
-  = world_reading.internet_connection_type
+  %b= t('world_reading.wydii_title')
+  = world_reading.what_you_do_in_internet_to_s
 %p
-  %b What you do in internet:
-  = world_reading.what_you_do_in_internet
+  %b= t('world_reading.fer_title')
+  = world_reading.frequency_email_reading_to_s
 %p
-  %b Frequency email reading:
-  = world_reading.frequency_email_reading
+  %b= "Faz buscas?"
+  = world_reading.make_searches_to_s
 %p
-  %b Make searches:
-  = world_reading.make_searches
-%p
-  %b Prefered search engine:
+  %b= "Buscador preferido"
   = world_reading.prefered_search_engine
 %p
-  %b Social networking:
-  = world_reading.social_networking
+  %b= "Rede social"
+  = world_reading.social_networking_to_s
+  - if !world_reading.social_networking_desc.blank?
+    = "(#{world_reading.social_networking_desc})"
 %p
-  %b Social networking desc:
-  = world_reading.social_networking_desc
+  %b= "Lista de discussão"
+  = world_reading.discussion_list_to_s
+  - if !world_reading.discussion_list_desc.blank?
+    = "(#{world_reading.discussion_list_desc})"
 %p
-  %b Discussion list:
-  = world_reading.discussion_list
+  %b= "Participa de fóruns?"
+  = world_reading.forum_to_s
+  - if !world_reading.forum_desc.blank?
+    = "(#{world_reading.forum_desc})"
 %p
-  %b Discussion list desc:
-  = world_reading.discussion_list_desc
+  %b= "Usa chat?"
+  = world_reading.chat_to_s
 %p
-  %b Forum:
-  = world_reading.forum
+  %b= "Usa MSN?"
+  = world_reading.msn_to_s
 %p
-  %b Forum desc:
-  = world_reading.forum_desc
+  %b= "Usa com frequência MSN"
+  = world_reading.use_msn_with_frequency_to_s
 %p
-  %b Chat:
-  = world_reading.chat
+  %b= "Tem blog?"
+  = world_reading.has_blog_to_s
 %p
-  %b Msn:
-  = world_reading.msn
+  %b= "Compartilhar fotos e vídeos"
+  = world_reading.share_photos_videos_to_s
 %p
-  %b Use msn with frequency:
-  = world_reading.use_msn_with_frequency
-%p
-  %b Has blog:
-  = world_reading.has_blog
-%p
-  %b Share photos videos:
-  = world_reading.share_photos_videos
-%p
-  %b E learning:
-  = world_reading.e_learning
-%p
-  %b E learning desc:
-  = world_reading.e_learning_desc
-%p
-  %b Educator:
-  = world_reading.educator
-%p
-  %b Coordinator:
-  = world_reading.coordinator
+  %b= "Participa ou já participou de um curso a distância"
+  = world_reading.e_learning_to_s
+  - if !world_reading.e_learning_desc.blank?
+    = "(#{world_reading.e_learning_desc})"

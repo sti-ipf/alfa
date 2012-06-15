@@ -36,7 +36,7 @@
     %br
     = f.text_field :name
   %div
-    = t('coordinator.room')
+    %label= t('coordinator.room')
     %br
     - @rooms.each do |r|
       = check_box_tag 'coordinator[room_ids][]', r.id, @coordinator.rooms.include?(r)
@@ -79,11 +79,15 @@
     = f.text_field :address, :size => 100
   %div
     - phone_number = 0
-    = t('core.phones_field')
+    %label= t('core.phones_field')
     %br
     - f.fields_for :phones do |builder|
       = render "phone_fields", :f => builder, :number => phone_number
       - phone_number += 1
+    %div
+    .form_actions
+      .add
+        = link_to_add_fields t('phone.new'), f, :phones
   %div
     = f.label :civil_status, t('coordinator.civil_status')
     %br
@@ -131,15 +135,17 @@
     4º
     \#{f.text_field :forth_son_age, :size => 3}
   %div
-    %b= t('coordinator.occupation')
+    .gray_border
+      %h2= t('coordinator.occupation')
     %br
-    = t('professional_exp.title')
+    %label= t('professional_exp.title')
     %br
     = render "professional_exp_fields"
   %div
-    %b= t('education_exp.title')
+    .gray_border
+      %h2= t('education_exp.title')
     %br
-    = t('education_exp.learning_network')
+    %label= t('education_exp.learning_network')
     %br
     = render "education_exp_fields"
   %div
@@ -192,7 +198,7 @@
   %div
     = f.input :special_need, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
   %div
-    = t('social_participation.title')
+    %label= t('social_participation.title')
     %br
     - f.fields_for :social_participations do |builder|
       = render "social_participation_fields", :f => builder
@@ -223,7 +229,7 @@
             });
         });
     #coordinator_religion_desc_div.invisible
-      = t('which')
+      %label= t('which')
       = f.text_field :religion_desc
   %div
     = f.label :association, t('coordinator.association.title')

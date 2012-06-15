@@ -43,6 +43,31 @@ class Student < ActiveRecord::Base
     get_array_value(Student::ACTUAL_CONDITIONS, self.actual_condition)
   end
 
+  def special_need_to_s
+    if self.special_need
+      "Sim"
+    else
+      "Não"
+    end
+  end
+
+  def religion_to_s
+    get_array_value(Coordinator::RELIGIONS, self.religion)
+  end
+
+  def worker_situation_to_s
+    get_array_value(WORKER_SITUATIONS, self.worker_situation)
+  end
+
+  def worker_situation_type_to_s
+    get_array_value(WORKER_SITUATION_TYPES, self.worker_situation_type)
+  end
+
+  def house_to_s
+    get_array_value(Coordinator::HOUSES, self.house)
+  end
+
+
 private
 
   def get_array_value(array, value)

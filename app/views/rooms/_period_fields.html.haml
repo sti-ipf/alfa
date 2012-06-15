@@ -6,8 +6,8 @@
         = link_to_remove_fields t('remove'), f
     .period_fields
       = t('period.day_of_week')
-      = f.select :day_of_week, Period::DAYS_OF_WEEK
+      = f.select :day_of_week, Period::DAYS_OF_WEEK, :prompt => t('select')
       = t('period.start_time')
-      = f.time_select :start_time, {:minute_step => 10}
+      = f.time_select :start_time, {:minute_step => 10}, :prompt => t('select')
       = t('period.end_time')
-      = f.time_select :end_time, {:minute_step => 10}
+      = f.time_select :end_time, {:minute_step => 10}, :prompt => t('select')

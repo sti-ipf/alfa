@@ -868,6 +868,14 @@ thead tr.filters{display: none;}
   font-weight: bold;
 }
 
-li label{
+li.choice label{
   font-weight: normal !important;
+}
+
+#formframe legend label{
+  font-weight: bold !important;
+}
+
+#show_info p{
+  width: 100%;
 }

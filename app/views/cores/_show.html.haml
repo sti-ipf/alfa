@@ -1,61 +1,80 @@
 %p
   %b= 'Nome do núcleo'
   = core.name
-  %br
-  %b= t('core.city')
-  = core.city.try(:name)
-  %br
-  %b= t('core.community') 
-  = core.community
-  %br
+%p
   %b= t('core.address') 
   = core.address
-  %br
+%p
   %b= t('core.community_type.title')  
   = core.community_type_to_s
-  %br
+%p
   %b= t('core.place.title') 
   = core.place_to_s
   - if !core.place_desc.blank?
     = "(#{core.place_desc})"
-  %br
-  %b= t('core.name')  
+%p
+  %b Recursos disponibilizados pelos parceiros
+  - core.cores_partner_resources.each do |p|
+    = p.partner_resource.try(:resource)
+    - if !p.resource_desc.blank?
+      = "(#{p.resource_desc})"
+%p
+  %b= "Nome da instituição"
   = core.institution_name
-  %br
+%p
   %b= t('core.responsible') 
   = core.responsible
-  %br
+%p
   %b= t('core.email') 
   = core.email
-  %br
+%p
   %b= t('core.main_activity') 
   = core.main_activity  
-  %br
+%p
   - if core.board
     %b= t('core.board') 
-    = "#{core.board_type_to_s} (#{core.size_to_s})"
-  %br
+    = "#{core.board_type_to_s}"
+%p
+  %b= "Tamanho da sala"
+  = core.size_to_s
+%p
   %b= t('core.total_seats.title')
   = core.total_seats_to_s
-  %br
+%p
   %b= t('core.illumination_type.title')
   = core.illumination_type_to_s
   - if !core.illumination_type_desc.blank?
     = " (#{core.illumination_type_desc})"
-  %br
+%p
   %b= t('core.illumination_condition.title')
   = core.illumination_condition_to_s
-  %br
+%p
   %b= t('core.another_place')
-  = core.another_place
   - if !core.another_place_desc.blank?
     = core.another_place_desc
-  %br
+%p
   %b= t('core.coordenation_analysis_field')
   = core.coordenation_analysis
-  %br
+%p
   %b= t('core.visit_on_field')
   = core.visit_on.try(:strftime, '%d/%m/%Y')
-  %br
+%p
   %b= t('core.who_visited_field')
   = core.who_visited
+%p
+  %b= "Telefones"
+  %ul
+  - core.phones.each do |p|
+    %li= "(#{p.dd}) #{p.number}"
+%p
+  %b= "Tipos de assentos"
+  %ul
+  - core.cores_seat_types.each do |d|
+    %li=  d.seat_type.seat_type
+    - if !d.seat_type_desc.blank?
+      = "(#{d.seat_type_desc})"
+%p
+  %b= "Tipos de mesas"
+  %ul
+  - core.desk_types.each do |d|
+    %li=  d.desk_type

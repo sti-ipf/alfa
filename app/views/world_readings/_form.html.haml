@@ -41,7 +41,7 @@
       %ul
         - @world_reading.errors.full_messages.each do |msg|
           %li= msg
-  = t('world_reading.who_i_am')
+  %label= t('world_reading.who_i_am')
   %br
   = select_tag :who_i_am, options_for_select([['Selecione', 0],['Coordenador', 1], ['Educador', 2]])
   :javascript
@@ -117,9 +117,11 @@
     = f.label :list_subjects, t('world_reading.list_subjects')
     %br
     = f.text_area :list_subjects, :cols => 100, :rows => 10
-  %b= t('world_reading.computer_knowledge')
+  .gray_border
+    %h2= t('world_reading.computer_knowledge')
   %br
-  %b= t('world_reading.computer_knowledge_field')
+  %label
+    %i= t('world_reading.computer_knowledge_field')
   %br
   %div
     = f.label :computer_use, t('world_reading.cu_title')
@@ -215,7 +217,7 @@
   %div
     %br
     .field_with_complement_info
-      = f.input :forum, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
+      = f.input :forum, :as => :radio, :collection => [[t('yyes'), 0], [t('nno'), 1]]
       :javascript
           $(document).ready(function() {
             $("#world_reading_forum_sim").change(function() {

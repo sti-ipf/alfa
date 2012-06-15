@@ -132,7 +132,7 @@
             });
         });
     #student_house_desc_div.invisible
-      = t('which')
+      %label= t('which')
       = f.text_field :house_desc
   %div
     .field_with_complement_info
@@ -155,7 +155,7 @@
             });
         });
     #student_special_need_desc_div.invisible
-      = t('which')
+      %label= t('which')
       = f.text_field :special_need_desc
   %br
   %div
@@ -178,7 +178,7 @@
             });
         });
     #student_religion_desc_div.invisible
-      = t('which')
+      %label= t('which')
       = f.text_field :religion_desc
   %div
     = f.label :observations, t('student.observations')

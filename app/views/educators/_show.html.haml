@@ -1,0 +1,110 @@
+%p  
+  %b= t('coordinator.core')
+  = educator.core.try(:name)
+%p
+  %b= t('coordinator.start_date_to_students')
+  = educator.start_date_to_students.try(:strftime, '%d/%m/%Y')
+%p
+  %b= t('coordinator.age')
+  = educator.age
+%p
+  %b= t('coordinator.gender')
+  = educator.gender_to_s
+%p
+  %b= t('coordinator.dob')
+  = educator.dob.try(:strftime, '%d/%m/%Y')
+%p
+  %b= t('coordinator.ethnicity')
+  = educator.ethnicity_to_s
+%p
+  %b= t('coordinator.hometown')
+  = educator.hometown
+%p
+  %b= t('coordinator.state')
+  = educator.state
+%p
+  %b= t('coordinator.zone')
+  = educator.zone_to_s
+%p
+  %b= t('coordinator.address')
+  = educator.address
+%p
+  %b= t('coordinator.civil_status')
+  = educator.civil_status_to_s
+%p
+  %b= t('coordinator.rg')
+  = educator.rg
+%p
+  %b= t('coordinator.cpf')
+  = educator.cpf
+%p
+  %b= t('coordinator.voter_id')
+  = educator.voter_id
+%p
+  %b= t('coordinator.professional_id')
+  = educator.professional_id
+%p
+  %b= t('coordinator.professional_serie')
+  = educator.professional_serie
+%p
+  %b= t('coordinator.birth_or_marriage_certificate_id')
+  = educator.birth_or_marriage_certificate_id
+%p
+  %b= t('coordinator.social_id')
+  = educator.social_id
+%p
+  %b= t('coordinator.sons_number.title')
+  = educator.sons_number
+%p
+  - sons_age = [["primeiro", educator.first_son_age], ["segundo", educator.second_son_age], ["terceiro", educator.third_son_age], ["quarto", educator.forth_son_age]]
+  - sons_age.each do |s|
+    - if !s.last.blank?
+      %b= "Idade do #{s.first} filho"
+      = s.last
+    %p
+  
+  %b= t('coordinator.education_level')
+  = educator.education_level_to_s
+  - if !educator.education_level_desc.blank?
+    = "(#{educator.education_level_desc})"
+%p
+  %b= t('coordinator.house.title')
+  = educator.house_to_s
+  - if !educator.house_desc.blank?
+    = "(#{educator.house_desc})"
+%p
+  %b= t('coordinator.house_type')
+  = educator.house_type_to_s
+%p
+  %b= t('coordinator.special_need')
+  = educator.special_need_to_s
+%p
+  %b= t('coordinator.political_affiliation.title')
+  = educator.political_affiliation_to_s
+%p
+  %b= t('coordinator.political_party')
+  = educator.political_party_to_s
+  - if !educator.political_desc.blank?
+    = educator.political_desc
+  
+%p
+  %b= t('coordinator.religion.title')
+  = educator.religion_to_s
+  - if !educator.religion_desc.blank?
+    = "(#{educator.religion_desc})"
+%p
+  %b= t('coordinator.association.title')
+  = educator.association_to_s
+  - if !educator.association_desc.blank?
+    = educator.association_desc
+%p
+  %b= t('coordinator.cooperative.title')
+  = educator.cooperative_to_s
+%p
+  %ul
+  %b= "Turmas em que participa"
+  - educator.rooms.each do |r|
+    - if r.core.try(:name).blank?
+      %li= "#{r.name}"
+    - else
+      %li= "#{r.name} - #{r.core.try(:name)}"

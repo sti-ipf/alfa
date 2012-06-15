@@ -6,7 +6,7 @@
   = radio_button_tag 'coordinator_years', i, @years == i
   = get_label_with_years(i)
 %br/
-= t('education_exp.popular_education_years')
+%label= t('education_exp.popular_education_years')
 %br/
 - 5.times do |i|
   = radio_button_tag 'coordinator_popular_education_years', i, @popular_education_years == i

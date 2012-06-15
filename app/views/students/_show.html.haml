@@ -1,21 +1,9 @@
 %p
-  %b= t('student.educator')
-  = student.educator.try(:name)
-%p
-  %b= t('student.core')
-  = student.core.try(:name)
-%p
-  %b= t('student.room')
-  = student.room.try(:name)
-%p
   %b= t('student.sign_up_date_on')
   = student.sign_up_date_on.try(:strftime, "%d/%m/%Y")
 %p
   %b= t('student.class_start_date_on')
   = student.class_start_date_on.try(:strftime, "%d/%m/%Y")
-%p
-  %b= t('student.name')
-  = student.name
 %p
   %b= t('student.age.title')
   = student.age_to_s
@@ -52,3 +40,31 @@
 %p
   %b= t('student.profession.title')
   = student.profession
+%p
+  %b= t('student.profession.actual')
+  = student.actual_occupation
+%p
+  %b= t('student.profession.situation')
+  = student.worker_situation_to_s
+%p
+  %b= t('student.profession.type')
+  = student.worker_situation_type_to_s
+%p
+  %b= t('student.house')
+  = student.house_to_s
+  - if !student.house_desc.blank?
+    = "(#{student.house_desc})"
+%p
+  %b= t('student.special_need')
+  = student.special_need_to_s
+  - if !student.special_need_desc.blank?
+    = "(#{student.special_need_desc})"
+%p
+  %b= t('student.religion')
+  = student.religion_to_s
+  - if !student.religion_desc.blank?
+    = "(#{student.religion_desc})"
+%p
+  %b= t('student.observations')
+  = student.observations
+

@@ -15,13 +15,17 @@
 %table{:class => 'list'}
   %thead
     %tr
-      %th Email
+      %th Pessoa
+      %th Função
+      %th Inserida em
       %th{:style => 'width: 20px;'}
       %th{:style => 'width: 20px;'}
   %tbody
     - @world_readings.each do |world_reading|
       %tr{:class => 'more-click'}
-        %td{:class => 'first-td'}= world_reading.email
+        %td{:class => 'first-td'}= world_reading.person
+        %td= world_reading.person_funcion
+        %td= world_reading.created_at.try(:strftime, "%d/%m/%Y")
         %td{:class => 'td-editar'}= link_to t('edit'), edit_world_reading_path(world_reading), :class => 'editar'
         %td= link_to t('destroy'), world_reading, :confirm => t('are_you_sure'), :method => :delete, :class => 'apagar'
       %tr{:class => 'more-info'}

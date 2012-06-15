@@ -1,7 +1,4 @@
 %p
-  %b= t('room.name')
-  = room.name
-%p
   %b= "Núcleo"
   = "#{room.core.try(:city).try(:name)} - #{room.core.try(:community)}" 
 %p
@@ -10,19 +7,20 @@
 %p
   %b= t('room.educators')
   = room.educators.collect(&:name).join(', ')
+%p
+  - if room.periods.count > 0
+    %b Horários
+    %ul
+      - room.periods.each do |p|
+        %li
+          = "#{p.day_of_week_to_s}:"
+          %b Início
+          = p.start_time.try(:strftime, "%H:%M")
+          %b Fim
+          = p.end_time.try(:strftime, "%H:%M")
+%p
+  %b Total de educandos:
+  = room.students.count
 
-- if room.periods.count > 0
-  %b Horários
-  %ul
-    - room.periods.each do |p|
-      %li
-        = "#{p.day_of_week_to_s}:"
-        %b Início
-        = p.start_time.try(:strftime, "%H:%M")
-        %b Fim
-        = p.end_time.try(:strftime, "%H:%M")
-%b Total de educandos:
-= room.students.count
-
-        
+          
 

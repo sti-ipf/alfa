@@ -50,6 +50,12 @@ class Coordinator < ActiveRecord::Base
   accepts_nested_attributes_for :phones, :reject_if => lambda { |a| a[:number].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :social_participations, :allow_destroy => true
 
+  def age
+    value = Date.today.year - self.dob.year
+    value -= 1 if (Date.today < self.dob + value.years)
+    return value
+  end
+
   def total_seats_to_s
     get_attribute_value(self.total_seats, TOTAL_SEATS)
   end
@@ -67,30 +73,47 @@ class Coordinator < ActiveRecord::Base
   end
 
   def zone_to_s
+    get_attribute_value(self.zone, ZONES)
   end
 
   def civil_status_to_s
+    get_attribute_value(self.civil_status, CIVIL_STATUS)
   end
 
   def house_to_s
+    get_attribute_value(self.civil_status, HOUSES)
   end
 
   def house_type_to_s
+    get_attribute_value(self.civil_status, HOUSE_TYPES)
   end
 
   def special_need_to_s
+    if self.special_need
+      "Sim"
+    else
+      "Não"
+    end
   end
 
   def political_affiliation_to_s
+    get_attribute_value(self.political_affiliation, POLITICAL_AFFILIATIONS)
   end
 
   def religion_to_s
+    get_attribute_value(self.religion, RELIGIONS)
   end
 
   def association_to_s
+    get_attribute_value(self.association, ASSOCIATIONS)
   end
 
   def cooperative_to_s
+    get_attribute_value(self.cooperative, COOPERATIVES)
+  end
+
+  def education_level_to_s
+    get_attribute_value(self.education_level, EDUCATION_LEVELS)
   end
 
 private

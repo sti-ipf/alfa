@@ -36,7 +36,7 @@
     %br
     = f.text_field :name
   %div
-    = t('educator.room')
+    %label= t('educator.room')
     %br
     - @rooms.each do |r|
       = check_box_tag 'educator[room_ids][]', r.id, @educator.rooms.include?(r)
@@ -79,16 +79,21 @@
     = f.text_field :address, :size => 100
   %div
     - phone_number = 0
-    = t('core.phones_field')
-    %br
+    .gray_border
+      %h2= t('core.phones_field')
     - f.fields_for :phones do |builder|
       = render "phone_fields", :f => builder, :number => phone_number
       - phone_number += 1
+    %div
+    .form_actions
+      .add
+        = link_to_add_fields t('phone.new'), f, :phones
   %div
     = f.label :civil_status, t('educator.civil_status')
     %br
     = f.select :civil_status, @civil_status
-  %b= t('educator.personal_doc')
+  .gray_border
+    %h2= t('educator.personal_doc')
   %div
     = f.label :rg, t('educator.rg')
     %br
@@ -131,16 +136,14 @@
     4º
     \#{f.text_field :forth_son_age, :size => 3}
   %div
-    %b= t('educator.occupation')
-    %br
-    = t('professional_exp.title')
-    %br
+    .gray_border
+      %h2= t('educator.occupation')
+    %label= t('professional_exp.title')
     = render "professional_exp_fields"
   %div
-    %b= t('education_exp.title')
-    %br
-    = t('education_exp.learning_network')
-    %br
+    .gray_border
+      %h2= t('education_exp.title')
+    %label= t('education_exp.learning_network')
     = render "education_exp_fields"
   %div
     = f.label :education_level, t('educator.education_level')
@@ -191,7 +194,8 @@
   %div
     = f.input :special_need, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
   %div
-    = t('social_participation.title')
+    .gray_border
+      %h2= t('social_participation.title')
     %br
     - f.fields_for :social_participations do |builder|
       = render "social_participation_fields", :f => builder

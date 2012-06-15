@@ -7,7 +7,7 @@ class CoordinatorsController < ApplicationController
 
 
   def index
-    @coordinators = Coordinator.all(:conditions => "core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))")
+    @coordinators = Coordinator.all(:conditions => "core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))", :include => [:core, :rooms])
 
     respond_to do |format|
       format.html # index.html.erb

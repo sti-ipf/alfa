@@ -85,9 +85,12 @@ class CoresController < ApplicationController
   # PUT /cores/1.xml
   def update
     @core = Core.find(params[:id])
-
+    seat_type_desc = params[:seat_type_desc]
+    resource_desc = params[:resource_desc]
     respond_to do |format|
       if @core.update_attributes(params[:core])
+        CoresSeatType.update_seat_type_desc(seat_type_desc, @core.id) if !seat_type_desc.blank?
+        CoresPartnerResource.update_resource_desc(resource_desc, @core.id) if !resource_desc.blank?
         format.html { redirect_to(cores_path, :notice => t('core.updated')) }
         format.xml  { head :ok }
       else

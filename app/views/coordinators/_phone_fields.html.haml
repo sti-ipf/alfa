@@ -1,10 +1,14 @@
 .fields
   .fields_wrapper
-    %div
-      = get_phone_type(number)
-      = f.hidden_field  :phone_type, :value => number
+    .form_actions
+      .delete
+        = link_to_remove_fields t('remove'), f
     %div
       = t('phone.dd')
+      %br/
       = f.text_field  :dd, :size => 3
+    %div
       = t('phone.number')
+      %br/
       = f.text_field  :number
+      
