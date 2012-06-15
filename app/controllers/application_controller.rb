@@ -31,7 +31,11 @@ private
 
   def get_cities_ids
     if !current_user.nil?
-      session[:city_id] ||= current_user.cities.first.id
+      if current_user.admin
+        session[:city_id] ||= 1
+      else
+        session[:city_id] ||= current_user.cities.first.id
+      end
       @cities_ids = session[:city_id]
     end
   end
