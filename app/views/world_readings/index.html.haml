@@ -29,7 +29,7 @@
         %td{:class => 'td-editar'}= link_to t('edit'), edit_world_reading_path(world_reading), :class => 'editar'
         %td= link_to t('destroy'), world_reading, :confirm => t('are_you_sure'), :method => :delete, :class => 'apagar'
       %tr{:class => 'more-info'}
-        %td{:colspan => 4}
+        %td{:colspan => 5}
           %div
             = render 'show', :world_reading => world_reading
 %br

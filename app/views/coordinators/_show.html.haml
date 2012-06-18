@@ -6,117 +6,116 @@
 
 
 %p  
-  %strong= t('coordinator.core')
-  %span.info= coordinator.core.try(:name)
+  %strong= "#{t('coordinator.core')}:"
+  %span= coordinator.core.try(:name)
 %p
-  %strong= t('coordinator.start_date_to_students')
-  %span.info= coordinator.start_date_to_students.try(:strftime, '%d/%m/%Y')
+  %strong= "#{t('coordinator.start_date_to_students')}:"
+  %span= coordinator.start_date_to_students.try(:strftime, '%d/%m/%Y')
 %p
-  %strong= t('coordinator.age')
-  %span.info= coordinator.age
+  %strong= "#{t('coordinator.age')}:"
+  %span= coordinator.age
 %p
-  %strong= t('coordinator.gender')
-  %span.info= coordinator.gender_to_s
+  %strong= "#{t('coordinator.gender')}:"
+  %span= coordinator.gender_to_s
 %p
-  %strong= t('coordinator.dob')
-  %span.info= coordinator.dob.try(:strftime, '%d/%m/%Y')
+  %strong= "#{t('coordinator.dob')}:"
+  %span= coordinator.dob.try(:strftime, '%d/%m/%Y')
 %p
-  %strong= t('coordinator.ethnicity')
-  %span.info= coordinator.ethnicity_to_s
+  %strong= "#{t('coordinator.ethnicity')}:"
+  %span= coordinator.ethnicity_to_s
 %p
-  %strong= t('coordinator.hometown')
-  %span.info= coordinator.hometown
+  %strong= "#{t('coordinator.hometown')}:"
+  %span= coordinator.hometown
 %p
-  %strong= t('coordinator.state')
-  %span.info= coordinator.state
+  %strong= "#{t('coordinator.state')}:"
+  %span= coordinator.state
 %p
-  %strong= t('coordinator.zone')
-  %span.info= coordinator.zone_to_s
+  %strong= "#{t('coordinator.zone')}:"
+  %span= coordinator.zone_to_s
 %p
-  %strong= t('coordinator.address')
-  %span.info= coordinator.address
+  %strong= "#{t('coordinator.address')}:"
+  %span= coordinator.address
 %p
-  %strong= t('coordinator.civil_status')
-  %span.info= coordinator.civil_status_to_s
+  %strong= "#{t('coordinator.civil_status')}:"
+  %span= coordinator.civil_status_to_s
 %p
-  %strong= t('coordinator.rg')
-  %span.info= coordinator.rg
+  %strong= "#{t('coordinator.rg')}:"
+  %span= coordinator.rg
 %p
-  %strong= t('coordinator.cpf')
-  %span.info= coordinator.cpf
+  %strong= "#{t('coordinator.cpf')}:"
+  %span= coordinator.cpf
 %p
-  %strong= t('coordinator.voter_id')
-  %span.info= coordinator.voter_id
+  %strong= "#{t('coordinator.voter_id')}:"
+  %span= coordinator.voter_id
 %p
-  %strong= t('coordinator.professional_id')
-  %span.info= coordinator.professional_id
+  %strong= "#{t('coordinator.professional_id')}:"
+  %span= coordinator.professional_id
 %p
-  %strong= t('coordinator.professional_serie')
-  %span.info= coordinator.professional_serie
+  %strong= "#{t('coordinator.professional_serie')}:"
+  %span= coordinator.professional_serie
 %p
-  %strong= t('coordinator.birth_or_marriage_certificate_id')
-  %span.info= coordinator.birth_or_marriage_certificate_id
+  %strong= "#{t('coordinator.birth_or_marriage_certificate_id')}:"
+  %span= coordinator.birth_or_marriage_certificate_id
 %p
-  %strong= t('coordinator.social_id')
-  %span.info= coordinator.social_id
+  %strong= "#{t('coordinator.social_id')}:"
+  %span= coordinator.social_id
 %p
-  %strong= t('coordinator.sons_number.title')
-  %span.info= coordinator.sons_number
+  %strong= "#{t('coordinator.sons_number.title')}:"
+  %span= coordinator.sons_number
 %p
   - sons_age = [["primeiro", coordinator.first_son_age], ["segundo", coordinator.second_son_age], ["terceiro", coordinator.third_son_age], ["quarto", coordinator.forth_son_age]]
   - sons_age.each do |s|
     - if !s.last.blank?
-      %strong= "Idade do #{s.first} filho"
+      %strong= "Idade do #{s.first} filho:"
       = s.last
-    %p
   
-  %strong= t('coordinator.education_level')
+  %strong= "#{t('coordinator.education_level')}:"
   = coordinator.education_level_to_s
   - if !coordinator.education_level_desc.blank?
     = "(#{coordinator.education_level_desc})"
 %p
-  %strong= t('coordinator.house.title')
+  %strong= "#{t('coordinator.house.title')}:"
   = coordinator.house_to_s
   - if !coordinator.house_desc.blank?
     = "(#{coordinator.house_desc})"
 %p
-  %strong= t('coordinator.house_type')
-  %span.info= coordinator.house_type_to_s
+  %strong= "#{t('coordinator.house_type')}:"
+  %span= coordinator.house_type_to_s
 %p
-  %strong= t('coordinator.special_need')
-  %span.info= coordinator.special_need_to_s
+  %strong= "#{t('coordinator.special_need')}:"
+  %span= coordinator.special_need_to_s
 %p
-  %strong= t('coordinator.political_affiliation.title')
-  %span.info= coordinator.political_affiliation_to_s
+  %strong= "#{t('coordinator.political_affiliation.title')}:"
+  %span= coordinator.political_affiliation_to_s
 %p
-  %strong= t('coordinator.political_party')
-  %span.info= coordinator.political_party_to_s
+  %strong= "#{t('coordinator.political_party')}:"
+  %span= coordinator.political_party_to_s
   - if !coordinator.political_desc.blank?
-    %span.info= coordinator.political_desc
+    %span= coordinator.political_desc
   
 %p
-  %strong= t('coordinator.religion.title')
-  %span.info= coordinator.religion_to_s
+  %strong= "#{t('coordinator.religion.title')}:"
+  %span= coordinator.religion_to_s
   - if !coordinator.religion_desc.blank?
-    %span.info= "(#{coordinator.religion_desc})"
+    %span= "(#{coordinator.religion_desc})"
 %p
-  %strong= t('coordinator.association.title')
-  %span.info= coordinator.association_to_s
+  %strong= "#{t('coordinator.association.title')}:"
+  %span= coordinator.association_to_s
   - if !coordinator.association_desc.blank?
-    %span.info= coordinator.association_desc
+    %span= coordinator.association_desc
 %p
-  %strong= t('coordinator.cooperative.title')
-  %span.info= coordinator.cooperative_to_s
+  %strong= "#{t('coordinator.cooperative.title')}:"
+  %span= coordinator.cooperative_to_s
 %p
+  %strong= "Turmas em que participa:"
   %ul
-  %strong= "Turmas em que participa"
-  - coordinator.rooms.each do |r|
-    - if r.core.try(:name).blank?
-      %li= "#{r.name}"
-    - else
-      %li= "#{r.name} - #{r.core.try(:name)}"
+    - coordinator.rooms.each do |r|
+      - if r.core.try(:name).blank?
+        %li= "#{r.name}"
+      - else
+        %li= "#{r.name} - #{r.core.try(:name)}"
 %p
+  %strong= "Telefones:"
   %ul
-  %strong= "Telefones"
-  - coordinator.phones.each do |p|
-    %li= "(#{p.dd}) #{p.number} <i>#{p.phone_type_to_s}</i>".html_safe
+    - coordinator.phones.each do |p|
+      %li= "(#{p.dd}) #{p.number} <i>#{p.phone_type_to_s}</i>".html_safe

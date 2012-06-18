@@ -34,6 +34,7 @@ class WorldReading < ActiveRecord::Base
     else
       "Educador"
     end
+    ''
   end
 
   def person
@@ -46,6 +47,7 @@ class WorldReading < ActiveRecord::Base
     else
       return self.educator.name
     end
+    ''
   end
 
   def availability_to_travel_to_s
@@ -90,10 +92,11 @@ class WorldReading < ActiveRecord::Base
 
   def forum_to_s
     if self.forum == 1
-      "Não"
+      return "Não"
     else
-      "Sim"
+      return "Sim"
     end
+    ''
   end
 
   def chat_to_s
@@ -134,5 +137,6 @@ def get_array_value(array, value)
     array.each do |a|
       return a.first if a.last == value
     end
+    ''
   end
 end

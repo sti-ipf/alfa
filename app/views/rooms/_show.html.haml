@@ -6,24 +6,24 @@
 
 
 %p
-  %b= "Núcleo"
+  %b= "Núcleo:"
   = "#{room.core.try(:city).try(:name)} - #{room.core.try(:community)}" 
 %p
-  %b= t('room.coordinators')
+  %b= "#{t('room.coordinators')}:"
   = room.coordinators.collect(&:name).join(', ')
 %p
-  %b= t('room.educators')
+  %b= "#{t('room.educators')}:"
   = room.educators.collect(&:name).join(', ')
 %p
   - if room.periods.count > 0
-    %b Horários
+    %b Horários:
     %ul
       - room.periods.each do |p|
         %li
           = "#{p.day_of_week_to_s}:"
-          %b Início
+          %b Início:
           = p.start_time.try(:strftime, "%H:%M")
-          %b Fim
+          %b Fim:
           = p.end_time.try(:strftime, "%H:%M")
 %p
   %b Total de educandos:

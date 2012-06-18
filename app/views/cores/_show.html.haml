@@ -5,82 +5,85 @@
   });
 
 %p
-  %strong= 'Nome do núcleo'
-  %span.info= core.name
+  %strong= 'Nome do núcleo:'
+  %span= core.name
 %p
-  %strong= t('core.address') 
-  %span.info= core.address
+  %strong= "#{t('core.address')}:"
+  %span= core.address
 %p
-  %strong= t('core.community_type.title')  
-  %span.info= core.community_type_to_s
+  %strong= "#{t('core.community_type.title')}:"
+  %span= core.community_type_to_s
 %p
-  %strong= t('core.place.title') 
-  %span.info= core.place_to_s
-  - if !core.place_desc.blank?
-    = "(#{core.place_desc})"
+  %strong= "#{t('core.place.title')}:" 
+  %span
+    = core.place_to_s
+    - if !core.place_desc.blank?
+      = "(#{core.place_desc})"
 %p
-  %strong Recursos disponibilizados pelos parceiros
+  %strong Recursos disponibilizados pelos parceiros:
   - core.cores_partner_resources.each do |p|
-    %span.info= p.partner_resource.try(:resource)
-    - if !p.resource_desc.blank?
-      %span.info= "(#{p.resource_desc})"
+    %span
+      = p.partner_resource.try(:resource)
+      - if !p.resource_desc.blank?
+        %span= "(#{p.resource_desc})"
 %p
-  %strong= "Nome da instituição"
-  %span.info= core.institution_name
+  %strong= "Nome da instituição:"
+  %span= core.institution_name
 %p
-  %strong= t('core.responsible') 
-  %span.info= core.responsible
+  %strong= "#{t('core.responsible')}:" 
+  %span= core.responsible
 %p
-  %strong= t('core.email') 
-  %span.info= 'core.email'
+  %strong= "E-mail:"
+  %span= core.email
 %p
-  %strong= t('core.main_activity') 
-  %span.info= core.main_activity  
+  %strong= "#{t('core.main_activity')}:"
+  %span= core.main_activity  
  
   - if core.board
-    %strong= t('core.board') 
-    %span.info= "#{core.board_type_to_s}"
+    %strong= "#{t('core.board')}:"
+    %span= "#{core.board_type_to_s}"
 %p
-  %strong= "Tamanho da sala"
-  %span.info= core.size_to_s
+  %strong= "Tamanho da sala:"
+  %span= core.size_to_s
 %p
-  %strong= t('core.total_seats.title')
-  %span.info= core.total_seats_to_s
+  %strong= "#{t('core.total_seats.title')}:"
+  %span= core.total_seats_to_s
 %p
-  %strong= t('core.illumination_type.title')
-  %span.info= core.illumination_type_to_s
-  - if !core.illumination_type_desc.blank?
-    = " (#{core.illumination_type_desc})"
+  %strong= "#{t('core.illumination_type.title')}:"
+  %span
+    = core.illumination_type_to_s
+    - if !core.illumination_type_desc.blank?
+      = " (#{core.illumination_type_desc})"
 %p
-  %strong= t('core.illumination_condition.title')
-  %span.info= core.illumination_condition_to_s
+  %strong= "#{t('core.illumination_condition.title')}:"
+  %span= core.illumination_condition_to_s
 %p
-  %strong= t('core.another_place')
+  %strong= "#{t('core.another_place')}:"
   - if !core.another_place_desc.blank?
-    %span.info= core.another_place_desc
+    %span= core.another_place_desc
 %p
-  %strong= t('core.coordenation_analysis_field')
-  %span.info= core.coordenation_analysis
+  %strong= "#{t('core.coordenation_analysis_field')}:"
+  %span= core.coordenation_analysis
 %p
-  %strong= t('core.visit_on_field')
-  %span.info= core.visit_on.try(:strftime, '%d/%m/%Y')
+  %strong= "#{t('core.visit_on_field')}:"
+  %span= core.visit_on.try(:strftime, '%d/%m/%Y')
 %p
-  %strong= t('core.who_visited_field')
-  %span.info= core.who_visited
+  %strong= "#{t('core.who_visited_field')}:"
+  %span= core.who_visited
 %p
-  %strong= "Telefones"
+  %strong= "Telefones:"
   %ul
-  - core.phones.each do |p|
-    %li= "(#{p.dd}) #{p.number} <i>#{p.phone_type_to_s}</i>".html_safe
+    - core.phones.each do |p|
+      %li= "(#{p.dd}) #{p.number} <i>#{p.phone_type_to_s}</i>".html_safe
 %p
-  %strong= "Tipos de assentos"
+  %strong= "Tipos de assentos:"
   %ul
-  - core.cores_seat_types.each do |d|
-    %li=  d.seat_type.seat_type
-    - if !d.seat_type_desc.blank?
-      %span.info= "(#{d.seat_type_desc})"
+    - core.cores_seat_types.each do |d|
+      %li=  d.seat_type.seat_type
+      - if !d.seat_type_desc.blank?
+        %span.info= "(#{d.seat_type_desc})"
 %p
-  %strong= "Tipos de mesas"
+  %strong= "Tipos de mesas:"
   %ul
-  - core.desk_types.each do |d|
-    %li=  d.desk_type
+    - core.desk_types.each do |d|
+      %li=  d.desk_type
