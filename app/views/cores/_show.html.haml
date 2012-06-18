@@ -1,80 +1,86 @@
+:javascript
+
+  $(document).ready(function() {
+    zebraListing();
+  });
+
 %p
-  %b= 'Nome do núcleo'
-  = core.name
+  %strong= 'Nome do núcleo'
+  %span.info= core.name
 %p
-  %b= t('core.address') 
-  = core.address
+  %strong= t('core.address') 
+  %span.info= core.address
 %p
-  %b= t('core.community_type.title')  
-  = core.community_type_to_s
+  %strong= t('core.community_type.title')  
+  %span.info= core.community_type_to_s
 %p
-  %b= t('core.place.title') 
-  = core.place_to_s
+  %strong= t('core.place.title') 
+  %span.info= core.place_to_s
   - if !core.place_desc.blank?
     = "(#{core.place_desc})"
 %p
-  %b Recursos disponibilizados pelos parceiros
+  %strong Recursos disponibilizados pelos parceiros
   - core.cores_partner_resources.each do |p|
-    = p.partner_resource.try(:resource)
+    %span.info= p.partner_resource.try(:resource)
     - if !p.resource_desc.blank?
-      = "(#{p.resource_desc})"
+      %span.info= "(#{p.resource_desc})"
 %p
-  %b= "Nome da instituição"
-  = core.institution_name
+  %strong= "Nome da instituição"
+  %span.info= core.institution_name
 %p
-  %b= t('core.responsible') 
-  = core.responsible
+  %strong= t('core.responsible') 
+  %span.info= core.responsible
 %p
-  %b= t('core.email') 
-  = core.email
+  %strong= t('core.email') 
+  %span.info= 'core.email'
 %p
-  %b= t('core.main_activity') 
-  = core.main_activity  
-%p
+  %strong= t('core.main_activity') 
+  %span.info= core.main_activity  
+ 
   - if core.board
-    %b= t('core.board') 
-    = "#{core.board_type_to_s}"
+    %strong= t('core.board') 
+    %span.info= "#{core.board_type_to_s}"
 %p
-  %b= "Tamanho da sala"
-  = core.size_to_s
+  %strong= "Tamanho da sala"
+  %span.info= core.size_to_s
 %p
-  %b= t('core.total_seats.title')
-  = core.total_seats_to_s
+  %strong= t('core.total_seats.title')
+  %span.info= core.total_seats_to_s
 %p
-  %b= t('core.illumination_type.title')
-  = core.illumination_type_to_s
+  %strong= t('core.illumination_type.title')
+  %span.info= core.illumination_type_to_s
   - if !core.illumination_type_desc.blank?
     = " (#{core.illumination_type_desc})"
 %p
-  %b= t('core.illumination_condition.title')
-  = core.illumination_condition_to_s
+  %strong= t('core.illumination_condition.title')
+  %span.info= core.illumination_condition_to_s
 %p
-  %b= t('core.another_place')
+  %strong= t('core.another_place')
   - if !core.another_place_desc.blank?
-    = core.another_place_desc
+    %span.info= core.another_place_desc
 %p
-  %b= t('core.coordenation_analysis_field')
-  = core.coordenation_analysis
+  %strong= t('core.coordenation_analysis_field')
+  %span.info= core.coordenation_analysis
 %p
-  %b= t('core.visit_on_field')
-  = core.visit_on.try(:strftime, '%d/%m/%Y')
+  %strong= t('core.visit_on_field')
+  %span.info= core.visit_on.try(:strftime, '%d/%m/%Y')
 %p
-  %b= t('core.who_visited_field')
-  = core.who_visited
+  %strong= t('core.who_visited_field')
+  %span.info= core.who_visited
 %p
-  %b= "Telefones"
+  %strong= "Telefones"
   %ul
   - core.phones.each do |p|
     %li= "(#{p.dd}) #{p.number} <i>#{p.phone_type_to_s}</i>".html_safe
 %p
-  %b= "Tipos de assentos"
+  %strong= "Tipos de assentos"
   %ul
   - core.cores_seat_types.each do |d|
     %li=  d.seat_type.seat_type
     - if !d.seat_type_desc.blank?
-      = "(#{d.seat_type_desc})"
+      %span.info= "(#{d.seat_type_desc})"
 %p
-  %b= "Tipos de mesas"
+  %strong= "Tipos de mesas"
   %ul
   - core.desk_types.each do |d|
     %li=  d.desk_type

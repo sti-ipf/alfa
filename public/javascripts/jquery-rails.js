@@ -47,3 +47,8 @@ function datatable_list(table, ordered_columns){
     }
   });
 }
+
+function zebraListing(){
+  $('.more-info div p:odd').addClass('odd');
+  $('.more-info div p:even').addClass('even');
+}

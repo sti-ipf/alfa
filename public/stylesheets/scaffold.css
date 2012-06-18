@@ -500,25 +500,6 @@ tbody tr.more-click:hover{
   margin-top:40px;
 }
 
-.more-info{
-  position:relative;
-  width:960px; 
-  background:#fefefe;
-  bottom:0;
-  margin-top:30px;    
-}
-
-.more-info div{
-  position:relative;
-  display:none;
-  border-bottom: 1px solid #d9d9d9;
-  padding:15px;
-}
-
-.more-info p{
-  position:relative;
-}
-
 .more-click{
   height:50px; 
   width:960px; 
@@ -881,3 +862,42 @@ li.choice label{
 }
 
 .invisible{display: none;}
+
+.odd{
+  background:#f3f3f3;
+  padding:10px;
+  margin:0;
+}
+
+.even{
+  background:#ffffff;
+  padding:10px;
+  margin:0;
+}
+
+.more-info{
+  position:relative;
+  width:960px; 
+  background:#fefefe;
+  bottom:0;
+  margin-top:30px;    
+}
+
+.more-info div{
+  position:relative;
+  display:none;
+  border-bottom: 1px solid #d9d9d9;
+  padding:0px;
+}
+
+.more-info p{
+  position:relative;
+}
+
+.more-info p span.info{
+  display:block;
+  min-width:200px;
+  min-height:20px;
+  margin-top:10px;
+  position:relative;
+}
