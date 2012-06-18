@@ -55,6 +55,19 @@
         #header
           .logo_header
         .right_menu
+          - if !current_user.nil?
+            - if current_user.cities.count > 1 || current_user.admin
+              %li
+                = select_tag :cities, options_for_select([['Presidente Kennedy', 1], ['São Francisco de Itabapoana', 2]])
+                :javascript
+                  $(document).ready(function() {
+
+                    $('#cities').change(function(){
+                      $.ajax({url: "/update_city",
+                        data: 'city=' + $('#cities').val()
+                      })
+                    });
+                  });
           %li
             = link_to current_user.name, edit_user_path(current_user)
           %li
