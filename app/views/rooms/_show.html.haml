@@ -10,12 +10,17 @@
   = "#{room.core.try(:city).try(:name)} - #{room.core.try(:community)}" 
 %p
   %b= "#{t('room.coordinators')}:"
-  = room.coordinators.collect(&:name).join(', ')
+  %ul
+    - room.coordinators.each do |coordinator|
+      %li= link_to coordinator.name, coordinator
+
 %p
   %b= "#{t('room.educators')}:"
-  = room.educators.collect(&:name).join(', ')
-%p
-  - if room.periods.count > 0
+  %ul
+    - room.educators.each do |educator|
+      %li= link_to educator.name, educator
+- if room.periods.count > 0
+  %p
     %b Horários:
     %ul
       - room.periods.each do |p|
@@ -28,6 +33,12 @@
 %p
   %b Total de educandos:
   = room.students.count
+- if room.students.count > 0
+  %p
+    %b Educandos:
+    %ul
+      - room.students.each do |student|
+        %li= link_to student.name, student
 
-          
+        
 
