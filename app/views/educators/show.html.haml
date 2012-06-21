@@ -1,3 +1,5 @@
-= link_to t('edit'), edit_educator_path(@educator)
-|
-\#{link_to t('back'), educators_path}
+%div{:style => 'margin-top: -13px;'}
+  %h1.title= @educator.name
+  .action_back 
+    = link_to t('back'), :back, :class => 'back_link'
+= render 'show', :educator => @educator

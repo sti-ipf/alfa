@@ -58,7 +58,7 @@
           - if !current_user.nil?
             - if current_user.cities.count > 1 || current_user.admin
               %li
-                = select_tag :cities, options_for_select([['Presidente Kennedy', 1], ['São Francisco de Itabapoana', 2]])
+                = select_tag :cities, options_for_select([['Presidente Kennedy', 1], ['São Francisco de Itabapoana', 2]], session[:city_id])
                 :javascript
                   $(document).ready(function() {
 
