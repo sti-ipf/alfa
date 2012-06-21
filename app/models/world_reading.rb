@@ -24,6 +24,8 @@ class WorldReading < ActiveRecord::Base
   DISCUSSION_LISTS = [[I18n.t('world_reading.dl_option_1'), 1],[I18n.t('world_reading.dl_option_2'), 2],
       [I18n.t('world_reading.dl_option_3'), 3], ['Não participa', 4]]
 
+  validate :presence_of_educator_or_coordinator
+
   def person_funcion
     if self.educator.nil?
       if self.coordinator.nil?
@@ -121,6 +123,14 @@ class WorldReading < ActiveRecord::Base
 
   def e_learning_to_s
     get_true_false(self.e_learning)
+  end
+
+protected
+
+  def presence_of_educator_or_coordinator
+    if self.educator_id.nil? && self.coordinator_id.nil?
+      self.errors[:base] << "Especifique o educador/coordenador responsável pela leitura mundo"
+    end
   end
 
 private

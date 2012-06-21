@@ -1,1 +1,5 @@
+%div{:style => 'margin-top: -13px;'}
+  %h1.title= @student.name
+  .action_back 
+    = link_to t('back'), :back, :class => 'back_link'
 = render 'show', :student => @student
