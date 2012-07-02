@@ -137,6 +137,13 @@ class CoordinatorsController < ApplicationController
     @education_exps = EducationExp.all
     @rooms = Room.all(:conditions => "id IN (SELECT room_id FROM coordinators_rooms WHERE coordinator_id IN (SELECT id FROM coordinators WHERE core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))))
       OR id IN (SELECT room_id FROM educators_rooms WHERE educator_id IN (SELECT id FROM educators WHERE core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))))")
+    @computer_knowledges = sort_hash_by_value(Coordinator::COMPUTER_KNOWLEDGE)
+    @computer_uses = sort_hash_by_value(Coordinator::COMPUTER_USE)
+    @computer_targets = sort_hash_by_value(Coordinator::COMPUTER_TARGET)
+    @internet_options = sort_hash_by_value(Coordinator::INTERNET_OPTIONS)
+    @email_frequencies = sort_hash_by_value(Coordinator::EMAIL_FREQUENCY)
+    @social_networks = sort_hash_by_value(Coordinator::SOCIAL_NETWORK)
+
   end
 end
 

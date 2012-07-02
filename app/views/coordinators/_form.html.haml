@@ -62,6 +62,10 @@
     %br
     = f.select :ethnicity, @ethnicities
   %div
+    = f.label :ethnicity, t('coordinator.email')
+    %br
+    = f.text_field :email
+  %div
     = f.label :hometown, t('coordinator.hometown')
     %br
     = f.text_field :hometown
@@ -256,5 +260,181 @@
     = f.label :cooperative, t('coordinator.cooperative.title')
     %br
     = f.select :cooperative, @cooperatives
+  
+  %div
+    = f.label :literacy_exp, t('coordinator.literacy.experience')
+    %br
+    = f.text_area :literacy_exp, :cols => 60, :rows => 8
+
+  %div
+    = f.label :literacy_availability, t('coordinator.literacy.availability')
+    %br
+    = f.text_area :literacy_availability, :cols => 60, :rows => 8
+
+  %div
+    = f.label :can_travel, t('coordinator.travel')
+    %br
+    = f.radio_button :can_travel, true
+    = t('yyes')
+    = f.radio_button :can_travel, false
+    = t('nno')
+
+  %div
+    = f.label :literacy_justify, t('coordinator.literacy.justify')
+    %br
+    = f.text_area :literacy_justify, :cols => 60, :rows => 8
+  
+  %div
+    = f.label :anytime_literacy, t('coordinator.literacy.anytime')
+    %br
+    = f.text_area :anytime_literacy, :cols => 60, :rows => 8
+
+  %div
+    = f.label :teach_what, t('coordinator.literacy.teach_what')
+    %br
+    = f.text_area :teach_what, :cols => 60, :rows => 8
+
+  %div
+    = f.label :all_in_same_room, t('coordinator.literacy.all_in_same_room')
+    %br
+    = f.text_area :all_in_same_room, :cols => 60, :rows => 8
+  
+  %div
+    = f.label :study_content, t('coordinator.study_content')
+    %br
+    = f.text_area :study_content, :cols => 60, :rows => 8
+
+  %div
+    = f.label :comunity_need_class, t('coordinator.comunity_need_class')
+    %br
+    = f.text_area :comunity_need_class, :cols => 60, :rows => 8
+
+  %div
+    = f.label :organize_class, t('coordinator.organize_class')
+    %br
+    = f.text_area :organize_class, :cols => 60, :rows => 8
+
+  %div
+    = f.label :computer_knowledge, t('coordinator.computer_knowledge')
+    %br
+    = f.select :computer_knowledge, @computer_knowledges
+
+  %div
+    = f.label :computer_uses, t('coordinator.computer_use')
+    %br
+    = f.select :computer_uses, @computer_uses
+
+  %div
+    = f.label :computer_target, t('coordinator.computer_target')
+    %br
+    = f.select :computer_target, @computer_targets
+
+  %div
+    = f.label :internet_home, t('coordinator.internet_home')
+    %br
+    = f.select :internet_home, @internet_options
+  
+  %div
+    = f.label :email_read, t('coordinator.email_read')
+    %br
+    = f.select :email_read, @email_frequencies
+
+  %div
+    = f.label :social_network_know, t('coordinator.social_network.know')
+    %br
+    = f.select :social_network_know, [[t('yyes'),1],[t('nno'),2]]
+    :javascript
+      $(document).ready(function(){
+        var selected = ""
+        $("select#coordinator_social_network_know").change(function(){
+          selected = $(this).val();
+          if(selected == 1){
+            $("#social_question").css("display","block")
+          }
+          else{
+            $("#social_question").css("display","none")
+          }
+
+        });
+      });
+    #social_question
+      = f.label :social_network_use, t('coordinator.social_network.use')
+      %br
+      = f.select :social_network_use, [[t('yyes'),1],[t('nno'),2]]
+      :javascript
+        $(document).ready(function(){
+          var selected = ""
+          $("select#coordinator_social_network_use").change(function(){
+            selected = $(this).val();
+            if(selected == 1){
+              $("#social_options").css("display","block")
+            }
+            else{
+              $("#social_options").css("display","none")
+            }
+
+          });
+        });
+    #social_options
+      = f.label :social_network, t('coordinator.social_network.wich')
+      %br
+      = f.select :social_network, @social_networks
+      :javascript
+        $(document).ready(function(){
+          var selected = ""
+          $("select#coordinator_social_network").change(function(){
+            selected = $(this).val();
+            if(selected == 4){
+              $("#another_social").css("display","block")
+            }
+            else{
+              $("#another_social").css("display","none")
+            }
+
+          });
+        });
+    #another_social{:style=>"display:none"}
+      = f.label :another_social_network, t('coordinator.social_network.wich')
+      %br
+      = f.text_field :another_social_network
+
+  %div
+    = f.label :has_msn, t('coordinator.msn.has')
+    %br
+    = f.select :has_msn, [[t('yyes'),1],[t('nno'),2]]
+    :javascript
+      $(document).ready(function(){
+        var selected = ""
+        $("select#coordinator_has_msn").change(function(){
+          selected = $(this).val();
+          if(selected == 1){
+            $("#msn_frequency").css("display","block")
+          }
+          else{
+            $("#msn_frequency").css("display","none")
+          }
+
+        });
+      });
+    #msn_frequency
+      = f.label :msn_use, t('coordinator.msn.use')
+      %br
+      = f.select :msn_use, [[t('yyes'),1],[t('nno'),2]]
+  
+  %div
+    = f.label :blog_status, t('coordinator.blog')
+    %br
+    = f.select :blog_status, [[t('yyes'),1],[t('nno'),2]]
+
+  %div
+    = f.label :ead, t('coordinator.ead')
+    %br
+    = f.select :ead, [[t('yyes'),1],[t('nno'),2]]
+  
+  %div
+    = f.label :obs, t('coordinator.obs')
+    %br
+    = f.text_area :obs, :cols => 60, :rows => 8
+
   .actions
     = f.submit button

@@ -6,6 +6,10 @@ class ApplicationController < ActionController::Base
   helper_method :current_user_session, :current_user
   before_filter :require_user, :set_locale, :get_cities_ids
 
+  def sort_hash_by_value(hash)
+    hash.sort_by { |name, value| value }
+  end
+
 private
   def current_user_session
     return @current_user_session if defined?(@current_user_session)
