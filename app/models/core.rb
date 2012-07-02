@@ -14,6 +14,11 @@ class Core < ActiveRecord::Base
   has_many :displacements, :through => :cores_displacements
   has_many :cores_displacements
   belongs_to :city
+  has_many :periods
+
+#validations
+
+  validates :computer_observation, :kitchen_observation, :resources_observation, :place_description, :length => { :maximum => 100 }
 
 #constants
 
@@ -22,8 +27,7 @@ class Core < ActiveRecord::Base
   PLACES = [[I18n.t('core.place.association'), 0], [I18n.t('core.place.church_hall'), 1],
     [I18n.t('core.place.cooperative'), 2], [I18n.t('core.place.union'), 3],
     [I18n.t('core.place.cruch'), 4], [I18n.t('core.place.outdoor'), 5], [I18n.t('other'), 6]]
-  COMMUNITY_TYPES = [[I18n.t('core.community_type.fishing'), 0],
-    [I18n.t('core.community_type.rural'), 1], [I18n.t('core.community_type.urban'), 2]]
+  COMMUNITY_TYPES = [[I18n.t('core.community_type.rural'), 1], [I18n.t('core.community_type.urban'), 2], ['Pesca Marinha (Mar)', 0], ['Pesca Ribeirinha (Rio)', 3], ['Outra', 4]]
   ILLUMINATION_TYPES = [[I18n.t('core.illumination_type.electric_power'), 0],
     [I18n.t('core.illumination_type.lamp'), 1], [I18n.t('core.illumination_type.other'), 2]]
   ILLUMINATION_CONDITIONS = [[I18n.t('core.illumination_condition.ok'), 0],
@@ -35,6 +39,7 @@ class Core < ActiveRecord::Base
   accepts_nested_attributes_for :partner_resources, :reject_if => lambda { |a| a[:resource].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :phones, :reject_if => lambda { |a| a[:number].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :seat_types , :reject_if => lambda { |a| a[:seat_type].blank? }, :allow_destroy => true
+  accepts_nested_attributes_for :periods, :reject_if => lambda { |a| a[:day_of_week].blank? }, :allow_destroy => true
 
   def size_to_s
     get_attribute_value(self.size, SIZES)

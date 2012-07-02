@@ -526,6 +526,13 @@ pt:
       core:
         another_place: "Há outros espaços que podem ser utilizados pelo educador?"
         board: "Existe lousa?"
+        computer_observation: "Observação"
+        kitchen_observation: "Observação"
+        resources_observation: "Observação"
+        place_description: "Identificação do espaço"
+        has_restroom: "Banheiros"
+        has_kitchen: "Cozinha"
+        has_computers: "Há computadores disponíveis no espaço para a utilização dos alfabetizadores"
       coordinator:
         special_need: "Possui necessidade educacional especial"
       educator:

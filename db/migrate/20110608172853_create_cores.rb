@@ -4,8 +4,17 @@ class CreateCores < ActiveRecord::Migration
     create_table :cores do |t|
 
       t.string :community
+      t.text :place_description
+      t.string :number
+      t.string :zip_code
+      t.text :computer_observation
+      t.text :kitchen_observation
+      t.text :resources_observation
+      t.boolean :has_computers
+      t.boolean :has_kitchen
       t.string :address
       t.integer :community_type
+      t.string :community_type_desc
       t.integer :place
       t.string :place_desc
       t.string :name
@@ -21,7 +30,9 @@ class CreateCores < ActiveRecord::Migration
       t.integer :illumination_condition
       t.boolean :another_place
       t.string :another_place_desc
-      t.boolean :bathroom
+      t.boolean :has_restroom
+      t.integer :total_restroom
+      t.integer :total_computers
       t.boolean :kitchen
       t.text :coordenation_analysis
       t.date :visit_on
@@ -36,4 +47,3 @@ class CreateCores < ActiveRecord::Migration
     drop_table :cores
   end
 end
-

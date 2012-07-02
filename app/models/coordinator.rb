@@ -13,8 +13,8 @@ class Coordinator < ActiveRecord::Base
 #constants
 
   GENDERS = [["Masculino", 0], ["Feminino", 1]]
-  ETHNICITIES = [["Branco", 0], ["Índio", 1], ["Afrodescendente", 2], ["Indefinido", 3], ["Outro", 4]]
-  ZONES = [["Rural", 0], ["Urbana", 1], ["Pesqueira", 2]]
+  ETHNICITIES = [["Branco", 0], ["Indígena", 1], ["Preta", 5], ["Parda", 6], ["Amarela", 7]]
+  ZONES = [["Rural", 0], ["Urbana", 1], ["Pesca Marinha (Mar)", 2], ["Pesca Ribeirinha (Rio)", 3], ["Outra", 4]]
   CIVIL_STATUS = [["Casado", 0], ["Solteiro", 1], ["Viúvo", 2], ["Separado/Divorciado/Desquitado", 3], ["Outros", 4]] 
   SONS_NUMBER =  [[I18n.t('coordinator.sons_number.without'), 0], ["1", 1], ["2", 2], 
     ["3", 3], ["4", 4], [I18n.t("coordinator.sons_number.more_than_four"), 5]] 

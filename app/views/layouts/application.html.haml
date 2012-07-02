@@ -46,8 +46,6 @@
             = link_to t('educator.view'), educators_path
           %li
             = link_to t('student.view'), students_path
-          %li
-            = link_to t('world_reading.view'), world_readings_path
           - if current_user.try(:admin)
             %li
               = link_to t('user.view'), users_path

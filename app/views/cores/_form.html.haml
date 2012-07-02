@@ -16,6 +16,10 @@
       jQuery('#core_illumination_type_desc_div').attr('style','display:block; !important');
     }
 
+    if ($("#core_community_type").val() == 4) {
+      jQuery('#core_community_type_desc_div').attr('style','display:block; !important');
+    }
+
     if ($("#displacement_id_0_9").is(':checked')){
       jQuery('#core_displacement_desc_0_div').attr('style','display:block; !important');
     }
@@ -29,6 +33,12 @@
     if ($("#core_board_true").is(':checked')){
       jQuery('#board_type_div').attr('style','display:block; !important');
     }
+    if ($("#core_has_restroom_true").is(':checked')){
+      jQuery('#total_restroom_div').attr('style','display:block; !important');
+    }
+    if ($("#core_has_computers_true").is(':checked')){
+      jQuery('#total_computers_div').attr('style','display:block; !important');
+    }
   });
 = semantic_form_for(@core, :html => {:id => 'formframe'}) do |f|
   - if @core.errors.any?
@@ -37,9 +47,18 @@
         - @core.errors.full_messages.each do |msg|
           %li= msg
   %div
-    = f.label :name, 'Nome do núcleo'
+    = f.label :name, 'Localidade'
     %br
     = f.text_field :name
+  %div
+    = f.label :place_description, 'Identificação do espaço'
+    %br
+    = f.text_area :place_description
+    
+  %div
+    = f.label :number, 'Número'
+    %br
+    = f.text_field :number
   %div
     = f.label :city_id, t('core.city')
     %br
@@ -53,9 +72,35 @@
     %br
     = f.text_field :address, :size => 100
   %div
-    = f.label :community_type, t('core.community_field')
+    = f.label :zip_code, 'CEP'
     %br
-    = f.select :community_type, Core::COMMUNITY_TYPES
+    = f.text_field :zip_code
+    :javascript
+        $(document).ready(function() {
+          $("#core_zip_code").mask("99999-999");
+        });
+
+  %div
+    .field_with_complement_info
+      = f.label :community_type, t('core.community_field')
+      %br
+      = f.select :community_type, Core::COMMUNITY_TYPES
+      #core_community_type_desc_div.invisible
+        = f.label :community_type_desc, t('which')
+        = f.text_field :community_type_desc
+      :javascript
+        $(document).ready(function() {
+            $("#core_community_type").change(function() {
+                var value = $(this).val();
+                if (value == 4){
+                  jQuery('#core_community_type_desc_div').attr('style','display:block; !important');
+                  jQuery('#core_community_type_desc').focus();
+                }
+                else{
+                  jQuery('#core_community_type_desc_div').attr('style','display:none; !important');
+                }
+            });
+        });
   %div
     = f.label :place, t('core.place_field')
     %br
@@ -78,7 +123,21 @@
       = f.label :place_desc, t('which')
       = f.text_field :place_desc
   %div
+    .gray_border
+      %h2= t('core.period_field')
+    %br
+    - f.fields_for :periods do |builder|
+      = render "period_fields", :f => builder
+    %div
+      .form_actions
+        .add
+          = link_to_add_fields t('period.new'), f, :periods
+  %div
     = render "partner_resources_fields"
+  %div
+    = f.label :resources_observation, "Observação"
+    %br
+    = f.text_area :resources_observation
   %div
     = f.label :institution_name, t('core.name_field')
     %br
@@ -202,5 +261,58 @@
       = f.label :who_visited, t('core.who_visited_field')
       %br
       = f.text_field :who_visited
+    %div
+      .field_with_complement_info
+        = f.input :has_restroom, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
+        :javascript
+          $(document).ready(function() {
+              $("#core_has_restroom_true").change(function() {
+                  if ($("#core_has_restroom_true").is(':checked')){
+                    jQuery('#total_restroom_div').attr('style','display:block; !important');
+                    jQuery('#core_total_restroom').focus();
+                  }
+              });
+              $("#core_has_restroom_false").change(function() {
+                  if ($("#core_has_restroom_false").is(':checked')){
+                    jQuery('#total_restroom_div').attr('style','display:none; !important');
+                  }
+              });
+              
+          });
+      #total_restroom_div.invisible
+        = f.label :total_restroom, 'Quantos'
+        = f.text_field :total_restroom
+    %div
+      .field_with_complement_info
+        = f.input :has_kitchen, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
+    %div
+      = f.label :kitchen_observation, "Observação"
+      %br
+      = f.text_area :kitchen_observation
+    %div
+      .field_with_complement_info
+        = f.input :has_computers, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
+        :javascript
+          $(document).ready(function() {
+              $("#core_has_computers_true").change(function() {
+                  if ($("#core_has_computers_true").is(':checked')){
+                    jQuery('#total_computers_div').attr('style','display:block; !important');
+                    jQuery('#core_total_computers').focus();
+                  }
+              });
+              $("#core_has_computers_false").change(function() {
+                  if ($("#core_has_computers_false").is(':checked')){
+                    jQuery('#total_computers_div').attr('style','display:none; !important');
+                  }
+              });
+              
+          });
+        #total_computers_div.invisible
+          = f.label :total_computers, 'Quantos'
+          = f.text_field :total_computers
+    %div
+      = f.label :computer_observation, "Observação"
+      %br
+      = f.text_area :computer_observation
     .actions
       = f.submit button

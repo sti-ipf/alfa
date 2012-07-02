@@ -11,6 +11,7 @@ gem 'haml'
 gem 'haml-rails'
 gem 'authlogic', '3.0.3'
 gem 'fastercsv'
+#gem 'rails_best_practices'
 
 group :development do 
   gem 'erb2haml'

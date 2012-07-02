@@ -11,6 +11,9 @@ class Student < ActiveRecord::Base
     [I18n.t("student.profession.unemployed"), 3], [I18n.t("student.profession.retired"), 4]]
   WORKER_SITUATION_TYPES =   [[I18n.t("student.profession.registered"), 1], [I18n.t("student.profession.no_registered"), 2], 
     [I18n.t("student.profession.formal"), 3], [I18n.t("student.profession.informal"), 4]]
+  INTERNET_ACCESS_LOCAL = [["Em casa", 1], ["No trabalho", 2], ["Em outros espaços", 3]]
+  EDUCATION_LEVELS = [["Frequentou até 1 ano", 5], ["Frequentou mais de um ano", 6], ["Não frequentou", 7]]
+  FAMILIAR_INCOME = [["Sem renda", 1], ["Até 1 salário mínimo", 2], ["De 1 a 2 SM", 3], ["De 2 a 3 SM", 4], ["De 3 a 4 SM", 5], ["Acima de 5 SM", 6]]
 
   accepts_nested_attributes_for :phones, :reject_if => lambda { |a| a[:number].blank? }, :allow_destroy => true
   
