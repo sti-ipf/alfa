@@ -30,6 +30,53 @@ class CreateStudents < ActiveRecord::Migration
       t.string :house_desc
       t.integer :house_type
       t.string :house_type_desc
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      t.integer :vision_loss
+      t.boolean :need_glasses
+      t.text :vision_loss_observation
+
+      t.integer :hearing_disability
+      t.boolean :hearing_device
+      t.text :hearing_disability_observation
+
+      t.integer :physical_disability
+      t.boolean :need_accessible_room
+      t.integer :physical_disability_to_write
+      t.text :physical_disability_observation
+
+      t.integer :intelectual_disability
+      
+      t.integer :social_participation
+      t.string :social_participation_desc
+
+      t.integer :association
+      t.string :association_desc
+
+      t.integer :cooperative
+      t.string :cooperative_desc
+
+      t.text :participation_reason
+      t.text :subjects
+
+
+
+
       t.boolean :special_need
       t.string :special_need_desc
       t.integer :religion

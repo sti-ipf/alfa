@@ -319,7 +319,7 @@
       %label= t('which')
       = f.text_field :house_desc
   %div
-    = f.label :house_type, t('student.house_type')
+    = f.label :house_type, "Tipo de moradia"
     %br
     .field_with_complement_info
       = f.select :house_type, Student::HOUSE_TYPES
@@ -339,6 +339,101 @@
     #student_house_type_desc_div.invisible
       %label= t('which')
       = f.text_field :house_type_desc
+
+
+  %div
+    = f.label :vision_loss, "Deficiência visual - tem dificuldade permanente de enxergar?"
+    %br
+    .field_with_complement_info
+      = f.select :vision_loss, Student::VISION_LOSS
+      :javascript
+        $(document).ready(function() {
+            $("#student_vision_loss").change(function() {
+                var value = $(this).val();
+                if (value == 3){
+                  jQuery('#student_need_glasses_div').attr('style','display:block; !important');
+                }
+                else{
+                  jQuery('#student_need_glasses_div').attr('style','display:none; !important');
+                }
+            });
+        });
+    #student_need_glasses_div.invisible
+      %label= "Possui óculos?"
+      = f.input :need_glasses, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
+  %div
+    = f.label :vision_loss_observation, "Observação"
+    = f.input :vision_loss_observation
+
+  %div
+    = f.label :hearing_disability, "Deficiência auditiva - tem dificuldade permanente de ouvir?"
+    %br
+    .field_with_complement_info
+      = f.select :hearing_disability, Student::HEARING_DISABILITY
+      :javascript
+        $(document).ready(function() {
+            $("#student_vision_loss").change(function() {
+                var value = $(this).val();
+                if (value == 3){
+                  jQuery('#student_hearing_device').attr('style','display:block; !important');
+                }
+                else{
+                  jQuery('#student_hearing_device').attr('style','display:none; !important');
+                }
+            });
+        });
+    #student_hearing_device.invisible
+      %label= "Possui aparelho?"
+      = f.input :hearing_device, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
+  %div
+    = f.label :hearing_disability_observation, "Observação"
+    = f.input :hearing_disability_observation
+
+
+  %div
+    = f.label :physical_disability, "Deficiência física - tem dificuldade permanente para caminhar e/ou subir/descer degraus?"
+    %br
+    .field_with_complement_info
+      = f.select :physical_disability, Student::PHYSICAL_DISABILITY
+      :javascript
+        $(document).ready(function() {
+            $("#student_vision_loss").change(function() {
+                var value = $(this).val();
+                if ((value == 2) || (value == 3)){
+                  jQuery('#student_hearing_device').attr('style','display:block; !important');
+                }
+                else{
+                  jQuery('#student_hearing_device').attr('style','display:none; !important');
+                }
+            });
+        });
+    #student_hearing_device.invisible
+      %label= "Necessita de adaptação para acesso à sala de aula?"
+      = f.input :need_accessible_room, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
+  %div
+    = f.label :physical_disability_to_write, "Tem dificuldade permanente para escrever e/ou manusear/manipular objetos?"
+    = f.input :physical_disability_to_write, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
+  %div
+    = f.label :physical_disability_observation, "Observação"
+    = f.input :physical_disability_observation
+
+  %div
+    = f.label :intelectual_disability, "Deficiência intelectual/mental - Tem alguma dificuldade permanente que limite a realização de atividades ligadas a:"
+    = f.select :intelectual_disability, Student::PHYSICAL_DISABILITY
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   %div
     .field_with_complement_info
       = f.input :special_need, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]

@@ -14,7 +14,11 @@ class Student < ActiveRecord::Base
   INTERNET_ACCESS_LOCAL = [["Em casa", 1], ["No trabalho", 2], ["Em outros espaços", 3]]
   EDUCATION_LEVELS = [["Frequentou até 1 ano", 5], ["Frequentou mais de um ano", 6], ["Não frequentou", 7]]
   FAMILIAR_INCOME = [["Sem renda", 1], ["Até 1 salário mínimo", 2], ["De 1 a 2 SM", 3], ["De 2 a 3 SM", 4], ["De 3 a 4 SM", 5], ["Acima de 5 SM", 6]]
-
+  HOUSE_TYPES = [["Alvenaria", 1], ["Madeira", 2], ["Pau-apique", 3], ["Lona/Papelão", 4], ["Palha", 5], ["Outros", 6]]
+  VISION_LOSS = [["Sim. Não consegue de modo algum", 1], ["Necessita de Braile", 2], ["Grande dificuldade, só consegue enxergar usando óculos", 3], ["Alguma dificuldade mas consegue enxergar sem óculos", 4], ["Não, nenhuma dificuldade", 5]]
+  HEARING_DISABILITY = [["Sim. Não consegue de modo algum", 1], ["Necessita de libras", 2], ["Grande dificuldade só consegue ouvir usando aparelho", 3], ["Alguma dificuldade mas consegue ouvir sem aparelho", 4], ["Não. Nenhuma dificuldade", 5]]
+  PHYSICAL_DISABILITY = [["Sim. Não consegue de modo algum", 1], ["Necessita de cadeiras de roda", 2], ["Grande dificuldade, só consegue usando bengala/aparelho de apoio", 3], ["Sim, alguma dificuldade mas consegue caminhar e/ou subir/descer degraus", 4], ["Não, nenhuma dificuldade", 5]]
+  
   accepts_nested_attributes_for :phones, :reject_if => lambda { |a| a[:number].blank? }, :allow_destroy => true
   
 
