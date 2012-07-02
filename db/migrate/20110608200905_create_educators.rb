@@ -43,6 +43,32 @@ class CreateEducators < ActiveRecord::Migration
       
       t.references :core
 
+      t.string :core_identification
+      t.integer :age_range
+      t.string :district
+      t.string :number
+      t.string :zip_code
+      t.string :internet_access_local
+      t.string :internet_access_local_desc
+      t.string :email
+      t.integer :house_type
+      t.string :house_type_desc
+      t.string :special_need_desc
+      t.text :participation_reason
+      t.boolean :travel_disponibility
+      t.text :last_books
+      t.text :tv_programs
+      t.text :experience
+      t.text :other_job
+      t.text :agree_with_any_period
+      t.text :what_teach
+      t.text :subjects
+      t.boolean :has_pc
+      t.integer :where_use_pc
+      t.integer :about_pc_use
+      t.integer :which_uses
+      
+
       t.timestamps
     end
   end

@@ -31,22 +31,6 @@ class CreateStudents < ActiveRecord::Migration
       t.integer :house_type
       t.string :house_type_desc
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       t.integer :vision_loss
       t.boolean :need_glasses
       t.text :vision_loss_observation
@@ -57,7 +41,7 @@ class CreateStudents < ActiveRecord::Migration
 
       t.integer :physical_disability
       t.boolean :need_accessible_room
-      t.integer :physical_disability_to_write
+      t.boolean :physical_disability_to_write
       t.text :physical_disability_observation
 
       t.integer :intelectual_disability
@@ -73,10 +57,6 @@ class CreateStudents < ActiveRecord::Migration
 
       t.text :participation_reason
       t.text :subjects
-
-
-
-
       t.boolean :special_need
       t.string :special_need_desc
       t.integer :religion

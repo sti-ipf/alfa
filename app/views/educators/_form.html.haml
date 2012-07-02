@@ -24,6 +24,14 @@
       jQuery('#educator_religion_desc_div').attr('style','display:block; !important');
     }
 
+    if ($("#has_phone_true").is(':checked')){
+      jQuery('#phones_div').attr('style','display:block; !important');
+    }
+
+    if ($("#internet_true").is(':checked')){
+      jQuery('#internet_access_local_div').attr('style','display:block; !important');
+    }
+
   });
 = semantic_form_for(@educator, :html => {:id => 'formframe'}) do |f|
   - if @educator.errors.any?
@@ -32,7 +40,7 @@
         - @educator.errors.full_messages.each do |msg|
           %li= msg
   %div
-    = f.label :name, t('educator.name')
+    = f.label :name, "Nome do(a) alfabetizador(a):"
     %br
     = f.text_field :name
   %div
@@ -46,9 +54,17 @@
     %br
     = f.date_select :start_date_to_students, {:start_year => 1900}
   %div
-    = f.label :core_id, t('educator.core')
+    = f.label :core_id, "Localidade do núcleo:"
     %br
     = f.select :core_id, @cores
+  %div
+    = f.label :core_identification, "Identificação do núcleo:"
+    %br
+    = f.text_field :core_identification
+  %div
+    = f.label :age_range, "Faixa etária"
+    %br
+    = f.select :age_range, Educator::AGE_RANGE
   %div
     = f.label :gender, t('educator.gender')
     %br
@@ -66,7 +82,7 @@
     %br
     = f.text_field :hometown
   %div
-    = f.label :state, t('educator.state')
+    = f.label :state, "Estado de nascimento (UF)"
     %br
     = f.text_field :state
   %div
@@ -78,20 +94,136 @@
     %br
     = f.text_field :address, :size => 100
   %div
-    - phone_number = 0
-    .gray_border
-      %h2= t('core.phones_field')
-    - f.fields_for :phones do |builder|
-      = render "/layouts/shared/phone_fields", :f => builder, :number => phone_number
-      - phone_number += 1
-    %div
-    .form_actions
-      .add
-        = link_to_add_fields t('phone.new'), f, :phones, "/layouts/shared/"
+    = f.label :number, "Número"
+    %br
+    = f.text_field :number, :size => 5
+  %div
+    = f.label :district, "Comunidade/Bairro"
+    %br
+    = f.text_field :district
+  %div
+    = f.label :zip_code, "CEP"
+    %br
+    = f.text_field :zip_code
+  :javascript
+    $(document).ready(function() {
+      $("#educator_zip_code").mask("99999-999");
+    });
+  %div
+    = label_tag :has_phone, 'Possui telefone?'
+    = "Sim"
+    = radio_button_tag :has_phone, true, @educator.phones.count > 0
+    = "Não"
+    = radio_button_tag :has_phone, false
+    :javascript
+      $(document).ready(function() {
+          $("#has_phone_true").change(function() {
+              if ($("#has_phone_true").is(':checked')){
+                jQuery('#phones_div').attr('style','display:block; !important');
+              }
+              else{
+                jQuery('#phones_div').attr('style','display:none; !important');
+              }
+          });
+          $("#has_phone_false").change(function() {
+              if ($("#has_phone_false").is(':checked')){
+                jQuery('#phones_div').attr('style','display:none; !important');
+              }
+          });
+        });
+    
+    #phones_div.invisible
+      .gray_border
+        %h2= t('core.phones_field')
+      - f.fields_for :phones do |builder|
+        = render "/layouts/shared/phone_fields", :f => builder
+      %div
+      .form_actions
+        .add
+          = link_to_add_fields t('phone.new'), f, :phones, "/layouts/shared/"
+  
+  %div
+    = label_tag :internet, 'Acessa a Internet?'
+    = "Sim"
+    = radio_button_tag :internet, true, !@educator.internet_access_local.blank?
+    = "Não"
+    = radio_button_tag :internet, false
+    :javascript
+      $(document).ready(function() {
+          $("#internet_true").change(function() {
+              if ($("#internet_true").is(':checked')){
+                jQuery('#internet_access_local_div').attr('style','display:block; !important');
+              }
+              else{
+                jQuery('#internet_access_local_div').attr('style','display:none; !important');
+              }
+          });
+          $("#internet_false").change(function() {
+              if ($("#internet_false").is(':checked')){
+                jQuery('#internet_access_local_div').attr('style','display:none; !important');
+              }
+          });
+        });
+    
+    #internet_access_local_div.invisible
+      %div
+        = f.label :internet_access_local, "Local"
+        %br
+        = f.select :internet_access_local, Student::INTERNET_ACCESS_LOCAL, :prompt => "Selecione"
+      :javascript
+        $(document).ready(function() {
+            $("#educator_internet_access_local").change(function() {
+                var value = $(this).val();
+                if (value == 3){
+                  jQuery('#internet_access_local_desc_div').attr('style','display:block; !important');
+                  jQuery('#educator_internet_access_local_desc').focus();
+                }
+                else{
+                  jQuery('#internet_access_local_desc_div').attr('style','display:none; !important');
+                }
+            });
+        });
+      #internet_access_local_desc_div.invisible
+        %label= "Quais"
+        = f.text_field :internet_access_local_desc
+
+  %div
+    = f.label :email, "E-mail"
+    %br
+    = f.text_field :email
+
   %div
     = f.label :civil_status, t('educator.civil_status')
     %br
     = f.select :civil_status, @civil_status
+
+  %div
+    = f.label :familiar_income, 'Renda familiar'
+    %br
+    = f.select :familiar_income, Student::FAMILIAR_INCOME, :prompt => "Selecione"
+
+  %div
+    = f.label :house_type, "Tipo de moradia"
+    %br
+    .field_with_complement_info
+      = f.select :house_type, Student::HOUSE_TYPES, :prompt => "Selecione"
+      :javascript
+        $(document).ready(function() {
+            $("#educator_house_type").change(function() {
+                var value = $(this).val();
+                if (value == 6){
+                  jQuery('#educator_house_type_desc_div').attr('style','display:block; !important');
+                  jQuery('#educator_house_type_desc').focus();
+                }
+                else{
+                  jQuery('#educator_house_type_desc_div').attr('style','display:none; !important');
+                }
+            });
+        });
+    #educator_house_type_desc_div.invisible
+      %label= t('which')
+      = f.text_field :house_type_desc
+
   .gray_border
     %h2= t('educator.personal_doc')
   %div
@@ -191,8 +323,101 @@
     = f.label :house_type, t('educator.house_type')
     %br
     = f.select :house_type, @house_types
+  
   %div
-    = f.input :special_need, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
+    .field_with_complement_info
+      = f.input :special_need, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
+      :javascript
+        $(document).ready(function() {
+            $("#educator_special_need_true").change(function() {
+                if ($("#educator_special_need_true").is(':checked')){
+                  jQuery('#educator_special_need_desc_div').attr('style','display:block; !important');
+                  jQuery('#educator_special_need_desc').focus();
+                }
+                else{
+                  jQuery('#educator_special_need_desc_div').attr('style','display:none; !important');
+                }
+            });
+            $("#educator_special_need_false").change(function() {
+                if ($("#educator_special_need_false").is(':checked')){
+                  jQuery('#educator_special_need_desc_div').attr('style','display:none; !important');
+                }
+            });
+        });
+    #educator_special_need_desc_div.invisible
+      %label= t('which')
+      = f.text_field :special_need_desc
+  
+  %div
+    = f.label :participation_reason, "Por que interessou-se pelo programa de alfabetização?"
+    %br
+    = f.text_area :participation_reason
+  %div
+    = f.input :travel_disponibility, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
+  %div
+    = f.label :last_books, "Quais foram os 3 últimos livros que você leu?"
+    %br
+    = f.text_area :last_books
+
+
+  %div
+    = f.label :tv_programs, "Cite 3 programas de televisão por ordem de interesse que assiste diariamente"
+    %br
+    = f.text_area :tv_programs
+  %div
+    = f.label :experience, "Você tem experiência em alfabetização de jovens e adultos? Conte-nos sobre."
+    %br
+    = f.text_area :experience
+  %div
+    = f.label :other_job, "Você tem compromisso com outro trabalho? Quais os dias da semana e horário?"
+    %br
+    = f.text_area :other_job
+  %div
+    = f.label :agree_with_any_period, "A educação de jovens e adultos pode acontecer em qualquer horário. Você concorda com essa afirmação? Por que?"
+    %br
+    = f.text_area :agree_with_any_period
+  %div
+    = f.label :what_teach, "O que se deve ensinar numa sala para jovens e adultos?"
+    %br
+    = f.text_area :what_teach
+  %div
+    = f.label :subjects, "Liste possíveis temas/conteúdos que gostaria de estudar e que ajudariam você a exercer seu papel de alfabetizador(a)"
+    %br
+    = f.text_area :subjects
+  %div
+    = f.input :has_pc, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
+    :javascript
+      $(document).ready(function() {
+        $("#educator_has_pc_true").change(function() {
+            if ($("#educator_has_pc_true").is(':checked')){
+              jQuery('#educator_has_pc_desc_div').attr('style','display:block; !important');
+              jQuery('#educator_has_pc_desc').focus();
+            }
+            else{
+              jQuery('#educator_has_pc_desc_div').attr('style','display:none; !important');
+            }
+        });
+        $("#educator_has_pc_false").change(function() {
+            if ($("#educator_has_pc_false").is(':checked')){
+              jQuery('#educator_has_pc_desc_div').attr('style','display:none; !important');
+            }
+        });
+      });
+    #educator_has_pc_desc_div.invisible
+      %div
+        = f.label :where_use_pc, "Onde acessa:"
+        %br
+        = f.select :where_use_pc, Educator::WHERE_USE_PC
+
+  %div
+    = f.label :about_pc_use, "Sobre o uso do computador, você:"
+    %br
+    = f.select :about_pc_use, Educator::ABOUT_PC_USE
+  %div
+    = f.label :which_uses, "Quais usos que você faz do computador"
+    %br
+    = f.select :which_uses, Educator::WHICH_USES
+
   %div
     .gray_border
       %h2= t('social_participation.title')
@@ -214,20 +439,20 @@
       = f.select :religion, @religions
       :javascript
         $(document).ready(function() {
-            $("#educator_religion").change(function() {
-                var value = $(this).val();
-                if (value == 7){
-                  jQuery('#educator_religion_desc_div').attr('style','display:block; !important');
-                  jQuery('#educator_religion_desc').focus();
-                }
-                else{
-                  jQuery('#educator_religion_desc_div').attr('style','display:none; !important');
-                }
-            });
+          $("#educator_religion").change(function() {
+              var value = $(this).val();
+              if (value == 7){
+                jQuery('#educator_religion_desc_div').attr('style','display:block; !important');
+                jQuery('#educator_religion_desc').focus();
+              }
+              else{
+                jQuery('#educator_religion_desc_div').attr('style','display:none; !important');
+              }
+          });
         });
-    #educator_religion_desc_div.invisible
-      = t('which')
-      = f.text_field :religion_desc
+      #educator_religion_desc_div.invisible
+        = t('which')
+        = f.text_field :religion_desc
   %div
     = f.label :association, t('educator.association.title')
     %br
@@ -235,20 +460,20 @@
       = f.select :association, @associations
       :javascript
         $(document).ready(function() {
-            $("#educator_association").change(function() {
-                var value = $(this).val();
-                if (value == 4){
-                  jQuery('#educator_association_desc_div').attr('style','display:block; !important');
-                  jQuery('#educator_association_desc').focus();
-                }
-                else{
-                  jQuery('#educator_association_desc_div').attr('style','display:none; !important');
-                }
-            });
+          $("#educator_association").change(function() {
+              var value = $(this).val();
+              if (value == 4){
+                jQuery('#educator_association_desc_div').attr('style','display:block; !important');
+                jQuery('#educator_association_desc').focus();
+              }
+              else{
+                jQuery('#educator_association_desc_div').attr('style','display:none; !important');
+              }
+          });
         });
-    #educator_association_desc_div.invisible
-      = f.label :association_desc, t('which')
-      = f.text_field :association_desc
+      #educator_association_desc_div.invisible
+        = f.label :association_desc, t('which')
+        = f.text_field :association_desc
   %div
     = f.label :cooperative, t('educator.cooperative.title')
     %br

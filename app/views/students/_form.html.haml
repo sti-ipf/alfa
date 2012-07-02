@@ -32,6 +32,37 @@
       jQuery('#education_level_place_div').attr('style','display:block; !important');
     }
 
+    if ($("#student_house_type").val() == 6){
+      jQuery('#student_house_type_desc_div').attr('style','display:block; !important');
+    }
+
+    if ($("#student_vision_loss").val() == 3){
+      jQuery('#student_need_glasses_div').attr('style','display:block; !important');
+    }
+
+    if ($("#student_hearing_disability").val() == 3){
+      jQuery('#student_hearing_device_div').attr('style','display:block; !important');
+    }
+
+    if (($("#student_physical_disability").val() == 2) || ($("#student_physical_disability").val() == 3)){
+      jQuery('#student_need_accessible_room_div').attr('style','display:block; !important');
+    }
+
+    if ($("#student_social_participation").val() > 1){
+      jQuery('#student_social_participation_desc_div').attr('style','display:block; !important');
+    }
+
+    if ($("#student_association").val() == 5){
+      jQuery('#student_association_desc_div').attr('style','display:block; !important');
+    }
+
+    if ($("#student_cooperative").val() == 5){
+      jQuery('#student_cooperative_desc_div').attr('style','display:block; !important');
+    }
+
+    if ($("#student_religion").val() == 7){
+      jQuery('#student_religion_desc_div').attr('style','display:block; !important');
+    }
   });
 = semantic_form_for(@student, :html => {:id => 'formframe'}) do |f|
   - if @student.errors.any?
@@ -42,15 +73,15 @@
   %div
     = f.label :educator_id, 'Alfabetizador'
     %br
-    = f.select :educator_id, @educators
+    = f.select :educator_id, @educators, :prompt => "Selecione"
   %div
     = f.label :core_id, 'Localidade do núcleo'
     %br
-    = f.select :core_id, @cores
+    = f.select :core_id, @cores, :prompt => "Selecione"
   %div
     = f.label :room_id, t('student.room')
     %br
-    = f.select :room_id, @rooms
+    = f.select :room_id, @rooms, :prompt => "Selecione"
   %div
     = f.label :sign_up_date_on, t('student.sign_up_date_on')
     %br
@@ -78,11 +109,11 @@
   %div
     = f.label :age, t('student.age.title')
     %br
-    = f.select :age, @ages
+    = f.select :age, @ages, :prompt => "Selecione"
   %div
     = f.label :gender, t('student.gender')
     %br
-    = f.select :gender, @genders
+    = f.select :gender, @genders, :prompt => "Selecione"
   %div
     = f.label :dob, t('student.dob')
     %br
@@ -94,7 +125,7 @@
   %div
     = f.label :ethnicity, "A sua cor ou raça é"
     %br
-    = f.select :ethnicity, @ethnicities
+    = f.select :ethnicity, @ethnicities, :prompt => "Selecione"
   %div
     = f.label :hometown, t('student.hometown')
     %br
@@ -107,7 +138,7 @@
     = f.label :zone, t('student.zone')
     %br
     .field_with_complement_info
-      = f.select :zone, @zones
+      = f.select :zone, @zones, :prompt => "Selecione"
       :javascript
         $(document).ready(function() {
             $("#student_zone").change(function() {
@@ -204,7 +235,7 @@
       %div
         = f.label :internet_access_local, "Local"
         %br
-        = f.select :internet_access_local, Student::INTERNET_ACCESS_LOCAL
+        = f.select :internet_access_local, Student::INTERNET_ACCESS_LOCAL, :prompt => "Selecione"
       :javascript
         $(document).ready(function() {
             $("#student_internet_access_local").change(function() {
@@ -249,12 +280,12 @@
   %div
     = f.label :civil_status, t('student.civil_status')
     %br
-    = f.select :civil_status, @civil_status
+    = f.select :civil_status, @civil_status, :prompt => "Selecione"
   %div
     = f.label :education_level, t('student.education_level.title')
     %br
     .field_with_complement_info
-      = f.select :education_level, Student::EDUCATION_LEVELS
+      = f.select :education_level, Student::EDUCATION_LEVELS, :prompt => "Selecione"
       :javascript
         $(document).ready(function() {
             $("#student_education_level").change(function() {
@@ -275,12 +306,12 @@
   %div
     = f.label :familiar_income, 'Renda familiar'
     %br
-    = f.select :familiar_income, Student::FAMILIAR_INCOME
+    = f.select :familiar_income, Student::FAMILIAR_INCOME, :prompt => "Selecione"
 
   %div
     = f.label :actual_condition, t('student.actual_condition.title')
     %br
-    = f.select :actual_condition, @actual_conditions
+    = f.select :actual_condition, @actual_conditions, :prompt => "Selecione"
   %div
     = f.label :profession, t('student.profession.title')
     %br
@@ -292,16 +323,16 @@
   %div
     = f.label :worker_situation, t('student.profession.situation')
     %br
-    = f.select :worker_situation, @worker_situations
+    = f.select :worker_situation, @worker_situations, :prompt => "Selecione"
   %div
     = f.label :worker_situation_type, t('student.profession.type')
     %br
-    = f.select :worker_situation_type, @worker_situation_types
+    = f.select :worker_situation_type, @worker_situation_types, :prompt => "Selecione"
   %div
     = f.label :house, t('student.house')
     %br
     .field_with_complement_info
-      = f.select :house, @houses
+      = f.select :house, @houses, :prompt => "Selecione"
       :javascript
         $(document).ready(function() {
             $("#student_house").change(function() {
@@ -322,12 +353,12 @@
     = f.label :house_type, "Tipo de moradia"
     %br
     .field_with_complement_info
-      = f.select :house_type, Student::HOUSE_TYPES
+      = f.select :house_type, Student::HOUSE_TYPES, :prompt => "Selecione"
       :javascript
         $(document).ready(function() {
             $("#student_house_type").change(function() {
                 var value = $(this).val();
-                if (value == 5){
+                if (value == 6){
                   jQuery('#student_house_type_desc_div').attr('style','display:block; !important');
                   jQuery('#student_house_type_desc').focus();
                 }
@@ -339,100 +370,6 @@
     #student_house_type_desc_div.invisible
       %label= t('which')
       = f.text_field :house_type_desc
-
-
-  %div
-    = f.label :vision_loss, "Deficiência visual - tem dificuldade permanente de enxergar?"
-    %br
-    .field_with_complement_info
-      = f.select :vision_loss, Student::VISION_LOSS
-      :javascript
-        $(document).ready(function() {
-            $("#student_vision_loss").change(function() {
-                var value = $(this).val();
-                if (value == 3){
-                  jQuery('#student_need_glasses_div').attr('style','display:block; !important');
-                }
-                else{
-                  jQuery('#student_need_glasses_div').attr('style','display:none; !important');
-                }
-            });
-        });
-    #student_need_glasses_div.invisible
-      %label= "Possui óculos?"
-      = f.input :need_glasses, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
-  %div
-    = f.label :vision_loss_observation, "Observação"
-    = f.input :vision_loss_observation
-
-  %div
-    = f.label :hearing_disability, "Deficiência auditiva - tem dificuldade permanente de ouvir?"
-    %br
-    .field_with_complement_info
-      = f.select :hearing_disability, Student::HEARING_DISABILITY
-      :javascript
-        $(document).ready(function() {
-            $("#student_vision_loss").change(function() {
-                var value = $(this).val();
-                if (value == 3){
-                  jQuery('#student_hearing_device').attr('style','display:block; !important');
-                }
-                else{
-                  jQuery('#student_hearing_device').attr('style','display:none; !important');
-                }
-            });
-        });
-    #student_hearing_device.invisible
-      %label= "Possui aparelho?"
-      = f.input :hearing_device, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
-  %div
-    = f.label :hearing_disability_observation, "Observação"
-    = f.input :hearing_disability_observation
-
-
-  %div
-    = f.label :physical_disability, "Deficiência física - tem dificuldade permanente para caminhar e/ou subir/descer degraus?"
-    %br
-    .field_with_complement_info
-      = f.select :physical_disability, Student::PHYSICAL_DISABILITY
-      :javascript
-        $(document).ready(function() {
-            $("#student_vision_loss").change(function() {
-                var value = $(this).val();
-                if ((value == 2) || (value == 3)){
-                  jQuery('#student_hearing_device').attr('style','display:block; !important');
-                }
-                else{
-                  jQuery('#student_hearing_device').attr('style','display:none; !important');
-                }
-            });
-        });
-    #student_hearing_device.invisible
-      %label= "Necessita de adaptação para acesso à sala de aula?"
-      = f.input :need_accessible_room, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
-  %div
-    = f.label :physical_disability_to_write, "Tem dificuldade permanente para escrever e/ou manusear/manipular objetos?"
-    = f.input :physical_disability_to_write, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
-  %div
-    = f.label :physical_disability_observation, "Observação"
-    = f.input :physical_disability_observation
-
-  %div
-    = f.label :intelectual_disability, "Deficiência intelectual/mental - Tem alguma dificuldade permanente que limite a realização de atividades ligadas a:"
-    = f.select :intelectual_disability, Student::PHYSICAL_DISABILITY
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   %div
     .field_with_complement_info
@@ -457,13 +394,155 @@
     #student_special_need_desc_div.invisible
       %label= t('which')
       = f.text_field :special_need_desc
+
+  %div
+    = f.label :vision_loss, "Deficiência visual - tem dificuldade permanente de enxergar?"
+    %br
+    .field_with_complement_info
+      = f.select :vision_loss, Student::VISION_LOSS, :prompt => "Selecione"
+      :javascript
+        $(document).ready(function() {
+            $("#student_vision_loss").change(function() {
+                var value = $(this).val();
+                if (value == 3){
+                  jQuery('#student_need_glasses_div').attr('style','display:block; !important');
+                }
+                else{
+                  jQuery('#student_need_glasses_div').attr('style','display:none; !important');
+                }
+            });
+        });
+    #student_need_glasses_div.invisible
+      = f.input :need_glasses, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
+  %div
+    = f.label :vision_loss_observation, "Observação"
+    %br
+    = f.text_area :vision_loss_observation, :cols => 100, :rows => 5
+
+  %div
+    = f.label :hearing_disability, "Deficiência auditiva - tem dificuldade permanente de ouvir?"
+    %br
+    .field_with_complement_info
+      = f.select :hearing_disability, Student::HEARING_DISABILITY, :prompt => "Selecione"
+      :javascript
+        $(document).ready(function() {
+            $("#student_hearing_disability").change(function() {
+                var value = $(this).val();
+                if (value == 3){
+                  jQuery('#student_hearing_device_div').attr('style','display:block; !important');
+                }
+                else{
+                  jQuery('#student_hearing_device_div').attr('style','display:none; !important');
+                }
+            });
+        });
+    #student_hearing_device_div.invisible
+      = f.input :hearing_device, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
+  %div
+    = f.label :hearing_disability_observation, "Observação"
+    %br
+    = f.text_area :hearing_disability_observation, :cols => 100, :rows => 5
+
+
+  %div
+    = f.label :physical_disability, "Deficiência física - tem dificuldade permanente para caminhar e/ou subir/descer degraus?"
+    %br
+    .field_with_complement_info
+      = f.select :physical_disability, Student::PHYSICAL_DISABILITY, :prompt => "Selecione"
+      :javascript
+        $(document).ready(function() {
+            $("#student_physical_disability").change(function() {
+                var value = $(this).val();
+                if ((value == 2) || (value == 3)){
+                  jQuery('#student_need_accessible_room_div').attr('style','display:block; !important');
+                }
+                else{
+                  jQuery('#student_need_accessible_room_div').attr('style','display:none; !important');
+                }
+            });
+        });
+    #student_need_accessible_room_div.invisible
+      = f.input :need_accessible_room, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
+  %div
+    = f.input :physical_disability_to_write, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
+  %div
+    = f.label :physical_disability_observation, "Observação"
+    %br
+    = f.text_area :physical_disability_observation, :cols => 100, :rows => 5
+
+  %div
+    = f.label :intelectual_disability, "Deficiência intelectual/mental - Tem alguma dificuldade permanente que limite a realização de atividades ligadas a:"
+    = f.select :intelectual_disability, Student::INTELECTUAL_DISABILITY, :prompt => "Selecione"
+
+  %div
+    = f.label :social_participation, "Participação social:"
+    %br
+    .field_with_complement_info
+      = f.select :social_participation, Student::SOCIAL_PARTICIPATION, :prompt => "Selecione"
+      :javascript
+        $(document).ready(function() {
+            $("#student_social_participation").change(function() {
+                var value = $(this).val();
+                if (value > 1){
+                  jQuery('#student_social_participation_desc_div').attr('style','display:block; !important');
+                }
+                else{
+                  jQuery('#student_social_participation_desc_div').attr('style','display:none; !important');
+                }
+            });
+        });
+    #student_social_participation_desc_div.invisible
+      %label= t('which')
+      = f.text_field :social_participation_desc
+
+  %div
+    = f.label :association, "Associação:"
+    %br
+    .field_with_complement_info
+      = f.select :association, Student::ASSOCIATION, :prompt => "Selecione"
+      :javascript
+        $(document).ready(function() {
+            $("#student_association").change(function() {
+                var value = $(this).val();
+                if (value == 5){
+                  jQuery('#student_association_desc_div').attr('style','display:block; !important');
+                }
+                else{
+                  jQuery('#student_association_desc_div').attr('style','display:none; !important');
+                }
+            });
+        });
+    #student_association_desc_div.invisible
+      %label= t('which')
+      = f.text_field :association_desc
+
+  %div
+    = f.label :cooperative, "Cooperativas:"
+    %br
+    .field_with_complement_info
+      = f.select :cooperative, Student::COOPERATIVE, :prompt => "Selecione"
+      :javascript
+        $(document).ready(function() {
+            $("#student_cooperative").change(function() {
+                var value = $(this).val();
+                if (value == 5){
+                  jQuery('#student_cooperative_desc_div').attr('style','display:block; !important');
+                }
+                else{
+                  jQuery('#student_cooperative_desc_div').attr('style','display:none; !important');
+                }
+            });
+        });
+    #student_cooperative_desc_div.invisible
+      %label= t('which')
+      = f.text_field :cooperative_desc
   %br
   %div
     %br
     = f.label :religion, t('student.religion')
     %br
     .field_with_complement_info
-      = f.select :religion, @religions
+      = f.select :religion, @religions, :prompt => "Selecione"
       :javascript
         $(document).ready(function() {
             $("#student_religion").change(function() {
@@ -480,10 +559,20 @@
     #student_religion_desc_div.invisible
       %label= t('which')
       = f.text_field :religion_desc
+
+  %div
+    = f.label :participation_reason, "Por que está participando do programa de alfabetização?"
+    %br
+    = f.text_area :participation_reason, :cols => 100, :rows => 5
+  %div
+    = f.label :subjects, "Quais assuntos você gostaria que fossem trabalhados durante as aulas?"
+    %br
+    = f.text_area :subjects, :cols => 100, :rows => 5
+
   %div
     = f.label :observations, t('student.observations')
     %br
-    = f.text_area :observations
+    = f.text_area :observations, :cols => 100, :rows => 5
     %br
   .actions
     = f.submit button

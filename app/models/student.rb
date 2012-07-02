@@ -18,7 +18,13 @@ class Student < ActiveRecord::Base
   VISION_LOSS = [["Sim. Não consegue de modo algum", 1], ["Necessita de Braile", 2], ["Grande dificuldade, só consegue enxergar usando óculos", 3], ["Alguma dificuldade mas consegue enxergar sem óculos", 4], ["Não, nenhuma dificuldade", 5]]
   HEARING_DISABILITY = [["Sim. Não consegue de modo algum", 1], ["Necessita de libras", 2], ["Grande dificuldade só consegue ouvir usando aparelho", 3], ["Alguma dificuldade mas consegue ouvir sem aparelho", 4], ["Não. Nenhuma dificuldade", 5]]
   PHYSICAL_DISABILITY = [["Sim. Não consegue de modo algum", 1], ["Necessita de cadeiras de roda", 2], ["Grande dificuldade, só consegue usando bengala/aparelho de apoio", 3], ["Sim, alguma dificuldade mas consegue caminhar e/ou subir/descer degraus", 4], ["Não, nenhuma dificuldade", 5]]
-  
+  INTELECTUAL_DISABILITY = [["área cognitiva (dificuldade de aprendizagem de conceitos abstratos, foco de atenção, capacidade  de memorização e resolução de problemas)", 1],
+    ["área motora (dificuldade de manusear/manipular objetos, coordenação motora, mobilidade)", 2], 
+    ["área de comunicação (dificuldade de se comunicar e interagir socialmente com os demais)", 3], ["Nenhuma", 4]]
+  SOCIAL_PARTICIPATION = [["Nenhuma", 1], ["Movimento sindical", 2], ["Movimento social popular (jovens, mulheres, negros, ambientalista, sem terra, sem teto, GLBTT, outros)", 3], ["ONG", 4]]
+  ASSOCIATION = [["Comunitária", 1], ["De trabalhadores rurais", 2], ["De bairro", 3], ["De artesãos", 4], ["Outra", 5], ["Nenhuma", 6]]
+  COOPERATIVE = [["De trabalho", 1], ["De produção", 2], ["De crédito", 3], ["De artesãos", 4], ["Outra", 5], ["Nenhuma", 6]]
+
   accepts_nested_attributes_for :phones, :reject_if => lambda { |a| a[:number].blank? }, :allow_destroy => true
   
 

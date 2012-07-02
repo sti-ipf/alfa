@@ -539,6 +539,10 @@ pt:
         special_need: "Possui necessidade educacional especial"
       student:
         special_need: "Possui necessidade educacional especial"
+        need_glasses: "Possui óculos?"
+        hearing_device: "Possui aparelho?"
+        need_accessible_room: "Necessita de adaptação para acesso à sala de aula?"
+        physical_disability_to_write: "Tem dificuldade permanente para escrever e/ou manusear/manipular objetos?"
       world_reading:
         coordinator_id: "Coordenador"
         educator_id: "Educador"
