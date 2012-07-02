@@ -45,6 +45,55 @@ class Coordinator < ActiveRecord::Base
       [I18n.t('coordinator.cooperative.production'), 1], [I18n.t('coordinator.cooperative.credit'), 2],
       [I18n.t('coordinator.cooperative.artisans'), 3]]
 
+
+  COMPUTER_KNOWLEDGE = {
+    I18n.t('coordinator.computer_knowledge_options.know_by_yourself') => 1,
+    I18n.t('coordinator.computer_knowledge_options.dont_know_and_want_to') => 2,
+    I18n.t('coordinator.computer_knowledge_options.know_with_others') => 3,
+    I18n.t('coordinator.computer_knowledge_options.dont_know_and_dont_want_to') => 4
+  }
+
+  COMPUTER_USE = {
+    I18n.t('coordinator.computer_use_options.write') => 1,
+    I18n.t('coordinator.computer_use_options.multimidia') => 2,
+    I18n.t('coordinator.computer_use_options.read') => 3,
+    I18n.t('coordinator.computer_use_options.internet') => 4,
+    I18n.t('coordinator.computer_use_options.spreadsheet') => 5,
+    I18n.t('coordinator.computer_use_options.play') => 6,
+    I18n.t('coordinator.computer_use_options.course') => 7,
+    I18n.t('coordinator.computer_use_options.social') => 8
+  }
+
+  COMPUTER_TARGET = {
+    I18n.t('coordinator.computer_target_options.free_time') => 1,
+    I18n.t('coordinator.computer_target_options.study') => 2,
+    I18n.t('coordinator.computer_target_options.work') => 3,
+    I18n.t('coordinator.computer_target_options.know_and_never_use') => 4,
+    I18n.t('coordinator.computer_target_options.not_know') => 5,
+    I18n.t('coordinator.computer_target_options.know_and_not_like') => 6
+  }
+
+  INTERNET_OPTIONS = {
+    I18n.t('coordinator.internet_options.dial_up') => 1,
+    I18n.t('coordinator.internet_options.radio') => 2,
+    I18n.t('coordinator.internet_options.broadband') => 3
+  }
+
+  EMAIL_FREQUENCY = {
+    I18n.t('coordinator.email_frequency.once') => 1,
+    I18n.t('coordinator.email_frequency.tree_times') => 2,
+    I18n.t('coordinator.email_frequency.every_day') => 3,
+    I18n.t('coordinator.email_frequency.almost_never') => 4,
+    I18n.t('coordinator.email_frequency.not') => 5
+  }
+
+  SOCIAL_NETWORK = { 
+    I18n.t('coordinator.social_network.options.orkut') => 1,
+    I18n.t('coordinator.social_network.options.facebook') => 2,
+    I18n.t('coordinator.social_network.options.twitter') => 3,
+    I18n.t('coordinator.social_network.options.another') => 4
+  }
+
 #nested attributes
 
   accepts_nested_attributes_for :phones, :reject_if => lambda { |a| a[:number].blank? }, :allow_destroy => true
