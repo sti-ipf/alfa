@@ -24,6 +24,22 @@
       jQuery('#coordinator_religion_desc_div').attr('style','display:block; !important');
     }
 
+    if($("select#coordinator_social_network_know").val() == 1){
+      jQuery('#social_question').attr('style','display:block; !important');
+    }
+
+    if($("select#coordinator_social_network_use).val() == 1){
+      jQuery('#social_options').attr('style','display:block; !important');
+    }
+
+    if($("select#coordinator_social_network).val() == 4){
+      jQuery('#another_social').attr('style','display:block; !important');
+    }
+
+    if($("select#coordinator_has_msn).val() == 1){
+      jQuery('#msn_frequency').attr('style','display:block; !important');
+    }
+
   });
 = semantic_form_for(@coordinator, :html => {:id => 'formframe'}) do |f|
   - if @coordinator.errors.any?
