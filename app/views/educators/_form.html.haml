@@ -276,28 +276,6 @@
     %br
     = f.select :familiar_income, Student::FAMILIAR_INCOME, :prompt => "Selecione"
 
-  %div
-    = f.label :house_type, "Tipo de moradia"
-    %br
-    .field_with_complement_info
-      = f.select :house_type, Student::HOUSE_TYPES, :prompt => "Selecione"
-      :javascript
-        $(document).ready(function() {
-            $("#educator_house_type").change(function() {
-                var value = $(this).val();
-                if (value == 6){
-                  jQuery('#educator_house_type_desc_div').attr('style','display:block; !important');
-                  jQuery('#educator_house_type_desc').focus();
-                }
-                else{
-                  jQuery('#educator_house_type_desc_div').attr('style','display:none; !important');
-                }
-            });
-        });
-    #educator_house_type_desc_div.invisible
-      %label= t('which')
-      = f.text_field :house_type_desc
-
   .gray_border
     %h2= t('educator.personal_doc')
   %div
@@ -394,9 +372,26 @@
       = f.label :house_desc, t('which')
       = f.text_field :house_desc
   %div
-    = f.label :house_type, t('educator.house_type')
+    = f.label :house_type, "Tipo de moradia"
     %br
-    = f.select :house_type, @house_types, :prompt => "Selecione"
+    .field_with_complement_info
+      = f.select :house_type, Student::HOUSE_TYPES, :prompt => "Selecione"
+      :javascript
+        $(document).ready(function() {
+            $("#educator_house_type").change(function() {
+                var value = $(this).val();
+                if (value == 6){
+                  jQuery('#educator_house_type_desc_div').attr('style','display:block; !important');
+                  jQuery('#educator_house_type_desc').focus();
+                }
+                else{
+                  jQuery('#educator_house_type_desc_div').attr('style','display:none; !important');
+                }
+            });
+        });
+    #educator_house_type_desc_div.invisible
+      %label= t('which')
+      = f.text_field :house_type_desc
   
   %div
     .field_with_complement_info

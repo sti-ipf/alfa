@@ -100,6 +100,7 @@ class Coordinator < ActiveRecord::Base
   accepts_nested_attributes_for :social_participations, :allow_destroy => true
 
   def age
+    return '' if self.dob.nil?
     value = Date.today.year - self.dob.year
     value -= 1 if (Date.today < self.dob + value.years)
     return value

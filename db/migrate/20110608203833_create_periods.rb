@@ -7,6 +7,7 @@ class CreatePeriods < ActiveRecord::Migration
       t.time :end_time
 
       t.references :core
+      t.references :room
 
       t.timestamps
     end

@@ -97,6 +97,14 @@ ul.intranet-menu li a:hover{background:#fefefe;
   background: url("/images/cabecalho_sfi.jpg") no-repeat scroll 0 0 #fff;
 }
 
+.sao_francisco_logo{
+  width:705px;
+  height: 85px;
+  float: left;
+  margin-left: 20px;
+  background: url("/images/cabecalho_sfi_sao_francisco.jpg") no-repeat scroll 0 0 #fff;
+}
+
 #content_wrapper{
   margin: 0 auto;
   padding: 0;

@@ -60,23 +60,23 @@
   %div
     = f.label :start_date_to_students, t('coordinator.start_date_to_students')
     %br
-    = f.date_select :start_date_to_students, {:start_year => 1900}
+    = f.date_select :start_date_to_students, {:start_year => 1900, :prompt => { :day => 'Selecione um dia', :month => 'Selecione um mês', :year => 'Selecione um ano'}}
   %div
     = f.label :core_id, t('coordinator.core')
     %br
-    = f.select :core_id, @cores
+    = f.select :core_id, @cores, :prompt => "Selecione"
   %div
     = f.label :gender, t('coordinator.gender')
     %br
-    = f.select :gender, @genders
+    = f.select :gender, @genders, :prompt => "Selecione"
   %div
     = f.label :dob, t('coordinator.dob')
     %br
-    = f.date_select :dob, {:start_year => 1900, :end_year => DateTime.now.year}
+    = f.date_select :dob, {:start_year => 1900, :end_year => DateTime.now.year, :prompt => { :day => 'Selecione um dia', :month => 'Selecione um mês', :year => 'Selecione um ano'}}
   %div
     = f.label :ethnicity, t('coordinator.ethnicity')
     %br
-    = f.select :ethnicity, @ethnicities
+    = f.select :ethnicity, @ethnicities, :prompt => "Selecione"
   %div
     = f.label :ethnicity, t('coordinator.email')
     %br
@@ -92,7 +92,7 @@
   %div
     = f.label :zone, t('coordinator.zone')
     %br
-    = f.select :zone, @zones
+    = f.select :zone, @zones, :prompt => "Selecione"
   %div
     = f.label :address, t('coordinator.address')
     %br
@@ -111,7 +111,7 @@
   %div
     = f.label :civil_status, t('coordinator.civil_status')
     %br
-    = f.select :civil_status, @civil_status
+    = f.select :civil_status, @civil_status, :prompt => "Selecione"
   %b= t('coordinator.personal_doc')
   %div
     = f.label :rg, t('coordinator.rg')
@@ -142,7 +142,7 @@
   %div
     = f.label :sons_number, t('coordinator.sons_number.title')
     %br
-    = f.select :sons_number, @sons_number
+    = f.select :sons_number, @sons_number, :prompt => "Selecione"
   %div
     %b
       = t('coordinator.age_of_sons')
@@ -172,7 +172,7 @@
     = f.label :education_level, t('coordinator.education_level')
     %br
     .field_with_complement_info
-      = f.select :education_level, @education_levels
+      = f.select :education_level, @education_levels, :prompt => "Selecione"
       :javascript
         $(document).ready(function() {
             $("#coordinator_education_level").change(function() {
@@ -194,7 +194,7 @@
     = f.label :house, t('coordinator.house.title')
     %br
     .field_with_complement_info
-      = f.select :house, @houses
+      = f.select :house, @houses, :prompt => "Selecione"
       :javascript
         $(document).ready(function() {
             $("#coordinator_house").change(function() {
@@ -214,7 +214,7 @@
   %div
     = f.label :house_type, t('coordinator.house_type')
     %br
-    = f.select :house_type, @house_types
+    = f.select :house_type, @house_types, :prompt => "Selecione"
   %div
     = f.input :special_need, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
   %div
@@ -225,16 +225,16 @@
   %div
     = f.label :political_affiliation, t('coordinator.political_affiliation.title')
     %br
-    = f.select :political_affiliation, @political_affiliations
+    = f.select :political_affiliation, @political_affiliations, :prompt => "Selecione"
   %div
     = f.label :political_party, t('coordinator.political_party')
     %br
-    = f.select :political_party, @political_parties
+    = f.select :political_party, @political_parties, :prompt => "Selecione"
   %div
     = f.label :religion, t('coordinator.religion.title')
     %br
     .field_with_complement_info
-      = f.select :religion, @religions
+      = f.select :religion, @religions, :prompt => "Selecione"
       :javascript
         $(document).ready(function() {
             $("#coordinator_religion").change(function() {
@@ -255,7 +255,7 @@
     = f.label :association, t('coordinator.association.title')
     %br
     .field_with_complement_info
-      = f.select :association, @associations
+      = f.select :association, @associations, :prompt => "Selecione"
       :javascript
         $(document).ready(function() {
             $("#coordinator_association").change(function() {
@@ -275,7 +275,7 @@
   %div
     = f.label :cooperative, t('coordinator.cooperative.title')
     %br
-    = f.select :cooperative, @cooperatives
+    = f.select :cooperative, @cooperatives, :prompt => "Selecione"
   
   %div
     = f.label :literacy_exp, t('coordinator.literacy.experience')
@@ -333,32 +333,32 @@
   %div
     = f.label :computer_knowledge, t('coordinator.computer_knowledge')
     %br
-    = f.select :computer_knowledge, @computer_knowledges
+    = f.select :computer_knowledge, @computer_knowledges, :prompt => "Selecione"
 
   %div
     = f.label :computer_uses, t('coordinator.computer_use')
     %br
-    = f.select :computer_uses, @computer_uses
+    = f.select :computer_uses, @computer_uses, :prompt => "Selecione"
 
   %div
     = f.label :computer_target, t('coordinator.computer_target')
     %br
-    = f.select :computer_target, @computer_targets
+    = f.select :computer_target, @computer_targets, :prompt => "Selecione"
 
   %div
     = f.label :internet_home, t('coordinator.internet_home')
     %br
-    = f.select :internet_home, @internet_options
+    = f.select :internet_home, @internet_options, :prompt => "Selecione"
   
   %div
     = f.label :email_read, t('coordinator.email_read')
     %br
-    = f.select :email_read, @email_frequencies
+    = f.select :email_read, @email_frequencies, :prompt => "Selecione"
 
   %div
     = f.label :social_network_know, t('coordinator.social_network.know')
     %br
-    = f.select :social_network_know, [[t('yyes'),1],[t('nno'),2]]
+    = f.select :social_network_know, [[t('yyes'),1],[t('nno'),2]], :prompt => "Selecione"
     :javascript
       $(document).ready(function(){
         var selected = ""
@@ -376,7 +376,7 @@
     #social_question
       = f.label :social_network_use, t('coordinator.social_network.use')
       %br
-      = f.select :social_network_use, [[t('yyes'),1],[t('nno'),2]]
+      = f.select :social_network_use, [[t('yyes'),1],[t('nno'),2]], :prompt => "Selecione"
       :javascript
         $(document).ready(function(){
           var selected = ""
@@ -394,7 +394,7 @@
     #social_options
       = f.label :social_network, t('coordinator.social_network.wich')
       %br
-      = f.select :social_network, @social_networks
+      = f.select :social_network, @social_networks, :prompt => "Selecione"
       :javascript
         $(document).ready(function(){
           var selected = ""
@@ -417,7 +417,7 @@
   %div
     = f.label :has_msn, t('coordinator.msn.has')
     %br
-    = f.select :has_msn, [[t('yyes'),1],[t('nno'),2]]
+    = f.select :has_msn, [[t('yyes'),1],[t('nno'),2]], :prompt => "Selecione"
     :javascript
       $(document).ready(function(){
         var selected = ""
@@ -435,17 +435,17 @@
     #msn_frequency
       = f.label :msn_use, t('coordinator.msn.use')
       %br
-      = f.select :msn_use, [[t('yyes'),1],[t('nno'),2]]
+      = f.select :msn_use, [[t('yyes'),1],[t('nno'),2]], :prompt => "Selecione"
   
   %div
     = f.label :blog_status, t('coordinator.blog')
     %br
-    = f.select :blog_status, [[t('yyes'),1],[t('nno'),2]]
+    = f.select :blog_status, [[t('yyes'),1],[t('nno'),2]], :prompt => "Selecione"
 
   %div
     = f.label :ead, t('coordinator.ead')
     %br
-    = f.select :ead, [[t('yyes'),1],[t('nno'),2]]
+    = f.select :ead, [[t('yyes'),1],[t('nno'),2]], :prompt => "Selecione"
   
   %div
     = f.label :obs, t('coordinator.obs')

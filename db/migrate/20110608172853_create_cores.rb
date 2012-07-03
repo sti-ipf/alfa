@@ -38,6 +38,7 @@ class CreateCores < ActiveRecord::Migration
       t.date :visit_on
       t.string :who_visited
       t.references :city
+      t.references :phase
 
       t.timestamps
     end

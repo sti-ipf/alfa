@@ -51,12 +51,15 @@
               = link_to t('user.view'), users_path
       #header_wrapper
         #header
-          .logo_header
+          - if [1].include?(session[:city_id].to_i)
+            .logo_header
+          - else
+            .sao_francisco_logo
         .right_menu
           - if !current_user.nil?
             - if current_user.cities.count > 1 || current_user.admin
               %li
-                = select_tag :cities, options_for_select([['Presidente Kennedy', 1], ['São Francisco de Itabapoana', 2]], session[:city_id])
+                = select_tag :cities, options_for_select(City.all.collect{|c| [c.name, c.id]}, session[:city_id])
                 :javascript
                   $(document).ready(function() {
 

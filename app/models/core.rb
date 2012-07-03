@@ -32,7 +32,7 @@ class Core < ActiveRecord::Base
     [I18n.t('core.illumination_type.lamp'), 1], [I18n.t('core.illumination_type.other'), 2]]
   ILLUMINATION_CONDITIONS = [[I18n.t('core.illumination_condition.ok'), 0],
     [I18n.t('core.illumination_condition.nok'), 1]]
-  TOTAL_SEATS = [[I18n.t('core.total_seats.until_10'), 0], [I18n.t('core.total_seats.between_10_20'), 1]]
+  TOTAL_SEATS = [[I18n.t('core.total_seats.until_10'), 0], [I18n.t('core.total_seats.between_10_20'), 1], ["Acima de 20", 2]]
 
 #nested attributes
 

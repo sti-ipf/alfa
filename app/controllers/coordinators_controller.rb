@@ -33,7 +33,7 @@ class CoordinatorsController < ApplicationController
   # GET /coordinators/new.xml
   def new
     @coordinator = Coordinator.new
-    3.times {@coordinator.phones.build}
+    1.times {@coordinator.phones.build}
     @coordinator.social_participations.build
     respond_to do |format|
       format.html # new.html.erb
@@ -118,7 +118,7 @@ class CoordinatorsController < ApplicationController
   end
 
   def load_data
-    @cores = Core.all(:conditions => "city_id IN (#{@cities_ids})").collect {|c| ["#{c.city.try(:name)} - #{c.community}", c.id]}
+    @cores = Core.all(:conditions => "city_id IN (#{@cities_ids})").collect {|c| ["#{c.city.try(:name)} - #{c.place_description}", c.id]}
     @genders = Coordinator::GENDERS
     @ethnicities = Coordinator::ETHNICITIES
     @zones = Coordinator::ZONES

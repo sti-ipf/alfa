@@ -53,16 +53,8 @@
   %div
     = f.label :place_description, 'Identificação do espaço'
     %br
-    = f.text_area :place_description
-    
-  %div
-    = f.label :number, 'Número'
-    %br
-    = f.text_field :number
-  %div
-    = f.label :city_id, t('core.city')
-    %br
-    = f.select :city_id, @cities
+    = f.text_area :place_description, :cols => 100, :rows => 5
+    = f.hidden_field :city_id, :value => session[:city_id]
   %div
     = f.label :community, t('core.community')
     %br
@@ -71,6 +63,10 @@
     = f.label :address, t('core.address')
     %br
     = f.text_field :address, :size => 100
+  %div
+    = f.label :number, 'Número'
+    %br
+    = f.text_field :number
   %div
     = f.label :zip_code, 'CEP'
     %br
@@ -84,7 +80,7 @@
     .field_with_complement_info
       = f.label :community_type, t('core.community_field')
       %br
-      = f.select :community_type, Core::COMMUNITY_TYPES
+      = f.select :community_type, Core::COMMUNITY_TYPES, :prompt => "Selecione"
       #core_community_type_desc_div.invisible
         = f.label :community_type_desc, t('which')
         = f.text_field :community_type_desc
@@ -105,7 +101,7 @@
     = f.label :place, t('core.place_field')
     %br
     .field_with_complement_info
-      = f.select :place, Core::PLACES
+      = f.select :place, Core::PLACES, :prompt => "Selecione"
       :javascript
         $(document).ready(function() {
             $("#core_place").change(function() {
@@ -137,7 +133,7 @@
   %div
     = f.label :resources_observation, "Observação"
     %br
-    = f.text_area :resources_observation
+    = f.text_area :resources_observation, :cols => 100, :rows => 5
   %div
     = f.label :institution_name, t('core.name_field')
     %br
@@ -170,7 +166,7 @@
     %br
     = f.label :size, t('core.size.title')
     %br
-    = f.select :size, Core::SIZES
+    = f.select :size, Core::SIZES, :prompt => "Selecione"
   %div
     = f.input :board, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
     :javascript
@@ -192,20 +188,20 @@
     #board_type_div{:style => "display: none;"}
       = f.label :board_type, t('core.board_type_field')
       %br
-      = f.select :board_type, Core::BOARD_TYPES
+      = f.select :board_type, Core::BOARD_TYPES, :prompt => "Selecione"
   %div
     = render "seat_types_fields"
     %div
       = f.label :total_seats, t('core.total_seats_field')
       %br
-      = f.select :total_seats, Core::TOTAL_SEATS
+      = f.select :total_seats, Core::TOTAL_SEATS, :prompt => "Selecione"
     %div
       = render "desk_types_fields"
     %div
       = f.label :illumination_type, t('core.illumination_field')
       %br
       .field_with_complement_info
-        = f.select :illumination_type, Core::ILLUMINATION_TYPES
+        = f.select :illumination_type, Core::ILLUMINATION_TYPES, :prompt => "Selecione"
         :javascript
           $(document).ready(function() {
               $("#core_illumination_type").change(function() {
@@ -225,7 +221,7 @@
     %div
       = f.label :illumination_condition, t('core.illumination_condition_field')
       %br
-      = f.select :illumination_condition, Core::ILLUMINATION_CONDITIONS
+      = f.select :illumination_condition, Core::ILLUMINATION_CONDITIONS, :prompt => "Selecione"
     %div
       .field_with_complement_info
         = f.input :another_place, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
@@ -252,11 +248,11 @@
     .textarea_div
       = f.label :coordenation_analysis, t('core.coordenation_analysis_field')
       %br
-      = f.text_area :coordenation_analysis
+      = f.text_area :coordenation_analysis, :cols => 100, :rows => 5
     %div
       = f.label :visit_on, t('core.visit_on_field')
       %br
-      = f.date_select :visit_on
+      = f.date_select :visit_on, :prompt => "Selecione"
     %div
       = f.label :who_visited, t('core.who_visited_field')
       %br
@@ -288,7 +284,7 @@
     %div
       = f.label :kitchen_observation, "Observação"
       %br
-      = f.text_area :kitchen_observation
+      = f.text_area :kitchen_observation, :cols => 100, :rows => 5
     %div
       .field_with_complement_info
         = f.input :has_computers, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
@@ -313,6 +309,6 @@
     %div
       = f.label :computer_observation, "Observação"
       %br
-      = f.text_area :computer_observation
+      = f.text_area :computer_observation, :cols => 100, :rows => 5
     .actions
       = f.submit button

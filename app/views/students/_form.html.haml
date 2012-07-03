@@ -85,11 +85,11 @@
   %div
     = f.label :sign_up_date_on, t('student.sign_up_date_on')
     %br
-    = f.date_select :sign_up_date_on
+    = f.date_select :sign_up_date_on, {:start_year => 2010, :end_year => DateTime.now.year}
   %div
     = f.label :class_start_date_on, t('student.class_start_date_on')
     %br
-    = f.date_select :class_start_date_on
+    = f.date_select :class_start_date_on, {:start_year => 2010, :end_year => DateTime.now.year}
   %div
     = f.label :nickname, "Apelido do alfabetizando(a)"
     %br

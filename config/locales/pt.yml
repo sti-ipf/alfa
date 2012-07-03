@@ -599,7 +599,7 @@ pt:
       coordinator:
         special_need: "Possui necessidade educacional especial"
       educator:
-        special_need: "Possui necessidade educacional especial"
+        special_need: "Possui necessidade especial"
         travel_disponibility: "Você tem disponibilidade para viajar pelo Programa, caso seja necessário?"
         has_pc: "Você possui computador pessoal?"
         which_social_network: "Utiliza redes sociais?"

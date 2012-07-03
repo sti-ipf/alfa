@@ -1,6 +1,8 @@
 # -*- encoding : utf-8 -*-
 Alfa::Application.routes.draw do
 
+  resources :phases
+
   resources :world_readings
 
   resources :students
