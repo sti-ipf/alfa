@@ -11,6 +11,7 @@ class CreateEducators < ActiveRecord::Migration
       t.string :hometown
       t.string :state
       t.integer :zone
+      t.string :zone_desc
       t.string :address
       t.integer :civil_status
       t.string :rg
@@ -54,6 +55,7 @@ class CreateEducators < ActiveRecord::Migration
       t.integer :house_type
       t.string :house_type_desc
       t.string :special_need_desc
+      t.integer :special_need_type
       t.text :participation_reason
       t.boolean :travel_disponibility
       t.text :last_books
@@ -67,6 +69,21 @@ class CreateEducators < ActiveRecord::Migration
       t.integer :where_use_pc
       t.integer :about_pc_use
       t.integer :which_uses
+      t.string :where_use_pc_desc
+
+      t.boolean :has_internet
+      t.integer :where_has_internet
+      t.string :where_has_internet_desc
+
+      t.integer :for_what_use_internet
+      t.string :for_what_use_internet_desc
+      t.integer :use_social_network
+      t.integer :know_social_network
+      t.string :know_social_network_desc
+      t.integer :use_social_network
+      t.integer :which_social_network
+      t.string :use_social_network_desc
+      t.text :observation
       
 
       t.timestamps

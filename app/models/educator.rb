@@ -13,6 +13,10 @@ class Educator < ActiveRecord::Base
   WHERE_USE_PC = [["Lan House", 1], ["Na casa de família", 2], ["Na casa de amigo", 3], ["Outros", 4]]
   WHICH_USES = [["Escrever textos", 1], ["Ouvir música e/ou assistir vídeos", 2], ["Ler textos", 3], ["Acessar a Internet", 4], ["Fazer planilhas", 5], ["Jogar", 6],
     ["Realizar cursos", 7], ["Participar de redes sociais", 8]]
+  SPECIAL_NEED = [["Deficiência visual", 1], ["Deficiência física", 2], ["Deficiência auditiva", 3], ["Deficiência intelectual/mental", 4]]
+  FOR_WHAT_USE_INTERNET = [["Lazer", 1], ["Estudo", 2], ["Trabalho", 3], ["Outros", 4]]
+  SOCIAL_NETWORK = [["Orkut", 1], ["Facebook", 2], ["Twitter", 3], ["Outras", 4]]
+  WHERE_HAS_INTERNET = [["Em casa", 1], ["No trabalho", 2], ["Em outros espaços", 3]]
 
   accepts_nested_attributes_for :phones, :reject_if => lambda { |a| a[:number].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :social_participations, :allow_destroy => true

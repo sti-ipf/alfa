@@ -33,7 +33,7 @@ class EducatorsController < ApplicationController
   # GET /educators/new.xml
   def new
     @educator = Educator.new
-    3.times {@educator.phones.build}
+    1.times {@educator.phones.build}
     @educator.social_participations.build
     respond_to do |format|
       format.html # new.html.erb
