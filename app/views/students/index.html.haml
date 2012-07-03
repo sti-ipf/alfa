@@ -25,7 +25,7 @@
     - @students.each do |student|
       %tr{:class => 'more-click'}
         %td{:class => 'first-td'}= student.educator.name if !student.educator.nil?
-        %td= student.core.place_description if !student.core.nil?
+        %td= student.core.name if !student.core.nil?
         %td= student.room.name if !student.room.nil?
         %td= student.name
         %td{:class => 'td-editar'}= link_to t('edit'), edit_student_path(student), :class => 'editar'

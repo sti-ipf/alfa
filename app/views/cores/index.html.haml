@@ -22,7 +22,7 @@
     - @cores.each do |core|
       %tr{:class => 'more-click'}
         %td{:class => 'first-td'}= core.city.try(:name)
-        %td= core.community
+        %td= core.name
         %td{:class => 'td-editar'}= link_to t('edit'), edit_core_path(core), :class => 'editar'
         %td= link_to t('destroy'), core, :confirm => t('are_you_sure'), :method => :delete, :class => 'apagar'
       %tr{:class => 'more-info'}

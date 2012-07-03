@@ -16,12 +16,14 @@
   %thead
     %tr
       %th= t('room.name')
+      %th= "Núcleo"
       %th{:style => 'width: 20px;'}
       %th{:style => 'width: 20px;'}
   %tbody
     - @rooms.each do |room|
       %tr{:class => 'more-click'}
         %td{:class => 'first-td'}= room.name
+        %td= room.core.try(:name)
         %td{:class => 'td-editar'}= link_to t('edit'), edit_room_path(room), :class => 'editar'
         %td= link_to t('destroy'), room, :confirm => t('are_you_sure'), :method => :delete, :class => 'apagar'
       %tr{:class => 'more-info'}
