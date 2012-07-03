@@ -34,7 +34,7 @@
       .field
         = f.input :admin
       .field
-        %label= 'Cidades'
+        %label= 'Cidades/Fases'
         %br/
         - @cities.each do |c|
           = check_box_tag 'user[city_ids][]', c.id, @user.cities.include?(c)
