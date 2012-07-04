@@ -104,7 +104,7 @@ class StudentsController < ApplicationController
     @house_types = Coordinator::HOUSE_TYPES
     @religions = Coordinator::RELIGIONS
     @rooms = Room.all(:conditions => "id IN (SELECT room_id FROM coordinators_rooms WHERE coordinator_id IN (SELECT id FROM coordinators WHERE core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))))
-      OR id IN (SELECT room_id FROM educators_rooms WHERE educator_id IN (SELECT id FROM educators WHERE core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))))").collect{|c| ["#{c.core.name} - #{c.name}", c.id]}
+      OR id IN (SELECT room_id FROM educators_rooms WHERE educator_id IN (SELECT id FROM educators WHERE core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))))").collect{|c| ["#{c.core.try(:name)} - #{c.name}", c.id]}
   end
   
 end
