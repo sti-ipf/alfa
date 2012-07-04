@@ -56,7 +56,7 @@
     %br
     - @rooms.each do |r|
       = check_box_tag 'coordinator[room_ids][]', r.id, @coordinator.rooms.include?(r)
-      = r.name
+      = "#{r.core.name} - #{r.name}"
   %div
     = f.label :start_date_to_students, t('coordinator.start_date_to_students')
     %br

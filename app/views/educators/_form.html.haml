@@ -105,7 +105,7 @@
     %br
     - @rooms.each do |r|
       = check_box_tag 'educator[room_ids][]', r.id, @educator.rooms.include?(r)
-      = r.name
+      = "#{r.core.name} - #{r.name}"
   %div
     = f.label :start_date_to_students, t('educator.start_date_to_students')
     %br
