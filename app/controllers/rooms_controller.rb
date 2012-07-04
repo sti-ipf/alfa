@@ -95,7 +95,7 @@ protected
   def load_data
     @coordinators = Coordinator.all(:conditions => "core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))")
     @educators = Educator.all(:conditions => "core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))")
-    @cores = Core.all(:conditions => "city_id IN (#{@cities_ids})").collect {|c| ["#{c.city.try(:name)} - #{c.community}", c.id]}
+    @cores = Core.all(:conditions => "city_id IN (#{@cities_ids})").collect {|c| ["#{c.city.try(:name)} - #{c.name}", c.id]}
   end
 
 end
