@@ -3,7 +3,7 @@ class RoomsController < ApplicationController
   before_filter :load_data, :only => [:new, :create, :edit, :update]
 
   def index
-    , :order => "name ASC"@rooms = Room.all(:conditions => "core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))", :include => [:core, :periods, :coordinators, :students, :educators])
+    @rooms = Room.all(:conditions => "core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))", :include => [:core, :periods, :coordinators, :students, :educators], :order => "name ASC")
 
     respond_to do |format|
       format.html # index.html.erb
