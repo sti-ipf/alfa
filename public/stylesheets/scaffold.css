@@ -858,6 +858,16 @@ thead tr.filters{display: none;}
   margin-bottom: 20px;
 }
 
+#formframe .fields, #formframe .fields .fields_wrapper{
+  margin-bottom: 0px !important;
+}
+
+#formframe .form_actions .add{
+  margin-bottom: 20px;
+  float: right;
+  width: 100%;
+}
+
 #formframe label{
   font-weight: bold;
 }

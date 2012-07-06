@@ -71,6 +71,10 @@
         - @student.errors.full_messages.each do |msg|
           %li= msg
   %div
+    = f.label :identification_on, 'Identificação dos dados realizada em'
+    %br
+    = f.date_select :identification_on, {:start_year => 2010, :end_year => DateTime.now.year, :prompt => { :day => 'Selecione um dia', :month => 'Selecione um mês', :year => 'Selecione um ano'}}
+  %div
     = f.label :educator_id, 'Alfabetizador'
     %br
     = f.select :educator_id, @educators, :prompt => "Selecione"
@@ -85,11 +89,11 @@
   %div
     = f.label :sign_up_date_on, t('student.sign_up_date_on')
     %br
-    = f.date_select :sign_up_date_on, {:start_year => 2010, :end_year => DateTime.now.year}
+    = f.date_select :sign_up_date_on, {:start_year => 2010, :end_year => DateTime.now.year, :prompt => { :day => 'Selecione um dia', :month => 'Selecione um mês', :year => 'Selecione um ano'}}
   %div
     = f.label :class_start_date_on, t('student.class_start_date_on')
     %br
-    = f.date_select :class_start_date_on, {:start_year => 2010, :end_year => DateTime.now.year}
+    = f.date_select :class_start_date_on, {:start_year => 2010, :end_year => DateTime.now.year, :prompt => { :day => 'Selecione um dia', :month => 'Selecione um mês', :year => 'Selecione um ano'}}
   %div
     = f.label :nickname, "Apelido do alfabetizando(a)"
     %br
@@ -117,7 +121,7 @@
   %div
     = f.label :dob, t('student.dob')
     %br
-    = f.date_select :dob, {:start_year => 1900, :end_year => DateTime.now.year}
+    = f.date_select :dob, {:start_year => 1900, :end_year => DateTime.now.year, :prompt => { :day => 'Selecione um dia', :month => 'Selecione um mês', :year => 'Selecione um ano'}}
   %div
     = f.label :email, "E-mail"
     %br

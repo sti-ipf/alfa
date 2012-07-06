@@ -1,45 +1,26 @@
 :javascript
   $(document).ready(function() {
-    if ($("#core_place").val() == 6){
-      jQuery('#core_place_desc_div').attr('style','display:block; !important');
-    }
+    show_field("#core_place", '#core_place_desc_div', 'select', 6)
+    show_field("#core_illumination_type", '#core_illumination_type_desc_div', 'select', 2)
+    show_field("#core_community_type", '#core_community_type_desc_div', 'select', 4)
 
-    if ($("#partner_resource_id_1").is(':checked')){
-      jQuery('#core_resource_desc_div').attr('style','display:block; !important');
-    }
+    var checkbox_fields = [
+        ["#partner_resource_id_1", '#core_resource_desc_div'],
+        ["#seat_type_id_1", '#core_seat_type_desc_div'],
+        ["#displacement_id_0_9", '#core_displacement_desc_0_div'],
+        ["#displacement_id_1_9", '#core_displacement_desc_1_div'],
+        ["#core_another_place_true", '#core_another_place_desc_div'],
+        ["#core_board_true", '#board_type_div'],
+        ["#core_has_restroom_true", '#total_restroom_div'],
+        ["#core_has_computers_true", '#total_computers_div']
+      ];
 
-    if ($("#seat_type_id_1").is(':checked')){
-      jQuery('#core_seat_type_desc_div').attr('style','display:block; !important');
-    }
-
-    if ($("#core_illumination_type").val() == 2){
-      jQuery('#core_illumination_type_desc_div').attr('style','display:block; !important');
-    }
-
-    if ($("#core_community_type").val() == 4) {
-      jQuery('#core_community_type_desc_div').attr('style','display:block; !important');
-    }
-
-    if ($("#displacement_id_0_9").is(':checked')){
-      jQuery('#core_displacement_desc_0_div').attr('style','display:block; !important');
-    }
-
-    if ($("#displacement_id_1_9").is(':checked')){
-      jQuery('#core_displacement_desc_1_div').attr('style','display:block; !important');
-    }
-    if ($("#core_another_place_true").is(':checked')){
-      jQuery('#core_another_place_desc_div').attr('style','display:block; !important');
-    }
-    if ($("#core_board_true").is(':checked')){
-      jQuery('#board_type_div').attr('style','display:block; !important');
-    }
-    if ($("#core_has_restroom_true").is(':checked')){
-      jQuery('#total_restroom_div').attr('style','display:block; !important');
-    }
-    if ($("#core_has_computers_true").is(':checked')){
-      jQuery('#total_computers_div').attr('style','display:block; !important');
-    }
+    checkbox_fields.forEach(function(field) {  
+      show_field(field[0], field[1], 'checkbox', '')
+    });  
+    
   });
+
 = semantic_form_for(@core, :html => {:id => 'formframe'}) do |f|
   - if @core.errors.any?
     #error_explanation

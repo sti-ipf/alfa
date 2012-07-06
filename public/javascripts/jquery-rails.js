@@ -52,3 +52,17 @@ function zebraListing(){
   $('.more-info div p:odd').addClass('odd');
   $('.more-info div p:even').addClass('even');
 }
+
+function show_field(main_field, field, verification_type, expected_value)
+{
+  if (verification_type == "checkbox"){
+    if ($(main_field).is(':checked')){
+      jQuery(field).attr('style','display:block; !important');
+    }
+  }
+  else{
+    if ($(main_field).val() == expected_value){
+      jQuery(field).attr('style','display:block; !important');
+    }
+  }
+}
