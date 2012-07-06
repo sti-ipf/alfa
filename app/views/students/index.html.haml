@@ -15,19 +15,20 @@
 %table{:class => 'list'}
   %thead
     %tr
+      %th= t('student.name')
       %th= t('student.educator')
       %th= t('student.core')
       %th= t('student.room')
-      %th= t('student.name')
       %th{:style => 'width: 20px;'}
       %th{:style => 'width: 20px;'}
   %tbody
     - @students.each do |student|
       %tr{:class => 'more-click'}
-        %td{:class => 'first-td'}= student.educator.name if !student.educator.nil?
+        %td{:class => 'first-td'}= student.name
+        %td= student.educator.name if !student.educator.nil?
         %td= student.core.name if !student.core.nil?
         %td= student.room.name if !student.room.nil?
-        %td= student.name
+        
         %td{:class => 'td-editar'}= link_to t('edit'), edit_student_path(student), :class => 'editar'
         %td= link_to t('destroy'), student, :confirm => t('are_you_sure'), :method => :delete, :class => 'apagar'
       %tr{:class => 'more-info'}

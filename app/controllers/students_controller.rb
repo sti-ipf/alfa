@@ -5,7 +5,7 @@ class StudentsController < ApplicationController
   
   def index
     @students = Student.all(:conditions => "core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))",
-      :include => [:educator, :core, :room], :order => "name ASC")
+      :include => [:educator, :core, :room], :order => "educators.name ASC")
 
     respond_to do |format|
       format.html # index.html.erb
