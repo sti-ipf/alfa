@@ -807,6 +807,11 @@ ul.dimensions_menu li:hover{
   margin-left: 10px;
 }
 
+.right_menu a{
+  float: left;
+  margin-top: 5px;
+}
+
 thead tr.filters{display: none;}
 
 .action_back a{

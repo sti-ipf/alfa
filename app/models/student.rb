@@ -87,6 +87,7 @@ private
     array.each do |a|
       return a.first if a.last == value
     end
+    ''
   end
 
 end
