@@ -798,10 +798,9 @@ ul.dimensions_menu li:hover{
 
 .right_menu{
   display: inline;
-  float: right;
-  margin-right: -265px;
-  margin-top: -90px;
-  width: 800px;
+  position: absolute;
+  right: 0;
+  margin-right: 10px;
 }
 
 .right_menu li{
