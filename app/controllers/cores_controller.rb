@@ -11,7 +11,7 @@ class CoresController < ApplicationController
 
 
   def index
-    @cores = Core.all(:conditions => "city_id IN (#{@cities_ids})", :include => [:city])
+    @cores = Core.all(:conditions => "city_id IN (#{@cities_ids})", :include => [:city], :order => "name ASC")
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @cores }
