@@ -34,7 +34,7 @@ class WorldReading < ActiveRecord::Base
         return "Coordenador"
       end
     else
-      "Educador"
+      "Monitor"
     end
     ''
   end
@@ -129,7 +129,7 @@ protected
 
   def presence_of_educator_or_coordinator
     if self.educator_id.nil? && self.coordinator_id.nil?
-      self.errors[:base] << "Especifique o educador/coordenador responsável pela leitura mundo"
+      self.errors[:base] << "Especifique o monitor/coordenador responsável pela leitura mundo"
     end
   end
 

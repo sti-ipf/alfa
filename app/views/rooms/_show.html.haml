@@ -31,11 +31,11 @@
           %b Fim:
           = p.end_time.try(:strftime, "%H:%M")
 %p
-  %b Total de educandos:
+  %b Total de alfabetizandos:
   = room.students.count
 - if room.students.count > 0
   %p
-    %b Educandos:
+    %b Alfabetizandos:
     %ul
       - room.students.each do |student|
         %li= link_to student.name, student

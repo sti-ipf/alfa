@@ -43,7 +43,7 @@
           %li= msg
   %label= t('world_reading.who_i_am')
   %br
-  = select_tag :who_i_am, options_for_select([['Selecione', 0],['Coordenador', 1], ['Educador', 2]])
+  = select_tag :who_i_am, options_for_select([['Selecione', 0],['Coordenador', 1], ['Monitor', 2]])
   :javascript
     $(document).ready(function() {
       $("#who_i_am").change(function() {
