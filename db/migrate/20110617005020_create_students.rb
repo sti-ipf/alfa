@@ -1,7 +1,6 @@
 class CreateStudents < ActiveRecord::Migration
   def self.up
     create_table :students do |t|
-      t.string :nickname
       t.date :sign_up_date_on
       t.date :class_start_date_on
       t.string :name
@@ -12,15 +11,12 @@ class CreateStudents < ActiveRecord::Migration
       t.string :hometown
       t.string :state
       t.integer :zone
-      t.string :zone_desc
+      
       t.string :address
-      t.string :district
-      t.string :number
-      t.string :zip_code
-      t.string :email
+      
       t.integer :civil_status
       t.integer :education_level
-      t.string :education_level_place
+      
       t.integer :actual_condition
       t.string :profession
       t.string :actual_occupation
@@ -30,6 +26,14 @@ class CreateStudents < ActiveRecord::Migration
       t.string :house_desc
       t.integer :house_type
       t.string :house_type_desc
+
+      t.string :district
+      t.string :number
+      t.string :zip_code
+      t.string :email
+      t.string :nickname
+      t.string :zone_desc
+      t.string :education_level_place
 
       t.integer :vision_loss
       t.boolean :need_glasses

@@ -31,7 +31,7 @@
     = f.label :name, 'Localidade'
     %br
     = f.text_field :name
-  %div
+  %div{:style => hidden_fields}
     = f.label :place_description, 'Identificação do espaço'
     %br
     = f.text_area :place_description, :cols => 100, :rows => 5
@@ -44,11 +44,11 @@
     = f.label :address, t('core.address')
     %br
     = f.text_field :address, :size => 100
-  %div
+  %div{:style => hidden_fields}
     = f.label :number, 'Número'
     %br
     = f.text_field :number
-  %div
+  %div{:style => hidden_fields}
     = f.label :zip_code, 'CEP'
     %br
     = f.text_field :zip_code
@@ -62,22 +62,23 @@
       = f.label :community_type, t('core.community_field')
       %br
       = f.select :community_type, Core::COMMUNITY_TYPES, :prompt => "Selecione"
-      #core_community_type_desc_div.invisible
-        = f.label :community_type_desc, t('which')
-        = f.text_field :community_type_desc
-      :javascript
-        $(document).ready(function() {
-            $("#core_community_type").change(function() {
-                var value = $(this).val();
-                if (value == 4){
-                  jQuery('#core_community_type_desc_div').attr('style','display:block; !important');
-                  jQuery('#core_community_type_desc').focus();
-                }
-                else{
-                  jQuery('#core_community_type_desc_div').attr('style','display:none; !important');
-                }
-            });
-        });
+      %div{:style => hidden_fields}
+        #core_community_type_desc_div.invisible
+          = f.label :community_type_desc, t('which')
+          = f.text_field :community_type_desc
+        :javascript
+          $(document).ready(function() {
+              $("#core_community_type").change(function() {
+                  var value = $(this).val();
+                  if (value == 4){
+                    jQuery('#core_community_type_desc_div').attr('style','display:block; !important');
+                    jQuery('#core_community_type_desc').focus();
+                  }
+                  else{
+                    jQuery('#core_community_type_desc_div').attr('style','display:none; !important');
+                  }
+              });
+          });
   %div
     = f.label :place, t('core.place_field')
     %br
@@ -111,7 +112,7 @@
           = link_to_add_fields t('period.new'), f, :periods
   %div
     = render "partner_resources_fields"
-  %div
+  %div{:style => hidden_fields}
     = f.label :resources_observation, "Observação"
     %br
     = f.text_area :resources_observation, :cols => 100, :rows => 5
@@ -256,17 +257,18 @@
               });
               
           });
-      #total_restroom_div.invisible
-        = f.label :total_restroom, 'Quantos'
-        = f.text_field :total_restroom
-    %div
+      %div{:style => hidden_fields}
+        #total_restroom_div.invisible
+          = f.label :total_restroom, 'Quantos'
+          = f.text_field :total_restroom
+    %div{:style => hidden_fields}
       .field_with_complement_info
         = f.input :has_kitchen, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
-    %div
+    %div{:style => hidden_fields}
       = f.label :kitchen_observation, "Observação"
       %br
       = f.text_area :kitchen_observation, :cols => 100, :rows => 5
-    %div
+    %div{:style => hidden_fields}
       .field_with_complement_info
         = f.input :has_computers, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
         :javascript
@@ -287,7 +289,7 @@
         #total_computers_div.invisible
           = f.label :total_computers, 'Quantos'
           = f.text_field :total_computers
-    %div
+    %div{:style => hidden_fields}
       = f.label :computer_observation, "Observação"
       %br
       = f.text_area :computer_observation, :cols => 100, :rows => 5

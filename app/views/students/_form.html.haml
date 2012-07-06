@@ -94,7 +94,7 @@
     = f.label :class_start_date_on, t('student.class_start_date_on')
     %br
     = f.date_select :class_start_date_on, {:start_year => 2010, :end_year => DateTime.now.year, :prompt => { :day => 'Selecione um dia', :month => 'Selecione um mês', :year => 'Selecione um ano'}}
-  %div
+  %div{:style => hidden_fields}
     = f.label :nickname, "Apelido do alfabetizando(a)"
     %br
     = f.text_field :nickname
@@ -102,11 +102,11 @@
     = f.label :name, 'Nome do Alfabetizando(a)'
     %br
     = f.text_field :name
-  %div
+  %div{:style => hidden_fields}
     = f.label :mother_name, 'Nome da mãe'
     %br
     = f.text_field :mother_name
-  %div
+  %div{:style => hidden_fields}
     = f.label :father_name, 'Nome do pai'
     %br
     = f.text_field :father_name
@@ -122,7 +122,7 @@
     = f.label :dob, t('student.dob')
     %br
     = f.date_select :dob, {:start_year => 1900, :end_year => DateTime.now.year, :prompt => { :day => 'Selecione um dia', :month => 'Selecione um mês', :year => 'Selecione um ano'}}
-  %div
+  %div{:style => hidden_fields}
     = f.label :email, "E-mail"
     %br
     = f.text_field :email
@@ -156,23 +156,24 @@
                 }
             });
         });
-    #zone_desc_div.invisible
-      %label= "Qual"
-      = f.text_field :zone_desc
+    %div{:style => hidden_fields}        
+      #zone_desc_div.invisible
+        %label= "Qual"
+        = f.text_field :zone_desc
 
   %div
     = f.label :address, "Endereço"
     %br
     = f.text_field :address
-  %div
+  %div{:style => hidden_fields}
     = f.label :district, 'Comunidade/Bairro'
     %br
     = f.text_field :district
-  %div
+  %div{:style => hidden_fields}
     = f.label :number, 'Número'
     %br
     = f.text_field :number, :size => 5
-  %div
+  %div{:style => hidden_fields}
     = f.label :zip_code, 'CEP'
     %br
     = f.text_field :zip_code
@@ -235,48 +236,49 @@
           });
         });
     
-    #internet_access_local_div.invisible
-      %div
-        = f.label :internet_access_local, "Local"
-        %br
-        = f.select :internet_access_local, Student::INTERNET_ACCESS_LOCAL, :prompt => "Selecione"
-      :javascript
-        $(document).ready(function() {
-            $("#student_internet_access_local").change(function() {
-                var value = $(this).val();
-                if (value == 3){
-                  jQuery('#internet_access_local_desc_div').attr('style','display:block; !important');
-                  jQuery('#student_internet_access_local_desc').focus();
-                }
-                else{
-                  jQuery('#internet_access_local_desc_div').attr('style','display:none; !important');
-                }
-            });
-        });
-      #internet_access_local_desc_div.invisible
-        %label= "Quais"
-        = f.text_field :internet_access_local_desc
-  %div
+    %div{:style => hidden_fields}
+      #internet_access_local_div.invisible
+        %div
+          = f.label :internet_access_local, "Local"
+          %br
+          = f.select :internet_access_local, Student::INTERNET_ACCESS_LOCAL, :prompt => "Selecione"
+        :javascript
+          $(document).ready(function() {
+              $("#student_internet_access_local").change(function() {
+                  var value = $(this).val();
+                  if (value == 3){
+                    jQuery('#internet_access_local_desc_div').attr('style','display:block; !important');
+                    jQuery('#student_internet_access_local_desc').focus();
+                  }
+                  else{
+                    jQuery('#internet_access_local_desc_div').attr('style','display:none; !important');
+                  }
+              });
+          });
+        #internet_access_local_desc_div.invisible
+          %label= "Quais"
+          = f.text_field :internet_access_local_desc
+  %div{:style => hidden_fields}
     = f.label :rg, "Nº Identidade"
     %br
     = f.text_field :rg
-  %div
+  %div{:style => hidden_fields}
     = f.label :dob_id, "Nº Certidão de nascimento"
     %br
     = f.text_field :dob_id
-  %div
+  %div{:style => hidden_fields}
     = f.label :cpf, "Nº CPF"
     %br
     = f.text_field :cpf
-  %div
+  %div{:style => hidden_fields}
     = f.label :voter_id, "Nº Título de eleitor"
     %br
     = f.text_field :voter_id
-  %div
+  %div{:style => hidden_fields}
     = f.label :professional_id, "Nº Carteira profissional"
     %br
     = f.text_field :professional_id
-  %div
+  %div{:style => hidden_fields}
     = f.label :social_id, "Nº de identificação social - nis (pis/pasep/bolsa família)"
     %br
     = f.text_field :social_id
@@ -303,11 +305,12 @@
                 }
             });
         });
-      #education_level_place_div.invisible
-        %label= "Onde"
-        = f.text_field :education_level_place
+      %div{:style => hidden_fields}
+        #education_level_place_div.invisible
+          %label= "Onde"
+          = f.text_field :education_level_place
 
-  %div
+  %div{:style => hidden_fields}
     = f.label :familiar_income, 'Renda familiar'
     %br
     = f.select :familiar_income, Student::FAMILIAR_INCOME, :prompt => "Selecione"
@@ -399,7 +402,7 @@
       %label= t('which')
       = f.text_field :special_need_desc
 
-  %div
+  %div{:style => hidden_fields}
     = f.label :vision_loss, "Deficiência visual - tem dificuldade permanente de enxergar?"
     %br
     .field_with_complement_info
@@ -418,12 +421,12 @@
         });
     #student_need_glasses_div.invisible
       = f.input :need_glasses, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
-  %div
+  %div{:style => hidden_fields}
     = f.label :vision_loss_observation, "Observação"
     %br
     = f.text_area :vision_loss_observation, :cols => 100, :rows => 5
 
-  %div
+  %div{:style => hidden_fields}
     = f.label :hearing_disability, "Deficiência auditiva - tem dificuldade permanente de ouvir?"
     %br
     .field_with_complement_info
@@ -442,13 +445,13 @@
         });
     #student_hearing_device_div.invisible
       = f.input :hearing_device, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
-  %div
+  %div{:style => hidden_fields}
     = f.label :hearing_disability_observation, "Observação"
     %br
     = f.text_area :hearing_disability_observation, :cols => 100, :rows => 5
 
 
-  %div
+  %div{:style => hidden_fields}
     = f.label :physical_disability, "Deficiência física - tem dificuldade permanente para caminhar e/ou subir/descer degraus?"
     %br
     .field_with_complement_info
@@ -467,18 +470,18 @@
         });
     #student_need_accessible_room_div.invisible
       = f.input :need_accessible_room, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
-  %div
+  %div{:style => hidden_fields}
     = f.input :physical_disability_to_write, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
-  %div
+  %div{:style => hidden_fields}
     = f.label :physical_disability_observation, "Observação"
     %br
     = f.text_area :physical_disability_observation, :cols => 100, :rows => 5
 
-  %div
+  %div{:style => hidden_fields}
     = f.label :intelectual_disability, "Deficiência intelectual/mental - Tem alguma dificuldade permanente que limite a realização de atividades ligadas a:"
     = f.select :intelectual_disability, Student::INTELECTUAL_DISABILITY, :prompt => "Selecione"
 
-  %div
+  %div{:style => hidden_fields}
     = f.label :social_participation, "Participação social:"
     %br
     .field_with_complement_info
@@ -499,7 +502,7 @@
       %label= t('which')
       = f.text_field :social_participation_desc
 
-  %div
+  %div{:style => hidden_fields}
     = f.label :association, "Associação:"
     %br
     .field_with_complement_info
@@ -520,7 +523,7 @@
       %label= t('which')
       = f.text_field :association_desc
 
-  %div
+  %div{:style => hidden_fields}
     = f.label :cooperative, "Cooperativas:"
     %br
     .field_with_complement_info
@@ -564,11 +567,11 @@
       %label= t('which')
       = f.text_field :religion_desc
 
-  %div
+  %div{:style => hidden_fields}
     = f.label :participation_reason, "Por que está participando do programa de alfabetização?"
     %br
     = f.text_area :participation_reason, :cols => 100, :rows => 5
-  %div
+  %div{:style => hidden_fields}
     = f.label :subjects, "Quais assuntos você gostaria que fossem trabalhados durante as aulas?"
     %br
     = f.text_area :subjects, :cols => 100, :rows => 5
