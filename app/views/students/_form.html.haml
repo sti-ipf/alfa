@@ -70,7 +70,7 @@
       %ul
         - @student.errors.full_messages.each do |msg|
           %li= msg
-  %div
+  %div{:style => hidden_fields}
     = f.label :identification_on, 'Identificação dos dados realizada em'
     %br
     = f.date_select :identification_on, {:start_year => 2010, :end_year => DateTime.now.year, :prompt => { :day => 'Selecione um dia', :month => 'Selecione um mês', :year => 'Selecione um ano'}}
