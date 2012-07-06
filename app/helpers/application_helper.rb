@@ -30,5 +30,13 @@ module ApplicationHelper
       ''
     end
   end
+
+  def hidden_fields
+    if session[:city_id].to_i <= 2
+      'display: none;'
+    else
+      ''
+    end
+  end
 end
 

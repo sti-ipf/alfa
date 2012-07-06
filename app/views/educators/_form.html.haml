@@ -97,7 +97,7 @@
         - @educator.errors.full_messages.each do |msg|
           %li= msg
   
-  %div
+  %div{:style => hidden_fields}
     = f.label :identification_on, 'Identificação dos dados realizada em'
     %br
     = f.date_select :identification_on, {:start_year => 2010, :end_year => DateTime.now.year, :prompt => { :day => 'Selecione um dia', :month => 'Selecione um mês', :year => 'Selecione um ano'}}
@@ -122,11 +122,11 @@
     = f.label :core_id, "Localidade do núcleo:"
     %br
     = f.select :core_id, @cores, :prompt => "Selecione"
-  %div
+  %div{:style => hidden_fields}
     = f.label :core_identification, "Identificação do núcleo:"
     %br
     = f.text_field :core_identification
-  %div
+  %div{:style => hidden_fields}
     = f.label :age_range, "Faixa etária"
     %br
     = f.select :age_range, Educator::AGE_RANGE, :prompt => "Selecione"
@@ -168,9 +168,10 @@
                 }
             });
         });
-    #zone_desc_div.invisible
-      %label= "Qual"
-      = f.text_field :zone_desc
+    %div{:style => hidden_fields}
+      #zone_desc_div.invisible
+        %label= "Qual"
+        = f.text_field :zone_desc
   %div
     = f.label :address, t('educator.address')
     %br
@@ -179,11 +180,11 @@
     = f.label :number, "Número"
     %br
     = f.text_field :number, :size => 5
-  %div
+  %div{:style => hidden_fields}
     = f.label :district, "Comunidade/Bairro"
     %br
     = f.text_field :district
-  %div
+  %div{:style => hidden_fields}
     = f.label :zip_code, "CEP"
     %br
     = f.text_field :zip_code
@@ -224,7 +225,7 @@
         .add
           = link_to_add_fields t('phone.new'), f, :phones, "/layouts/shared/"
   
-  %div
+  %div{:style => hidden_fields}
     = label_tag :internet, 'Acessa a Internet?'
     = "Sim"
     = radio_button_tag :internet, true, !@educator.internet_access_local.blank?
@@ -269,7 +270,7 @@
         %label= "Quais"
         = f.text_field :internet_access_local_desc
 
-  %div
+  %div{:style => hidden_fields}
     = f.label :email, "E-mail"
     %br
     = f.text_field :email
@@ -400,9 +401,10 @@
                 }
             });
         });
-    #educator_house_type_desc_div.invisible
-      %label= t('which')
-      = f.text_field :house_type_desc
+    %div{:style => hidden_fields}
+      #educator_house_type_desc_div.invisible
+        %label= t('which')
+        = f.text_field :house_type_desc
   
   %div
     .field_with_complement_info
@@ -441,47 +443,48 @@
               }
           });
         });
-    #educator_special_need_desc_div.invisible
-      %label= "Especifique"
-      = f.text_field :special_need_desc
+    %div{:style => hidden_fields}
+      #educator_special_need_desc_div.invisible
+        %label= "Especifique"
+        = f.text_field :special_need_desc
   
-  %div
+  %div{:style => hidden_fields}
     = f.label :participation_reason, "Por que interessou-se pelo programa de alfabetização?"
     %br
     = f.text_area :participation_reason, :cols => 100, :rows => 5
-  %div
+  %div{:style => hidden_fields}
     = f.input :travel_disponibility, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
-  %div
+  %div{:style => hidden_fields}
     = f.label :last_books, "Quais foram os 3 últimos livros que você leu?"
     %br
     = f.text_area :last_books, :cols => 100, :rows => 5
 
 
-  %div
+  %div{:style => hidden_fields}
     = f.label :tv_programs, "Cite 3 programas de televisão por ordem de interesse que assiste diariamente"
     %br
     = f.text_area :tv_programs, :cols => 100, :rows => 5
-  %div
+  %div{:style => hidden_fields}
     = f.label :experience, "Você tem experiência em alfabetização de jovens e adultos? Conte-nos sobre."
     %br
     = f.text_area :experience, :cols => 100, :rows => 5
-  %div
+  %div{:style => hidden_fields}
     = f.label :other_job, "Você tem compromisso com outro trabalho? Quais os dias da semana e horário?"
     %br
     = f.text_area :other_job, :cols => 100, :rows => 5
-  %div
+  %div{:style => hidden_fields}
     = f.label :agree_with_any_period, "A educação de jovens e adultos pode acontecer em qualquer horário. Você concorda com essa afirmação? Por que?"
     %br
     = f.text_area :agree_with_any_period, :cols => 100, :rows => 5
-  %div
+  %div{:style => hidden_fields}
     = f.label :what_teach, "O que se deve ensinar numa sala para jovens e adultos?"
     %br
     = f.text_area :what_teach, :cols => 100, :rows => 5
-  %div
+  %div{:style => hidden_fields}
     = f.label :subjects, "Liste possíveis temas/conteúdos que gostaria de estudar e que ajudariam você a exercer seu papel de alfabetizador(a)"
     %br
     = f.text_area :subjects, :cols => 100, :rows => 5
-  %div
+  %div{:style => hidden_fields}
     = f.input :has_pc, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
     :javascript
       $(document).ready(function() {
@@ -526,7 +529,7 @@
           = f.text_field :where_use_pc_desc
       
 
-  %div
+  %div{:style => hidden_fields}
     = f.input :has_internet, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
     :javascript
       $(document).ready(function() {
@@ -569,16 +572,16 @@
           %br
           = f.text_field :where_has_internet_desc
 
-  %div
+  %div{:style => hidden_fields}
     = f.label :about_pc_use, "Sobre o uso do computador, você:"
     %br
     = f.select :about_pc_use, Educator::ABOUT_PC_USE, :prompt => "Selecione"
-  %div
+  %div{:style => hidden_fields}
     = f.label :which_uses, "Quais usos que você faz do computador"
     %br
     = f.select :which_uses, Educator::WHICH_USES, :prompt => "Selecione"
 
-  %div
+  %div{:style => hidden_fields}
     = f.label :for_what_use_internet, "O uso que faz da Internet visa ao:"
     %br
     .field_with_complement_info
@@ -600,7 +603,7 @@
         = "Quais"
         = f.text_field :for_what_use_internet_desc
 
-  %div
+  %div{:style => hidden_fields}
     = f.input :know_social_network, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
     :javascript
       $(document).ready(function() {
@@ -637,7 +640,7 @@
       #know_social_network_desc_div.invisible
         = "Quais"
         = f.text_field :know_social_network_desc
-  %div
+  %div{:style => hidden_fields}
     = f.input :which_social_network, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
     :javascript
       $(document).ready(function() {
@@ -679,7 +682,7 @@
 
 
 
-  %div
+  %div{:style => hidden_fields}
     = f.label :observation, "Espaço para observações gerais"
     %br
     = f.text_area :observation, :cols => 100, :rows => 5

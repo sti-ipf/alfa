@@ -11,7 +11,6 @@ class CreateEducators < ActiveRecord::Migration
       t.string :hometown
       t.string :state
       t.integer :zone
-      t.string :zone_desc
       t.string :address
       t.integer :civil_status
       t.string :rg
@@ -43,7 +42,8 @@ class CreateEducators < ActiveRecord::Migration
       t.integer :cooperative
       
       t.references :core
-
+#fase 2
+      t.string :zone_desc
       t.string :core_identification
       t.integer :age_range
       t.string :district
