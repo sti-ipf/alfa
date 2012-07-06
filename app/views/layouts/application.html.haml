@@ -52,9 +52,9 @@
       #header_wrapper
         #header
           - if [1].include?(session[:city_id].to_i)
-            .logo_header
-          - else
             .sao_francisco_logo
+          - else
+            .logo_header
         .right_menu
           %ul
             - if current_user.admin
