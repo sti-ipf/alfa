@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 class CoresController < ApplicationController
 
+  load_and_authorize_resource
   before_filter :load_data, :only => [:edit, :new, :update, :create]
   # GET /cores
   # GET /cores.xml

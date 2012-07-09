@@ -1,44 +1,74 @@
-.formbody
+:javascript
+  $(document).ready(function() {
+    if ($("#user_role").val() > 1){
+      jQuery('#cities_div').attr('style','display:block; !important');
+    }
 
-  = semantic_form_for(@user, :html => {:id => 'formframe'}) do |f|
-    -if @user.errors.any?
-      #error_explanation
-        %ul
-          - @user.errors.full_messages.each do |msg|
-            - msg = msg.split('base ').last
-            %li= msg
+    if ($("#user_role").val() == 3){
+      jQuery('#educator_div').attr('style','display:block; !important');
+    }
+    
+  });
+= semantic_form_for(@user, :html => {:id => 'formframe'}) do |f|
+  -if @user.errors.any?
+    #error_explanation
+      %ul
+        - @user.errors.full_messages.each do |msg|
+          - msg = msg.split('base ').last
+          %li= msg
 
-    .field
-      = f.label :name
-      %br
-      = f.text_field :name
-    .field
-      = f.label :username
-      %br
-      = f.text_field :username
-    .field
-      = f.label :email
-      %br
-      = f.text_field :email
-    .field
-      = f.label :password
-      %br
-      = f.password_field :password
-      %br
-    .field
-      = f.label :password_confirmation
-      %br
-      = f.password_field :password_confirmation
-      %br
-    -if current_user.admin
-      .field
-        = f.input :admin
-      .field
-        %label= 'Cidades/Fases'
-        %br/
-        - @cities.each do |c|
-          = check_box_tag 'user[city_ids][]', c.id, @user.cities.include?(c)
-          = c.name
-    .actions
-      = f.submit button, :disable_with => t('please_wait')
+  %div
+    = f.label :name
+    %br
+    = f.text_field :name
+  %div
+    = f.label :username
+    %br
+    = f.text_field :username
+  %div
+    = f.label :email
+    %br
+    = f.text_field :email
+  %div
+    = f.label :password
+    %br
+    = f.password_field :password
+  %div
+    = f.label :password_confirmation
+    %br
+    = f.password_field :password_confirmation
+  -if current_user.admin?
+    %div
+      = f.input :role, :as => :select, :collection => User::ROLES, :prompt => 'Selecione'
+      :javascript
+        $(document).ready(function() {
+            $("#user_role").change(function() {
+                var value = $(this).val();
+                if (value > 1){
+                  jQuery('#cities_div').attr('style','display:block; !important');
+                }
+                else{
+                  jQuery('#cities_div').attr('style','display:none; !important');
+                }
+                if (value == 3){
+                  jQuery('#educator_div').attr('style','display:block; !important');
+                }
+                else{
+                  jQuery('#educator_div').attr('style','display:none; !important');
+                }
+            });
+        });
+    %div
+      #educator_div.invisible
+        = f.input :educator_id, :as => :select, :collection => @educators, :prompt => 'Selecione'
+    %div
+      #cities_div.invisible
+        %div
+          %label= 'Cidades/Fases'
+          %br/
+          - @cities.each do |c|
+            = check_box_tag 'user[city_ids][]', c.id, @user.cities.include?(c)
+            = c.name
+  .actions
+    = f.submit button, :disable_with => t('please_wait')
 

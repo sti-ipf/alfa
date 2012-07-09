@@ -21,6 +21,7 @@ Alfa::Application.routes.draw do
   match 'sign_in' => 'user_sessions#new', :as => 'sign_in'
   match 'sign_out' => 'user_sessions#destroy', :as => 'sign_out'
   match 'update_city' => 'cores#update_city', :as => 'update_city'
+  match 'update_rooms/:educator_id/:core_id' => 'educators#update_rooms', :as => 'update_rooms'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

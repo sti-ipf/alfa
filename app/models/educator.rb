@@ -8,6 +8,11 @@ class Educator < ActiveRecord::Base
   has_many :education_exps, :through => :educators_education_exps
   has_many :educators_education_exps
 
+  has_and_belongs_to_many :use_social_net_works
+  has_and_belongs_to_many :know_social_net_works
+  has_and_belongs_to_many :internet_uses
+  has_and_belongs_to_many :pc_uses
+
   AGE_RANGE = [["De 18 a 29 anos", 1], ["De 30 a 44 anos", 2], ["De 45 a 59 anos", 3], ["Acima de 60 anos", 4]]
   ABOUT_PC_USE = [["Consegue usar sozinho", 1], ["Não sabe usar, mas gostaria de aprender", 2], ["Consegue usar com ajuda de alguém", 3], ["Não sabe usar, não gostaria de aprender", 4]]
   WHERE_USE_PC = [["Lan House", 1], ["Na casa de família", 2], ["Na casa de amigo", 3], ["Outros", 4]]
@@ -20,6 +25,8 @@ class Educator < ActiveRecord::Base
 
   accepts_nested_attributes_for :phones, :reject_if => lambda { |a| a[:number].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :social_participations, :allow_destroy => true
+  
+  validates_presence_of :core_id, :name
 
   def age
     return '' if self.dob.nil?

@@ -7,9 +7,10 @@
     $('.list').tableFilter(options);
   });
 
+
 %h1.title= t('core.listing')
 .actions 
-  = link_to t('core.new'), new_core_path
+  = render '/layouts/shared/add_button', :new_label=>t('core.new'), :new_path => new_core_path, :permission => :cores
 = render '/layouts/shared/filter_bar'
 %table{:class => 'list'}
   %thead
@@ -23,8 +24,7 @@
       %tr{:class => 'more-click'}
         %td{:class => 'first-td'}= core.city.try(:name)
         %td= core.name
-        %td{:class => 'td-editar'}= link_to t('edit'), edit_core_path(core), :class => 'editar'
-        %td= link_to t('destroy'), core, :confirm => t('are_you_sure'), :method => :delete, :class => 'apagar'
+        = render '/layouts/shared/edit_delete', :edit_path => edit_core_path(core), :delete_obj => core, :permission => :cores
       %tr{:class => 'more-info'}
         %td{:colspan => 4}
           %div

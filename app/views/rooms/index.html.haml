@@ -9,7 +9,7 @@
 
 %h1.title= t('room.listing')
 .actions 
-  = link_to t('room.new'), new_room_path
+= render '/layouts/shared/add_button', :new_label=>t('room.new'), :new_path => new_room_path, :permission => :rooms
 = render '/layouts/shared/filter_bar'
 
 %table{:class => 'list'}
@@ -24,8 +24,7 @@
       %tr{:class => 'more-click'}
         %td{:class => 'first-td'}= room.name
         %td= room.core.try(:name)
-        %td{:class => 'td-editar'}= link_to t('edit'), edit_room_path(room), :class => 'editar'
-        %td= link_to t('destroy'), room, :confirm => t('are_you_sure'), :method => :delete, :class => 'apagar'
+        = render '/layouts/shared/edit_delete', :edit_path => edit_room_path(room), :delete_obj => room, :permission => :rooms
       %tr{:class => 'more-info'}
         %td{:colspan => 4}
           %div

@@ -1,5 +1,6 @@
 source 'http://rubygems.org'
 
+gem 'rake', '0.9.2.2'
 gem 'rails', '3.0.8'
 gem 'devise', '1.3.4'
 gem 'jquery-rails', '1.0.9'
@@ -11,7 +12,7 @@ gem 'haml'
 gem 'haml-rails'
 gem 'authlogic', '3.0.3'
 gem 'fastercsv'
-#gem 'rails_best_practices'
+gem 'cancan'
 
 group :development do 
   gem 'erb2haml'

@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_user_session, :current_user
   before_filter :require_user, :set_locale, :get_cities_ids
 
+  
+
   def sort_hash_by_value(hash)
     hash.sort_by { |name, value| value }
   end
@@ -35,13 +37,17 @@ private
 
   def get_cities_ids
     if !current_user.nil?
-      if current_user.admin
+      if current_user.admin?
         session[:city_id] ||= 1
       else
         session[:city_id] ||= current_user.cities.first.id
       end
       @cities_ids = session[:city_id]
     end
+  end
+
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, :alert => "Você não tem permissão para acessar a página"
   end
 
   

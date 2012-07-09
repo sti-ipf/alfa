@@ -599,6 +599,8 @@ pt:
       coordinator:
         special_need: "Possui necessidade educacional especial"
       educator:
+        core_id: "Núcleo"
+        name: "Nome"
         special_need: "Possui necessidade especial"
         travel_disponibility: "Você tem disponibilidade para viajar pelo Programa, caso seja necessário?"
         has_pc: "Você possui computador pessoal?"
@@ -631,6 +633,8 @@ pt:
         password_confirmation: "Confirmação da senha"
         name: "Nome"
         admin: "é administrador?"
+        role: "Perfil de usuário"
+        educator_id: "Associado ao alfabetizador"
       user_session: 
         password: "Senha"
         username:  "Usuário"

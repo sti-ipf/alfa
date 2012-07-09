@@ -5,6 +5,19 @@ class EducatorsController < ApplicationController
   # GET /educators
   # GET /educators.xml
 
+  def update_rooms
+    if params[:educator_id].to_i == 0
+      @educator = Educator.new
+    else
+      @educator = Educator.find(params[:educator_id])
+    end
+    core = Core.find(params[:core_id])
+    @rooms = core.rooms
+
+    respond_to do |format|
+      format.js if request.xhr?
+    end
+  end
 
   def index
     @educators = Educator.all(:conditions => "core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))", :include => [:core, :rooms], :order => "name ASC")
@@ -33,6 +46,7 @@ class EducatorsController < ApplicationController
   # GET /educators/new.xml
   def new
     @educator = Educator.new
+    @rooms = []
     1.times {@educator.phones.build}
     @educator.social_participations.build
     respond_to do |format|
@@ -45,6 +59,13 @@ class EducatorsController < ApplicationController
   def edit
     @educator = Educator.find(params[:id], :include => [:social_participations, :phones, 
       :educators_education_exps, :educators_education_exps])
+
+    if @educator.core.nil?
+      @rooms = []
+    else
+      @rooms = @educator.core.rooms
+    end
+
     @union_movement_desc = @educator.social_participations.first.union_movement_desc if !@educator.social_participations.first.nil?
     @ong_desc = @educator.social_participations.first.ong_desc if !@educator.social_participations.first.nil?
     @years = @educator.educators_education_exps.first.years if !@educator.educators_education_exps.first.nil?
@@ -67,10 +88,16 @@ class EducatorsController < ApplicationController
         if !@educator.educators_education_exps.first.nil?
           @educator.educators_education_exps.first.update_with_years(educator_years, educator_popular_education_years)
         end
+        flash[:success] = t('educator.created')
         format.html { redirect_to(educators_path) }
         format.xml  { render :xml => @educator, :status => :created, :location => @educator }
       else
-        flash[:success] = t('educator.created')
+        if @educator.core_id.nil?
+          @rooms = []
+        else
+          @rooms = Core.find(core_id).rooms
+        end
+        
         flash[:error] = t('default_error_message')
         format.html { render :action => "new" }
         format.xml  { render :xml => @educator.errors, :status => :unprocessable_entity }
@@ -98,6 +125,11 @@ class EducatorsController < ApplicationController
         format.html { redirect_to(educators_path) }
         format.xml  { head :ok }
       else
+        if @educator.core_id.nil?
+          @rooms = []
+        else
+          @rooms = Core.find(core_id).rooms
+        end
         flash[:error] = t('default_error_message')
         format.html { render :action => "edit" }
         format.xml  { render :xml => @educator.errors, :status => :unprocessable_entity }
@@ -118,7 +150,7 @@ class EducatorsController < ApplicationController
   end
 
   def load_data
-    @cores = Core.all(:conditions => "city_id IN (#{@cities_ids})").collect {|c| ["#{c.city.try(:name)} - #{c.community}", c.id]}
+    @cores = Core.all(:conditions => "city_id IN (#{@cities_ids})").collect {|c| ["#{c.community}", c.id]}
     @genders = Coordinator::GENDERS
     @ethnicities = Coordinator::ETHNICITIES
     @zones = Coordinator::ZONES
@@ -135,8 +167,10 @@ class EducatorsController < ApplicationController
     @cooperatives = Coordinator::COOPERATIVES
     @professional_exps = ProfessionalExp.all
     @education_exps = EducationExp.all
-    @rooms = Room.all(:conditions => "id IN (SELECT room_id FROM coordinators_rooms WHERE coordinator_id IN (SELECT id FROM coordinators WHERE core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))))
-      OR id IN (SELECT room_id FROM educators_rooms WHERE educator_id IN (SELECT id FROM educators WHERE core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))))")
+    @use_social_networks = UseSocialNetWork.all
+    @know_social_networks = KnowSocialNetWork.all
+    @internet_uses = InternetUse.all
+    @pc_uses = PcUse.all
   end
 end
 

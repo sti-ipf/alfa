@@ -1,0 +1,5 @@
+- if can? :manage, delete_obj
+  %td{:class => 'td-editar'}= link_to t('edit'), edit_path, :class => 'editar'
+  %td= link_to t('destroy'), delete_obj, :confirm => t('are_you_sure'), :method => :delete, :class => 'apagar'
+- else
+  %td{:colspan=>2}

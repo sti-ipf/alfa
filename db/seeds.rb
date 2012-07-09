@@ -6,6 +6,22 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
+networks = [["Orkut", 1], ["Facebook", 2], ["Twitter", 3], ["Outras", 4]]
+networks.each do |n|
+  UseSocialNetWork.create(:description => n.first)
+  KnowSocialNetWork.create(:description => n.first)
+end
+
+[["Lazer", 1], ["Estudo", 2], ["Trabalho", 3], ["Outros", 4]].each do |n|
+  InternetUse.create(:description => n.first)
+end
+
+[["Escrever textos", 1], ["Ouvir música e/ou assistir vídeos", 2], ["Ler textos", 3], ["Acessar a Internet", 4], ["Fazer planilhas", 5], ["Jogar", 6],
+    ["Realizar cursos", 7], ["Participar de redes sociais", 8]].each do |n|
+      PcUse.create(:description => n.first)
+end
+
+
 DeskType.create(:desk_type => "Carteiras escolares")
 DeskType.create(:desk_type => "Mesas redondas")
 DeskType.create(:desk_type => "Mesas de plástico")
@@ -44,6 +60,7 @@ EducationExp.create(:education_type => "Estágio")
 
 
 User.create(:username => 'admin', :name => 'Administrador', :password => 'ipf123',
-  :password_confirmation => 'ipf123', :admin => true)
+  :password_confirmation => 'ipf123', :admin => true , :role => 1)
 City.create(:name => "Presidente Kennedy")
-City.create(:name => "São Francisco de Itabapoana")
+City.create(:name => "São Francisco de Itabapoana - Fase 1")
+City.create(:name => "São Francisco de Itabapoana - Fase 2")

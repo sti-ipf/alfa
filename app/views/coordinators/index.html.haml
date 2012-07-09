@@ -9,7 +9,7 @@
 
 %h1.title= t('coordinator.listing')
 .actions 
-  = link_to t('coordinator.new'), new_coordinator_path
+  = render '/layouts/shared/add_button', :new_label=>t('coordinator.new'), :new_path => new_coordinator_path, :permission => :coordinators
 = render '/layouts/shared/filter_bar'
 
 %table{:class => 'list'}
@@ -22,8 +22,7 @@
     - @coordinators.each do |coordinator|
       %tr{:class => 'more-click'}
         %td{:class => 'first-td'}= coordinator.name
-        %td{:class => 'td-editar'}= link_to t('edit'), edit_coordinator_path(coordinator), :class => 'editar'
-        %td= link_to t('destroy'), coordinator, :confirm => t('are_you_sure'), :method => :delete, :class => 'apagar'
+        = render '/layouts/shared/edit_delete', :edit_path => edit_coordinator_path(coordinator), :delete_obj => coordinator, :permission => :coordinators
       %tr{:class => 'more-info'}
         %td{:colspan => 3}
           %div

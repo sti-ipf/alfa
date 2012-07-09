@@ -16,6 +16,10 @@
       jQuery('#ong_desc_div').attr('style','display:block; !important');
     }
 
+    if ($("#know_social_net_work_4").is(':checked')){
+      jQuery('#know_social_network_desc_div').attr('style','display:block; !important');
+    }
+
     if ($("#educator_has_internet_true").is(':checked')){
       jQuery('#where_has_internet_div').attr('style','display:block; !important');
     }
@@ -44,6 +48,14 @@
       jQuery('#educator_religion_desc_div').attr('style','display:block; !important');
     }
 
+    if ($("#internet_use_4").is(':checked')){
+      jQuery('#for_what_use_internet_desc_div').attr('style','display:block; !important');
+    }
+
+    if ($("#use_social_net_work_4").is(':checked')){
+      jQuery('#use_social_network_desc_div').attr('style','display:block; !important');
+    }
+
     if ($("#has_phone_true").is(':checked')){
       jQuery('#phones_div').attr('style','display:block; !important');
     }
@@ -68,21 +80,8 @@
       jQuery('#educator_house_type_desc_div').attr('style','display:block; !important');
     }
 
-    if ($("#educator_for_what_use_internet").val() == 4){
-      jQuery('#for_what_use_internet_desc_div').attr('style','display:block; !important');
-    }
-
-    if ($("#educator_use_social_network").val() == 4){
-      jQuery('#know_social_network_desc_div').attr('style','display:block; !important');
-    }
-
-
     if ($("#educator_special_need_type").val() >= 1){
       jQuery('#educator_special_need_desc_div').attr('style','display:block; !important');
-    }
-
-    if ($("#educator_which_social_network").val() == 4){
-      jQuery('#use_social_network_desc_div').attr('style','display:block; !important');
     }
 
     if ($("#educator_where_has_internet").val() == 3){
@@ -102,26 +101,35 @@
     %br
     = f.date_select :identification_on, {:start_year => 2010, :end_year => DateTime.now.year, :prompt => { :day => 'Selecione um dia', :month => 'Selecione um mês', :year => 'Selecione um ano'}}
   %div
-    = f.label :name, "Nome do(a) alfabetizador(a):"
+    = f.label :name, "Nome do(a) alfabetizador(a):*"
     %br
     = f.text_field :name
   %div
-    %label= t('educator.room')
+    = f.label :core_id, "Localidade do núcleo:*"
     %br
-    - @rooms.each do |r|
-      = check_box_tag 'educator[room_ids][]', r.id, @educator.rooms.include?(r)
-      - if r.core.nil?
+    = f.select :core_id, @cores, :prompt => "Selecione"
+    :javascript
+      $(document).ready(function() {
+          $("#educator_core_id").change(function() {
+              var value = $(this).val();
+              var address = "/update_rooms/#{ (@educator.id.nil?)? 0 : @educator.id}/" + value
+              $.ajax({url: address});
+          });
+      });
+
+
+
+  %div
+    %label= "Turmas"
+    %br
+    #rooms_field_div
+      - @rooms.each do |r|
+        = check_box_tag 'educator[room_ids][]', r.id, @educator.rooms.include?(r)
         = r.name
-      - else
-        = "#{r.core.name} - #{r.name}"
   %div
     = f.label :start_date_to_students, t('educator.start_date_to_students')
     %br
     = f.date_select :start_date_to_students, {:start_year => 1900, :prompt => { :day => 'Selecione um dia', :month => 'Selecione um mês', :year => 'Selecione um ano'}}, :prompt => "Selecione"
-  %div
-    = f.label :core_id, "Localidade do núcleo:"
-    %br
-    = f.select :core_id, @cores, :prompt => "Selecione"
   %div{:style => hidden_fields}
     = f.label :core_identification, "Identificação do núcleo:"
     %br
@@ -576,32 +584,36 @@
     = f.label :about_pc_use, "Sobre o uso do computador, você:"
     %br
     = f.select :about_pc_use, Educator::ABOUT_PC_USE, :prompt => "Selecione"
-  %div{:style => hidden_fields}
-    = f.label :which_uses, "Quais usos que você faz do computador"
-    %br
-    = f.select :which_uses, Educator::WHICH_USES, :prompt => "Selecione"
 
   %div{:style => hidden_fields}
-    = f.label :for_what_use_internet, "O uso que faz da Internet visa ao:"
+    %label Quais usos que você faz do computador 
     %br
-    .field_with_complement_info
-      = f.select :for_what_use_internet, Educator::FOR_WHAT_USE_INTERNET, :prompt => "Selecione"
-      :javascript
-        $(document).ready(function() {
-          $("#educator_for_what_use_internet").change(function() {
-              var value = $(this).val();
-              if (value == 4){
+    - @pc_uses.each do |d|
+      = check_box_tag 'educator[pc_use_ids][]', d.id, @educator.pc_uses.include?(d)
+      = d.description
+
+
+  %div{:style => hidden_fields}
+    %label O uso que faz da Internet visa ao
+    %br
+    - @internet_uses.each do |d|
+      = check_box_tag 'educator[internet_use_ids][]', d.id, @educator.internet_uses.include?(d), :id => "internet_use_#{d.id}"
+      = d.description
+    :javascript
+      $(document).ready(function() {
+          $("#internet_use_4").change(function() {
+              if ($("#internet_use_4").is(':checked')){
                 jQuery('#for_what_use_internet_desc_div').attr('style','display:block; !important');
-                jQuery('#educator_for_what_use_internet_desc').focus();
               }
               else{
                 jQuery('#for_what_use_internet_desc_div').attr('style','display:none; !important');
               }
           });
         });
-      #for_what_use_internet_desc_div.invisible
-        = "Quais"
-        = f.text_field :for_what_use_internet_desc
+    #for_what_use_internet_desc_div.invisible
+      %br
+      %label Quais
+      = f.text_field :for_what_use_internet_desc
 
   %div{:style => hidden_fields}
     = f.input :know_social_network, :as => :radio, :collection => [[t('yyes'), true], [t('nno'), false]]
@@ -622,21 +634,22 @@
           });
         });
     #use_social_network_div.invisible
-      = f.label :use_social_network, "Qual"
-      = f.select :use_social_network, Educator::SOCIAL_NETWORK, :prompt => "Selecione"
+      %label Quais?
+      %br
+      - @know_social_networks.each do |d|
+        = check_box_tag 'educator[know_social_net_work_ids][]', d.id, @educator.know_social_net_works.include?(d), :id => "know_social_net_work_#{d.id}"
+        = d.description
       :javascript
         $(document).ready(function() {
-          $("#educator_use_social_network").change(function() {
-              var value = $(this).val();
-              if (value == 4){
-                jQuery('#know_social_network_desc_div').attr('style','display:block; !important');
-                jQuery('#educator_know_social_network_desc').focus();
-              }
-              else{
-                jQuery('#know_social_network_desc_div').attr('style','display:none; !important');
-              }
+            $("#know_social_net_work_4").change(function() {
+                if ($("#know_social_net_work_4").is(':checked')){
+                  jQuery('#know_social_network_desc_div').attr('style','display:block; !important');
+                }
+                else{
+                  jQuery('#know_social_network_desc_div').attr('style','display:none; !important');
+                }
+            });
           });
-        });
       #know_social_network_desc_div.invisible
         = "Quais"
         = f.text_field :know_social_network_desc
@@ -659,15 +672,16 @@
           });
         });
     #which_social_network_div.invisible
-      = f.label :which_social_network, "Qual"
-      = f.select :which_social_network, Educator::SOCIAL_NETWORK, :prompt => "Selecione"
+      %label Quais?
+      %br
+      - @use_social_networks.each do |d|
+        = check_box_tag 'educator[use_social_net_work_ids][]', d.id, @educator.use_social_net_works.include?(d), :id => "use_social_net_work_#{d.id}"
+        = d.description
       :javascript
         $(document).ready(function() {
-          $("#educator_which_social_network").change(function() {
-              var value = $(this).val();
-              if (value == 4){
+          $("#use_social_net_work_4").change(function() {
+              if ($("#use_social_net_work_4").is(':checked')){
                 jQuery('#use_social_network_desc_div').attr('style','display:block; !important');
-                jQuery('#educator_use_social_network_desc').focus();
               }
               else{
                 jQuery('#use_social_network_desc_div').attr('style','display:none; !important');
@@ -747,5 +761,6 @@
     = f.label :cooperative, t('educator.cooperative.title')
     %br
     = f.select :cooperative, @cooperatives, :prompt => "Selecione"
+
   .actions
     = f.submit button

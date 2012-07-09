@@ -9,7 +9,7 @@
 
 %h1.title= t('student.listing')
 .actions 
-  = link_to t('student.new'), new_student_path
+  = render '/layouts/shared/add_button', :new_label=>t('student.new'), :new_path => new_student_path, :permission => :students
 = render '/layouts/shared/filter_bar'
 
 %table{:class => 'list'}
@@ -28,9 +28,7 @@
         %td= student.educator.name if !student.educator.nil?
         %td= student.core.name if !student.core.nil?
         %td= student.room.name if !student.room.nil?
-        
-        %td{:class => 'td-editar'}= link_to t('edit'), edit_student_path(student), :class => 'editar'
-        %td= link_to t('destroy'), student, :confirm => t('are_you_sure'), :method => :delete, :class => 'apagar'
+        = render '/layouts/shared/edit_delete', :edit_path => edit_student_path(student), :delete_obj => student, :permission => :students
       %tr{:class => 'more-info'}
         %td{:colspan => 6}
           %div

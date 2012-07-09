@@ -1,6 +1,7 @@
 class StudentsController < ApplicationController
-  # GET /students
-  # GET /students.xml
+  
+  load_and_authorize_resource
+
   before_filter :load_data, :only => [:edit, :new, :update, :create]
   
   def index
