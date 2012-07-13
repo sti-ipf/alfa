@@ -4,6 +4,12 @@ class StudentsController < ApplicationController
 
   before_filter :load_data, :only => [:edit, :new, :update, :create]
   
+
+  def without_mother_name
+    @students = Student.all(:conditions => "students.core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids})) AND (mother_name IS NULL OR mother_name = '') ",
+      :include => [:educator, :core, :room], :order => "educators.name ASC, students.name ASC")
+  end
+
   def index
     @students = Student.all(:conditions => "students.core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))",
       :include => [:educator, :core, :room], :order => "educators.name ASC, students.name ASC")

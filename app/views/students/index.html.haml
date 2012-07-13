@@ -10,26 +10,8 @@
 %h1.title= t('student.listing')
 .actions 
   = render '/layouts/shared/add_button', :new_label=>t('student.new'), :new_path => new_student_path, :permission => :students
-= render '/layouts/shared/filter_bar'
 
-%table{:class => 'list'}
-  %thead
-    %tr
-      %th= t('student.name')
-      %th= t('student.educator')
-      %th= t('student.core')
-      %th= t('student.room')
-      %th{:style => 'width: 20px;'}
-      %th{:style => 'width: 20px;'}
-  %tbody
-    - @students.each do |student|
-      %tr{:class => 'more-click'}
-        %td{:class => 'first-td'}= student.name
-        %td= student.educator.name if !student.educator.nil?
-        %td= student.core.name if !student.core.nil?
-        %td= student.room.name if !student.room.nil?
-        = render '/layouts/shared/edit_delete', :edit_path => edit_student_path(student), :delete_obj => student, :permission => :students
-      %tr{:class => 'more-info'}
-        %td{:colspan => 6}
-          %div
-            = render 'show', :student => student
+= link_to 'Visualizar alfabetizandos sem o nome da mãe', without_mother_name_path, :remote => true
+= render '/layouts/shared/filter_bar'
+#students_list
+  = render 'list'

@@ -102,10 +102,14 @@
     = f.label :name, 'Nome do Alfabetizando(a)'
     %br
     = f.text_field :name
-  %div{:style => hidden_fields}
-    = f.label :mother_name, 'Nome da mãe'
-    %br
-    = f.text_field :mother_name
+  - if session[:city_id].to_i <= 2
+    = f.hidden_field :mother_name, :value => "Não necessário nessa etapa"
+  - else
+    %div
+      = f.label :mother_name, 'Nome da mãe*'
+      %br
+      = f.text_field :mother_name
+    
   %div{:style => hidden_fields}
     = f.label :father_name, 'Nome do pai'
     %br

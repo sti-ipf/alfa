@@ -613,6 +613,7 @@ pt:
         hearing_device: "Possui aparelho?"
         need_accessible_room: "Necessita de adaptação para acesso à sala de aula?"
         physical_disability_to_write: "Tem dificuldade permanente para escrever e/ou manusear/manipular objetos?"
+        mother_name: "Nome da mãe"
       world_reading:
         coordinator_id: "Coordenador"
         educator_id: "Monitor"
@@ -634,7 +635,7 @@ pt:
         name: "Nome"
         admin: "é administrador?"
         role: "Perfil de usuário"
-        educator_id: "Associado ao alfabetizador"
+        educator_id: "Associado ao monitor"
       user_session: 
         password: "Senha"
         username:  "Usuário"

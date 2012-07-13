@@ -26,6 +26,8 @@ class Student < ActiveRecord::Base
   COOPERATIVE = [["De trabalho", 1], ["De produção", 2], ["De crédito", 3], ["De artesãos", 4], ["Outra", 5], ["Nenhuma", 6]]
 
   accepts_nested_attributes_for :phones, :reject_if => lambda { |a| a[:number].blank? }, :allow_destroy => true
+
+#  validates_presence_of :mother_name
   
 
   def age_to_s

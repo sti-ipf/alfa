@@ -20,7 +20,6 @@ class Ability
 
       can :create, :students
       can :create, :rooms
-      can :create, :educators
 
     elsif user.default?
       can :read, :all

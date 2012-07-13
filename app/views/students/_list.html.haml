@@ -1,0 +1,46 @@
+- if session[:city_id].to_i <= 2
+  %table{:class => 'list'}
+    %thead
+      %tr
+        %th= t('student.name')
+        %th= t('student.educator')
+        %th= t('student.core')
+        %th= t('student.room')
+        %th{:style => 'width: 20px;'}
+        %th{:style => 'width: 20px;'}
+    %tbody
+      - @students.each do |student|
+        %tr{:class => 'more-click'}
+          %td{:class => 'first-td'}= student.name
+          %td= student.educator.name if !student.educator.nil?
+          %td= student.core.name if !student.core.nil?
+          %td= student.room.name if !student.room.nil?
+          = render '/layouts/shared/edit_delete', :edit_path => edit_student_path(student), :delete_obj => student, :permission => :students
+        %tr{:class => 'more-info'}
+          %td{:colspan => 6}
+            %div
+              = render 'show', :student => student
+- else
+  %table{:class => 'list'}
+    %thead
+      %tr
+        %th= t('student.name')
+        %th= 'Nome da mãe'
+        %th= t('student.educator')
+        %th= t('student.core')
+        %th= t('student.room')
+        %th{:style => 'width: 20px;'}
+        %th{:style => 'width: 20px;'}
+    %tbody
+      - @students.each do |student|
+        %tr{:class => 'more-click'}
+          %td{:class => 'first-td'}= student.name
+          %td= student.mother_name
+          %td= student.educator.name if !student.educator.nil?
+          %td= student.core.name if !student.core.nil?
+          %td= student.room.name if !student.room.nil?
+          = render '/layouts/shared/edit_delete', :edit_path => edit_student_path(student), :delete_obj => student, :permission => :students
+        %tr{:class => 'more-info'}
+          %td{:colspan => 6}
+            %div
+              = render 'show', :student => student

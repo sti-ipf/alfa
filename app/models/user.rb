@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   attr_accessor :password_confirmation
   has_and_belongs_to_many :cities
 
-  ROLES = [['Administrador', 1], ['Monitor', 2], ['Alfabetizador', 3], ['Padrão', 4]]
+  ROLES = [['Administrador', 1], ['Coordenador', 2], ['Monitor', 3], ['Padrão', 4]]
 
   acts_as_authentic do |c|
     c.validate_email_field = false
