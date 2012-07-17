@@ -1,0 +1,33 @@
+%h1 Listing lecture_days
+
+%table
+  %tr
+    %th Lecture on
+    %th Week day
+    %th Day
+    %th Month
+    %th Year
+    %th Start at
+    %th End at
+    %th Room
+    %th
+    %th
+    %th
+
+  - @lecture_days.each do |lecture_day|
+    %tr
+      %td= lecture_day.lecture_on
+      %td= lecture_day.week_day
+      %td= lecture_day.day
+      %td= lecture_day.month
+      %td= lecture_day.year
+      %td= lecture_day.start_at
+      %td= lecture_day.end_at
+      %td= lecture_day.room
+      %td= link_to 'Show', lecture_day
+      %td= link_to 'Edit', edit_lecture_day_path(lecture_day)
+      %td= link_to 'Destroy', lecture_day, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Lecture day', new_room_lecture_day_path(:room_id => params[:room_id])

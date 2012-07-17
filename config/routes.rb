@@ -1,14 +1,12 @@
 # -*- encoding : utf-8 -*-
 Alfa::Application.routes.draw do
 
-  resources :phases
-
   resources :world_readings
 
   resources :students
 
   resources :rooms do
-    resources :presence_lists
+    resources :lecture_days
   end
 
   root :to => "cores#index"

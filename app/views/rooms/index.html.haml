@@ -19,11 +19,13 @@
       %th= "Núcleo"
       %th{:style => 'width: 20px;'}
       %th{:style => 'width: 20px;'}
+      %th{:style => 'width: 20px;'}
   %tbody
     - @rooms.each do |room|
       %tr{:class => 'more-click'}
         %td{:class => 'first-td'}= room.name
         %td= room.core.try(:name)
+        %td= link_to 'Lista de presença', room_lecture_days_path(:room_id => room.id)
         = render '/layouts/shared/edit_delete', :edit_path => edit_room_path(room), :delete_obj => room, :permission => :rooms
       %tr{:class => 'more-info'}
         %td{:colspan => 4}

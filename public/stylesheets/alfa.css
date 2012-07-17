@@ -925,3 +925,39 @@ li.choice label{
   margin-top:10px;
   position:relative;
 }
+
+.lecture_day{
+  float: left;
+}
+
+.lecture_day label{
+  width: auto !important;
+  float: none !important;
+}
+
+label.week_day{
+  width: 150px !important;
+  float: left !important;
+}
+
+.lecture_day input{
+  width: 40px !important;
+}
+
+.new_lecture_day select{
+  margin-right: 10px;
+}
+
+.new_lecture_day div label{
+  width: 150px;
+  float: left;
+}
+
+.new_lecture_day input{
+  width: 95px;
+}
+
+.new_lecture_day input[type="submit"]{
+  clear: both;
+  float: left;
+}

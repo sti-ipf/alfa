@@ -1,0 +1,18 @@
+- if i == 0
+  - style = ""
+- else
+  - style = "display: none;"
+
+%div{:id => "lecture_day_#{i}", :style => "#{style}", :class => 'lecture_day'}  
+  = label_tag 'Dia da semana', nil, :class => "week_day"
+  = f.select :week_day, options_for_select(Period::DAYS_OF_WEEK), {:include_blank => 'Selecione'}, {:id => "week_day_#{i}"}
+  = label_tag 'Horário de início'
+  = f.text_field :start_at, :id => "start_at_#{i}", :class => "start_at"
+  = label_tag 'Horário de término'
+  = f.text_field :end_at, :id => "end_at_#{i}", :class => "end_at"
+  :javascript
+    $(document).ready(function() {
+      $(".start_at").mask("99:99");
+      $(".end_at").mask("99:99");
+    });
+

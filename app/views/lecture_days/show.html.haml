@@ -1,0 +1,30 @@
+%p#notice= notice
+
+%p
+  %b Lecture on:
+  = @lecture_day.lecture_on
+%p
+  %b Week day:
+  = @lecture_day.week_day
+%p
+  %b Day:
+  = @lecture_day.day
+%p
+  %b Month:
+  = @lecture_day.month
+%p
+  %b Year:
+  = @lecture_day.year
+%p
+  %b Start at:
+  = @lecture_day.start_at
+%p
+  %b End at:
+  = @lecture_day.end_at
+%p
+  %b Room:
+  = @lecture_day.room
+
+= link_to 'Edit', edit_lecture_day_path(@lecture_day)
+\|
+= link_to 'Back', lecture_days_path

@@ -1,0 +1,4 @@
+%h1.title= "Cadastro de aulas da turma #{@room.name}"
+.action_back 
+  = link_to t('back'), room_lecture_days_path(:room_id => params[:room_id]), :class => 'back_link'
+= render 'form'

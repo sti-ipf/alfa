@@ -1,0 +1,44 @@
+= form_for [@room, @lecture_day], :html => {:id => 'formframe'} do |f|
+  -if @lecture_day.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@lecture_day.errors.count, "error")} prohibited this lecture_day from being saved:"
+      %ul
+        - @lecture_day.errors.full_messages.each do |msg|
+          %li= msg
+
+  %div
+    = label_tag 'Início das aulas'
+    = text_field_tag :start_on
+  %div
+    = label_tag 'Término das aulas'
+    = text_field_tag :end_on
+  :javascript
+    $(document).ready(function() {
+      $("#start_on").mask("99/99/9999");
+      $("#end_on").mask("99/99/9999");
+    });
+  %div
+    = fields_for "lecture_days[]", @lecture_day do |f|
+      - 5.times do |i|
+        = render 'lecture_day', :f => f, :i => i
+    %div
+      .form_actions
+        .add
+          = link_to 'Adicionar novo dia', '#', :id => 'add_lecture_day'
+        :javascript
+          $(document).ready(function() {
+              $("#add_lecture_day").click(function() {
+                var days = [0, 1, 2, 3, 4];
+                stop_loop = false;
+                  days.forEach(function(item){ 
+                    if (($("#lecture_day_" + item).css('display') == 'none') && !stop_loop){
+                      jQuery("#lecture_day_" + item).attr('style','display:block; !important');
+                      stop_loop = true;
+                    }
+                  });
+                  return false;
+              });
+          });
+
+  .actions
+    = f.submit "Criar"
