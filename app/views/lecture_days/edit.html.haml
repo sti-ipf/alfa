@@ -1,7 +1,28 @@
-%h1 Editing lecture_day
+%h1.title= "Alterar dia de aula da turma #{@room.name}"
+.action_back 
+  = link_to t('back'), room_lecture_days_path(:room_id => params[:room_id]), :class => 'back_link'
+= form_for [@room, @lecture_day], :html => {:id => 'formframe'} do |f|
+  %div
+    = f.label :lecture_on
+    %br
+    = f.text_field :lecture_on, :value => @lecture_day.lecture_on_to_date.try(:strftime, '%d/%m/%Y')
+  %div
+    = f.label :start_at
+    %br
+    = f.text_field :start_at
+  %div
+    = f.label :end_at
+    %br
+    = f.text_field :end_at
+  %div
+    = f.label :cancelled
+    = f.check_box :cancelled
+  .actions
+    = f.submit "Alterar"
 
-= render 'form'
-
-= link_to 'Show', @lecture_day
-\|
-= link_to 'Back', lecture_days_path
+  :javascript
+    $(document).ready(function() {
+      $("#lecture_day_lecture_on").mask("99/99/9999");
+      $("#lecture_day_start_at").mask("99:99");
+      $("#lecture_day_end_at").mask("99:99");
+    });

@@ -1,16 +1,9 @@
 = form_for [@room, @lecture_day], :html => {:id => 'formframe'} do |f|
-  -if @lecture_day.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@lecture_day.errors.count, "error")} prohibited this lecture_day from being saved:"
-      %ul
-        - @lecture_day.errors.full_messages.each do |msg|
-          %li= msg
-
   %div
-    = label_tag 'Início das aulas'
+    = label_tag 'Início das aulas*'
     = text_field_tag :start_on
   %div
-    = label_tag 'Término das aulas'
+    = label_tag 'Término das aulas*'
     = text_field_tag :end_on
   :javascript
     $(document).ready(function() {

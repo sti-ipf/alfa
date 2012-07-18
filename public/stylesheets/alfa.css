@@ -961,3 +961,41 @@ label.week_day{
   clear: both;
   float: left;
 }
+
+.cancel{
+  background:#A0615C;
+  color:#fff !important;
+  display:block;
+  font-size:10px;
+  padding: 5px;
+  -webkit-border-radius: 2px; /* Saf3-4, iOS 1-3.2, Android ≤1.6 */
+          border-radius: 2px; /* Opera 10.5, IE9, Saf5, Chrome, FF4+, iOS 4, Android 2.1+ */
+
+  /* useful if you don't want a bg color from leaking outside the border: */
+  -moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box;
+}
+
+.cancel:hover{
+  background:#811810;
+  color:#fff !important;
+  text-decoration:none !important;
+}
+
+.uncancel{
+  background:#43B757;
+  color:#fff !important;
+  display:block;
+  font-size:10px;
+  padding: 5px;
+  -webkit-border-radius: 2px; /* Saf3-4, iOS 1-3.2, Android ≤1.6 */
+          border-radius: 2px; /* Opera 10.5, IE9, Saf5, Chrome, FF4+, iOS 4, Android 2.1+ */
+
+  /* useful if you don't want a bg color from leaking outside the border: */
+  -moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box;
+}
+
+.uncancel:hover{
+  background:#467B4F;
+  color:#fff !important;
+  text-decoration:none !important;
+}

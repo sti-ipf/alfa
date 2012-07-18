@@ -1,0 +1,1 @@
+$("#cancelled_button_#{@lecture_day.id}").html("#{escape_javascript(generate_cancelled_button(@lecture_day.cancelled, @lecture_day.id).html_safe)}")

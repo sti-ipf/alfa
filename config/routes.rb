@@ -21,6 +21,7 @@ Alfa::Application.routes.draw do
   match 'update_city' => 'cores#update_city', :as => 'update_city'
   match 'update_rooms/:educator_id/:core_id' => 'educators#update_rooms', :as => 'update_rooms'
   match 'students_without_mother_name' => 'students#without_mother_name', :as => 'without_mother_name'
+  match 'update_cancelled/:id' => 'lecture_days#update_cancelled', :as => 'update_cancelled'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

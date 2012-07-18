@@ -8,6 +8,7 @@ class CreateLectureDays < ActiveRecord::Migration
       t.integer :year
       t.time :start_at
       t.time :end_at
+      t.boolean :cancelled, :default => false
       t.references :room
 
       t.timestamps

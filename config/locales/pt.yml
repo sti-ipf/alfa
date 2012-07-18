@@ -585,7 +585,13 @@ pt:
       student: "Estudante"
       user: "Usuário"
       user_session: "Login"
+      lecture_day: "Dia de aula"
     attributes:
+      lecture_day:
+        lecture_on: "Dia"
+        start_at: "Horário de início"
+        end_at: "Horário de término"
+        cancelled: "Cancelado"
       core:
         another_place: "Há outros espaços que podem ser utilizados pelo monitor?"
         board: "Existe lousa?"
