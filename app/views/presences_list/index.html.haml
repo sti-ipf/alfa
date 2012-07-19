@@ -6,10 +6,17 @@
     %table{:id => 'presence_list'}
       %thead
         %tr
+          %td
+          - @lecture_days.each do |l|
+            %td= l.lecture_on_to_date.try(:strftime, '%d/%m/%Y')
       %tbody
-        - @presences.each do |p|
-          = fields_for p do |f|
-            = f.check_box :presence, :id => "presence_#{p.id}"
+        - @students.each do |s|
+          %tr
+            %td= s.name
+            - @lecture_days.each do |l|
+              - @presences.each do |p|
+                = fields_for p do |f|
+                  %td= f.check_box :presence, :id => "presence_#{p.id}"
 
-              
-            
+                  
+                

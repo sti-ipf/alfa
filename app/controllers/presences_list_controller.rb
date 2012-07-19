@@ -2,8 +2,16 @@ class PresencesListController < ApplicationController
   # GET /presences
   # GET /presences.xml
   def index
-    @presences = Presence.all
-
+    @presences = Presence.all(:conditions => "room_id = #{params[:room_id]} AND month = #{params[:month]}", :order => "student_id ASC")
+    @room = Room.find(params[:room_id])
+    @students = @room.students
+    @students.each do |s|
+      s.presence_list ||= []
+      @presences.each do |p|
+        s.presence_list << p if p.student_id == s.id
+      end
+    end
+    @lecture_days = @room.lecture_days
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @presences }
