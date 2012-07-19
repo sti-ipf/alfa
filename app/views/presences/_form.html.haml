@@ -1,0 +1,22 @@
+= form_for @presence do |f|
+  -if @presence.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@presence.errors.count, "error")} prohibited this presence from being saved:"
+      %ul
+        - @presence.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :lecture_day
+    = f.text_field :lecture_day
+  .field
+    = f.label :student
+    = f.text_field :student
+  .field
+    = f.label :room
+    = f.text_field :room
+  .field
+    = f.label :presence
+    = f.check_box :presence
+  .actions
+    = f.submit 'Save'

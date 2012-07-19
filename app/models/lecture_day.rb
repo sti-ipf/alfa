@@ -1,6 +1,6 @@
 class LectureDay < ActiveRecord::Base
   belongs_to :room
-
+  has_many :presences, :dependent => :destroy
 
   def lecture_on_to_date
     Time.at(self.lecture_on)

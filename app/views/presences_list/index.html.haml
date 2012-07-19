@@ -1,0 +1,15 @@
+- if @presences.count == 0
+  .div{:style => 'margin: 10px; float:left; clear: both;'}
+    Não há atividades ou estudantes cadastrado nesta formação.
+- else
+  - form_tag 'teste' do
+    %table{:id => 'presence_list'}
+      %thead
+        %tr
+      %tbody
+        - @presences.each do |p|
+          = fields_for p do |f|
+            = f.check_box :presence, :id => "presence_#{p.id}"
+
+              
+            

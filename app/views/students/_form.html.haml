@@ -75,7 +75,7 @@
     %br
     = f.date_select :identification_on, {:start_year => 2010, :end_year => DateTime.now.year, :prompt => { :day => 'Selecione um dia', :month => 'Selecione um mês', :year => 'Selecione um ano'}}
   %div
-    = f.label :educator_id, 'Alfabetizador'
+    = f.label :educator_id, 'Monitor(a)'
     %br
     = f.select :educator_id, @educators, :prompt => "Selecione"
   %div

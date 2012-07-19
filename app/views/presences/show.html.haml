@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Lecture day:
+  = @presence.lecture_day
+%p
+  %b Student:
+  = @presence.student
+%p
+  %b Room:
+  = @presence.room
+%p
+  %b Presence:
+  = @presence.presence
+
+= link_to 'Edit', edit_presence_path(@presence)
+\|
+= link_to 'Back', presences_path

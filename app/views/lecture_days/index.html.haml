@@ -2,6 +2,7 @@
 .actions 
   = render '/layouts/shared/add_button', :new_label=> "Cadastrar aulas", :new_path => new_room_lecture_day_path(:room_id => params[:room_id]), :permission => :lecture_days
 = render '/layouts/shared/filter_bar'
+
 %table{:class => 'list'}
   %thead
     %tr

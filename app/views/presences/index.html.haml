@@ -1,0 +1,25 @@
+%h1 Listing presences
+
+%table
+  %tr
+    %th Lecture day
+    %th Student
+    %th Room
+    %th Presence
+    %th
+    %th
+    %th
+
+  - @presences.each do |presence|
+    %tr
+      %td= presence.lecture_day
+      %td= presence.student
+      %td= presence.room
+      %td= presence.presence
+      %td= link_to 'Show', presence
+      %td= link_to 'Edit', edit_presence_path(presence)
+      %td= link_to 'Destroy', presence, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Presence', new_presence_path
