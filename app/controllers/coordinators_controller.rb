@@ -5,6 +5,20 @@ class CoordinatorsController < ApplicationController
   # GET /coordinators
   # GET /coordinators.xml
 
+  def update_rooms
+    if params[:coordinator_id].to_i == 0
+      @coordinator = Coordinator.new
+    else
+      @coordinator = Coordinator.find(params[:coordinator_id])
+    end
+    core = Core.find(params[:core_id])
+    @rooms = core.rooms
+
+    respond_to do |format|
+      format.js if request.xhr?
+    end
+  end
+
 
   def index
     @coordinators = Coordinator.all(:conditions => "core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))", :include => [:core, :rooms], :order => "name ASC")
@@ -33,6 +47,7 @@ class CoordinatorsController < ApplicationController
   # GET /coordinators/new.xml
   def new
     @coordinator = Coordinator.new
+    @rooms = []
     1.times {@coordinator.phones.build}
     @coordinator.social_participations.build
     respond_to do |format|
@@ -49,6 +64,13 @@ class CoordinatorsController < ApplicationController
     @ong_desc = @coordinator.social_participations.first.ong_desc if !@coordinator.social_participations.first.nil?
     @years = @coordinator.coordinators_education_exps.first.years if !@coordinator.coordinators_education_exps.first.nil?
     @popular_education_years = @coordinator.coordinators_education_exps.first.popular_education_years if !@coordinator.coordinators_education_exps.first.nil?
+
+    if @coordinator.core.nil?
+      @rooms = []
+    else
+      @rooms = @coordinator.core.rooms
+    end
+
   end
 
   # POST /coordinators
@@ -118,7 +140,7 @@ class CoordinatorsController < ApplicationController
   end
 
   def load_data
-    @cores = Core.all(:conditions => "city_id IN (#{@cities_ids})").collect {|c| ["#{c.city.try(:name)} - #{c.place_description}", c.id]}
+    @cores = Core.all(:conditions => "city_id IN (#{@cities_ids})").collect {|c| ["#{c.community}", c.id]}
     @genders = Coordinator::GENDERS
     @ethnicities = Coordinator::ETHNICITIES
     @zones = Coordinator::ZONES
@@ -135,8 +157,6 @@ class CoordinatorsController < ApplicationController
     @cooperatives = Coordinator::COOPERATIVES
     @professional_exps = ProfessionalExp.all
     @education_exps = EducationExp.all
-    @rooms = Room.all(:conditions => "id IN (SELECT room_id FROM coordinators_rooms WHERE coordinator_id IN (SELECT id FROM coordinators WHERE core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))))
-      OR id IN (SELECT room_id FROM educators_rooms WHERE educator_id IN (SELECT id FROM educators WHERE core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))))")
     @computer_knowledges = sort_hash_by_value(Coordinator::COMPUTER_KNOWLEDGE)
     @computer_uses = sort_hash_by_value(Coordinator::COMPUTER_USE)
     @computer_targets = sort_hash_by_value(Coordinator::COMPUTER_TARGET)

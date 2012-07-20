@@ -1,0 +1,3 @@
+- rooms.each do |r|
+  = check_box_tag 'coordinator[room_ids][]', r.id, coordinator.rooms.include?(r)
+  = r.name

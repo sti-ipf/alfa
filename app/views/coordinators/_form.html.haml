@@ -52,22 +52,31 @@
     %br
     = f.text_field :name
   %div
-    %label= t('coordinator.room')
+    = f.label :core_id, t('coordinator.core')
     %br
-    - @rooms.each do |r|
-      = check_box_tag 'coordinator[room_ids][]', r.id, @coordinator.rooms.include?(r)
-      - if r.core.nil?
+    = f.select :core_id, @cores, :prompt => "Selecione"
+    :javascript
+      $(document).ready(function() {
+          $("#coordinator_core_id").change(function() {
+              var value = $(this).val();
+              var address = "/coordinator_update_rooms/#{ (@coordinator.id.nil?)? 0 : @coordinator.id}/" + value
+              $.ajax({url: address});
+          });
+      });
+
+
+
+  %div
+    %label= "Turmas"
+    %br
+    #rooms_field_div
+      - @rooms.each do |r|
+        = check_box_tag 'coordinator[room_ids][]', r.id, @coordinator.rooms.include?(r)
         = r.name
-      - else
-        = "#{r.core.name} - #{r.name}"
   %div
     = f.label :start_date_to_students, t('coordinator.start_date_to_students')
     %br
     = f.date_select :start_date_to_students, {:start_year => 1900, :prompt => { :day => 'Selecione um dia', :month => 'Selecione um mês', :year => 'Selecione um ano'}}
-  %div
-    = f.label :core_id, t('coordinator.core')
-    %br
-    = f.select :core_id, @cores, :prompt => "Selecione"
   %div
     = f.label :gender, t('coordinator.gender')
     %br
