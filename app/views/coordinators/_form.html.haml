@@ -52,7 +52,7 @@
     %br
     = f.text_field :name
   %div
-    = f.label :core_id, t('coordinator.core')
+    = f.label :core_id, "#{t('coordinator.core')}*"
     %br
     = f.select :core_id, @cores, :prompt => "Selecione"
     :javascript

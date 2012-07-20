@@ -604,6 +604,7 @@ pt:
         has_computers: "Há computadores disponíveis no espaço para a utilização dos alfabetizadores"
       coordinator:
         special_need: "Possui necessidade educacional especial"
+        core_id: "Núcleo"
       educator:
         core_id: "Núcleo"
         name: "Nome"

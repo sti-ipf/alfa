@@ -93,6 +93,7 @@ class CoordinatorsController < ApplicationController
         format.html { redirect_to(coordinators_path) }
         format.xml  { render :xml => @coordinator, :status => :created, :location => @coordinator }
       else
+        @rooms = []
         flash[:error] = t('default_error_message')
         format.html { render :action => "new" }
         format.xml  { render :xml => @coordinator.errors, :status => :unprocessable_entity }
