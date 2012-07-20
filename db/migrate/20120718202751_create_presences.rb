@@ -5,7 +5,7 @@ class CreatePresences < ActiveRecord::Migration
       t.references :student
       t.references :room
       t.integer :month
-      t.boolean :presence, :default => :false
+      t.boolean :presence, :default => false
 
       t.timestamps
     end
