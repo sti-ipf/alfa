@@ -3,12 +3,26 @@
   $(document).ready(function() {
     zebraListing();
   });
+
+%p{:style => hidden_fields} 
+  %b= 'Identificação dos dados realizada em'
+  = educator.identification_on.try(:strftime, '%d/%m/%Y')
+
 %p  
   %b= "#{t('coordinator.core')}:"
   = educator.core.try(:name)
 %p
   %b= "#{t('coordinator.start_date_to_students')}:"
   = educator.start_date_to_students.try(:strftime, '%d/%m/%Y')
+
+%p{:style => hidden_fields}
+  %b= "Identificação do núcleo:"
+  = educator.core_identification
+
+%p{:style => hidden_fields}
+  %b= "Faixa etária"
+  = educator.age_range
+
 %p
   %b= "#{t('coordinator.age')}:"
   = educator.age
@@ -30,9 +44,23 @@
 %p
   %b= "#{t('coordinator.zone')}:"
   = educator.zone_to_s
+
+%p{:style => hidden_fields}
+  %b= "Qual"
+  = educator.zone_desc
+
 %p
   %b= "#{t('coordinator.address')}:"
   = educator.address
+
+%p{:style => hidden_fields}
+  %b= "Comunidade/Bairro"
+  = educator.district
+
+%p{:style => hidden_fields}
+  %b= "CEP"
+  = educator.zip_code
+
 %p
   %b= "#{t('coordinator.civil_status')}:"
   = educator.civil_status_to_s
@@ -80,9 +108,129 @@
 %p
   %b= "#{t('coordinator.house_type')}:"
   = educator.house_type_to_s
+
+%p{:style => hidden_fields}
+  %b= t('which')
+  = educator.house_type_desc
+
 %p
   %b= "#{t('coordinator.special_need')}:"
   = educator.special_need_to_s
+
+%p{:style => hidden_fields}
+  %b= "Especifique"
+  = educator.special_need_desc
+
+%p{:style => hidden_fields}
+  %b= "Por que interessou-se pelo programa de alfabetização?"
+  = educator.participation_reason
+
+%p{:style => hidden_fields}
+  %b= "Disponibilidade viagem?"
+  = educator.travel_disponibility
+
+%p{:style => hidden_fields}
+  %b= " 3 últimos livros lidos:"
+  = educator.last_books
+
+%p{:style => hidden_fields}
+  %b= "Cite 3 programas de televisão por ordem de interesse que assiste diariamente"
+  = educator.tv_programs
+
+%p{:style => hidden_fields}
+  %b= "Você tem experiência em alfabetização de jovens e adultos? Conte-nos sobre."
+  = educator.experience
+
+%p{:style => hidden_fields}
+  %b= "Você tem compromisso com outro trabalho? Quais os dias da semana e horário?"
+  = educator.other_job
+
+%p{:style => hidden_fields}
+  %b= "A educação de jovens e adultos pode acontecer em qualquer horário. Você concorda com essa afirmação? Por que?"
+  = educator.agree_with_any_period
+  
+%p{:style => hidden_fields}
+  %b= "O que se deve ensinar numa sala para jovens e adultos?"
+  = educator.what_teach
+  
+%p{:style => hidden_fields}
+  %b= "Liste possíveis temas/conteúdos que gostaria de estudar e que ajudariam você a exercer seu papel de alfabetizador(a)"
+  = educator.subjects
+  
+%p{:style => hidden_fields}
+  %b= "Tem computador?"
+  = educator.has_pc
+  
+%p{:style => hidden_fields}
+  %b= "Se não, onde acessa:"
+  = educator.where_use_pc
+  
+%p{:style => hidden_fields}
+  %b=  "Quais"
+  = educator.where_use_pc_desc
+  
+%p{:style => hidden_fields}
+  %b= "Tem internet"
+  = educator.has_internet_to_s
+
+- if educator.has_internet == true
+  %p{:style => hidden_fields}
+    %b= "Onde"
+    = educator.where_has_internet_to_s
+  
+  - if educator.where_has_internet == 3 
+    %p{:style => hidden_fields}
+      %b= "Quais"
+      = educator.where_has_internet_desc
+
+
+%p{:style => hidden_fields}
+  %b= "Sobre o uso do computador, você:"
+  = educator.about_pc_use_to_s
+
+%p{:style => hidden_fields}
+  %b= "Quais usos que você faz do computador"
+  = educator.pc_uses.map(&:description).join(", ")
+
+%p{:style => hidden_fields}
+  %b= "O uso que faz da Internet visa ao"
+  = educator.internet_uses.map(&:description).join(", ")
+
+- if educator.internet_uses.include?(4)
+  %p{:style => hidden_fields}
+    %b= "Quais"
+    = educator.for_what_use_internet_desc
+
+%p{:style => hidden_fields}
+  %b= "Conhece redes sociais?"
+  = educator.know_social_network_to_s
+
+%p{:style => hidden_fields}
+  %b= "Quais"
+  = educator.know_social_net_works.map(&:description).join(", ")
+
+- if educator.know_social_net_works.include?(4)
+  %p{:style => hidden_fields}
+    %b= "Outras redes sociais que conhece"
+    = educator.know_social_network_desc
+
+%p{:style => hidden_fields}
+  %b= "Quais redes sociais usa"
+  = educator.which_social_network
+
+%p{:style => hidden_fields}
+  %b= "Quais"
+  = educator.use_social_net_works.map(&:description).join(", ")
+
+- if educator.use_social_net_works.include?(4)
+  %p{:style => hidden_fields}
+    %b= "Outras redes sociais que usa"
+    = educator.use_social_network_desc
+
+%p{:style => hidden_fields}
+  %b= "Espaço para observações gerais"
+  = educator.observation
+
 %p
   %b= "#{t('coordinator.political_affiliation.title')}:"
   = educator.political_affiliation_to_s
@@ -118,3 +266,17 @@
   %ul
     - educator.phones.each do |p|
       %li= "(#{p.dd}) #{p.number} <i>#{p.phone_type_to_s}</i>".html_safe
+
+
+%p{:style => hidden_fields}
+  %b= "Local de acceso a internet"
+  = educator.internet_access_local_to_s
+
+- if educator.internet_access_local.include?(3)
+  %p{:style => hidden_fields}
+    %b= "Quais"
+    = educator.internet_access_local_desc
+
+%p{:style => hidden_fields}
+  %b= "E-mail"
+  = educator.email
