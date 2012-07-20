@@ -82,10 +82,16 @@
     = f.label :core_id, 'Localidade do núcleo'
     %br
     = f.select :core_id, @cores, :prompt => "Selecione"
-  %div
-    = f.label :room_id, t('student.room')
-    %br
-    = f.select :room_id, @rooms, :prompt => "Selecione"
+  :javascript
+    $(document).ready(function() {
+        $("#student_core_id").change(function() {
+            var value = $(this).val();
+            var address = "/student_update_rooms/#{ (@student.id.nil?)? 0 : @student.id}/" + value
+            $.ajax({url: address});
+        });
+    });
+  #rooms_div
+    = render 'rooms'
   %div
     = f.label :sign_up_date_on, t('student.sign_up_date_on')
     %br

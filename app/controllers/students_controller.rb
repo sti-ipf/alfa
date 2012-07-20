@@ -5,6 +5,20 @@ class StudentsController < ApplicationController
   before_filter :load_data, :only => [:edit, :new, :update, :create]
   
 
+  def update_rooms
+    if params[:student_id].to_i == 0
+      @educator = Student.new
+    else
+      @educator = Student.find(params[:student_id])
+    end
+    core = Core.find(params[:core_id])
+    @rooms = core.rooms.collect{|c| [c.name, c.id]}
+
+    respond_to do |format|
+      format.js if request.xhr?
+    end
+  end
+
   def without_mother_name
     @students = Student.all(:conditions => "students.core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids})) AND (mother_name IS NULL OR mother_name = '') ",
       :include => [:educator, :core, :room], :order => "educators.name ASC, students.name ASC")
@@ -12,7 +26,7 @@ class StudentsController < ApplicationController
 
   def index
     @students = Student.all(:conditions => "students.core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))",
-      :include => [:educator, :core, :room], :order => "educators.name ASC, students.name ASC")
+      :include => [:educator, :core, :room, :phones], :order => "educators.name ASC, students.name ASC")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -45,6 +59,9 @@ class StudentsController < ApplicationController
   # GET /students/1/edit
   def edit
     @student = Student.find(params[:id])
+    if !@student.core.blank?
+      @rooms = @student.core.rooms.collect{|c| [c.name, c.id]}
+    end
   end
 
   # POST /students
@@ -110,8 +127,7 @@ class StudentsController < ApplicationController
     @houses = Coordinator::HOUSES
     @house_types = Coordinator::HOUSE_TYPES
     @religions = Coordinator::RELIGIONS
-    @rooms = Room.all(:conditions => "id IN (SELECT room_id FROM coordinators_rooms WHERE coordinator_id IN (SELECT id FROM coordinators WHERE core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))))
-      OR id IN (SELECT room_id FROM educators_rooms WHERE educator_id IN (SELECT id FROM educators WHERE core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))))").collect{|c| ["#{c.core.try(:name)} - #{c.name}", c.id]}
+    @rooms = []
   end
   
 end

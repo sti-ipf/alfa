@@ -20,6 +20,7 @@ Alfa::Application.routes.draw do
   match 'sign_out' => 'user_sessions#destroy', :as => 'sign_out'
   match 'update_city' => 'cores#update_city', :as => 'update_city'
   match 'update_rooms/:educator_id/:core_id' => 'educators#update_rooms', :as => 'update_rooms'
+  match 'student_update_rooms/:student_id/:core_id' => 'students#update_rooms', :as => 'student_update_rooms'
   match 'students_without_mother_name' => 'students#without_mother_name', :as => 'without_mother_name'
   match 'update_cancelled/:id' => 'lecture_days#update_cancelled', :as => 'update_cancelled'
   match ':room_id/:month/presences_list' => 'presences_list#index', :as => 'presences_list'

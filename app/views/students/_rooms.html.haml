@@ -1,0 +1,4 @@
+%div
+  = label :student, :room_id, t('student.room')
+  %br
+  = select :student, :room_id, @rooms, :prompt => "Selecione"
