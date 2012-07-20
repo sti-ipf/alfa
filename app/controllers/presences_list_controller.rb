@@ -2,16 +2,23 @@ class PresencesListController < ApplicationController
   # GET /presences
   # GET /presences.xml
   def index
-    @presences = Presence.all(:conditions => "room_id = #{params[:room_id]} AND month = #{params[:month]}", :order => "student_id ASC")
+    presences = Presence.all(:conditions => "room_id = #{params[:room_id]} AND month = #{params[:month]}", :order => "student_id ASC")
     @room = Room.find(params[:room_id])
     @students = @room.students
+    @presences = []
+    i = 0
+    @lecture_days = LectureDay.all(:conditions => "room_id = #{params[:room_id]} AND month = #{params[:month]}", :order => "lecture_on ASC")
     @students.each do |s|
-      s.presence_list ||= []
-      @presences.each do |p|
-        s.presence_list << p if p.student_id == s.id
+      @presences << {} 
+      @presences[i][:student] = s.name
+      @lecture_days.each do |l|
+        presences.each do |p|
+          @presences[i][l.id] = p if (l.id == p.lecture_day_id && p.student_id == s.id)
+        end
       end
+      i += 1
     end
-    @lecture_days = @room.lecture_days
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @presences }
@@ -65,15 +72,10 @@ class PresencesListController < ApplicationController
   # PUT /presences/1.xml
   def update
     @presence = Presence.find(params[:id])
-
+    @presence.update_attributes(:presence => params[:status])
+    
     respond_to do |format|
-      if @presence.update_attributes(params[:presence])
-        format.html { redirect_to(@presence, :notice => 'Presence was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @presence.errors, :status => :unprocessable_entity }
-      end
+      format.js if request.xhr?
     end
   end
 

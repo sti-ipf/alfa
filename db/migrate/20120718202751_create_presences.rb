@@ -5,10 +5,11 @@ class CreatePresences < ActiveRecord::Migration
       t.references :student
       t.references :room
       t.integer :month
-      t.boolean :presence
+      t.boolean :presence, :default => :false
 
       t.timestamps
     end
+    add_index :presences, [:lecture_day_id, :student_id], :unique => true
   end
 
   def self.down

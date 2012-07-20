@@ -2,7 +2,8 @@
 .actions 
   = render '/layouts/shared/add_button', :new_label=> "Cadastrar aulas", :new_path => new_room_lecture_day_path(:room_id => params[:room_id]), :permission => :lecture_days
 = render '/layouts/shared/filter_bar'
-= link_to "Lista", presences_list_path(:room_id => 1, :month => 1)
+- @months.each do |m|
+  = link_to "Lista", presences_list_path(:room_id => params[:room_id], :month => m)
 %table{:class => 'list'}
   %thead
     %tr
@@ -15,7 +16,10 @@
     - @lecture_days.each do |lecture_day|
       %tr{:class => 'more-click'}
         %td{:class => 'first-td'}= lecture_day.lecture_on_to_date.try(:strftime, '%d/%m/%Y')
-        %td= "#{lecture_day.start_at.try(:strftime, '%H:%M')} às #{lecture_day.end_at.try(:strftime, '%H:%M')}"
+        - if lecture_day.start_at.blank? || lecture_day.end_at.blank?
+          %td
+        - else
+          %td= "#{lecture_day.start_at.try(:strftime, '%H:%M')} às #{lecture_day.end_at.try(:strftime, '%H:%M')}"
         %td
           %div{:id => "cancelled_button_#{lecture_day.id}"}
             = generate_cancelled_button(lecture_day.cancelled, lecture_day.id).html_safe

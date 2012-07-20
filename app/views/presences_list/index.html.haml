@@ -1,3 +1,29 @@
+:javascript
+  function update_frequency(row,frequency_row)
+    {
+      var row = $(row);
+      var value = 0;
+      var total = 0
+  
+      row.find('[type=checkbox]').each(function()
+      {
+         if ($(this).is(':checked')){
+          value += 1;  
+         }
+         total += 1; 
+      });
+  
+      percentage = ((value * 100)/total).toFixed(2);
+      if (percentage >= 75){
+        style = 'color:green;'
+      }
+      else{
+        style = 'color:red;' 
+      }
+      
+      $(frequency_row).html('<div style='+style+'>'+percentage+'%'+'</div>');
+    }
+
 - if @presences.count == 0
   .div{:style => 'margin: 10px; float:left; clear: both;'}
     Não há atividades ou estudantes cadastrado nesta formação.
@@ -8,15 +34,33 @@
         %tr
           %td
           - @lecture_days.each do |l|
-            %td= l.lecture_on_to_date.try(:strftime, '%d/%m/%Y')
+            %td= l.lecture_on_to_date.try(:strftime, '%d')
+          %td
       %tbody
-        - @students.each do |s|
-          %tr
-            %td= s.name
+        - i = 0
+        - @presences.each do |p|
+          - i += 1
+          %tr{:id => "#{i}"}
+            %td= p[:student]
             - @lecture_days.each do |l|
-              - @presences.each do |p|
-                = fields_for p do |f|
-                  %td= f.check_box :presence, :id => "presence_#{p.id}"
+              - presence = p[l.id]
+              - if !presence.nil?
+                = fields_for presence do |f|
+                  %td= f.check_box :presence, :id => "presence_#{presence.id}"
+                  :javascript
+                    $(document).ready(function() {
+                      update_frequency("##{i}", '##{i}_frequency');
+                      $("#presence_#{presence.id}").change(function() {
+                        if ($("#presence_#{presence.id}").is(':checked')){
+                          $.ajax({url: "/update_presence/#{presence.id}/1"});
+                        }
+                        else{
+                          $.ajax({url: "/update_presence/#{presence.id}/0"}); 
+                        }
+                        update_frequency("##{i}", '##{i}_frequency');
+                      });
+                    });
+              - else
+                %td
 
-                  
-                
+            %td{:id => "#{i}_frequency"}

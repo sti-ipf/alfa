@@ -64,3 +64,9 @@ User.create(:username => 'admin', :name => 'Administrador', :password => 'ipf123
 City.create(:name => "Presidente Kennedy")
 City.create(:name => "São Francisco de Itabapoana - Fase 1")
 City.create(:name => "São Francisco de Itabapoana - Fase 2")
+
+if Rails.env == 'development'
+  c = Core.create(:community => "Comunidade", :institution_name => "Instituição", :city_id => 1)
+  r = Room.create(:name => "Turma 1", :core => c)
+  Student.create(:name => 'João da Silva', :core => c, :room => r)
+end

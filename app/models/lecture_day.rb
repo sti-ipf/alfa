@@ -2,6 +2,8 @@ class LectureDay < ActiveRecord::Base
   belongs_to :room
   has_many :presences, :dependent => :destroy
 
+  after_save :create_presences
+
   def lecture_on_to_date
     Time.at(self.lecture_on)
   end
@@ -24,6 +26,17 @@ class LectureDay < ActiveRecord::Base
   end
 
 private
+
+  def create_presences
+    self.room.students.each do |s|
+      p = Presence.first(:conditions => "lecture_day_id = #{self.id} AND student_id = #{s.id}")
+      if p.nil?
+        Presence.create(:lecture_day_id => self.id, :student_id => s.id, :room_id => self.room_id, :month => self.month)
+      else
+        p.update_attributes(:month => self.month)
+      end
+    end
+  end
 
   def self.create_lectures_for_day_of_week(day_of_week, start_on, end_on, room_id, start_at, end_at)
     lecture_days = []

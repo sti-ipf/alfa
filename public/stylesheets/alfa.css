@@ -999,3 +999,7 @@ label.week_day{
   color:#fff !important;
   text-decoration:none !important;
 }
+
+#presence_list input[type="checkbox"]{
+  margin: 0px !important;
+}

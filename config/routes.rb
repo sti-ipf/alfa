@@ -23,6 +23,7 @@ Alfa::Application.routes.draw do
   match 'students_without_mother_name' => 'students#without_mother_name', :as => 'without_mother_name'
   match 'update_cancelled/:id' => 'lecture_days#update_cancelled', :as => 'update_cancelled'
   match ':room_id/:month/presences_list' => 'presences_list#index', :as => 'presences_list'
+  match 'update_presence/:id/:status' => 'presences_list#update', :as => 'update_presence'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

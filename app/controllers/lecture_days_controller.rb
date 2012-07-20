@@ -15,7 +15,7 @@ class LectureDaysController < ApplicationController
 
   def index
     @lecture_days = LectureDay.all
-
+    @months = LectureDay.find_by_sql("SELECT DISTINCT month FROM lecture_days").collect(&:month)
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @lecture_days }
