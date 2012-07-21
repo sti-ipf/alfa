@@ -21,6 +21,11 @@
 %p
   %strong= "#{t('coordinator.ethnicity')}:"
   %span= coordinator.ethnicity_to_s
+
+%p{:style => hidden_fields}
+  %strong= "#{t('coordinator.email')}:"
+  %span= coordinator.email
+
 %p
   %strong= "#{t('coordinator.hometown')}:"
   %span= coordinator.hometown
@@ -104,6 +109,93 @@
 %p
   %strong= "#{t('coordinator.cooperative.title')}:"
   %span= coordinator.cooperative_to_s
+
+%p{:style => hidden_fields}
+  %strong= "#{t('coordinator.literacy.experience')}:"
+  %span= coordinator.literacy_exp
+
+%p{:style => hidden_fields}
+  %strong= "#{t('coordinator.literacy.availability')}:"
+  %span= coordinator.literacy_availability
+
+%p{:style => hidden_fields}
+  %strong= "#{t('coordinator.travel')}:"
+  %span= coordinator.can_travel
+
+
+%p{:style => hidden_fields}
+  %strong= "#{t('coordinator.literacy.justify')}:"
+  %span= coordinator.literacy_justify
+
+%p{:style => hidden_fields}
+  %strong= "#{t('coordinator.literacy.anytime')}:"
+  %span= coordinator.anytime_literacy
+
+%p{:style => hidden_fields}
+  %strong= "#{t('coordinator.literacy.teach_what')}:"
+  %span= coordinator.teach_what
+
+%p{:style => hidden_fields}
+  %strong= "#{t('coordinator.literacy.all_in_same_room')}:"
+  %span= coordinator.all_in_same_room
+
+%p{:style => hidden_fields}
+  %strong= "#{t('coordinator.study_content')}:"
+  %span= coordinator.study_content
+
+%p{:style => hidden_fields}
+  %strong= "#{t('coordinator.comunity_need_class')}:"
+  %span= coordinator.comunity_need_class
+
+%p{:style => hidden_fields}
+  %strong= "#{t('coordinator.organize_class')}:"
+  %span= coordinator.organize_class
+
+%p{:style => hidden_fields}
+  %strong= "#{t('coordinator.computer_knowledge')}:"
+  %span= coordinator.computer_knowledge
+
+%p{:style => hidden_fields}
+  %strong= "#{t('coordinator.computer_use')}:"
+  %span= coordinator.computer_uses
+
+%p{:style => hidden_fields}
+  %strong= "#{t('coordinator.computer_target')}:"
+  %span= coordinator.computer_target
+
+
+%p{:style => hidden_fields}
+  %strong= "#{t('coordinator.internet_home')}:"
+  %span= coordinator.internet_home
+
+%p{:style => hidden_fields}
+  %strong= "#{t('coordinator.email_read')}:"
+  %span= coordinator.email_read
+
+%p{:style => hidden_fields}
+  %strong= "#{t('coordinator.social_network.know')}:"
+  %span= coordinator.social_network_know
+
+%p{:style => hidden_fields}
+  %strong= "#{t('coordinator.msn.has')}:"
+  %span= coordinator.has_msn
+
+%p{:style => hidden_fields}
+  %strong= "#{t('coordinator.msn.use')}:"
+  %span= coordinator.msn_use
+
+%p{:style => hidden_fields}
+  %strong= "#{t('coordinator.blog')}:"
+  %span= coordinator.blog_status
+
+%p{:style => hidden_fields}
+  %strong= "#{t('coordinator.ead')}:"
+  %span= coordinator.ead
+
+%p{:style => hidden_fields}
+  %strong= "#{t('coordinator.obs')}"
+  %span= coordinator.obs
+
 %p
   %strong= "Turmas em que participa:"
   %ul

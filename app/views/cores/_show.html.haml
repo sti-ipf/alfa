@@ -7,12 +7,25 @@
 %p
   %strong= 'Nome do núcleo:'
   %span= core.name
+
+%p{:style => hidden_fields}
+  %strong= 'Identificação do espaço:'
+  %span= core.place_description.html_safe
 %p
   %strong= "#{t('core.address')}:"
   %span= core.address
+%p{:style => hidden_fields}
+  %strong= 'Número'
+  %span= core.number
+%p{:style => hidden_fields}
+  %strong= 'CEP'
+  %span= core.zip_code
 %p
   %strong= "#{t('core.community_type.title')}:"
   %span= core.community_type_to_s
+%p{:style => hidden_fields}
+  %strong= t('which')
+  %span= core.community_type_desc
 %p
   %strong= "#{t('core.place.title')}:" 
   %span
@@ -26,6 +39,11 @@
       = p.partner_resource.try(:resource)
       - if !p.resource_desc.blank?
         %span= "(#{p.resource_desc})"
+
+%p{:style => hidden_fields}
+  %strong= 'Observação'
+  %span= core.resources_observation
+
 %p
   %strong= "Nome da instituição:"
   %span= core.institution_name
@@ -70,11 +88,28 @@
 %p
   %strong= "#{t('core.who_visited_field')}:"
   %span= core.who_visited
+
 %p
   %strong= "Telefones:"
   %ul
     - core.phones.each do |p|
       %li= "(#{p.dd}) #{p.number} <i>#{p.phone_type_to_s}</i>".html_safe
+
+
+%p{:style => hidden_fields}
+  %strong= 'Banheiros'
+  %span= core.total_restroom
+
+
+%p{:style => hidden_fields}
+  %strong= "Observação sobre a cozinha:"
+  %span= core.kitchen_observation.html_safe
+
+
+%p{:style => hidden_fields}
+  %strong= "Observação sobre os computadores:"
+  %span= core.computer_observation.html_safe
+
 %p
   %strong= "Tipos de assentos:"
   %ul

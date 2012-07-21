@@ -4,6 +4,21 @@
     zebraListing();
   });
 
+%p{:style => hidden_fields}
+  %b= 'Identificação dos dados realizada em'
+  = student.identification_on.try(:strftime, "%d/%m/%Y")
+
+%p{:style => hidden_fields}
+  %b= "Apelido do alfabetizando(a)"
+  = student.nickname
+
+%p{:style => hidden_fields}
+  %b= 'Nome do pai'
+  = student.father_name
+
+%p{:style => hidden_fields}
+  %b= "E-mail"
+  = student.email
 
 %p
   %b= "#{t('student.sign_up_date_on')}:"
@@ -32,15 +47,76 @@
 %p
   %b= "#{t('student.zone')}:"
   = student.zone_to_s
+
+- if student.zone == 4
+  %p{:style => hidden_fields}
+    %b= "Qual"
+    = student.zone_desc
+
 %p
   %b= "#{t('student.address')}:"
   = student.address
+
+%p{:style => hidden_fields}
+  %b= 'Comunidade/Bairro'
+  = student.district
+
+%p{:style => hidden_fields}
+  %b= 'Número'
+  = student.number
+
+%p{:style => hidden_fields}
+  %b= 'CEP'
+  = student.zip_code
+
+%p{:style => hidden_fields}
+  %b= "Local de acesso a internet"
+  = student.internet_access_local
+
+%p{:style => hidden_fields}
+  %b= "Quais"
+  = student.internet_access_local_desc
+
+%p{:style => hidden_fields}
+  %b= "Nº Identidade"
+  = student.rg
+
+%p{:style => hidden_fields}
+  %b= "Nº Certidão de nascimento"
+  = student.dob_id
+
+%p{:style => hidden_fields}
+  %b= "Nº CPF"
+  = student.cpf
+
+%p{:style => hidden_fields}
+  %b= "Nº Título de eleitor"
+  = student.voter_id
+
+%p{:style => hidden_fields}
+  %b= "Nº Carteira profissional"
+  = student.professional_id
+
+%p{:style => hidden_fields}
+  %b= "Nº de identificação social - nis (pis/pasep/bolsa família)"
+  = student.social_id
+
 %p
   %b= "#{t('student.civil_status')}:"
   = student.civil_status_to_s
 %p
   %b= "#{t('student.education_level.title')}:"
   = student.education_level_to_s
+
+- if student.education_level == 5 || student.education_level == 6
+  %p{:style => hidden_fields}
+    %b= "Onde"
+    = student.education_level_place
+
+%p{:style => hidden_fields}
+  %b= 'Renda familiar'
+  = student.familiar_income
+
 %p
   %b= "#{t('student.actual_condition.title')}:"
   = student.actual_condition_to_s
@@ -66,11 +142,91 @@
   = student.special_need_to_s
   - if !student.special_need_desc.blank?
     = "(#{student.special_need_desc})"
+
+
+
+%p{:style => hidden_fields}
+  %b= "Deficiência visual - tem dificuldade permanente de enxergar?"
+  = student.vision_loss
+
+%p{:style => hidden_fields}
+  %b= "Precisa de óculos"
+  = student.need_glasses
+
+%p{:style => hidden_fields}
+  %b= "Observação"
+  = student.vision_loss_observation
+
+%p{:style => hidden_fields}
+  %b= "Deficiência auditiva - tem dificuldade permanente de ouvir?"
+  = student.hearing_disability
+
+%p{:style => hidden_fields}
+  %b= "Aparelho auditivo"
+  = student.hearing_device
+
+%p{:style => hidden_fields}
+  %b= "Observação"
+  = student.hearing_disability_observation
+
+%p{:style => hidden_fields}
+  %b= "Deficiência física - tem dificuldade permanente para caminhar e/ou subir/descer degraus?"
+  = student.physical_disability
+
+%p{:style => hidden_fields}
+  %b= "Necessita sala acessível?"
+  = student.need_accessible_room
+
+%p{:style => hidden_fields}
+  %b= "Deficiência física para escrever?"
+  = student.physical_disability_to_write
+
+%p{:style => hidden_fields}
+  %b= "Observação"
+  = student.physical_disability_observation
+
+%p{:style => hidden_fields}
+  %b= "Deficiência intelectual/mental - Tem alguma dificuldade permanente que limite a realização de atividades ligadas a:"
+  = student.intelectual_disability
+
+%p{:style => hidden_fields}
+  %b= "Participação social:"
+  = student.social_participation
+
+%p{:style => hidden_fields}
+  %b= t('which')
+  = student.social_participation_desc
+
+%p{:style => hidden_fields}
+  %b= "Associação:"
+  = student.association
+
+%p{:style => hidden_fields}
+  %b= t('which')
+  = student.association_desc
+
+%p{:style => hidden_fields}
+  %b= "Cooperativas:"
+  = student.cooperative
+
+%p{:style => hidden_fields}
+  %b= t('which')
+  = student.cooperative_desc
+
 %p
   %b= "#{t('student.religion')}:"
   = student.religion_to_s
   - if !student.religion_desc.blank?
     = "(#{student.religion_desc})"
+
+%p{:style => hidden_fields}
+  %b= "Por que está participando do programa de alfabetização?"
+  = student.participation_reason
+
+%p{:style => hidden_fields}
+  %b= "Quais assuntos você gostaria que fossem trabalhados durante as aulas?"
+  = student.subjects
+
 %p
   %b= "#{t('student.observations')}:"
   = student.observations

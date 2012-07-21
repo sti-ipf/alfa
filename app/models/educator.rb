@@ -75,6 +75,22 @@ class Educator < ActiveRecord::Base
     end
   end
 
+  def has_internet_to_s
+    if self.has_internet
+      "Sim"
+    else
+      "Não"
+    end
+  end
+
+  def know_social_network_to_s
+    if self.know_social_network
+      "Sim"
+    else
+      "Não"
+    end
+  end
+
   def political_affiliation_to_s
     get_attribute_value(self.political_affiliation, Coordinator::POLITICAL_AFFILIATIONS)
   end
@@ -94,6 +110,19 @@ class Educator < ActiveRecord::Base
   def education_level_to_s
     get_attribute_value(self.education_level, Coordinator::EDUCATION_LEVELS)
   end
+
+  def where_has_internet_to_s
+    get_attribute_value(self.where_has_internet, Educator::WHERE_HAS_INTERNET)
+  end
+
+  def about_pc_use_to_s
+    get_attribute_value(self.about_pc_use, Educator::ABOUT_PC_USE)  
+  end
+
+  def internet_access_local_to_s
+    get_attribute_value(self.internet_access_local, Student::INTERNET_ACCESS_LOCAL)   
+  end
+
 private
 
   def get_attribute_value(attribute, array)
