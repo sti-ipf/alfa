@@ -7,4 +7,6 @@ class Room < ActiveRecord::Base
   has_many :lecture_days
   
   accepts_nested_attributes_for :periods, :reject_if => lambda { |a| a[:day_of_week].blank? }, :allow_destroy => true
+
+  validates_presence_of :core_id
 end

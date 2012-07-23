@@ -1003,3 +1003,60 @@ label.week_day{
 #presence_list input[type="checkbox"]{
   margin: 0px !important;
 }
+
+.title .presence_lists{
+  border-left: 1px solid #B0B1B5;
+  display: inline-block;
+  float: left;
+  font-size: 16px;
+  font-weight: bold;
+  height: 16px;
+  margin-bottom: 0 !important;
+  margin-top: -10px;
+  min-width: 54px;
+  padding: 10px;
+  position: absolute;
+  margin-left: 10px;
+}
+
+.presence_list{
+  float: left;
+  margin-bottom: 20px;
+}
+
+.presence_list .calendar{
+  background: url("/images/calendar.png") no-repeat scroll 0 0 transparent;
+  color: #142E53;
+  display: block;
+  float: left;
+  width: 50px;
+  height: 49px;
+  margin-right: 10px;
+}
+
+.calendar .year{
+  font-size: 15px;
+  font-weight: bold;
+  margin-left: 9px;
+  margin-top: 20px;
+  position: absolute;
+}
+
+.calendar .month a{
+  font-size: 14px;
+  font-weight: normal;
+  margin-left: 17px;
+  margin-top: 20px;
+  position: absolute;
+  color: #333;
+}
+
+.calendar .month a:hover{
+  color: #000;
+  text-decoration: none !important;
+}
+
+#presence_list_area{
+  float: left;
+  width: 100%;
+}

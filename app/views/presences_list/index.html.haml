@@ -1,66 +1,43 @@
+%h1.title= "Atualização das listas de presença da turma #{@room.name}"
+.action_back 
+  = link_to t('back'), :back, :class => 'back_link'
+.presence_list
+  .calendar
+    .year 2012
+  - @months.each do |m|
+    %div{:id => "calendar_#{m}", :class => "calendar"}
+      .month= link_to show_month(m), edit_presences_list_path(:room_id => params[:room_id], :month => m), :remote => true, :class => "show_presence_list"
+#presence_list_area
+
 :javascript
-  function update_frequency(row,frequency_row)
-    {
-      var row = $(row);
-      var value = 0;
-      var total = 0
-  
-      row.find('[type=checkbox]').each(function()
-      {
-         if ($(this).is(':checked')){
-          value += 1;  
-         }
-         total += 1; 
-      });
-  
-      percentage = ((value * 100)/total).toFixed(2);
-      if (percentage >= 75){
-        style = 'color:green;'
-      }
-      else{
-        style = 'color:red;' 
-      }
-      
-      $(frequency_row).html('<div style='+style+'>'+percentage+'%'+'</div>');
-    }
+  function show_spinner(div){
+    var opts = {
+      lines: 13, // The number of lines to draw
+      length: 7, // The length of each line
+      width: 4, // The line thickness
+      radius: 10, // The radius of the inner circle
+      rotate: 0, // The rotation offset
+      color: '#000', // #rgb or #rrggbb
+      speed: 1, // Rounds per second
+      trail: 60, // Afterglow percentage
+      shadow: false, // Whether to render a shadow
+      hwaccel: false, // Whether to use hardware acceleration
+      className: 'spinner', // The CSS class to assign to the spinner
+      zIndex: 2e9, // The z-index (defaults to 2000000000)
+      top: 'auto', // Top position relative to parent in px
+      left: 'auto' // Left position relative to parent in px
+    };
+    var target = document.getElementById(div);
+    var spinner = new Spinner(opts).spin(target);
+  }
 
-- if @presences.count == 0
-  .div{:style => 'margin: 10px; float:left; clear: both;'}
-    Não há atividades ou estudantes cadastrado nesta formação.
-- else
-  - form_tag 'teste' do
-    %table{:id => 'presence_list'}
-      %thead
-        %tr
-          %td
-          - @lecture_days.each do |l|
-            %td= l.lecture_on_to_date.try(:strftime, '%d')
-          %td
-      %tbody
-        - i = 0
-        - @presences.each do |p|
-          - i += 1
-          %tr{:id => "#{i}"}
-            %td= p[:student]
-            - @lecture_days.each do |l|
-              - presence = p[l.id]
-              - if !presence.nil?
-                = fields_for presence do |f|
-                  %td= f.check_box :presence, :id => "presence_#{presence.id}"
-                  :javascript
-                    $(document).ready(function() {
-                      update_frequency("##{i}", '##{i}_frequency');
-                      $("#presence_#{presence.id}").change(function() {
-                        if ($("#presence_#{presence.id}").is(':checked')){
-                          $.ajax({url: "/update_presence/#{presence.id}/1"});
-                        }
-                        else{
-                          $.ajax({url: "/update_presence/#{presence.id}/0"}); 
-                        }
-                        update_frequency("##{i}", '##{i}_frequency');
-                      });
-                    });
-              - else
-                %td
+:javascript
+  $(document).ready(function() {
+    $('.show_presence_list').click(function() {
+      $("#presence_list_area").html("")
+      show_spinner('presence_list_area');
+    });
+    
+  });
 
-            %td{:id => "#{i}_frequency"}
+  

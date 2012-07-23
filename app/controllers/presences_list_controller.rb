@@ -1,7 +1,22 @@
 class PresencesListController < ApplicationController
-  # GET /presences
-  # GET /presences.xml
+  
   def index
+    @room = Room.find(params[:room_id])
+    @months = LectureDay.all(:select => "DISTINCT month",:conditions => "room_id = #{params[:room_id]}", :order => "year ASC, month ASC").collect(&:month)
+  end
+
+  def new
+    @presence = Presence.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @presence }
+    end
+  end
+
+  # GET /presences/1/edit
+  def edit
+    @month = params[:month]
     presences = Presence.all(:conditions => "room_id = #{params[:room_id]} AND month = #{params[:month]}", :order => "student_id ASC")
     @room = Room.find(params[:room_id])
     @students = @room.students
@@ -20,36 +35,10 @@ class PresencesListController < ApplicationController
     end
     
     respond_to do |format|
+      format.js
       format.html # index.html.erb
       format.xml  { render :xml => @presences }
     end
-  end
-
-  # GET /presences/1
-  # GET /presences/1.xml
-  def show
-    @presence = Presence.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @presence }
-    end
-  end
-
-  # GET /presences/new
-  # GET /presences/new.xml
-  def new
-    @presence = Presence.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @presence }
-    end
-  end
-
-  # GET /presences/1/edit
-  def edit
-    @presence = Presence.find(params[:id])
   end
 
   # POST /presences

@@ -38,5 +38,10 @@ module ApplicationHelper
       ''
     end
   end
+
+  def show_month(month_number)
+    months = %w(Jan Fev Mar Abr Mai Jun Jul Ago Set Out Nov Dez)
+    months[month_number - 1].downcase
+  end
 end
 

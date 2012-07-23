@@ -1,9 +1,9 @@
-%h1.title= "Dias de aula"
+%h1.title
+  = "Dias de aula"
+  .presence_lists= link_to "Atualizar lista de presença", presences_list_path(:room_id => params[:room_id])
 .actions 
   = render '/layouts/shared/add_button', :new_label=> "Cadastrar aulas", :new_path => new_room_lecture_day_path(:room_id => params[:room_id]), :permission => :lecture_days
 = render '/layouts/shared/filter_bar'
-- @months.each do |m|
-  = link_to "Lista mês #{m}", presences_list_path(:room_id => params[:room_id], :month => m)
 %table{:class => 'list'}
   %thead
     %tr
