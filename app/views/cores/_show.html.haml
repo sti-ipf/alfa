@@ -10,7 +10,7 @@
 
 %p{:style => hidden_fields}
   %strong= 'Identificação do espaço:'
-  %span= core.place_description.html_safe
+  %span= core.place_description.try(:html_safe)
 %p
   %strong= "#{t('core.address')}:"
   %span= core.address
@@ -103,12 +103,12 @@
 
 %p{:style => hidden_fields}
   %strong= "Observação sobre a cozinha:"
-  %span= core.kitchen_observation.html_safe
+  %span= core.kitchen_observation.try(:html_safe)
 
 
 %p{:style => hidden_fields}
   %strong= "Observação sobre os computadores:"
-  %span= core.computer_observation.html_safe
+  %span= core.computer_observation.try(:html_safe)
 
 %p
   %strong= "Tipos de assentos:"
