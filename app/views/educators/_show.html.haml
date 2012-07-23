@@ -271,11 +271,11 @@
 %p{:style => hidden_fields}
   %b= "Local de acceso a internet"
   = educator.internet_access_local_to_s
-
-- if educator.internet_access_local.include?(3)
-  %p{:style => hidden_fields}
-    %b= "Quais"
-    = educator.internet_access_local_desc
+- if !educator.internet_access_local.nil?
+  - if educator.internet_access_local.include?(3)
+    %p{:style => hidden_fields}
+      %b= "Quais"
+      = educator.internet_access_local_desc
 
 %p{:style => hidden_fields}
   %b= "E-mail"
