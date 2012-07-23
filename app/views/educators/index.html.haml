@@ -1,11 +1,13 @@
 :javascript
   $(document).ready(function(){
-    $('.more-click').click(function(){
-      $(this).next().children().children().slideToggle();
+    $('a.more').click(function(){
+      console.log($(this).parent().parent().next().children().children())
+      $(this).parent().parent().next().children().children().slideToggle();
     })
     var options = {additionalFilterTriggers: [$('#filter')], filter: 'false'};
     $('.list').tableFilter(options);
   });
+
 
 %h1.title= t('educator.listing')
 .actions 
@@ -21,7 +23,7 @@
   %tbody
     - @educators.each do |educator|
       %tr{:class => 'more-click'}
-        %td{:class => 'first-td'}= educator.name
+        %td{:class => 'first-td'}= raw"<a href='#' class='more'></a>"+educator.name
         = render '/layouts/shared/edit_delete', :edit_path => edit_educator_path(educator), :delete_obj => educator, :permission => :educators
       %tr{:class => 'more-info'}
         %td{:colspan => 3}

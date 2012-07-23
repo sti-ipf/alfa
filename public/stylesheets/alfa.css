@@ -77,6 +77,7 @@ ul.intranet-menu li a:hover{background:#fefefe;
   height: 85px;
   margin: 0 auto;
   width:100%;
+  padding:10px 0px;
   overflow: hidden;
   background:#fff;
   box-shadow: 0 1px 2px 0 #4A4A4A;
@@ -190,8 +191,7 @@ ul.intranet-menu li a:hover{background:#fefefe;
 div.menu-aplicacao{
   background: url("/images/menu_bg.png") repeat-x scroll left bottom transparent;
   border-bottom: 1px solid #bbbbbb;
-  border-top: 1px solid #D7D7D7;
-  height: 25px;
+  height: 0px;
   width:100%;
   -moz-box-shadow: 0px 1px 0px #eee;
   -webkit-box-shadow: 0px 1px 0px #eee;
@@ -329,9 +329,16 @@ h1.title{
   cursor:pointer !important;
 }
 
+.actions{
+  position:absolute;
+  right:0;
+  width:500px;
+}
+
 .actions a{
   right:0px;  
-  position:absolute;
+  position:relative;
+  float:right;
   cursor: default !important;
   display: inline-block;
   font-weight: bold;
@@ -351,6 +358,47 @@ h1.title{
   cursor:pointer;
   margin-bottom: 0px !important;
 }
+
+.actions a.back_link{
+  right:0px;  
+  position:relative;
+  float:right;
+  cursor: default !important;
+  display: inline-block;
+  font-weight: bold;
+  height: 16px;
+  min-width: 54px;
+  padding: 9px 44px 9px 22px;
+  text-align: center;
+  text-decoration: none !important;
+  background: url('/images/voltar.png') right top;
+    background: url('/images/voltar.png') right -34px;
+  border: 1px solid 
+  #3079ED;
+  color: #fff !important;
+  font-size:13px;
+  border-top:1px solid #8eb3ed;
+  box-shadow: 0 -1px 0px 0 #3679e5;
+  cursor:pointer;
+  border-left:0px solid #ccc;
+}
+
+.actions a.back_link:hover{
+  background: url('/images/voltar.png') right top;
+  cursor:pointer;
+}
+
+.actions .presence_lists a, .action_back .presence_lists a{
+  border-right:0px solid #ccc !important;
+  padding-right:22px;
+  background: url('/images/novo.png') left -34px;
+}
+
+
+.actions .presence_lists a:hover, .action_back .presence_lists a:hover{
+  background: url('/images/novo.png') left top;
+}
+
 
 .actions a:hover{
   background: url('/images/novo.png') right top;
@@ -421,7 +469,25 @@ tr.more-click td{
   padding:15px 15px;
   margin:0;
   border-right: 1px solid #e8e8e8;
+}
 
+table#presence_list tbody tr td{
+  box-shadow: 0 -1px 0px 0 #fff;
+  -webkit-box-shadow: 0 -1px 0px 0 #fff;
+  -moz-box-shadow: 0 -1px 0px 0 #fff;
+  border-bottom: 1px solid #d9d9d9;
+  padding:10px 10px;
+  margin:0;
+  border-right: 1px solid #e8e8e8;
+}
+
+
+table#presence_list tr td{
+  text-align:center;
+}
+
+table#presence_list tbody tr td.student{
+  text-align:left;
 }
 
 tr.more-click .first-td{
@@ -482,6 +548,25 @@ tbody tr.more-click:hover{
 .editar:hover{
   background:#2e77ec;
   color:#fff !important;
+  text-decoration:none !important;
+}
+
+.lista{
+background: #888;
+color: white !important;
+display: block;
+font-size: 10px;
+padding: 5px;
+-webkit-border-radius: 2px;
+border-radius: 2px;
+-moz-background-clip: padding;
+-webkit-background-clip: padding-box;
+background-clip: padding-box;
+margin-right: 0px;
+}
+
+.lista:hover{
+  background:#777;
   text-decoration:none !important;
 }
 
@@ -817,7 +902,8 @@ thead tr.filters{display: none;}
 
 .action_back a{
   right:0px;  
-  position:absolute;
+  position:relative;
+  float:right;
   cursor: default !important;
   display: inline-block;
   font-weight: bold;
@@ -835,6 +921,12 @@ thead tr.filters{display: none;}
   border-top:1px solid #8eb3ed;
   box-shadow: 0 -1px 0px 0 #3679e5;
   cursor:pointer;
+}
+
+.action_back{
+  position:absolute;
+  right:0;
+  width:500px;
 }
 
 .action_back a:hover{
@@ -888,7 +980,7 @@ li.choice label{
 .invisible{display: none;}
 
 .odd{
-  background:#f3f3f3;
+  background:#f2f2f2;
   padding:10px;
   margin:0;
 }
@@ -1019,6 +1111,7 @@ label.week_day{
   margin-left: 10px;
 }
 
+
 .presence_list{
   float: left;
   margin-bottom: 20px;
@@ -1059,4 +1152,35 @@ label.week_day{
 #presence_list_area{
   float: left;
   width: 100%;
+}
+
+a.more{
+  display:block;
+  position:absolute;
+  margin-top:-22px;
+  margin-left:-14px;
+  width:700px;
+  height:58px;
+}
+
+.filter_bar input{
+  outline:none;
+  height:28px;
+  border: 1px solid #c8c8c8;
+  font-family: 'OpenSansRegular';
+  padding:0px 7px 0px 7px;
+  color:#555;
+  -webkit-box-shadow: 0px 1px 0px 0px #fff;
+    -moz-box-shadow: 0px 1px 0px 0px #fff;
+    box-shadow: 0px 1px 0px 0px #fff;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+  -moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box;
+  background:#fff;
+  margin-top:6px;
+}
+
+.filter_bar input:focus{
+  border: 1px solid #2c6fec;
 }

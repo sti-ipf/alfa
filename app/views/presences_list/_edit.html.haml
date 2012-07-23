@@ -24,6 +24,9 @@
       $(frequency_row).html('<div style='+style+'>'+percentage+'%'+'</div>');
     }
 
+    $("tbody tr:nth-child(even)").addClass("even");
+    $("tbody tr:nth-child(odd)").addClass("odd");
+
 - if @presences.count == 0
   .div{:style => 'margin: 10px; float:left; clear: both;'}
     Não há atividades ou estudantes cadastrado nesta formação.
@@ -41,7 +44,7 @@
         - @presences.each do |p|
           - i += 1
           %tr{:id => "#{i}"}
-            %td= p[:student]
+            %td.student= p[:student]
             - @lecture_days.each do |l|
               - presence = p[l.id]
               - if !presence.nil?

@@ -1,6 +1,7 @@
 %h1.title= "Atualização das listas de presença da turma #{@room.name}"
 .action_back 
-  = link_to t('back'), :back, :class => 'back_link'
+  = link_to t('back'), :rooms, :class => 'back_link'
+  .presence_lists= link_to "Ver Dias de Aula", room_lecture_days_path(:room_id => params[:room_id])
 .presence_list
   .calendar
     .year 2012
