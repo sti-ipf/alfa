@@ -1184,3 +1184,35 @@ a.more{
 .filter_bar input:focus{
   border: 1px solid #2c6fec;
 }
+
+#report_form {
+  float: left;
+  width: 100%;
+}
+
+#report_form #rooms_div{
+  float: left;
+}
+
+#report_form select{
+  margin-left: 10px;
+  float: left;
+}
+
+#report_form #generate_report{
+  float: left;
+  margin-top: 5px;
+  margin-left: 10px;
+}
+
+#report_container{
+  float: left;
+  margin-top: 30px;
+}
+
+#report_container .spinner{
+  margin-left: 460px;
+  margin-top: 10px;
+  float: left;
+  left: 0 !important;
+}

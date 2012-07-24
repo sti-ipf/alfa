@@ -33,9 +33,9 @@ class Student < ActiveRecord::Base
   def self.report_data(core_id, room_id, city_id)
     conditions = []
     if core_id == 0
-      conditions << "AND core_id = #{params[:core_id]} "
-    else
       conditions << "AND core_id IN (select id from cores where city_id IN (#{city_id})) "
+    else
+      conditions << "AND core_id = #{core_id} "
     end
 
     if room_id > 0
