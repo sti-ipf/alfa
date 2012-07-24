@@ -373,8 +373,7 @@ h1.title{
   text-decoration: none !important;
   background: url('/images/voltar.png') right top;
     background: url('/images/voltar.png') right -34px;
-  border: 1px solid 
-  #3079ED;
+  border: 1px solid #3079ED;
   color: #fff !important;
   font-size:13px;
   border-top:1px solid #8eb3ed;
