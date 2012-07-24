@@ -33,16 +33,16 @@ class Student < ActiveRecord::Base
   def self.report_data(core_id, room_id, city_id, column)
     conditions = []
     if core_id == 0
-      conditions << "AND core_id IN (select id from cores where city_id IN (#{city_id})) "
+      conditions << "core_id IN (select id from cores where city_id IN (#{city_id})) "
     else
-      conditions << "AND core_id = #{core_id} "
+      conditions << "core_id = #{core_id} "
     end
 
     if room_id > 0
       conditions << "AND room_id = #{room_id} "
     end
 
-    data = Student.find_by_sql("select count(*) as total, #{column} from students where #{column} is not null #{conditions.join(' ')} group by #{column} ")
+    data = Student.find_by_sql("select count(*) as total, #{column} from students where #{conditions.join(' ')} group by #{column} ")
   end
   
 
