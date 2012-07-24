@@ -104,9 +104,9 @@ body{
 }
 
 #formframe .actions input[type=submit]{
-position:fixed;
-bottom:-10px;
-width:119px;
+	position:fixed;
+	bottom:-10px;
+	width:119px;
 }
 
 #formframe input:focus{
