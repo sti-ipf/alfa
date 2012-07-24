@@ -1,17 +1,20 @@
-= form_tag show_report_path, :remote => true, :id => "report_form" do
-  = select_tag :core_id, options_for_select(@cores), :include_blank => "Selecione um núcleo"
-  #rooms_div
-    = render 'rooms'
-  = submit_tag 'Gerar relatório', :id => "generate_report"
+%h1.title Relatórios
+#report_form
+  = form_tag show_report_path, :remote => true do
+    = select_tag :column, options_for_select([['Faixa etária', 'age'], ['Profissão', 'profession'],['Raça', 'ethnicity'], ['Religião', 'religion'], ['Sexo', 'gender']]), :include_blank => "Selecione o tipo de dado"
+    = select_tag :core_id, options_for_select(@cores), :include_blank => "Selecione um núcleo"
+    #rooms_div
+      = render 'rooms'
+    = submit_tag 'Gerar relatório', :id => "generate_report"
 
-:javascript
-  $(document).ready(function() {
-    $("#core_id").change(function() {
-        var value = $(this).val();
-        var address = "/report_update_rooms/" + value
-        $.ajax({url: address});
+  :javascript
+    $(document).ready(function() {
+      $("#core_id").change(function() {
+          var value = $(this).val();
+          var address = "/report_update_rooms/" + value
+          $.ajax({url: address});
+      });
     });
-  });
 
 #report_container
 

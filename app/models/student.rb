@@ -30,7 +30,7 @@ class Student < ActiveRecord::Base
 #  validates_presence_of :mother_name
 
 
-  def self.report_data(core_id, room_id, city_id)
+  def self.report_data(core_id, room_id, city_id, column)
     conditions = []
     if core_id == 0
       conditions << "AND core_id IN (select id from cores where city_id IN (#{city_id})) "
@@ -42,7 +42,7 @@ class Student < ActiveRecord::Base
       conditions << "AND room_id = #{room_id} "
     end
 
-    data = Student.find_by_sql("select count(*) as total, age from students where age is not null #{conditions.join(' ')} group by age ")
+    data = Student.find_by_sql("select count(*) as total, #{column} from students where #{column} is not null #{conditions.join(' ')} group by #{column} ")
   end
   
 

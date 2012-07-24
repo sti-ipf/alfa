@@ -10,11 +10,17 @@ class ReportsController < ApplicationController
   end
 
   def show
-    data = Student.report_data(params[:core_id].to_i, params[:room_id].to_i, session[:city_id].to_i)
+    data = Student.report_data(params[:core_id].to_i, params[:room_id].to_i, session[:city_id].to_i, params[:column])
+    @graphic_title = get_graphic_title(params[:column])
+    @data = 
     @data = []
-    @graphic_title = "Faixa de idade"
     data.each do |d|
-      @data << "['#{d.age_to_s}', #{d.total}]"
+      if params[:column] == 'profession'
+        legend = eval("d.#{params[:column]}")
+      else
+        legend = eval("d.#{params[:column]}_to_s")
+      end
+      @data << "['#{legend}', #{d.total}]"
     end
     @data = @data.join(',')
     respond_to do |format|
@@ -36,4 +42,22 @@ class ReportsController < ApplicationController
       format.js if request.xhr?
     end
   end
+
+private
+
+  def get_graphic_title(column)
+    case column
+      when 'age'
+        'Por faixa de idade'
+      when 'gender'
+        'Por sexo'
+      when 'ethnicity'
+        'Por raça'
+      when 'profession'
+        'Por profissão'
+      when 'religion'
+        'Por religião'
+    end
+  end
+
 end
