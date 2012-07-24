@@ -1,13 +1,17 @@
 %h1.title Relatórios
 #report_form
   = form_tag show_report_path, :remote => true do
-    %label Informe o tipo de dado:
-    = select_tag :column, options_for_select([['Faixa etária', 'age'], ['Profissão', 'profession'],['Raça', 'ethnicity'], ['Religião', 'religion'], ['Sexo', 'gender']])
-    %label Informe o núcleo:
-    = select_tag :core_id, options_for_select(@cores)
-    %label Informe a turma:
-    #rooms_div
-      = render 'rooms'
+    %ul
+      %li.first
+        %label Informe o tipo de dado:
+        = select_tag :column, options_for_select([['Faixa etária', 'age'], ['Profissão', 'profession'],['Raça', 'ethnicity'], ['Religião', 'religion'], ['Sexo', 'gender']])
+      %li
+        %label Informe o núcleo:
+        = select_tag :core_id, options_for_select(@cores)
+      %li
+        %label Informe a turma:
+        #rooms_div
+          = render 'rooms'
     = submit_tag 'Gerar relatório', :id => "generate_report"
 
   :javascript
