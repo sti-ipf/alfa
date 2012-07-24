@@ -11,7 +11,7 @@
     %tbody
       - @students.each do |student|
         %tr{:class => 'more-click'}
-          %td{:class => 'first-td'}= student.name
+          %td{:class => 'first-td'}= raw"<a href='#' class='more'></a>"+student.name
           %td= student.educator.name if !student.educator.nil?
           %td= student.core.name if !student.core.nil?
           %td= student.room.name if !student.room.nil?
@@ -34,7 +34,7 @@
     %tbody
       - @students.each do |student|
         %tr{:class => 'more-click'}
-          %td{:class => 'first-td'}= student.name
+          %td{:class => 'first-td'}= raw"<a href='#' class='more'></a>"+student.name
           %td= student.mother_name
           %td= student.educator.name if !student.educator.nil?
           %td= student.core.name if !student.core.nil?

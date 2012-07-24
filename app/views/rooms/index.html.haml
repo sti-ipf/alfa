@@ -1,7 +1,8 @@
 :javascript
   $(document).ready(function(){
-    $('.more-click').click(function(){
-      $(this).next().children().children().slideToggle();
+    $('a.more').click(function(){
+      console.log($(this).parent().parent().next().children().children())
+      $(this).parent().parent().next().children().children().slideToggle();
     })
     var options = {additionalFilterTriggers: [$('#filter')], filter: 'false'};
     $('.list').tableFilter(options);
@@ -9,7 +10,7 @@
 
 %h1.title= t('room.listing')
 .actions 
-= render '/layouts/shared/add_button', :new_label=>t('room.new'), :new_path => new_room_path, :permission => :rooms
+  = render '/layouts/shared/add_button', :new_label=>t('room.new'), :new_path => new_room_path, :permission => :rooms
 = render '/layouts/shared/filter_bar'
 
 %table{:class => 'list'}
@@ -17,15 +18,15 @@
     %tr
       %th= t('room.name')
       %th= "Núcleo"
-      %th{:style => 'width: 20px;'}
+      %th{:style => 'width: 96px;'}
       %th{:style => 'width: 20px;'}
       %th{:style => 'width: 20px;'}
   %tbody
     - @rooms.each do |room|
       %tr{:class => 'more-click'}
-        %td{:class => 'first-td'}= room.name
+        %td{:class => 'first-td'}= raw"<a href='#' class='more'></a>"+room.name
         %td= room.core.try(:name)
-        %td= link_to 'Lista de presença', room_lecture_days_path(:room_id => room.id)
+        %td= link_to 'Lista de presença', presences_list_path(:room_id => room.id), :class => "lista"
         = render '/layouts/shared/edit_delete', :edit_path => edit_room_path(room), :delete_obj => room, :permission => :rooms
       %tr{:class => 'more-info'}
         %td{:colspan => 4}

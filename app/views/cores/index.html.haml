@@ -1,7 +1,8 @@
 :javascript
   $(document).ready(function(){
-    $('.more-click').click(function(){
-      $(this).next().children().children().slideToggle();
+    $('a.more').click(function(){
+      console.log($(this).parent().parent().next().children().children())
+      $(this).parent().parent().next().children().children().slideToggle();
     })
     var options = {additionalFilterTriggers: [$('#filter')], filter: 'false'};
     $('.list').tableFilter(options);
@@ -22,7 +23,7 @@
   %tbody
     - @cores.each do |core|
       %tr{:class => 'more-click'}
-        %td{:class => 'first-td'}= core.city.try(:name)
+        %td{:class => 'first-td'}=  raw"<a href='#' class='more'></a>"+core.city.try(:name)
         %td= core.name
         = render '/layouts/shared/edit_delete', :edit_path => edit_core_path(core), :delete_obj => core, :permission => :cores
       %tr{:class => 'more-info'}
