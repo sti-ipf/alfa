@@ -27,6 +27,11 @@ Alfa::Application.routes.draw do
   match ':room_id/presences_list' => 'presences_list#index', :as => 'presences_list'
   match ':room_id/:month/presences_list' => 'presences_list#edit', :as => 'edit_presences_list'
   match 'update_presence/:id/:status' => 'presences_list#update', :as => 'update_presence'
+  match 'reports' => 'reports#index', :as => 'reports'
+  match 'show_report' => 'reports#show', :as => 'show_report'
+  match 'report_update_rooms/:core_id' => 'reports#update_rooms', :as => 'report_update_rooms'
+
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

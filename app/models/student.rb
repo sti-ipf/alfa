@@ -28,6 +28,22 @@ class Student < ActiveRecord::Base
   accepts_nested_attributes_for :phones, :reject_if => lambda { |a| a[:number].blank? }, :allow_destroy => true
 
 #  validates_presence_of :mother_name
+
+
+  def self.report_data(core_id, room_id, city_id)
+    conditions = []
+    if core_id == 0
+      conditions << "AND core_id = #{params[:core_id]} "
+    else
+      conditions << "AND core_id IN (select id from cores where city_id IN (#{city_id})) "
+    end
+
+    if room_id > 0
+      conditions << "AND room_id = #{room_id} "
+    end
+
+    data = Student.find_by_sql("select count(*) as total, age from students where age is not null #{conditions.join(' ')} group by age ")
+  end
   
 
   def age_to_s
