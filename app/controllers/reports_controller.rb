@@ -20,6 +20,7 @@ class ReportsController < ApplicationController
       else
         legend = eval("d.#{params[:column]}_to_s")
       end
+      legend = 'Não informado' if legend.blank?
       @data << "['#{legend}', #{d.total}]"
     end
     @data = @data.join(',')
