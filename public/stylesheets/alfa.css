@@ -1305,3 +1305,10 @@ a.more{
   margin: 0 auto;
   width: 100%;
 }
+
+.first-td .spinner{
+  margin-left: 460px;
+  margin-top: 50px;
+  float: left;
+  left: 0 !important;
+}

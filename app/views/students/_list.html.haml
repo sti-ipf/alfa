@@ -11,15 +11,15 @@
     %tbody
       - @students.each do |student|
         %tr{:class => 'more-click'}
-          %td{:class => 'first-td'}= raw"<a href='#' class='more'></a>"+student.name
+          %td{:class => 'first-td'}= raw"<a href='#' class='more' id= '#{student.id}'> </a>" + student.name
           %td= student.educator.name if !student.educator.nil?
           %td= student.core.name if !student.core.nil?
           %td= student.room.name if !student.room.nil?
           = render '/layouts/shared/edit_delete', :edit_path => edit_student_path(student), :delete_obj => student, :permission => :students
         %tr{:class => 'more-info'}
           %td{:colspan => 6}
-            %div
-              = render 'show', :student => student
+            %div{:id => "student_details_#{student.id}"}
+
 - else
   %table{:class => 'list'}
     %thead
@@ -34,7 +34,7 @@
     %tbody
       - @students.each do |student|
         %tr{:class => 'more-click'}
-          %td{:class => 'first-td'}= raw"<a href='#' class='more'></a>"+student.name
+          %td{:class => 'first-td'}= raw"<a href='#' class='more' id= '#{student.id}'> </a>" + student.name
           %td= student.mother_name
           %td= student.educator.name if !student.educator.nil?
           %td= student.core.name if !student.core.nil?
@@ -42,5 +42,6 @@
           = render '/layouts/shared/edit_delete', :edit_path => edit_student_path(student), :delete_obj => student, :permission => :students
         %tr{:class => 'more-info'}
           %td{:colspan => 6}
-            %div
-              = render 'show', :student => student
+            %div{:id => "student_details_#{student.id}"}
+          
+              

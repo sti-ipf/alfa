@@ -1,8 +1,13 @@
+
 :javascript
   $(document).ready(function(){
     $('a.more').click(function(){
-      console.log($(this).parent().parent().next().children().children())
+      var value = $(this).prop("id");
+      show_spinner(value);
       $(this).parent().parent().next().children().children().slideToggle();
+      var address = "/students/" + value
+      $.ajax({url: address});
+      return false;
     })
     var options = {additionalFilterTriggers: [$('#filter')], filter: 'false'};
     $('.list').tableFilter(options);

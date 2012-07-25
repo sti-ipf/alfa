@@ -26,7 +26,7 @@ class StudentsController < ApplicationController
 
   def index
     @students = Student.all(:conditions => "students.core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))",
-      :include => [:educator, :core, :room, :phones], :order => "educators.name ASC, students.name ASC")
+      :include => [:educator, :core, :room], :order => "educators.name ASC, students.name ASC")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -40,6 +40,7 @@ class StudentsController < ApplicationController
     @student = Student.find(params[:id])
 
     respond_to do |format|
+      format.js
       format.html # show.html.erb
       format.xml  { render :xml => @student }
     end

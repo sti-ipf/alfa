@@ -1,0 +1,2 @@
+$("##{@student.id}").html("")
+$("#student_details_#{@student.id}").html("#{escape_javascript(render 'show', :student => @student)}")
