@@ -3,10 +3,13 @@
   $(document).ready(function(){
     $('a.more').click(function(){
       var value = $(this).prop("id");
-      show_spinner(value);
+      var display = $("#student_details_"+ value).css('display')
+      if (display == 'none'){
+        show_spinner(value);
+        var address = "/students/" + value
+        $.ajax({url: address});
+      }
       $(this).parent().parent().next().children().children().slideToggle();
-      var address = "/students/" + value
-      $.ajax({url: address});
       return false;
     })
     var options = {additionalFilterTriggers: [$('#filter')], filter: 'false'};
