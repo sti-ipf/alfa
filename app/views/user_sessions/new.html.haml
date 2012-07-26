@@ -1,17 +1,14 @@
-#login.login_form
-  %h1.title Acesso
-  .formbody
-    - semantic_form_for @user_session, :html => {:class => 'formee'} do |f|
-      %ul.formee-list
-        .li
-          = f.label :username
-          %br
-          = f.text_field :username, :class => 'formee-small'
-        %br
-        .li
-          = f.label :password
-          %br
-          = f.password_field :password, :class => 'formee-small'
-        %br
-        = f.commit_button 'Acessar', :disable_with => I18n.t('please_wait')
+
+%h1.title{:style => "margin-top: -72px;"} Acesso
+- semantic_form_for @user_session, :html => {:id => 'formframe'} do |f|
+  %ul
+    .li
+      = f.label :username
+      %br
+      = f.text_field :username
+    .li
+      = f.label :password
+      %br
+      = f.password_field :password
+    = f.commit_button 'Acessar', :disable_with => I18n.t('please_wait')
 
