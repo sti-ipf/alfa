@@ -10,9 +10,11 @@ class ReportsController < ApplicationController
   end
 
   def show
+    @column = params[:column]
+    @core_id = params[:core_id].to_i
+    @room_id = params[:room_id].to_i
     data = Student.report_data(params[:core_id].to_i, params[:room_id].to_i, session[:city_id].to_i, params[:column])
     @graphic_title = get_graphic_title(params[:column])
-    @data = 
     @data = []
     data.each do |d|
       if params[:column] == 'profession'
@@ -41,6 +43,45 @@ class ReportsController < ApplicationController
     end
     respond_to do |format|
       format.js if request.xhr?
+    end
+  end
+
+  def show_second_report
+    data = Student.report_data(params[:core_id].to_i, params[:room_id].to_i, session[:city_id].to_i, params[:column], params[:second_column])
+    @graphic_title = get_graphic_title(params[:column])
+    @graphic_title = "#{@graphic_title} e #{get_graphic_title(params[:second_column]).downcase}"
+    @data = []
+    data.each do |d|
+      legend = []
+      if params[:column] == 'profession'
+        legend << eval("d.#{params[:column]}")
+      else
+        legend << eval("d.#{params[:column]}_to_s")
+      end
+
+      if params[:second_column] == 'profession'
+        legend << eval("d.#{params[:second_column]}")
+      else
+        legend << eval("d.#{params[:second_column]}_to_s")
+      end
+      new_legend = []
+      legend.each do |l|
+        if l.blank?
+          new_legend << 'Não informado'
+        else
+          new_legend << l
+        end
+      end
+
+      legend = new_legend.join(" - ")
+
+      @data << "['#{legend}', #{d.total}]"
+    end
+    @data = @data.join(',')
+
+    respond_to do |format|
+      format.js
+      format.html
     end
   end
 

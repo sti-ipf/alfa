@@ -3,7 +3,7 @@
   $(document).ready(function() {
     chart = new Highcharts.Chart({
       chart: {
-        renderTo: 'container',
+        renderTo: 'second_container',
         plotBackgroundColor: null,
         plotBorderWidth: null,
         plotShadow: false
@@ -39,15 +39,4 @@
     });
   });
 
-#container
-= link_to "Por sexo", show_second_report_path(:column => @column, :second_column => 'gender', :core_id => @core_id, :room_id => @room_id), :remote => true
-#second_report
-
-:javascript
-  $(document).ready(function() {
-    $("tspan").map(function(){
-      if ($(this).text() == "Highcharts.com"){
-        $(this).remove();
-      }
-    })
-  });
+#second_container

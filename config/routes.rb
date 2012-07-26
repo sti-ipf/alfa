@@ -31,6 +31,9 @@ Alfa::Application.routes.draw do
   match 'show_report' => 'reports#show', :as => 'show_report'
   match 'report_update_rooms/:core_id' => 'reports#update_rooms', :as => 'report_update_rooms'
 
+
+  match 'show_second_report/:column/:second_column/:core_id/:room_id' => 'reports#show_second_report', :as => 'show_second_report'
+
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

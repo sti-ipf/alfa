@@ -34,59 +34,62 @@
 
   %body
     #main
-      .intranet-menu
-        %ul.intranet-menu
-          %li
-            = link_to t('core.view'), cores_path
-          %li
-            = link_to t('room.view'), rooms_path
-          %li
-            = link_to t('coordinator.view'), coordinators_path
-          %li
-            = link_to t('educator.view'), educators_path
-          %li
-            = link_to t('student.view'), students_path
-          %li
-            = link_to 'Relatórios', reports_path
-          - if current_user.try(:admin?)
-            %li
-              = link_to t('user.view'), users_path
       #header_wrapper
         #header
           - if [1].include?(session[:city_id].to_i)
             .sao_francisco_logo
           - else
             .logo_header
-        .right_menu
-          %ul
-            - if current_user.admin?
+          .right_menu
+            %ul.user_sair                     
+              %span
               %li
-                = select_tag :cities, options_for_select(City.all.collect{|c| [c.name, c.id]}, session[:city_id])
-                :javascript
-                  $(document).ready(function() {
-
-                    $('#cities').change(function(){
-                      $.ajax({url: "/update_city",
-                        data: 'city=' + $('#cities').val()
-                      })
-                    });
-                  });
-            - elsif current_user.cities.count > 1
+                = link_to t('logout'), sign_out_path  
               %li
-                = select_tag :cities, options_for_select(current_user.cities.collect{|c| [c.name, c.id]}, session[:city_id])
-                :javascript
-                  $(document).ready(function() {
+                = link_to current_user.name, edit_user_path(current_user) 
+            %ul.select
+              - if current_user.admin?
+                %li
+                  = select_tag :cities, options_for_select(City.all.collect{|c| [c.name, c.id]}, session[:city_id])
+                  :javascript
+                    $(document).ready(function() {
 
-                    $('#cities').change(function(){
-                      $.ajax({url: "/update_city",
-                        data: 'city=' + $('#cities').val()
-                      })
+                      $('#cities').change(function(){
+                        $.ajax({url: "/update_city",
+                          data: 'city=' + $('#cities').val()
+                        })
+                      });
                     });
-                  });
-            %li
-              = link_to current_user.name, edit_user_path(current_user)
-            %li
-              = link_to t('logout'), sign_out_path
+              - elsif current_user.cities.count > 1
+                %li
+                  = select_tag :cities, options_for_select(current_user.cities.collect{|c| [c.name, c.id]}, session[:city_id])
+                  :javascript
+                    $(document).ready(function() {
+
+                      $('#cities').change(function(){
+                        $.ajax({url: "/update_city",
+                          data: 'city=' + $('#cities').val()
+                        })
+                      });
+                    });
+          .intranet-menu
+            %ul.intranet-menu
+              %li.start
+              %li{:style => 'border-left:none;'}
+                = link_to t('core.view'), cores_path
+              %li
+                = link_to t('room.view'), rooms_path
+              %li
+                = link_to t('coordinator.view'), coordinators_path
+              %li
+                = link_to t('educator.view'), educators_path
+              %li
+                = link_to t('student.view'), students_path
+              %li
+                = link_to 'Relatórios', reports_path
+              - if current_user.try(:admin?)
+                %li
+                  = link_to t('user.view'), users_path
       #content_wrapper
         .menu-aplicacao
         #content

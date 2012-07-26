@@ -30,7 +30,7 @@ class Student < ActiveRecord::Base
 #  validates_presence_of :mother_name
 
 
-  def self.report_data(core_id, room_id, city_id, column)
+  def self.report_data(core_id, room_id, city_id, column, second_column=nil)
     conditions = []
     if core_id == 0
       conditions << "core_id IN (select id from cores where city_id IN (#{city_id})) "
@@ -41,8 +41,11 @@ class Student < ActiveRecord::Base
     if room_id > 0
       conditions << "AND room_id = #{room_id} "
     end
-
-    data = Student.find_by_sql("select count(*) as total, #{column} from students where #{conditions.join(' ')} group by #{column} ")
+    if second_column.blank?
+      data = Student.find_by_sql("select count(*) as total, #{column} from students where #{conditions.join(' ')} group by #{column}")
+    else
+      data = Student.find_by_sql("select count(*) as total, #{column}, #{second_column} from students where #{conditions.join(' ')} group by #{column}, #{second_column}")
+    end
   end
   
 

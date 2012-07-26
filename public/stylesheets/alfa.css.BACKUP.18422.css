@@ -1327,6 +1327,13 @@ a.more{
   width: 100%;
 }
 
+<<<<<<< HEAD
+.first-td .spinner{
+  margin-left: 460px;
+  margin-top: 50px;
+  float: left;
+  left: 0 !important;
+=======
 .user_sair{
   margin:0;
   padding:0;
@@ -1377,11 +1384,5 @@ a.more{
   height:29px !important; 
   border:none !important;
   margin-left:-36px;
-}
-
-.first-td .spinner{
-  margin-left: 460px;
-  margin-top: 50px;
-  float: left;
-  left: 0 !important;
+>>>>>>> 9b8306aed7b4ccd14ea82c424c85c1a4a3c68566
 }
