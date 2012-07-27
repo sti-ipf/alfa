@@ -1335,3 +1335,25 @@ a.more{
   float: left;
   left: 0 !important;
 }
+
+.second_report_links{
+  float: left;
+  width: 100%;
+  clear: both;
+}
+
+.second_report_links a{
+  float: left;
+  margin-right: 15px;
+  background: none repeat scroll 0 0 padding-box #888888;
+  border-radius: 2px 2px 2px 2px;
+  color: white !important;
+  display: block;
+  font-size: 10px;
+  padding: 5px;
+}
+#second_report{
+  float: left;
+  margin-top: 30px;
+  width: 100%;
+}

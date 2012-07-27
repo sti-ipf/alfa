@@ -43,5 +43,28 @@ module ApplicationHelper
     months = %w(Jan Fev Mar Abr Mai Jun Jul Ago Set Out Nov Dez)
     months[month_number - 1].downcase
   end
+
+  def generate_graphic_links(params = {})
+    html = ''
+    array = ['age', 'gender', 'ethnicity', 'profession', 'religion']
+    array.delete(params[:column])
+    array.each do |a|
+      title = ''
+      title = case a
+              when 'age'
+                'Por faixa de idade'
+              when 'gender'
+                'Por sexo'
+              when 'ethnicity'
+                'Por raça'
+              when 'profession'
+                'Por profissão'
+              when 'religion'
+                'Por religião'
+              end
+      html += " #{link_to title, show_second_report_path(:column => params[:column], :second_column => a, :core_id => params[:core_id], :room_id => params[:room_id]), :remote => true, :class => 'second_report_link'}"
+    end
+    html
+  end
 end
 

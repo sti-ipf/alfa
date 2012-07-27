@@ -57,7 +57,12 @@
   });
 
 #second_container
-%div
-= @categories.inspect
-%div
-= @data.inspect
+
+:javascript
+  $(document).ready(function() {
+    $("tspan").map(function(){
+      if ($(this).text() == "Highcharts.com"){
+        $(this).remove();
+      }
+    })
+  });

@@ -40,7 +40,8 @@
   });
 
 #container
-= link_to "Por sexo", show_second_report_path(:column => @column, :second_column => 'gender', :core_id => @core_id, :room_id => @room_id), :remote => true
+.second_report_links
+  = generate_graphic_links(:column => @column, :second_column => 'gender', :core_id => @core_id, :room_id => @room_id).html_safe
 #second_report
 
 :javascript
@@ -50,4 +51,13 @@
         $(this).remove();
       }
     })
+  });
+
+:javascript
+  $(document).ready(function() {
+    $('.second_report_link').click(function() {
+      $("#second_report").html("")
+      show_spinner('second_report');
+    });
+    
   });
