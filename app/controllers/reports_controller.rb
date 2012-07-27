@@ -48,36 +48,41 @@ class ReportsController < ApplicationController
 
   def show_second_report
     data = Student.report_data(params[:core_id].to_i, params[:room_id].to_i, session[:city_id].to_i, params[:column], params[:second_column])
-    @graphic_title = get_graphic_title(params[:column])
-    @graphic_title = "#{@graphic_title} e #{get_graphic_title(params[:second_column]).downcase}"
+    @graphic_title = get_graphic_title([params[:column], params[:second_column]])
+    @categories, categories_numbers = get_categories(params[:column])
+    @second_categories, second_categories_numbers = get_categories(params[:second_column])
     @data = []
-    data.each do |d|
-      legend = []
-      if params[:column] == 'profession'
-        legend << eval("d.#{params[:column]}")
-      else
-        legend << eval("d.#{params[:column]}_to_s")
-      end
-
-      if params[:second_column] == 'profession'
-        legend << eval("d.#{params[:second_column]}")
-      else
-        legend << eval("d.#{params[:second_column]}_to_s")
-      end
-      new_legend = []
-      legend.each do |l|
-        if l.blank?
-          new_legend << 'Não informado'
-        else
-          new_legend << l
+    
+    array = []
+    j = 0
+    puts '-' * 100
+    puts categories_numbers
+    puts second_categories_numbers
+    puts '-' * 100
+    second_categories_numbers.each do |g|
+      tmp_array = []
+      i = 0
+      categories_numbers.each do |a|
+        data.each do |d|
+          tmp_array << d.total if eval("d.#{params[:second_column]}") == g && eval("d.#{params[:column]}") == a
         end
+        tmp_array << 0 if tmp_array[i].nil?
+        i += 1
       end
-
-      legend = new_legend.join(" - ")
-
-      @data << "['#{legend}', #{d.total}]"
+      legend = @second_categories[j]
+      array << [legend, tmp_array.join(', ')]
+      j += 1
     end
-    @data = @data.join(',')
+    array.each do |a|
+      @data << "{ name: '#{a.first}', data: [#{a.last}]}"
+    end
+    @data = @data.join(", ")
+
+    categories = []
+    @categories.each do |c|
+      categories << "'#{c}'"
+    end
+    @categories = categories.join(", ")
 
     respond_to do |format|
       format.js
@@ -87,19 +92,56 @@ class ReportsController < ApplicationController
 
 private
 
-  def get_graphic_title(column)
+  def get_categories(column)
+    array = []
+    array[0] = []
+    array[1] = []
     case column
       when 'age'
-        'Por faixa de idade'
+        Student::AGES.each do |a|
+          array[0] << a.first
+          array[1] << a.last
+        end
       when 'gender'
-        'Por sexo'
+        Coordinator::GENDERS.each do |a|
+          array[0] << a.first
+          array[1] << a.last
+        end
       when 'ethnicity'
-        'Por raça'
+        Coordinator::ETHNICITIES.each do |a|
+          array[0] << a.first
+          array[1] << a.last
+        end
       when 'profession'
         'Por profissão'
       when 'religion'
-        'Por religião'
+        Coordinator::RELIGIONS.each do |a|
+          array[0] << a.first
+          array[1] << a.last
+        end
     end
+    array[1] << nil
+    array[0] << 'Não informado'
+    return array[0], array[1]
+  end
+
+  def get_graphic_title(column)
+    title = []
+    column.each do |c|
+      title << case c
+        when 'age'
+          'Por faixa de idade'
+        when 'gender'
+          'Por sexo'
+        when 'ethnicity'
+          'Por raça'
+        when 'profession'
+          'Por profissão'
+        when 'religion'
+          'Por religião'
+      end
+    end
+    title.join(" e ")
   end
 
 end

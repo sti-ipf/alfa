@@ -107,15 +107,14 @@ ul.intranet-menu li a:hover{
   height:145px;
 }
 
-.logo_header{
-  width:705px;
-  height: 99px;
+.sao_francisco_logo{
+  width:146px;
+  height: 158px;
   float: left;
-  margin-left: 20px;
   background: url("/images/cabecalho_sfi.jpg") no-repeat scroll 0 0 #fff;
 }
 
-.sao_francisco_logo{
+.pk_logo{
   width:146px;
   height: 158px;
   float: left;
@@ -1267,7 +1266,7 @@ a.more{
 }
 
 #report_container .spinner{
-  margin-left: 460px;
+  margin-left: 50%;
   margin-top: 50px;
   float: left;
   left: 0 !important;
@@ -1331,7 +1330,7 @@ a.more{
 }
 
 .first-td .spinner{
-  margin-left: 460px;
+  margin-left: 50%;
   margin-top: 50px;
   float: left;
   left: 0 !important;
