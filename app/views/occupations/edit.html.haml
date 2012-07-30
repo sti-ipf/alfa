@@ -1,0 +1,4 @@
+%h1.title= "Alterar profissão"
+.action_back 
+  = link_to t('back'), occupations_path, :class => 'back_link'
+= render :partial => "form", :locals => {:button => I18n.t('update'), :action => 'update'}

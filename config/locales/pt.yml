@@ -577,6 +577,13 @@ pt:
     listing: "Usuários"
     created: "Usuário criado com sucesso."
     updated: "Usuário atualizado com sucesso."
+  occupation:
+    view: "Profissões"
+    new: "Nova profissão"
+    name: "Nome"
+    listing: "Profissões"
+    created: "Profissão criada com sucesso."
+    updated: "Profissão atualizada com sucesso."
   activerecord:
     models:
       core: "Núcleo"
@@ -586,7 +593,10 @@ pt:
       user: "Usuário"
       user_session: "Login"
       lecture_day: "Dia de aula"
+      occupation: "Profissão"
     attributes:
+      occupation:
+        name: "Nome"
       lecture_day:
         lecture_on: "Dia"
         start_at: "Horário de início"

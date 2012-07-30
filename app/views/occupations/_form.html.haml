@@ -1,0 +1,14 @@
+= semantic_form_for(@occupation, :html => {:id => 'formframe'}) do |f|
+  -if @occupation.errors.any?
+    #error_explanation
+      %ul
+        - @occupation.errors.full_messages.each do |msg|
+          %li= msg
+
+  %div
+    = f.label "Nome*"
+    %br
+    = f.text_field :name
+  .actions
+    = f.submit button, :disable_with => t('please_wait')
+

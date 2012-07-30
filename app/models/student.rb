@@ -2,6 +2,7 @@ class Student < ActiveRecord::Base
   belongs_to :educator
   belongs_to :core
   belongs_to :room
+  belongs_to :occupation
   has_many :phones
   
   AGES = [[I18n.t("student.age.15_to_19"), 1], [I18n.t("student.age.20_to_29"), 2], [I18n.t("student.age.30_to_44"), 3], 

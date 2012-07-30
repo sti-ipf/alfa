@@ -88,6 +88,8 @@
               %li
                 = link_to 'Relatórios', reports_path
               - if current_user.try(:admin?)
+                %li 
+                  = link_to t('occupation.view'), occupations_path
                 %li
                   = link_to t('user.view'), users_path
       #content_wrapper

@@ -1,0 +1,23 @@
+:javascript
+  $(document).ready(function(){
+    var options = {additionalFilterTriggers: [$('#filter')], filter: 'false'};
+    $('.list').tableFilter(options);
+  });
+
+%h1.title= t('occupation.listing')
+.actions 
+  = link_to t('occupation.new'), new_occupation_path
+= render '/layouts/shared/filter_bar'
+
+%table{:class => 'list'}
+  %thead
+    %tr
+      %th= t('occupation.name')
+      %th{:style => 'width: 20px;'}
+      %th{:style => 'width: 20px;'}
+  %tbody
+    - @occupations.each do |occupation|
+      %tr{:class => 'more-click'}
+        %td{:class => 'first-td'}= occupation.name
+        %td{:class => 'td-editar'}= link_to t('edit'), edit_occupation_path(occupation), :class => 'editar'
+        %td= link_to t('destroy'), occupation, :confirm => t('are_you_sure'), :method => :delete, :class => 'apagar'
