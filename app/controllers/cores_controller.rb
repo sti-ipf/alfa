@@ -2,6 +2,7 @@
 class CoresController < ApplicationController
 
   load_and_authorize_resource
+  skip_authorize_resource :only => :update_city
   before_filter :load_data, :only => [:edit, :new, :update, :create]
   # GET /cores
   # GET /cores.xml

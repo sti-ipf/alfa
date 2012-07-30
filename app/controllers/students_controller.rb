@@ -20,6 +20,7 @@ class StudentsController < ApplicationController
   end
 
   def without_mother_name
+    @type = 0
     @students = Student.all(:conditions => "students.core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids})) AND (mother_name IS NULL OR mother_name = '') ",
       :include => [:educator, :core, :room], :order => "educators.name ASC, students.name ASC")
   end
@@ -30,6 +31,7 @@ class StudentsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
+      format.js
       format.xml  { render :xml => @students }
     end
   end

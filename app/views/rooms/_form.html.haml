@@ -14,15 +14,5 @@
     = f.input :coordinators, :as => :check_boxes, :collection => @coordinators
   %div
     = f.input :educators, :as => :check_boxes, :collection => @educators
-  %div
-    .gray_border
-      %h2= t('core.period_field')
-    %br
-    - f.fields_for :periods do |builder|
-      = render "period_fields", :f => builder
-    %div
-      .form_actions
-        .add
-          = link_to_add_fields t('period.new'), f, :periods
   .actions
     = f.submit button

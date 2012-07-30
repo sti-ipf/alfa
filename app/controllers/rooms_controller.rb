@@ -3,7 +3,7 @@ class RoomsController < ApplicationController
   before_filter :load_data, :only => [:new, :create, :edit, :update]
 
   def index
-    @rooms = Room.all(:conditions => "core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))", :include => [:core, :periods, :coordinators, :students, :educators], :order => "name ASC")
+    @rooms = Room.all(:conditions => "core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))", :include => [:core, :coordinators, :students, :educators], :order => "name ASC")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,7 +14,7 @@ class RoomsController < ApplicationController
   # GET /rooms/1
   # GET /rooms/1.xml
   def show
-    @room = Room.find(params[:id], :include => [:periods, :educators, :coordinators, :core, :students])
+    @room = Room.find(params[:id], :include => [:educators, :coordinators, :core, :students])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -26,7 +26,6 @@ class RoomsController < ApplicationController
   # GET /rooms/new.xml
   def new
     @room = Room.new
-    @room.periods.build
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @room }
@@ -35,11 +34,7 @@ class RoomsController < ApplicationController
 
   # GET /rooms/1/edit
   def edit
-    @room = Room.find(params[:id], :include => [:periods])
-    if @room.periods.count == 0
-      @room.periods.build
-    end
-
+    @room = Room.find(params[:id])
   end
 
   # POST /rooms

@@ -1,1 +1,3 @@
+
+$("#show_students_without_mother").html("#{escape_javascript(show_students_without_mother_or_all_students(@type)).html_safe}")
 $("#students_list").html("#{escape_javascript(render 'list').html_safe}")
