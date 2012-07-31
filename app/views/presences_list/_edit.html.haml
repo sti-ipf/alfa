@@ -49,6 +49,7 @@
               - presence = p[l.id]
               - if !presence.nil?
                 = fields_for presence do |f|
+                  = presence.inspect
                   %td= f.check_box :presence, :id => "presence_#{presence.id}"
                   :javascript
                     $(document).ready(function() {
