@@ -5,7 +5,9 @@
   });
 %p  
   %strong= "#{t('coordinator.core')}:"
-  %span= coordinator.core.try(:name)
+  %span
+    - coordinator.cores.each do |c|
+      = c.name
 %p
   %strong= "#{t('coordinator.start_date_to_students')}:"
   %span= coordinator.start_date_to_students.try(:strftime, '%d/%m/%Y')

@@ -28,15 +28,15 @@
       jQuery('#social_question').attr('style','display:block; !important');
     }
 
-    if($("select#coordinator_social_network_use).val() == 1){
+    if($("select#coordinator_social_network_use").val() == 1){
       jQuery('#social_options').attr('style','display:block; !important');
     }
 
-    if($("select#coordinator_social_network).val() == 4){
+    if($("select#coordinator_social_network").val() == 4){
       jQuery('#another_social').attr('style','display:block; !important');
     }
 
-    if($("select#coordinator_has_msn).val() == 1){
+    if($("select#coordinator_has_msn").val() == 1){
       jQuery('#msn_frequency').attr('style','display:block; !important');
     }
 
@@ -52,19 +52,20 @@
     %br
     = f.text_field :name
   %div
-    = f.label :core_id, "#{t('coordinator.core')}*"
+    = f.label :core_id, "Núcleo(s)*"
     %br
-    = f.select :core_id, @cores, :prompt => "Selecione"
-    :javascript
-      $(document).ready(function() {
-          $("#coordinator_core_id").change(function() {
-              var value = $(this).val();
-              var address = "/coordinator_update_rooms/#{ (@coordinator.id.nil?)? 0 : @coordinator.id}/" + value
-              $.ajax({url: address});
+    #cores_div
+      - @cores.each do |r|
+        = check_box_tag 'coordinator[core_ids][]', r.id, @coordinator.cores.include?(r), :class => 'core_checkbox'
+        = r.name
+      :javascript
+          $(document).ready(function() {
+              $(".core_checkbox").change(function() {
+                  var value = $(this).val();
+                  alert(value);
+              });
           });
-      });
-
-
+        
 
   %div
     %label= "Turmas"

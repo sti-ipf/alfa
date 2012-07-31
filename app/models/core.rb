@@ -4,8 +4,8 @@ class Core < ActiveRecord::Base
 #relationships
   has_many :rooms
   has_many :educators
-  has_many :coordinators
   has_many :phones
+  has_and_belongs_to_many :coordinators
   has_and_belongs_to_many :desk_types
   has_many :partner_resources, :through => :cores_partner_resources
   has_many :cores_partner_resources

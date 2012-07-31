@@ -2,7 +2,7 @@
 class Coordinator < ActiveRecord::Base
   
 #relationships
-  belongs_to :core
+  has_and_belongs_to_many :cores
   has_and_belongs_to_many :professional_exps
   has_and_belongs_to_many :rooms
   has_many :social_participations

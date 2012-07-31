@@ -5,7 +5,7 @@
         - @room.errors.full_messages.each do |msg|
           %li= msg
   %div
-    = f.label :core_id, t('coordinator.core')
+    = f.label :core_id, "Núcleo*"
     = f.select :core_id, @cores, :prompt => "Selecione"
   %div
     = f.label :name, t('room.name')

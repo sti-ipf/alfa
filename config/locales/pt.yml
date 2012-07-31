@@ -177,7 +177,7 @@ pt:
     gender: "Sexo"
     dob: "Data de nascimento"
     ethnicity: "A sua cor ou raça é"
-    email: "e-Mail"
+    email: "E-mail"
     hometown: "Município de nascimento"
     state: "Estado (UF)"
     zone: "Zona"
@@ -645,6 +645,7 @@ pt:
       room:
         coordinators: "Coordenadores"
         educators: "Monitores"
+        core_id: "Núcleo"
       user: 
         password: "Senha"
         username:  "Usuário"

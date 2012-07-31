@@ -21,7 +21,7 @@ class CoordinatorsController < ApplicationController
 
 
   def index
-    @coordinators = Coordinator.all(:conditions => "core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))", :include => [:core, :rooms], :order => "name ASC")
+    @coordinators = Coordinator.all(:conditions => "core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))", :include => [:cores, :rooms], :order => "name ASC")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -141,7 +141,7 @@ class CoordinatorsController < ApplicationController
   end
 
   def load_data
-    @cores = Core.all(:conditions => "city_id IN (#{@cities_ids})").collect {|c| ["#{c.community}", c.id]}
+    @cores = Core.all(:conditions => "city_id IN (#{@cities_ids})")
     @genders = Coordinator::GENDERS
     @ethnicities = Coordinator::ETHNICITIES
     @zones = Coordinator::ZONES
