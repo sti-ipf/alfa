@@ -1,3 +1,5 @@
-- rooms.each do |r|
-  = check_box_tag 'coordinator[room_ids][]', r.id, coordinator.rooms.include?(r)
-  = r.name
+%li{:id => "#{@core.id}"}
+  %label{:style => 'font-size:'} #{@core.name}:
+  - rooms.each do |r|
+    = check_box_tag 'coordinator[room_ids][]', r.id, coordinator.rooms.include?(r)
+    = r.name

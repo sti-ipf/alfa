@@ -1,4 +1,6 @@
-$("#rooms_field_div").html("#{escape_javascript(render 'rooms', :rooms => @rooms, :coordinator => @coordinator).html_safe}")
+if($(".checkbox_#{@core.id}").is(":checked")){$("#rooms_field_div").append("#{escape_javascript(render 'rooms', :rooms => @rooms, :coordinator => @coordinator).html_safe}")} else { $("##{@core.id}").remove()}
+
+
 
 
 

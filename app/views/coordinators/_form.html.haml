@@ -56,13 +56,14 @@
     %br
     #cores_div
       - @cores.each do |r|
-        = check_box_tag 'coordinator[core_ids][]', r.id, @coordinator.cores.include?(r), :class => 'core_checkbox'
+        = check_box_tag 'coordinator[core_ids][]', r.id, @coordinator.cores.include?(r), :class => "core_checkbox checkbox_#{r.id}"
         = r.name
       :javascript
           $(document).ready(function() {
               $(".core_checkbox").change(function() {
                   var value = $(this).val();
-                  alert(value);
+                    var address = "/coordinator_update_rooms/#{ (@coordinator.id.nil?)? 0 : @coordinator.id}/" + value
+                  $.ajax({url: address});
               });
           });
         
@@ -70,10 +71,12 @@
   %div
     %label= "Turmas"
     %br
+    %br
     #rooms_field_div
       - @rooms.each do |r|
         = check_box_tag 'coordinator[room_ids][]', r.id, @coordinator.rooms.include?(r)
         = r.name
+
   %div
     = f.label :start_date_to_students, t('coordinator.start_date_to_students')
     %br

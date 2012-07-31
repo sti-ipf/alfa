@@ -13,6 +13,7 @@ class CoordinatorsController < ApplicationController
     end
     core = Core.find(params[:core_id])
     @rooms = core.rooms
+    @core = core
 
     respond_to do |format|
       format.js if request.xhr?
