@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.5.14)
 # Database: alfa_development
-# Generation Time: 2012-07-31 15:01:31 +0000
+# Generation Time: 2012-07-31 15:05:31 +0000
 # ************************************************************
 
 
@@ -22,6 +22,8 @@
 
 # Dump of table cities
 # ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `cities`;
 
 CREATE TABLE `cities` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -46,6 +48,8 @@ UNLOCK TABLES;
 
 # Dump of table cities_users
 # ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `cities_users`;
 
 CREATE TABLE `cities_users` (
   `city_id` int(11) DEFAULT NULL,
@@ -98,6 +102,8 @@ UNLOCK TABLES;
 
 # Dump of table coordinators
 # ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `coordinators`;
 
 CREATE TABLE `coordinators` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -194,6 +200,8 @@ UNLOCK TABLES;
 # Dump of table coordinators_cores
 # ------------------------------------------------------------
 
+DROP TABLE IF EXISTS `coordinators_cores`;
+
 CREATE TABLE `coordinators_cores` (
   `coordinator_id` int(11) DEFAULT NULL,
   `core_id` int(11) DEFAULT NULL,
@@ -205,6 +213,8 @@ CREATE TABLE `coordinators_cores` (
 
 # Dump of table coordinators_education_exps
 # ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `coordinators_education_exps`;
 
 CREATE TABLE `coordinators_education_exps` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -235,6 +245,8 @@ UNLOCK TABLES;
 
 # Dump of table coordinators_professional_exps
 # ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `coordinators_professional_exps`;
 
 CREATE TABLE `coordinators_professional_exps` (
   `coordinator_id` int(11) DEFAULT NULL,
@@ -267,6 +279,8 @@ UNLOCK TABLES;
 
 # Dump of table coordinators_rooms
 # ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `coordinators_rooms`;
 
 CREATE TABLE `coordinators_rooms` (
   `coordinator_id` int(11) DEFAULT NULL,
@@ -356,6 +370,8 @@ UNLOCK TABLES;
 
 # Dump of table cores
 # ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `cores`;
 
 CREATE TABLE `cores` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -466,6 +482,8 @@ UNLOCK TABLES;
 # Dump of table cores_desk_types
 # ------------------------------------------------------------
 
+DROP TABLE IF EXISTS `cores_desk_types`;
+
 CREATE TABLE `cores_desk_types` (
   `core_id` int(11) DEFAULT NULL,
   `desk_type_id` int(11) DEFAULT NULL,
@@ -522,6 +540,8 @@ UNLOCK TABLES;
 # Dump of table cores_displacements
 # ------------------------------------------------------------
 
+DROP TABLE IF EXISTS `cores_displacements`;
+
 CREATE TABLE `cores_displacements` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `displacement_desc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -549,6 +569,8 @@ UNLOCK TABLES;
 
 # Dump of table cores_partner_resources
 # ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `cores_partner_resources`;
 
 CREATE TABLE `cores_partner_resources` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -693,6 +715,8 @@ UNLOCK TABLES;
 # Dump of table cores_seat_types
 # ------------------------------------------------------------
 
+DROP TABLE IF EXISTS `cores_seat_types`;
+
 CREATE TABLE `cores_seat_types` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `seat_type_desc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -782,6 +806,8 @@ UNLOCK TABLES;
 # Dump of table desk_types
 # ------------------------------------------------------------
 
+DROP TABLE IF EXISTS `desk_types`;
+
 CREATE TABLE `desk_types` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `desk_type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -806,6 +832,8 @@ UNLOCK TABLES;
 
 # Dump of table displacements
 # ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `displacements`;
 
 CREATE TABLE `displacements` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -837,6 +865,8 @@ UNLOCK TABLES;
 # Dump of table education_exps
 # ------------------------------------------------------------
 
+DROP TABLE IF EXISTS `education_exps`;
+
 CREATE TABLE `education_exps` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `education_type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -860,6 +890,8 @@ UNLOCK TABLES;
 
 # Dump of table educators
 # ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `educators`;
 
 CREATE TABLE `educators` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -1025,6 +1057,8 @@ UNLOCK TABLES;
 # Dump of table educators_education_exps
 # ------------------------------------------------------------
 
+DROP TABLE IF EXISTS `educators_education_exps`;
+
 CREATE TABLE `educators_education_exps` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `years` int(11) DEFAULT NULL,
@@ -1101,6 +1135,8 @@ UNLOCK TABLES;
 # Dump of table educators_internet_uses
 # ------------------------------------------------------------
 
+DROP TABLE IF EXISTS `educators_internet_uses`;
+
 CREATE TABLE `educators_internet_uses` (
   `educator_id` int(11) DEFAULT NULL,
   `internet_use_id` int(11) DEFAULT NULL,
@@ -1112,6 +1148,8 @@ CREATE TABLE `educators_internet_uses` (
 
 # Dump of table educators_know_social_net_works
 # ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `educators_know_social_net_works`;
 
 CREATE TABLE `educators_know_social_net_works` (
   `educator_id` int(11) DEFAULT NULL,
@@ -1125,6 +1163,8 @@ CREATE TABLE `educators_know_social_net_works` (
 # Dump of table educators_pc_uses
 # ------------------------------------------------------------
 
+DROP TABLE IF EXISTS `educators_pc_uses`;
+
 CREATE TABLE `educators_pc_uses` (
   `educator_id` int(11) DEFAULT NULL,
   `pc_use_id` int(11) DEFAULT NULL,
@@ -1136,6 +1176,8 @@ CREATE TABLE `educators_pc_uses` (
 
 # Dump of table educators_professional_exps
 # ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `educators_professional_exps`;
 
 CREATE TABLE `educators_professional_exps` (
   `educator_id` int(11) DEFAULT NULL,
@@ -1206,6 +1248,8 @@ UNLOCK TABLES;
 
 # Dump of table educators_rooms
 # ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `educators_rooms`;
 
 CREATE TABLE `educators_rooms` (
   `educator_id` int(11) DEFAULT NULL,
@@ -1321,6 +1365,8 @@ UNLOCK TABLES;
 # Dump of table educators_use_social_net_works
 # ------------------------------------------------------------
 
+DROP TABLE IF EXISTS `educators_use_social_net_works`;
+
 CREATE TABLE `educators_use_social_net_works` (
   `educator_id` int(11) DEFAULT NULL,
   `use_social_net_work_id` int(11) DEFAULT NULL,
@@ -1332,6 +1378,8 @@ CREATE TABLE `educators_use_social_net_works` (
 
 # Dump of table internet_uses
 # ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `internet_uses`;
 
 CREATE TABLE `internet_uses` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -1346,6 +1394,8 @@ CREATE TABLE `internet_uses` (
 # Dump of table know_social_net_works
 # ------------------------------------------------------------
 
+DROP TABLE IF EXISTS `know_social_net_works`;
+
 CREATE TABLE `know_social_net_works` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -1358,6 +1408,8 @@ CREATE TABLE `know_social_net_works` (
 
 # Dump of table lecture_days
 # ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `lecture_days`;
 
 CREATE TABLE `lecture_days` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -1394,6 +1446,8 @@ UNLOCK TABLES;
 # Dump of table occupations
 # ------------------------------------------------------------
 
+DROP TABLE IF EXISTS `occupations`;
+
 CREATE TABLE `occupations` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -1407,6 +1461,8 @@ CREATE TABLE `occupations` (
 
 # Dump of table partner_resources
 # ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `partner_resources`;
 
 CREATE TABLE `partner_resources` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -1432,6 +1488,8 @@ UNLOCK TABLES;
 # Dump of table pc_uses
 # ------------------------------------------------------------
 
+DROP TABLE IF EXISTS `pc_uses`;
+
 CREATE TABLE `pc_uses` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -1444,6 +1502,8 @@ CREATE TABLE `pc_uses` (
 
 # Dump of table periods
 # ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `periods`;
 
 CREATE TABLE `periods` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -1698,6 +1758,8 @@ UNLOCK TABLES;
 
 # Dump of table phones
 # ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `phones`;
 
 CREATE TABLE `phones` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -2315,6 +2377,8 @@ UNLOCK TABLES;
 # Dump of table presences
 # ------------------------------------------------------------
 
+DROP TABLE IF EXISTS `presences`;
+
 CREATE TABLE `presences` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `lecture_day_id` int(11) DEFAULT NULL,
@@ -2432,6 +2496,8 @@ UNLOCK TABLES;
 # Dump of table professional_exps
 # ------------------------------------------------------------
 
+DROP TABLE IF EXISTS `professional_exps`;
+
 CREATE TABLE `professional_exps` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `area` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -2457,6 +2523,8 @@ UNLOCK TABLES;
 
 # Dump of table rooms
 # ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `rooms`;
 
 CREATE TABLE `rooms` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -2569,6 +2637,8 @@ UNLOCK TABLES;
 # Dump of table schema_migrations
 # ------------------------------------------------------------
 
+DROP TABLE IF EXISTS `schema_migrations`;
+
 CREATE TABLE `schema_migrations` (
   `version` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   UNIQUE KEY `unique_schema_migrations` (`version`)
@@ -2636,6 +2706,8 @@ UNLOCK TABLES;
 # Dump of table seat_types
 # ------------------------------------------------------------
 
+DROP TABLE IF EXISTS `seat_types`;
+
 CREATE TABLE `seat_types` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `seat_type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -2663,6 +2735,8 @@ UNLOCK TABLES;
 
 # Dump of table social_participations
 # ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `social_participations`;
 
 CREATE TABLE `social_participations` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -2768,6 +2842,8 @@ UNLOCK TABLES;
 
 # Dump of table students
 # ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `students`;
 
 CREATE TABLE `students` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -3619,6 +3695,8 @@ UNLOCK TABLES;
 # Dump of table use_social_net_works
 # ------------------------------------------------------------
 
+DROP TABLE IF EXISTS `use_social_net_works`;
+
 CREATE TABLE `use_social_net_works` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -3631,6 +3709,8 @@ CREATE TABLE `use_social_net_works` (
 
 # Dump of table users
 # ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `users`;
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -3678,6 +3758,8 @@ UNLOCK TABLES;
 
 # Dump of table world_readings
 # ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `world_readings`;
 
 CREATE TABLE `world_readings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
