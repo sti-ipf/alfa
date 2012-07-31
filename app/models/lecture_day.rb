@@ -2,7 +2,7 @@ class LectureDay < ActiveRecord::Base
   belongs_to :room
   has_many :presences, :dependent => :destroy
 
-  after_save :create_presences
+  after_save :create_presences, :update_presences_status
 
   def lecture_on_to_date
     Time.at(self.lecture_on)
@@ -25,6 +25,14 @@ class LectureDay < ActiveRecord::Base
     return true, ''
   end
 
+  def period
+    if self.start_at.blank? || self.end_at.blank?
+      return ''
+    else
+      "#{self.start_at.try(:strftime, '%H:%M')} às #{self.end_at.try(:strftime, '%H:%M')}"
+    end
+  end
+
 private
 
   def create_presences
@@ -34,6 +42,16 @@ private
         Presence.create(:lecture_day_id => self.id, :student_id => s.id, :room_id => self.room_id, :month => self.month)
       else
         p.update_attributes(:month => self.month)
+      end
+    end
+  end
+
+  def update_presences_status
+    if self.cancelled_changed?
+      if self.cancelled
+         ActiveRecord::Base.connection.execute "UPDATE presences SET status = #{Presence::NO_CLASS} WHERE lecture_day_id = #{self.id}"
+      else
+        ActiveRecord::Base.connection.execute "UPDATE presences SET status = #{Presence::WITH_CLASS} WHERE lecture_day_id = #{self.id}"
       end
     end
   end

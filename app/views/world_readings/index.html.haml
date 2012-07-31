@@ -3,8 +3,6 @@
     $('.more-click').click(function(){
       $(this).next().children().children().slideToggle();
     })
-    var options = {additionalFilterTriggers: [$('#filter')], filter: 'false'};
-    $('.list').tableFilter(options);
   });
 
 %h1.title= t('world_reading.listing')

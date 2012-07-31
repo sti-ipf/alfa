@@ -16,10 +16,7 @@
     - @lecture_days.each do |lecture_day|
       %tr{:class => 'more-click'}
         %td{:class => 'first-td'}= lecture_day.lecture_on_to_date.try(:strftime, '%d/%m/%Y')
-        - if lecture_day.start_at.blank? || lecture_day.end_at.blank?
-          %td
-        - else
-          %td= "#{lecture_day.start_at.try(:strftime, '%H:%M')} às #{lecture_day.end_at.try(:strftime, '%H:%M')}"
+        %td= lecture_day.period
         %td
           %div{:id => "cancelled_button_#{lecture_day.id}"}
             = generate_cancelled_button(lecture_day.cancelled, lecture_day.id).html_safe

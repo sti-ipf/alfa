@@ -1,9 +1,3 @@
-:javascript
-  $(document).ready(function(){
-    var options = {additionalFilterTriggers: [$('#filter')], filter: 'false'};
-    $('.list').tableFilter(options);
-  });
-
 %h1.title= t('occupation.listing')
 .actions 
   = link_to t('occupation.new'), new_occupation_path

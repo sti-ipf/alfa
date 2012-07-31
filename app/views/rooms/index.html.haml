@@ -1,11 +1,8 @@
 :javascript
   $(document).ready(function(){
     $('a.more').click(function(){
-      console.log($(this).parent().parent().next().children().children())
       $(this).parent().parent().next().children().children().slideToggle();
     })
-    var options = {additionalFilterTriggers: [$('#filter')], filter: 'false'};
-    $('.list').tableFilter(options);
   });
 
 %h1.title= t('room.listing')
