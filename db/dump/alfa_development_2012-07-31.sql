@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.5.14)
 # Database: alfa_development
-# Generation Time: 2012-07-31 14:40:22 +0000
+# Generation Time: 2012-07-31 15:01:31 +0000
 # ************************************************************
 
 
@@ -22,6 +22,14 @@
 
 # Dump of table cities
 # ------------------------------------------------------------
+
+CREATE TABLE `cities` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 LOCK TABLES `cities` WRITE;
 /*!40000 ALTER TABLE `cities` DISABLE KEYS */;
@@ -38,6 +46,13 @@ UNLOCK TABLES;
 
 # Dump of table cities_users
 # ------------------------------------------------------------
+
+CREATE TABLE `cities_users` (
+  `city_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 LOCK TABLES `cities_users` WRITE;
 /*!40000 ALTER TABLE `cities_users` DISABLE KEYS */;
@@ -84,6 +99,78 @@ UNLOCK TABLES;
 # Dump of table coordinators
 # ------------------------------------------------------------
 
+CREATE TABLE `coordinators` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `start_date_to_students` date DEFAULT NULL,
+  `age` int(11) DEFAULT NULL,
+  `gender` int(11) DEFAULT NULL,
+  `dob` date DEFAULT NULL,
+  `ethnicity` int(11) DEFAULT NULL,
+  `hometown` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `state` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `zone` int(11) DEFAULT NULL,
+  `address` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `civil_status` int(11) DEFAULT NULL,
+  `rg` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `cpf` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `voter_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `professional_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `professional_serie` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `birth_or_marriage_certificate_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `social_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `sons_number` int(11) DEFAULT NULL,
+  `first_son_age` int(11) DEFAULT NULL,
+  `second_son_age` int(11) DEFAULT NULL,
+  `third_son_age` int(11) DEFAULT NULL,
+  `forth_son_age` int(11) DEFAULT NULL,
+  `education_level` int(11) DEFAULT NULL,
+  `education_level_desc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `familiar_income` int(11) DEFAULT NULL,
+  `house` int(11) DEFAULT NULL,
+  `house_desc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `house_type` int(11) DEFAULT NULL,
+  `special_need` tinyint(1) DEFAULT NULL,
+  `political_affiliation` int(11) DEFAULT NULL,
+  `political_party` int(11) DEFAULT NULL,
+  `political_desc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `religion` int(11) DEFAULT NULL,
+  `religion_desc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `association` int(11) DEFAULT NULL,
+  `association_desc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `cooperative` int(11) DEFAULT NULL,
+  `core_id` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `literacy_exp` text COLLATE utf8_unicode_ci,
+  `literacy_availability` text COLLATE utf8_unicode_ci,
+  `can_travel` tinyint(1) DEFAULT NULL,
+  `literacy_justify` text COLLATE utf8_unicode_ci,
+  `anytime_literacy` text COLLATE utf8_unicode_ci,
+  `teach_what` text COLLATE utf8_unicode_ci,
+  `all_in_same_room` text COLLATE utf8_unicode_ci,
+  `study_content` text COLLATE utf8_unicode_ci,
+  `comunity_need_class` text COLLATE utf8_unicode_ci,
+  `organize_class` text COLLATE utf8_unicode_ci,
+  `computer_knowledge` int(11) DEFAULT NULL,
+  `computer_uses` int(11) DEFAULT NULL,
+  `computer_target` int(11) DEFAULT NULL,
+  `internet_home` int(11) DEFAULT NULL,
+  `email_read` int(11) DEFAULT NULL,
+  `social_network_know` int(11) DEFAULT NULL,
+  `social_network_use` int(11) DEFAULT NULL,
+  `social_network` int(11) DEFAULT NULL,
+  `another_social_network` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `has_msn` int(11) DEFAULT NULL,
+  `msn_use` int(11) DEFAULT NULL,
+  `blog_status` int(11) DEFAULT NULL,
+  `ead` int(11) DEFAULT NULL,
+  `obs` text COLLATE utf8_unicode_ci,
+  PRIMARY KEY (`id`),
+  KEY `index_coordinators_on_core_id` (`core_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 LOCK TABLES `coordinators` WRITE;
 /*!40000 ALTER TABLE `coordinators` DISABLE KEYS */;
 
@@ -107,10 +194,26 @@ UNLOCK TABLES;
 # Dump of table coordinators_cores
 # ------------------------------------------------------------
 
+CREATE TABLE `coordinators_cores` (
+  `coordinator_id` int(11) DEFAULT NULL,
+  `core_id` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 
 
 # Dump of table coordinators_education_exps
 # ------------------------------------------------------------
+
+CREATE TABLE `coordinators_education_exps` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `years` int(11) DEFAULT NULL,
+  `popular_education_years` int(11) DEFAULT NULL,
+  `coordinator_id` int(11) DEFAULT NULL,
+  `education_exp_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 LOCK TABLES `coordinators_education_exps` WRITE;
 /*!40000 ALTER TABLE `coordinators_education_exps` DISABLE KEYS */;
@@ -132,6 +235,13 @@ UNLOCK TABLES;
 
 # Dump of table coordinators_professional_exps
 # ------------------------------------------------------------
+
+CREATE TABLE `coordinators_professional_exps` (
+  `coordinator_id` int(11) DEFAULT NULL,
+  `professional_exp_id` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 LOCK TABLES `coordinators_professional_exps` WRITE;
 /*!40000 ALTER TABLE `coordinators_professional_exps` DISABLE KEYS */;
@@ -157,6 +267,13 @@ UNLOCK TABLES;
 
 # Dump of table coordinators_rooms
 # ------------------------------------------------------------
+
+CREATE TABLE `coordinators_rooms` (
+  `coordinator_id` int(11) DEFAULT NULL,
+  `room_id` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 LOCK TABLES `coordinators_rooms` WRITE;
 /*!40000 ALTER TABLE `coordinators_rooms` DISABLE KEYS */;
@@ -240,6 +357,51 @@ UNLOCK TABLES;
 # Dump of table cores
 # ------------------------------------------------------------
 
+CREATE TABLE `cores` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `community` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `address` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `community_type` int(11) DEFAULT NULL,
+  `place` int(11) DEFAULT NULL,
+  `place_desc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `institution_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `responsible` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `main_activity` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `size` int(11) DEFAULT NULL,
+  `board` tinyint(1) DEFAULT NULL,
+  `board_type` int(11) DEFAULT NULL,
+  `total_seats` int(11) DEFAULT NULL,
+  `illumination_type` int(11) DEFAULT NULL,
+  `illumination_type_desc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `illumination_condition` int(11) DEFAULT NULL,
+  `another_place` tinyint(1) DEFAULT NULL,
+  `another_place_desc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `has_restroom` tinyint(1) DEFAULT NULL,
+  `kitchen` tinyint(1) DEFAULT NULL,
+  `coordenation_analysis` text COLLATE utf8_unicode_ci,
+  `visit_on` date DEFAULT NULL,
+  `who_visited` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `city_id` int(11) DEFAULT NULL,
+  `phase_id` int(11) DEFAULT NULL,
+  `community_type_desc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `place_description` text COLLATE utf8_unicode_ci,
+  `number` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `zip_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `computer_observation` text COLLATE utf8_unicode_ci,
+  `kitchen_observation` text COLLATE utf8_unicode_ci,
+  `resources_observation` text COLLATE utf8_unicode_ci,
+  `has_computers` tinyint(1) DEFAULT NULL,
+  `has_kitchen` tinyint(1) DEFAULT NULL,
+  `total_restroom` int(11) DEFAULT NULL,
+  `total_computers` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_cores_on_city_id` (`city_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 LOCK TABLES `cores` WRITE;
 /*!40000 ALTER TABLE `cores` DISABLE KEYS */;
 
@@ -304,6 +466,13 @@ UNLOCK TABLES;
 # Dump of table cores_desk_types
 # ------------------------------------------------------------
 
+CREATE TABLE `cores_desk_types` (
+  `core_id` int(11) DEFAULT NULL,
+  `desk_type_id` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 LOCK TABLES `cores_desk_types` WRITE;
 /*!40000 ALTER TABLE `cores_desk_types` DISABLE KEYS */;
 
@@ -353,6 +522,17 @@ UNLOCK TABLES;
 # Dump of table cores_displacements
 # ------------------------------------------------------------
 
+CREATE TABLE `cores_displacements` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `displacement_desc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `displacement_type` int(11) DEFAULT NULL,
+  `core_id` int(11) DEFAULT NULL,
+  `displacement_id` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 LOCK TABLES `cores_displacements` WRITE;
 /*!40000 ALTER TABLE `cores_displacements` DISABLE KEYS */;
 
@@ -369,6 +549,16 @@ UNLOCK TABLES;
 
 # Dump of table cores_partner_resources
 # ------------------------------------------------------------
+
+CREATE TABLE `cores_partner_resources` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `resource_desc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `core_id` int(11) DEFAULT NULL,
+  `partner_resource_id` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 LOCK TABLES `cores_partner_resources` WRITE;
 /*!40000 ALTER TABLE `cores_partner_resources` DISABLE KEYS */;
@@ -503,6 +693,16 @@ UNLOCK TABLES;
 # Dump of table cores_seat_types
 # ------------------------------------------------------------
 
+CREATE TABLE `cores_seat_types` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seat_type_desc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `core_id` int(11) DEFAULT NULL,
+  `seat_type_id` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 LOCK TABLES `cores_seat_types` WRITE;
 /*!40000 ALTER TABLE `cores_seat_types` DISABLE KEYS */;
 
@@ -582,6 +782,14 @@ UNLOCK TABLES;
 # Dump of table desk_types
 # ------------------------------------------------------------
 
+CREATE TABLE `desk_types` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `desk_type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 LOCK TABLES `desk_types` WRITE;
 /*!40000 ALTER TABLE `desk_types` DISABLE KEYS */;
 
@@ -598,6 +806,14 @@ UNLOCK TABLES;
 
 # Dump of table displacements
 # ------------------------------------------------------------
+
+CREATE TABLE `displacements` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `displacement` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 LOCK TABLES `displacements` WRITE;
 /*!40000 ALTER TABLE `displacements` DISABLE KEYS */;
@@ -621,6 +837,14 @@ UNLOCK TABLES;
 # Dump of table education_exps
 # ------------------------------------------------------------
 
+CREATE TABLE `education_exps` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `education_type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 LOCK TABLES `education_exps` WRITE;
 /*!40000 ALTER TABLE `education_exps` DISABLE KEYS */;
 
@@ -636,6 +860,92 @@ UNLOCK TABLES;
 
 # Dump of table educators
 # ------------------------------------------------------------
+
+CREATE TABLE `educators` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `start_date_to_students` date DEFAULT NULL,
+  `age` int(11) DEFAULT NULL,
+  `gender` int(11) DEFAULT NULL,
+  `dob` date DEFAULT NULL,
+  `ethnicity` int(11) DEFAULT NULL,
+  `hometown` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `state` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `zone` int(11) DEFAULT NULL,
+  `address` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `civil_status` int(11) DEFAULT NULL,
+  `rg` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `cpf` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `voter_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `professional_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `professional_serie` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `birth_or_marriage_certificate_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `social_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `sons_number` int(11) DEFAULT NULL,
+  `first_son_age` int(11) DEFAULT NULL,
+  `second_son_age` int(11) DEFAULT NULL,
+  `third_son_age` int(11) DEFAULT NULL,
+  `forth_son_age` int(11) DEFAULT NULL,
+  `education_level` int(11) DEFAULT NULL,
+  `education_level_desc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `familiar_income` int(11) DEFAULT NULL,
+  `house` int(11) DEFAULT NULL,
+  `house_desc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `house_type` int(11) DEFAULT NULL,
+  `special_need` tinyint(1) DEFAULT NULL,
+  `political_affiliation` int(11) DEFAULT NULL,
+  `political_party` int(11) DEFAULT NULL,
+  `political_desc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `religion` int(11) DEFAULT NULL,
+  `religion_desc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `association` int(11) DEFAULT NULL,
+  `association_desc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `cooperative` int(11) DEFAULT NULL,
+  `core_id` int(11) DEFAULT NULL,
+  `zone_desc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `core_identification` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `age_range` int(11) DEFAULT NULL,
+  `district` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `number` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `zip_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `internet_access_local` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `internet_access_local_desc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `house_type_desc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `special_need_desc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `special_need_type` int(11) DEFAULT NULL,
+  `participation_reason` text COLLATE utf8_unicode_ci,
+  `travel_disponibility` tinyint(1) DEFAULT NULL,
+  `last_books` text COLLATE utf8_unicode_ci,
+  `tv_programs` text COLLATE utf8_unicode_ci,
+  `experience` text COLLATE utf8_unicode_ci,
+  `other_job` text COLLATE utf8_unicode_ci,
+  `agree_with_any_period` text COLLATE utf8_unicode_ci,
+  `what_teach` text COLLATE utf8_unicode_ci,
+  `subjects` text COLLATE utf8_unicode_ci,
+  `has_pc` tinyint(1) DEFAULT NULL,
+  `where_use_pc` int(11) DEFAULT NULL,
+  `about_pc_use` int(11) DEFAULT NULL,
+  `which_uses` int(11) DEFAULT NULL,
+  `where_use_pc_desc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `has_internet` tinyint(1) DEFAULT NULL,
+  `where_has_internet` int(11) DEFAULT NULL,
+  `where_has_internet_desc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `for_what_use_internet` int(11) DEFAULT NULL,
+  `for_what_use_internet_desc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `use_social_network` int(11) DEFAULT NULL,
+  `know_social_network` int(11) DEFAULT NULL,
+  `know_social_network_desc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `which_social_network` int(11) DEFAULT NULL,
+  `use_social_network_desc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `observation` text COLLATE utf8_unicode_ci,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `identification_on` date DEFAULT NULL,
+  `profession` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_educators_on_core_id` (`core_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 LOCK TABLES `educators` WRITE;
 /*!40000 ALTER TABLE `educators` DISABLE KEYS */;
@@ -715,6 +1025,15 @@ UNLOCK TABLES;
 # Dump of table educators_education_exps
 # ------------------------------------------------------------
 
+CREATE TABLE `educators_education_exps` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `years` int(11) DEFAULT NULL,
+  `popular_education_years` int(11) DEFAULT NULL,
+  `educator_id` int(11) DEFAULT NULL,
+  `education_exp_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 LOCK TABLES `educators_education_exps` WRITE;
 /*!40000 ALTER TABLE `educators_education_exps` DISABLE KEYS */;
 
@@ -782,20 +1101,48 @@ UNLOCK TABLES;
 # Dump of table educators_internet_uses
 # ------------------------------------------------------------
 
+CREATE TABLE `educators_internet_uses` (
+  `educator_id` int(11) DEFAULT NULL,
+  `internet_use_id` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 
 
 # Dump of table educators_know_social_net_works
 # ------------------------------------------------------------
+
+CREATE TABLE `educators_know_social_net_works` (
+  `educator_id` int(11) DEFAULT NULL,
+  `know_social_net_work_id` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
 
 # Dump of table educators_pc_uses
 # ------------------------------------------------------------
 
+CREATE TABLE `educators_pc_uses` (
+  `educator_id` int(11) DEFAULT NULL,
+  `pc_use_id` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 
 
 # Dump of table educators_professional_exps
 # ------------------------------------------------------------
+
+CREATE TABLE `educators_professional_exps` (
+  `educator_id` int(11) DEFAULT NULL,
+  `professional_exp_id` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 LOCK TABLES `educators_professional_exps` WRITE;
 /*!40000 ALTER TABLE `educators_professional_exps` DISABLE KEYS */;
@@ -859,6 +1206,13 @@ UNLOCK TABLES;
 
 # Dump of table educators_rooms
 # ------------------------------------------------------------
+
+CREATE TABLE `educators_rooms` (
+  `educator_id` int(11) DEFAULT NULL,
+  `room_id` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 LOCK TABLES `educators_rooms` WRITE;
 /*!40000 ALTER TABLE `educators_rooms` DISABLE KEYS */;
@@ -967,20 +1321,60 @@ UNLOCK TABLES;
 # Dump of table educators_use_social_net_works
 # ------------------------------------------------------------
 
+CREATE TABLE `educators_use_social_net_works` (
+  `educator_id` int(11) DEFAULT NULL,
+  `use_social_net_work_id` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 
 
 # Dump of table internet_uses
 # ------------------------------------------------------------
+
+CREATE TABLE `internet_uses` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
 
 # Dump of table know_social_net_works
 # ------------------------------------------------------------
 
+CREATE TABLE `know_social_net_works` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 
 
 # Dump of table lecture_days
 # ------------------------------------------------------------
+
+CREATE TABLE `lecture_days` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `lecture_on` int(11) DEFAULT NULL,
+  `week_day` int(11) DEFAULT NULL,
+  `day` int(11) DEFAULT NULL,
+  `month` int(11) DEFAULT NULL,
+  `year` int(11) DEFAULT NULL,
+  `start_at` time DEFAULT NULL,
+  `end_at` time DEFAULT NULL,
+  `cancelled` tinyint(1) DEFAULT '0',
+  `room_id` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_lecture_days_on_room_id` (`room_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 LOCK TABLES `lecture_days` WRITE;
 /*!40000 ALTER TABLE `lecture_days` DISABLE KEYS */;
@@ -1000,10 +1394,27 @@ UNLOCK TABLES;
 # Dump of table occupations
 # ------------------------------------------------------------
 
+CREATE TABLE `occupations` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `occupation_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 
 
 # Dump of table partner_resources
 # ------------------------------------------------------------
+
+CREATE TABLE `partner_resources` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `resource` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 LOCK TABLES `partner_resources` WRITE;
 /*!40000 ALTER TABLE `partner_resources` DISABLE KEYS */;
@@ -1021,10 +1432,30 @@ UNLOCK TABLES;
 # Dump of table pc_uses
 # ------------------------------------------------------------
 
+CREATE TABLE `pc_uses` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 
 
 # Dump of table periods
 # ------------------------------------------------------------
+
+CREATE TABLE `periods` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `day_of_week` int(11) DEFAULT NULL,
+  `start_time` time DEFAULT NULL,
+  `end_time` time DEFAULT NULL,
+  `core_id` int(11) DEFAULT NULL,
+  `room_id` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 LOCK TABLES `periods` WRITE;
 /*!40000 ALTER TABLE `periods` DISABLE KEYS */;
@@ -1267,6 +1698,24 @@ UNLOCK TABLES;
 
 # Dump of table phones
 # ------------------------------------------------------------
+
+CREATE TABLE `phones` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `dd` int(11) DEFAULT NULL,
+  `number` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `phone_type` int(11) DEFAULT NULL,
+  `core_id` int(11) DEFAULT NULL,
+  `coordinator_id` int(11) DEFAULT NULL,
+  `educator_id` int(11) DEFAULT NULL,
+  `student_id` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_phones_on_student_id` (`student_id`),
+  KEY `index_phones_on_educator_id` (`educator_id`),
+  KEY `index_phones_on_coordinator_id` (`coordinator_id`),
+  KEY `index_phones_on_core_id` (`core_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 LOCK TABLES `phones` WRITE;
 /*!40000 ALTER TABLE `phones` DISABLE KEYS */;
@@ -1866,6 +2315,20 @@ UNLOCK TABLES;
 # Dump of table presences
 # ------------------------------------------------------------
 
+CREATE TABLE `presences` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `lecture_day_id` int(11) DEFAULT NULL,
+  `student_id` int(11) DEFAULT NULL,
+  `room_id` int(11) DEFAULT NULL,
+  `month` int(11) DEFAULT NULL,
+  `presence` tinyint(1) DEFAULT '0',
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `index_presences_on_lecture_day_id_and_student_id` (`lecture_day_id`,`student_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 LOCK TABLES `presences` WRITE;
 /*!40000 ALTER TABLE `presences` DISABLE KEYS */;
 
@@ -1969,6 +2432,14 @@ UNLOCK TABLES;
 # Dump of table professional_exps
 # ------------------------------------------------------------
 
+CREATE TABLE `professional_exps` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `area` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 LOCK TABLES `professional_exps` WRITE;
 /*!40000 ALTER TABLE `professional_exps` DISABLE KEYS */;
 
@@ -1986,6 +2457,16 @@ UNLOCK TABLES;
 
 # Dump of table rooms
 # ------------------------------------------------------------
+
+CREATE TABLE `rooms` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `core_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_rooms_on_core_id` (`core_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 LOCK TABLES `rooms` WRITE;
 /*!40000 ALTER TABLE `rooms` DISABLE KEYS */;
@@ -2088,6 +2569,11 @@ UNLOCK TABLES;
 # Dump of table schema_migrations
 # ------------------------------------------------------------
 
+CREATE TABLE `schema_migrations` (
+  `version` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  UNIQUE KEY `unique_schema_migrations` (`version`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 LOCK TABLES `schema_migrations` WRITE;
 /*!40000 ALTER TABLE `schema_migrations` DISABLE KEYS */;
 
@@ -2150,6 +2636,15 @@ UNLOCK TABLES;
 # Dump of table seat_types
 # ------------------------------------------------------------
 
+CREATE TABLE `seat_types` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seat_type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `core_id` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 LOCK TABLES `seat_types` WRITE;
 /*!40000 ALTER TABLE `seat_types` DISABLE KEYS */;
 
@@ -2168,6 +2663,20 @@ UNLOCK TABLES;
 
 # Dump of table social_participations
 # ------------------------------------------------------------
+
+CREATE TABLE `social_participations` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `union_movement` tinyint(1) DEFAULT NULL,
+  `union_movement_desc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `popular_social_movement` tinyint(1) DEFAULT NULL,
+  `ong` tinyint(1) DEFAULT NULL,
+  `ong_desc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `coordinator_id` int(11) DEFAULT NULL,
+  `educator_id` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 LOCK TABLES `social_participations` WRITE;
 /*!40000 ALTER TABLE `social_participations` DISABLE KEYS */;
@@ -2259,6 +2768,82 @@ UNLOCK TABLES;
 
 # Dump of table students
 # ------------------------------------------------------------
+
+CREATE TABLE `students` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sign_up_date_on` date DEFAULT NULL,
+  `class_start_date_on` date DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `age` int(11) DEFAULT NULL,
+  `gender` int(11) DEFAULT NULL,
+  `dob` date DEFAULT NULL,
+  `ethnicity` int(11) DEFAULT NULL,
+  `hometown` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `state` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `zone` int(11) DEFAULT NULL,
+  `address` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `civil_status` int(11) DEFAULT NULL,
+  `education_level` int(11) DEFAULT NULL,
+  `actual_condition` int(11) DEFAULT NULL,
+  `profession` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `actual_occupation` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `worker_situation` int(11) DEFAULT NULL,
+  `worker_situation_type` int(11) DEFAULT NULL,
+  `house` int(11) DEFAULT NULL,
+  `house_desc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `house_type` int(11) DEFAULT NULL,
+  `house_type_desc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `district` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `number` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `zip_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `nickname` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `zone_desc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `education_level_place` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `vision_loss` int(11) DEFAULT NULL,
+  `need_glasses` tinyint(1) DEFAULT NULL,
+  `vision_loss_observation` text COLLATE utf8_unicode_ci,
+  `hearing_disability` int(11) DEFAULT NULL,
+  `hearing_device` tinyint(1) DEFAULT NULL,
+  `hearing_disability_observation` text COLLATE utf8_unicode_ci,
+  `physical_disability` int(11) DEFAULT NULL,
+  `need_accessible_room` tinyint(1) DEFAULT NULL,
+  `physical_disability_to_write` tinyint(1) DEFAULT NULL,
+  `physical_disability_observation` text COLLATE utf8_unicode_ci,
+  `intelectual_disability` int(11) DEFAULT NULL,
+  `social_participation` int(11) DEFAULT NULL,
+  `social_participation_desc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `association` int(11) DEFAULT NULL,
+  `association_desc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `cooperative` int(11) DEFAULT NULL,
+  `cooperative_desc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `participation_reason` text COLLATE utf8_unicode_ci,
+  `subjects` text COLLATE utf8_unicode_ci,
+  `special_need` tinyint(1) DEFAULT NULL,
+  `special_need_desc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `religion` int(11) DEFAULT NULL,
+  `religion_desc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `observations` text COLLATE utf8_unicode_ci,
+  `mother_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `father_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `internet_access_local` int(11) DEFAULT NULL,
+  `internet_access_local_desc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `rg` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `dob_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `cpf` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `voter_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `professional_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `social_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `familiar_income` int(11) DEFAULT NULL,
+  `educator_id` int(11) DEFAULT NULL,
+  `core_id` int(11) DEFAULT NULL,
+  `room_id` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `identification_on` date DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_students_on_room_id_and_core_id_and_educator_id` (`room_id`,`core_id`,`educator_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 LOCK TABLES `students` WRITE;
 /*!40000 ALTER TABLE `students` DISABLE KEYS */;
@@ -3034,10 +3619,35 @@ UNLOCK TABLES;
 # Dump of table use_social_net_works
 # ------------------------------------------------------------
 
+CREATE TABLE `use_social_net_works` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 
 
 # Dump of table users
 # ------------------------------------------------------------
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `crypted_password` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `password_salt` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `perishable_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `persistence_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `admin` tinyint(1) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `role` int(11) DEFAULT NULL,
+  `educator_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
@@ -3068,6 +3678,48 @@ UNLOCK TABLES;
 
 # Dump of table world_readings
 # ------------------------------------------------------------
+
+CREATE TABLE `world_readings` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `have_experience` text COLLATE utf8_unicode_ci,
+  `availability` text COLLATE utf8_unicode_ci,
+  `availability_to_travel` tinyint(1) DEFAULT NULL,
+  `need_for_literacy` text COLLATE utf8_unicode_ci,
+  `can_organize_rooms` text COLLATE utf8_unicode_ci,
+  `educator_wish` text COLLATE utf8_unicode_ci,
+  `any_time` text COLLATE utf8_unicode_ci,
+  `what_teach` text COLLATE utf8_unicode_ci,
+  `young_and_old_together` text COLLATE utf8_unicode_ci,
+  `list_subjects` text COLLATE utf8_unicode_ci,
+  `computer_use` int(11) DEFAULT NULL,
+  `what_use` int(11) DEFAULT NULL,
+  `about_internet_use` int(11) DEFAULT NULL,
+  `about_internet_use_desc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `internet_connection_type` int(11) DEFAULT NULL,
+  `what_you_do_in_internet` int(11) DEFAULT NULL,
+  `frequency_email_reading` int(11) DEFAULT NULL,
+  `make_searches` tinyint(1) DEFAULT NULL,
+  `prefered_search_engine` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `social_networking` int(11) DEFAULT NULL,
+  `social_networking_desc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `discussion_list` int(11) DEFAULT NULL,
+  `discussion_list_desc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `forum` int(11) DEFAULT NULL,
+  `forum_desc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `chat` tinyint(1) DEFAULT NULL,
+  `msn` tinyint(1) DEFAULT NULL,
+  `use_msn_with_frequency` tinyint(1) DEFAULT NULL,
+  `has_blog` tinyint(1) DEFAULT NULL,
+  `share_photos_videos` tinyint(1) DEFAULT NULL,
+  `e_learning` tinyint(1) DEFAULT NULL,
+  `e_learning_desc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `educator_id` int(11) DEFAULT NULL,
+  `coordinator_id` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 LOCK TABLES `world_readings` WRITE;
 /*!40000 ALTER TABLE `world_readings` DISABLE KEYS */;
