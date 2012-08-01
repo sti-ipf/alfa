@@ -330,9 +330,9 @@
     %br
     = f.select :actual_condition, @actual_conditions, :prompt => "Selecione"
   %div
-    = f.label :profession, t('student.profession.title')
+    = f.label :occupation_id, t('student.profession.title')
     %br
-    = f.text_field :profession
+    = f.select :occupation_id, @occupations, :prompt => "Selecione"
   %div
     = f.label :actual_occupation, t('student.profession.actual')
     %br

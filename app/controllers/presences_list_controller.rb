@@ -84,11 +84,7 @@ class PresencesListController < ApplicationController
   def update_student_presences
     @status = params[:status].to_i
     @student = Student.find(params[:student_id])
-    if @status == Presence::WITH_CLASS
-      ActiveRecord::Base.connection.execute "UPDATE presences set status = #{params[:status]} WHERE room_id = #{params[:room_id]} AND student_id = #{params[:student_id]} AND month = #{params[:month]}"
-    else
-      ActiveRecord::Base.connection.execute "UPDATE presences set status = #{params[:status]}, presence = 0 WHERE room_id = #{params[:room_id]} AND student_id = #{params[:student_id]} AND month = #{params[:month]}"
-    end
+    ActiveRecord::Base.connection.execute "UPDATE presences set status = #{params[:status]} WHERE room_id = #{params[:room_id]} AND student_id = #{params[:student_id]} AND month = #{params[:month]}"
     edit
   end
 end

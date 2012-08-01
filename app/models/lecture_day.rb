@@ -53,9 +53,9 @@ private
   def update_presences_status
     if self.cancelled_changed?
       if self.cancelled
-         ActiveRecord::Base.connection.execute "UPDATE presences SET status = #{Presence::NO_CLASS} WHERE lecture_day_id = #{self.id}"
+         ActiveRecord::Base.connection.execute "UPDATE presences SET has_class = #{Presence::NO_CLASS} WHERE lecture_day_id = #{self.id}"
       else
-        ActiveRecord::Base.connection.execute "UPDATE presences SET status = #{Presence::WITH_CLASS} WHERE lecture_day_id = #{self.id}"
+        ActiveRecord::Base.connection.execute "UPDATE presences SET has_class = #{Presence::WITH_CLASS} WHERE lecture_day_id = #{self.id}"
       end
     end
   end

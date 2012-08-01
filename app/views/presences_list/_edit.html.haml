@@ -7,10 +7,10 @@
   
       row.find('[type=checkbox]').each(function()
       {
-         if ($(this).is(':checked')){
+         if (($(this).is(':checked')) && (!$(this).hasClass('disabled'))){
           value += 1;  
          }
-         if ( !$(this).is(':disabled') ){
+         if ( !$(this).hasClass('disabled') ){
           total += 1; 
          }
       });
@@ -77,10 +77,8 @@
             - if !presence.nil?
               = fields_for presence do |f|
                 - style_class = ''
+                - checkbox_class = ''
                 - case presence.status
-                  - when Presence::NO_CLASS
-                    - disabled = true
-                    - klass = 'disabled'
                   - when Presence::AWAY
                     - disabled = true
                     - klass = 'disabled'
@@ -89,9 +87,13 @@
                     - disabled = true
                     - klass = 'disabled'
                     - style_class = 'evaded'
+                - if !presence.has_class
+                  - disabled = true
+                  - klass = 'disabled'
+                  - checkbox_class = 'disabled'
+                  - style_class = ''
 
-
-                %td{:class => "#{klass} #{style_class}"}= f.check_box :presence, :id => "presence_#{presence.id}", :disabled => disabled
+                %td{:class => "#{klass} #{style_class}"}= f.check_box :presence, :id => "presence_#{presence.id}", :disabled => disabled, :class => checkbox_class
                 :javascript
                   $(document).ready(function() {
                     update_frequency("##{p[:student_id]}", '##{p[:student_id]}_frequency');

@@ -5,8 +5,9 @@ class Presence < ActiveRecord::Base
 
   NO_CLASS = 0
   WITH_CLASS = 1
-  AWAY = 2
-  EVADED = 3
+  ACTIVE = 2
+  AWAY = 3
+  EVADED = 4
 
-  STUDENT_STATUS = [["Frequente", WITH_CLASS], ["Ausente", AWAY], ["Evadido", EVADED]]
+  STUDENT_STATUS = [["Frequente", ACTIVE], ["Ausente", AWAY], ["Evadido", EVADED]]
 end

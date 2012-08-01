@@ -2,7 +2,7 @@ class OccupationsController < ApplicationController
   # GET /occupations
   # GET /occupations.xml
   def index
-    @occupations = Occupation.all
+    @occupations = Occupation.all(:order => "name ASC")
 
     respond_to do |format|
       format.html # index.html.erb

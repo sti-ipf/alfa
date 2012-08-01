@@ -130,6 +130,7 @@ class StudentsController < ApplicationController
     @houses = Coordinator::HOUSES
     @house_types = Coordinator::HOUSE_TYPES
     @religions = Coordinator::RELIGIONS
+    @occupations = Occupation.all(:order => "name ASC").collect{|c| [c.name, c.id]}
     @rooms = []
   end
   
