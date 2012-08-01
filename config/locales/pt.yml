@@ -43,7 +43,7 @@ pt:
   y_yes: "Sim"
   finish: "Finalizar"
   core:
-    name: "Nome"
+    name: "Localidade"
     responsible: "Responsável"
     main_activity: "Atividade principal"
     board: "Lousa"

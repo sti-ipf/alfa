@@ -46,7 +46,9 @@
         - @presences.each do |p|
           - i += 1
           %tr{:id => "#{i}"}
-            %td.student= p[:student]
+            %td.student
+              = p[:student]
+              = select_tag :student_status, options_for_select(Presence::STUDENT_STATUS), :class => "student_status", :id => "#{params[:room_id]}_#{params[:month]}_#{p[:student_id]}"
             - @lecture_days.each do |l|
               - presence = p[l.id]
               - if !presence.nil?
@@ -72,3 +74,15 @@
                 %td
 
             %td{:id => "#{i}_frequency"}
+:javascript
+  $(document).ready(function() {
+    $(".student_status").change(function() {
+      var id = $(this).prop("id");
+      var array = id.split("_");
+      var room_id = array[0];
+      var month = array[1];
+      var student_id = array[2];
+      var status = $(this).val();
+      $.ajax({url: "/update_student_presences/"+room_id+"/"+month+"/"+student_id+"/"+status}); 
+    });
+  });

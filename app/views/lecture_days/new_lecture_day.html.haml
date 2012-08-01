@@ -1,4 +1,4 @@
-%h1.title= "Alterar dia de aula da #{@room.name}"
+%h1.title= "Cadastro de dia de aula da #{@room.name}"
 .action_back 
   = link_to t('back'), room_lecture_days_path(:room_id => params[:room_id]), :class => 'back_link'
 = form_for [@room, @lecture_day], :html => {:id => 'formframe'} do |f|
@@ -18,7 +18,7 @@
     = f.label :cancelled
     = f.check_box :cancelled
   .actions
-    = f.submit "Alterar"
+    = f.submit "Cadastrar"
 
   :javascript
     $(document).ready(function() {

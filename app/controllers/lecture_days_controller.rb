@@ -1,6 +1,6 @@
 class LectureDaysController < ApplicationController
   
-  before_filter :load_form_data, :only => [:new, :create, :edit, :update]
+  before_filter :load_form_data, :only => [:new, :create, :edit, :update, :new_lecture_day]
 
 
   def update_cancelled
@@ -40,6 +40,10 @@ class LectureDaysController < ApplicationController
       format.html # new.html.erb
       format.xml  { render :xml => @lecture_day }
     end
+  end
+
+  def new_lecture_day
+    @lecture_day = LectureDay.create(:room_id => params[:room_id])
   end
 
   # GET /lecture_days/1/edit

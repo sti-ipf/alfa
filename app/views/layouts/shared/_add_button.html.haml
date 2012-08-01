@@ -1,2 +1,3 @@
 - if can? :create, permission
-  = link_to new_label, new_path
+  - style ||= nil
+  = link_to new_label, new_path, :style => style

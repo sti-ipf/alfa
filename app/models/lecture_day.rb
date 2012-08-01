@@ -5,7 +5,11 @@ class LectureDay < ActiveRecord::Base
   after_save :create_presences, :update_presences_status
 
   def lecture_on_to_date
-    Time.at(self.lecture_on)
+    if !self.lecture_on.nil?
+      Time.at(self.lecture_on)
+    else
+      nil
+    end
   end
 
   def self.create_lectures(start_on, end_on, room_id, lecture_days)

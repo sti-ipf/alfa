@@ -1373,3 +1373,8 @@ a.lecture_day_link{
 a:hover.lecture_day_link {
   text-decoration: none !important;
 }
+
+select.student_status{
+  float: right;
+  margin-right: 5px;
+}

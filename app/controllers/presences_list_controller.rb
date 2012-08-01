@@ -2,7 +2,7 @@ class PresencesListController < ApplicationController
   
   def index
     @room = Room.find(params[:room_id])
-    @months = LectureDay.all(:select => "DISTINCT month",:conditions => "room_id = #{params[:room_id]}", :order => "year ASC, month ASC").collect(&:month)
+    @months = LectureDay.all(:select => "DISTINCT month",:conditions => "room_id = #{params[:room_id]} and month is not null", :order => "year ASC, month ASC").collect(&:month)
   end
 
   def new
@@ -26,6 +26,7 @@ class PresencesListController < ApplicationController
     @students.each do |s|
       @presences << {} 
       @presences[i][:student] = s.name
+      @presences[i][:student_id] = s.id
       @lecture_days.each do |l|
         presences.each do |p|
           @presences[i][l.id] = p if (l.id == p.lecture_day_id && p.student_id == s.id)
@@ -78,5 +79,8 @@ class PresencesListController < ApplicationController
       format.html { redirect_to(presences_url) }
       format.xml  { head :ok }
     end
+  end
+
+  def update_student_presences
   end
 end

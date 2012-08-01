@@ -4,10 +4,6 @@
     zebraListing();
   });
 
-%p
-  %strong= 'Nome do núcleo:'
-  %span= core.name
-
 %p{:style => hidden_fields}
   %strong= 'Identificação do espaço:'
   %span= core.place_description.try(:html_safe)
