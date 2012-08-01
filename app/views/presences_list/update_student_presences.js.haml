@@ -1,1 +1,3 @@
+- if params[:status].to_i > Presence::WITH_CLASS
+  $.ajax({url: "/students/#{params[:student_id]}/presence_list_comments/new?month=#{params[:month]}"}); 
 $("#presence_list_area").html("#{escape_javascript(render 'edit')}")

@@ -5,7 +5,9 @@ Alfa::Application.routes.draw do
 
   resources :world_readings
 
-  resources :students
+  resources :students do
+    resources :presence_list_comments
+  end
 
   resources :rooms do
     resources :lecture_days

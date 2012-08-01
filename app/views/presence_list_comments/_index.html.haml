@@ -1,0 +1,8 @@
+#presence_list_comment_form
+  = semantic_form_for([@student, @comment], :html => {:id => 'formframe'}, :remote => true) do |f|
+    %div
+      = f.label :comment
+      %br
+      = f.text_area :comment, :cols => 60, :rows => 10
+    %div{:style => "float:right;"}
+      = f.submit button, :disable_with => t('please_wait')

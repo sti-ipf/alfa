@@ -1376,7 +1376,7 @@ a:hover.lecture_day_link {
 
 select.student_status{
   float: right;
-  margin-right: 5px;
+  margin-right: 40px;
 }
 
 td.evaded{
@@ -1424,4 +1424,23 @@ ul.presence_list_legend span{
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   border-radius: 2px;
+}
+
+.more_info_wrapper{
+  float: right;
+  position: relative;
+}
+.more_info{
+  display:block;
+  width:22px;
+  background: url("/images/more_info.png") no-repeat bottom;
+  height:22px; 
+  position: absolute;
+  right: 0px
+}
+
+#presence_list_comment_form{
+  float: left;
+  padding: 30px;
+  width: auto;
 }

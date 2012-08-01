@@ -595,6 +595,8 @@ pt:
       lecture_day: "Dia de aula"
       occupation: "Profissão"
     attributes:
+      presence_list_comment:
+        comment: "Comentário"
       occupation:
         name: "Nome"
       lecture_day:
