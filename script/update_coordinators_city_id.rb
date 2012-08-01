@@ -12,3 +12,9 @@ Coordinator.all.each do |c|
   c.city_id = city_id
   c.save
 end
+
+Coordinator.all.each do |c|
+  next if c.core_id.blank?
+  core = Core.find(c.core_id)
+  ActiveRecord::Base.connection.execute "INSERT INTO coordinators_cores (coordinator_id, core_id) VALUES (#{c.id}, #{core.id})"
+end
