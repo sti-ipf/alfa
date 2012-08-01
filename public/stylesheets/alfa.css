@@ -1358,10 +1358,10 @@ a.more{
   width: 100%;
 }
 
-.disabled{
-  background-color: #FF4040 !important;
-  border: 1px solid #FF4040 !important;
-  box-shadow: 0 -1px 0 0 #FF4040 !important;
+td.disabled{
+  background-color: #A6A6A6 !important;
+  border: 1px solid #A6A6A6 !important;
+  box-shadow: 0 -1px 0 0 #A6A6A6 !important;
 }
 
 a.lecture_day_link{
@@ -1377,4 +1377,51 @@ a:hover.lecture_day_link {
 select.student_status{
   float: right;
   margin-right: 5px;
+}
+
+td.evaded{
+  background-color: #FF4040 !important;
+  border: 1px solid #FF4040 !important;
+  box-shadow: 0 -1px 0 0 #FF4040 !important;
+}
+
+td.away{
+  background-color: #FFBF40 !important;
+  border: 1px solid #FFBF40 !important;
+  box-shadow: 0 -1px 0 0 #FFBF40 !important;
+}
+
+span.cancelled_class{
+  background-color: #A6A6A6 !important;
+  border: 1px solid #A6A6A6 !important;
+  box-shadow: 0 -1px 0 0 #A6A6A6 !important;
+}
+
+span.evaded{
+  background-color: #FF4040 !important;
+  border: 1px solid #FF4040 !important;
+  box-shadow: 0 -1px 0 0 #FF4040 !important;
+}
+
+span.away{
+  background-color: #FFBF40 !important;
+  border: 1px solid #FFBF40 !important;
+  box-shadow: 0 -1px 0 0 #FFBF40 !important;
+}
+ul.presence_list_legend{
+  float: right;
+}
+ul.presence_list_legend li{
+  float: left;
+  margin-right: 10px;
+}
+ul.presence_list_legend span{
+  float: left;
+  height: 10px;
+  margin-right: 5px;
+  margin-top: 1px;
+  width: 10px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
 }

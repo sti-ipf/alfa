@@ -22,6 +22,9 @@
       else{
         style = 'color:red;' 
       }
+      if (isNaN(percentage)){
+        percentage = 0;
+      }
       
       $(frequency_row).html('<div style='+style+'>'+percentage+'%'+'</div>');
     }
@@ -33,47 +36,67 @@
   .div{:style => 'margin: 10px; float:left; clear: both;'}
     Não há atividades ou estudantes cadastrado nesta formação.
 - else
-  - form_tag 'teste' do
-    %table{:id => 'presence_list'}
-      %thead
-        %tr
-          %td Alfabetizando
+  %ul.presence_list_legend
+    %li 
+      Aula cancelada
+      %span.cancelled_class
+    %li 
+      Ausente
+      %span.away
+    %li 
+      Evadido
+      %span.evaded
+
+  %table{:id => 'presence_list'}
+    %thead
+      %tr
+        %td Alfabetizando
+        - @lecture_days.each do |l|
+          %td= link_to l.lecture_on_to_date.try(:strftime, '%d'), "#", :alt => "#{l.period}", :title => "#{l.period}", :class => "lecture_day_link"
+        %td
+    %tbody
+      - @presences.each do |p|
+        %tr{:id => "#{p[:student_id]}"}
+          %td.student
+            = p[:student]
+            = select_tag :student_status, options_for_select(Presence::STUDENT_STATUS, :selected => p[@lecture_days.first.id].status), :class => "student_status", :id => "#{params[:room_id]}_#{params[:month]}_#{p[:student_id]}"
           - @lecture_days.each do |l|
-            %td= link_to l.lecture_on_to_date.try(:strftime, '%d'), "#", :alt => "#{l.period}", :title => "#{l.period}", :class => "lecture_day_link"
-          %td
-      %tbody
-        - i = 0
-        - @presences.each do |p|
-          - i += 1
-          %tr{:id => "#{i}"}
-            %td.student
-              = p[:student]
-              = select_tag :student_status, options_for_select(Presence::STUDENT_STATUS), :class => "student_status", :id => "#{params[:room_id]}_#{params[:month]}_#{p[:student_id]}"
-            - @lecture_days.each do |l|
-              - presence = p[l.id]
-              - if !presence.nil?
-                = fields_for presence do |f|
-                  - if presence.status == Presence::NO_CLASS
+            - presence = p[l.id]
+            - if !presence.nil?
+              = fields_for presence do |f|
+                - style_class = ''
+                - case presence.status
+                  - when Presence::NO_CLASS
                     - disabled = true
                     - klass = 'disabled'
-                  %td{:class => "#{klass}"}= f.check_box :presence, :id => "presence_#{presence.id}", :disabled => disabled
-                  :javascript
-                    $(document).ready(function() {
-                      update_frequency("##{i}", '##{i}_frequency');
-                      $("#presence_#{presence.id}").change(function() {
-                        if ($("#presence_#{presence.id}").is(':checked')){
-                          $.ajax({url: "/update_presence/#{presence.id}/1"});
-                        }
-                        else{
-                          $.ajax({url: "/update_presence/#{presence.id}/0"}); 
-                        }
-                        update_frequency("##{i}", '##{i}_frequency');
-                      });
-                    });
-              - else
-                %td
+                  - when Presence::AWAY
+                    - disabled = true
+                    - klass = 'disabled'
+                    - style_class = 'away'
+                  - when Presence::EVADED
+                    - disabled = true
+                    - klass = 'disabled'
+                    - style_class = 'evaded'
 
-            %td{:id => "#{i}_frequency"}
+
+                %td{:class => "#{klass} #{style_class}"}= f.check_box :presence, :id => "presence_#{presence.id}", :disabled => disabled
+                :javascript
+                  $(document).ready(function() {
+                    update_frequency("##{p[:student_id]}", '##{p[:student_id]}_frequency');
+                    $("#presence_#{presence.id}").change(function() {
+                      if ($("#presence_#{presence.id}").is(':checked')){
+                        $.ajax({url: "/update_presence/#{presence.id}/1"});
+                      }
+                      else{
+                        $.ajax({url: "/update_presence/#{presence.id}/0"}); 
+                      }
+                      update_frequency("##{p[:student_id]}", '##{p[:student_id]}_frequency');
+                    });
+                  });
+            - else
+              %td
+
+          %td{:id => "#{p[:student_id]}_frequency"}
 :javascript
   $(document).ready(function() {
     $(".student_status").change(function() {
