@@ -22,7 +22,7 @@ class CoordinatorsController < ApplicationController
 
 
   def index
-    @coordinators = Coordinator.all(:conditions => "city_id = #{@cities_ids}", :include => [:cores, :rooms])
+    @coordinators = Coordinator.all(:conditions => "city_id = #{@cities_ids}", :include => [:cores, :rooms], :order => "name ASC")
 
     respond_to do |format|
       format.html # index.html.erb
