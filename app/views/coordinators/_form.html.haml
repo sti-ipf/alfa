@@ -40,6 +40,12 @@
       jQuery('#msn_frequency').attr('style','display:block; !important');
     }
 
+    $(".core_checkbox").each(function() {
+        var value = $(this).val();
+        var address = "/coordinator_update_rooms/#{ (@coordinator.id.nil?)? 0 : @coordinator.id}/" + value
+        $.ajax({url: address});
+    });
+
   });
 = semantic_form_for(@coordinator, :html => {:id => 'formframe'}) do |f|
   - if @coordinator.errors.any?

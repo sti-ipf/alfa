@@ -9,8 +9,6 @@ class Coordinator < ActiveRecord::Base
   has_many :phones
   has_many :education_exps, :through => :coordinators_education_exps
   has_many :coordinators_education_exps
-
-  validates_presence_of :core_id
   
 #constants
 

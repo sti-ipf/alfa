@@ -22,7 +22,7 @@ class CoordinatorsController < ApplicationController
 
 
   def index
-    @coordinators = Coordinator.all(:conditions => "core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))", :include => [:cores, :rooms], :order => "name ASC")
+    @coordinators = Coordinator.all(:conditions => "city_id = #{@cities_ids}", :include => [:cores, :rooms])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -65,18 +65,13 @@ class CoordinatorsController < ApplicationController
     @ong_desc = @coordinator.social_participations.first.ong_desc if !@coordinator.social_participations.first.nil?
     @years = @coordinator.coordinators_education_exps.first.years if !@coordinator.coordinators_education_exps.first.nil?
     @popular_education_years = @coordinator.coordinators_education_exps.first.popular_education_years if !@coordinator.coordinators_education_exps.first.nil?
-
-    if @coordinator.core.nil?
-      @rooms = []
-    else
-      @rooms = @coordinator.core.rooms
-    end
-
+    @rooms = []
   end
 
   # POST /coordinators
   # POST /coordinators.xml
   def create
+    params[:coordinator][:city_id] = @cities_ids
     @coordinator = Coordinator.new(params[:coordinator])
     ong_desc = params[:ong_desc]
     union_movement_desc = params[:union_movement_desc]
@@ -111,6 +106,7 @@ class CoordinatorsController < ApplicationController
     coordinator_years = params[:coordinator_years]
     coordinator_popular_education_years = params[:coordinator_popular_education_years]
     respond_to do |format|
+      ActiveRecord::Base.connection.execute "DELETE FROM coordinators_rooms WHERE coordinator_id = #{@coordinator.id}"
       if @coordinator.update_attributes(params[:coordinator])
         if !@coordinator.social_participations.first.nil?
           @coordinator.social_participations.first.save_with_descs(ong_desc, union_movement_desc)

@@ -15,7 +15,7 @@ class LectureDaysController < ApplicationController
 
   def index
     @room = Room.find(params[:room_id])
-    @lecture_days = @room.lecture_days
+    @lecture_days = LectureDay.all(:conditions => "room_id = #{@room.id}", :order => "lecture_on ASC")
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @lecture_days }
