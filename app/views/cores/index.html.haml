@@ -2,6 +2,7 @@
   $(document).ready(function(){
     $('a.more').click(function(){
       $(this).parent().parent().next().children().children().slideToggle();
+      return false;
     })
   });
 
@@ -20,7 +21,7 @@
   %tbody
     - @cores.each do |core|
       %tr{:class => 'more-click'}
-        %td{:class => 'first-td'}=  raw"<a href='#' class='more'></a>"+core.name
+        %td{:class => 'first-td'}=  raw"<a href='#' class='more'></a> #{core.name}"
         %td= core.community
         = render '/layouts/shared/edit_delete', :edit_path => edit_core_path(core), :delete_obj => core, :permission => :cores
       %tr{:class => 'more-info'}

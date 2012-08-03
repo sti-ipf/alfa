@@ -122,7 +122,7 @@
   = student.actual_condition_to_s
 %p
   %b= "#{t('student.profession.title')}:"
-  = student.profession
+  = student.occupation.try(:name)
 %p
   %b= "#{t('student.profession.actual')}:"
   = student.actual_occupation

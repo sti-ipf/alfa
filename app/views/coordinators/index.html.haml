@@ -2,6 +2,7 @@
   $(document).ready(function(){
     $('a.more').click(function(){
       $(this).parent().parent().next().children().children().slideToggle();
+      return false;
     })
     
   });
