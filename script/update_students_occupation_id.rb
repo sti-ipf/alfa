@@ -4,7 +4,7 @@ old_occupations = [
   {:old => ['Ajudante de obras', 'Ajudante de Pedreiro', 'pedreiro','Auxiliar de pedreiro', 'Pintor', 'Pedreiro', 'Pedreiro ', 'Serralheiro', 'Cacimbeiro', 'Carpinteiro'], :new => 3},
   {:old => ['Aposentada', 'Aposentado'], :new => 4},  
   {:old => ['Barbeiro', 'Comerciante', 'Costureira', 'Frentista'], :new => 5},
-  {:old => ['Desempregada', 'desempregado'], :new => 6},
+  {:old => ['Desempregada', 'desempregado', 'Desempregado'], :new => 6},
   {:old => ['empregada doméstica', 'Doméstica', 'Domestica', 'Faxineira', 'Diarista', 'DOméstica', 'Empregada Doméstica'], :new => 7},
   {:old => ['Dona de Casa', 'Do Lar', 'Do lar', 'do lar'], :new => 8},
   {:old => ['Operador de escavadeira', 'Operador de Máquinas', 'Operador de máquinas'], :new => 9},
