@@ -1,0 +1,90 @@
+:javascript
+  $("tbody tr:nth-child(even)").addClass("even");
+  $("tbody tr:nth-child(odd)").addClass("odd");
+%ul#presence_list_header
+  %li
+    %b Núcleo:
+    = @core.name
+  %li
+    %b Turma:
+    = @room.name
+  %li
+    %b Nome do alfabetizador:
+    = @educators
+  %li 
+    %b Mês:
+    = @month
+  %li
+    %b Dias de funcionamento:
+    - @lecture_days.each do |l|
+      - if l != @lecture_days.last
+        = "#{l.lecture_on_to_date.try(:strftime, '%d')},"
+      - else
+        = l.lecture_on_to_date.try(:strftime, '%d')
+
+
+%ul.presence_list_legend
+  %li 
+    %label Aula cancelada
+    %span.cancelled_class
+  %li 
+    %label Ausente
+    %span.away
+  %li 
+    %label Evadido
+    %span.evaded
+%table{:id => 'presence_list'}
+  %thead
+    %tr
+      %td Alfabetizando
+      - @lecture_days.each do |l|
+        %td= link_to l.lecture_on_to_date.try(:strftime, '%d'), "#", :alt => "#{l.period}", :title => "#{l.period}", :class => "lecture_day_link"
+      %td
+  %tbody
+    - @presence_list.each do |pp|
+      - presences = pp.presences.split(',')
+      %tr
+        %td.student
+          = link_to pp.student.name, student_path(:id => pp.student_id), :target => "_blank"
+          - status = Presence.find(presences.first).status
+          - if status > Presence::WITH_CLASS
+            .more_info_wrapper
+              %a{:href=> "#", :id => "show_comments_#{pp.student_id}"}
+                .more_info
+                :javascript
+                  $(document).ready(function() {
+                    $("#show_comments_#{pp.student_id}").click(function() {
+                      $.ajax({url: "/students/#{pp.student_id}/#{params[:month]}/show_presence_list_comments"}); 
+                      return false;
+                    });
+                  });
+
+          - presences.each do |p|
+            - presence = Presence.find(p)
+            - style_class = ''
+            - checkbox_class = ''
+            - case presence.status
+              - when Presence::AWAY
+                - disabled = true
+                - klass = 'disabled'
+                - style_class = 'away'
+              - when Presence::EVADED
+                - disabled = true
+                - klass = 'disabled'
+                - style_class = 'evaded'
+            - if !presence.has_class
+              - disabled = true
+              - klass = 'disabled'
+              - checkbox_class = 'disabled'
+              - style_class = ''
+
+            - if presence.presence
+              %td{:class => "#{klass} #{style_class}"}
+                %b X 
+            - else
+              %td{:class => "#{klass} #{style_class}"}
+          - if pp.presence >= 75
+            - color = "green"
+          - else
+            - color = "red"
+          %td{:style => "color: #{color}"}= "#{pp.presence}%"

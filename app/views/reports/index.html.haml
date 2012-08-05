@@ -4,7 +4,7 @@
     %ul
       %li.first
         %label Informe o tipo de dado:
-        = select_tag :column, options_for_select([['Faixa etária', 'age'], ['Profissão', 'profession'],['Raça', 'ethnicity'], ['Religião', 'religion'], ['Sexo', 'gender']])
+        = select_tag :column, options_for_select([['Faixa etária', 'age'], ['Profissão', 'occupation_id'],['Raça', 'ethnicity'], ['Religião', 'religion'], ['Sexo', 'gender']])
       %li
         %label Informe o núcleo:
         = select_tag :core_id, options_for_select(@cores)

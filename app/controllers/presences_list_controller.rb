@@ -16,23 +16,25 @@ class PresencesListController < ApplicationController
 
   # GET /presences/1/edit
   def edit
+    @presence_list = PresenceList.all(:conditions => "month = #{params[:month]} AND room_id = #{params[:room_id]}", :include => [:student])
+    
     @month = params[:month]
-    presences = Presence.all(:conditions => "room_id = #{params[:room_id]} AND month = #{params[:month]}", :order => "student_id ASC")
     @room = Room.find(params[:room_id])
-    @students = @room.students
+    @core = @room.core
+    @educators = Educator.find_by_sql("
+      SELECT e.* FROM educators e INNER JOIN educators_rooms er ON er.educator_id = e.id 
+      WHERE er.room_id = #{@room.id}").collect(&:name).join(", ")
     @presences = []
-    i = 0
+    @students = Student.all(:conditions => "room_id = #{@room.id}", :order => "name ASC")
     @lecture_days = LectureDay.all(:conditions => "room_id = #{params[:room_id]} AND month = #{params[:month]}", :order => "lecture_on ASC")
-    @students.each do |s|
-      @presences << {} 
-      @presences[i][:student] = s.name
-      @presences[i][:student_id] = s.id
-      @lecture_days.each do |l|
-        presences.each do |p|
-          @presences[i][l.id] = p if (l.id == p.lecture_day_id && p.student_id == s.id)
-        end
-      end
-      i += 1
+
+
+    if @presence_list.count == 0
+      get_presence_list_data
+      @type = 0
+    else
+      @type = 1
+      get_data_for_show_presence_list
     end
     
     respond_to do |format|
@@ -69,16 +71,43 @@ class PresencesListController < ApplicationController
     end
   end
 
-  # DELETE /presences/1
-  # DELETE /presences/1.xml
-  def destroy
-    @presence = Presence.find(params[:id])
-    @presence.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(presences_url) }
-      format.xml  { head :ok }
+  def finish
+    presences = Presence.all(:conditions => "room_id = #{params[:room_id]} AND month = #{params[:month]}", :order => "student_id ASC")
+    @room = Room.find(params[:room_id])
+    @students = Student.all(:conditions => "room_id = #{@room.id}", :order => "name ASC")
+    @presences = []
+    i = 0
+    @lecture_days = LectureDay.all(:conditions => "room_id = #{params[:room_id]} AND month = #{params[:month]}", :order => "lecture_on ASC")
+    @students.each do |s|
+      @presences << {} 
+      @presences[i][:student] = s.name
+      @presences[i][:student_id] = s.id
+      @lecture_days.each do |l|
+        presences.each do |p|
+          @presences[i][l.id] = p if (l.id == p.lecture_day_id && p.student_id == s.id)
+        end
+      end
+      i += 1
     end
+
+    i = 0
+    while (i < @students.count) do
+      presence_array = []
+      total_presence = 0
+      total_lectures = 0
+      @lecture_days.each do |l|
+        p = @presences[i][l.id]
+        presence_array << p.id
+        total_presence += 1 if p.presence && p.has_class
+        total_lectures += 1 if p.has_class
+      end
+      presence = (total_presence * 100)/total_lectures
+      PresenceList.create(:room_id => params[:room_id], :student_id => @students[i].id, :month => params[:month],
+        :presences => presence_array.join(","), :presence => presence)
+      i += 1
+    end
+    edit
+
   end
 
   def update_student_presences
@@ -86,5 +115,28 @@ class PresencesListController < ApplicationController
     @student = Student.find(params[:student_id])
     ActiveRecord::Base.connection.execute "UPDATE presences set status = #{params[:status]} WHERE room_id = #{params[:room_id]} AND student_id = #{params[:student_id]} AND month = #{params[:month]}"
     edit
+  end
+
+protected
+
+  def get_presence_list_data
+    presences = Presence.all(:conditions => "room_id = #{params[:room_id]} AND month = #{params[:month]}", :order => "student_id ASC")
+  
+    i = 0
+    
+    @students.each do |s|
+      @presences << {} 
+      @presences[i][:student] = s.name
+      @presences[i][:student_id] = s.id
+      @lecture_days.each do |l|
+        presences.each do |p|
+          @presences[i][l.id] = p if (l.id == p.lecture_day_id && p.student_id == s.id)
+        end
+      end
+      i += 1
+    end
+  end
+
+  def get_data_for_show_presence_list
   end
 end

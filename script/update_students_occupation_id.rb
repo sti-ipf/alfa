@@ -26,15 +26,3 @@ Student.all.each do |s|
     s.save
   end
 end
-
-#asas
-#não alfabetizado
-#não possui
-#Nenhuma
-
-
-
-
-
-
-

@@ -19,6 +19,14 @@ class ReportsController < ApplicationController
     data.each do |d|
       if params[:column] == 'profession'
         legend = eval("d.#{params[:column]}")
+      elsif params[:column] == 'occupation_id'
+        
+        if d.occupation_id.blank?
+          legend = nil 
+        else
+          occupation = Occupation.first(:conditions => "id = #{d.occupation_id}")
+          legend = occupation.try(:name)
+        end
       else
         legend = eval("d.#{params[:column]}_to_s")
       end
@@ -55,10 +63,6 @@ class ReportsController < ApplicationController
     
     array = []
     j = 0
-    puts '-' * 100
-    puts categories_numbers
-    puts second_categories_numbers
-    puts '-' * 100
     second_categories_numbers.each do |g|
       tmp_array = []
       i = 0
@@ -112,8 +116,11 @@ private
           array[0] << a.first
           array[1] << a.last
         end
-      when 'profession'
-        'Por profissão'
+      when 'occupation_id'
+        Occupation.all.each do |o|
+          array[0] << o.name
+          array[1] << o.id
+        end
       when 'religion'
         Coordinator::RELIGIONS.each do |a|
           array[0] << a.first
@@ -135,13 +142,18 @@ private
           'Por sexo'
         when 'ethnicity'
           'Por raça'
-        when 'profession'
+        when 'occupation_id'
           'Por profissão'
         when 'religion'
           'Por religião'
       end
     end
-    title.join(" e ")
+    if title.count == 1
+      title[0]
+    else
+      "#{title[0]} e #{title[1].downcase}"
+    end
+    
   end
 
 end

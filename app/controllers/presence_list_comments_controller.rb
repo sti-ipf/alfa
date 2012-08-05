@@ -16,6 +16,10 @@ class PresenceListCommentsController < ApplicationController
     end
 
   end
+
+  def show
+    @comment = PresenceListComment.first(:conditions => "month = #{params[:month]} AND student_id = #{params[:student_id]}")
+  end
   
 
   def update

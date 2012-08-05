@@ -1448,3 +1448,15 @@ ul.presence_list_legend span{
   padding: 30px;
   width: auto;
 }
+
+#presence_list_header {
+  float: left;
+  padding: 0;
+  width: 100%;
+}
+
+a#close_presence_list{
+  float: right;
+  background: url("/images/novo.png") repeat scroll left -34px transparent;
+  padding-right: 20px;
+}

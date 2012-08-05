@@ -46,7 +46,7 @@ module ApplicationHelper
 
   def generate_graphic_links(params = {})
     html = ''
-    array = ['age', 'gender', 'ethnicity', 'profession', 'religion']
+    array = ['age', 'gender', 'ethnicity', 'occupation_id', 'religion']
     array.delete(params[:column])
     array.each do |a|
       title = ''
@@ -57,7 +57,7 @@ module ApplicationHelper
                 'Por sexo'
               when 'ethnicity'
                 'Por raça'
-              when 'profession'
+              when 'occupation_id'
                 'Por profissão'
               when 'religion'
                 'Por religião'
