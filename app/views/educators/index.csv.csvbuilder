@@ -1,0 +1,13 @@
+header = [
+"Número da inscrição", "Nome Completo", "Data da inscrição", "Sexo", "Nº de matrícula", "Unidade Educacional",
+"RG", "Orgão Expedidor", "CEP", "Endereço Residencial", "Número", "Complemento", "Bairro", "Cidade",
+"Estado", "Telefone residencial", "Telefone celular", "Telefone comercial", "E-mail", "E-mail alternativo",
+"Instituição de conclusão de curso de ensino superior", "Ano de conclusão de curso de ensino superior", "Possui alguma deficiência",
+"Deficiência"
+]
+csv << header
+@educators.each do |e|
+  csv << e
+end
+
+

@@ -11,7 +11,7 @@
 .actions 
   = render '/layouts/shared/add_button', :new_label=>t('educator.new'), :new_path => new_educator_path, :permission => :educators
 = render '/layouts/shared/filter_bar'
-
+= link_to 'Exportar', educators_path(:format => :csv)
 %table{:class => 'list'}
   %thead
     %tr

@@ -83,16 +83,17 @@
           %td.student
             = link_to p[:student], student_path(:id => p[:student_id]), :target => "_blank"
             - status = p[@lecture_days.first.id].status
-            - if status > Presence::WITH_CLASS
-              .more_info_wrapper
-                %a{:href=> "#", :id => "show_comments_#{p[:student_id]}"}
-                  .more_info
-                  :javascript
-                    $(document).ready(function() {
-                      $("#show_comments_#{p[:student_id]}").click(function() {
-                        $.ajax({url: "/students/#{p[:student_id]}/presence_list_comments?month=#{params[:month]}"}); 
+            - if !status.blank?
+              - if status > Presence::WITH_CLASS
+                .more_info_wrapper
+                  %a{:href=> "#", :id => "show_comments_#{p[:student_id]}"}
+                    .more_info
+                    :javascript
+                      $(document).ready(function() {
+                        $("#show_comments_#{p[:student_id]}").click(function() {
+                          $.ajax({url: "/students/#{p[:student_id]}/presence_list_comments?month=#{params[:month]}"}); 
+                        });
                       });
-                    });
             = select_tag :student_status, options_for_select(Presence::STUDENT_STATUS, :selected => status), :class => "student_status", :id => "#{params[:room_id]}_#{params[:month]}_#{p[:student_id]}"
 
           - @lecture_days.each do |l|

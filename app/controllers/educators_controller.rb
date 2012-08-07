@@ -23,8 +23,14 @@ class EducatorsController < ApplicationController
     @educators = Educator.all(:conditions => "core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))", :include => [:core, :rooms], :order => "name ASC")
 
     respond_to do |format|
+      format.csv do
+        @educators = Educator.to_csv_file(@educators)
+        @filename = 'monitores.csv'
+        @output_encoding = 'UTF-8'
+      end
       format.html # index.html.erb
       format.xml  { render :xml => @educators }
+      
     end
   end
 

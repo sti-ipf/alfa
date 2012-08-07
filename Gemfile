@@ -13,7 +13,7 @@ gem 'haml-rails'
 gem 'authlogic', '3.0.3'
 gem 'fastercsv'
 gem 'cancan'
-
+gem 'csv_builder'
 group :development do 
   gem 'erb2haml'
 end

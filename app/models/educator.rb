@@ -123,6 +123,20 @@ class Educator < ActiveRecord::Base
     get_attribute_value(self.internet_access_local, Student::INTERNET_ACCESS_LOCAL)   
   end
 
+  def self.to_csv_file(educators)
+    array = []
+    educators.each do |r|
+      attributes = r.attributes.keys
+      new_array = Array.new(attributes.count)
+      i = 0
+      attributes.each do |a|
+        new_array[i] = eval("r.#{a}")
+        i += 1
+      end
+      array << new_array
+    end
+    array
+  end
 private
 
   def get_attribute_value(attribute, array)
