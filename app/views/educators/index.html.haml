@@ -10,8 +10,9 @@
 %h1.title= t('educator.listing')
 .actions 
   = render '/layouts/shared/add_button', :new_label=>t('educator.new'), :new_path => new_educator_path, :permission => :educators
+  .presence_lists= link_to 'Exportar', educators_path(:format => :csv)
 = render '/layouts/shared/filter_bar'
-= link_to 'Exportar', educators_path(:format => :csv)
+
 %table{:class => 'list'}
   %thead
     %tr

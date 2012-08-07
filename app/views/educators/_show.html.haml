@@ -21,7 +21,7 @@
 
 %p{:style => hidden_fields}
   %b= "Faixa etária"
-  = educator.age_range
+  = educator.age_range_to_s
 
 %p
   %b= "#{t('coordinator.age')}:"
@@ -109,6 +109,10 @@
   %b= "#{t('coordinator.house_type')}:"
   = educator.house_type_to_s
 
+%p
+  %b= "(#{educator.familiar_income})"
+  = educator.familiar_income_to_s
+
 %p{:style => hidden_fields}
   %b= t('which')
   = educator.house_type_desc
@@ -127,7 +131,7 @@
 
 %p{:style => hidden_fields}
   %b= "Disponibilidade viagem?"
-  = educator.travel_disponibility
+  = educator.travel_disponibility_to_s
 
 %p{:style => hidden_fields}
   %b= " 3 últimos livros lidos:"
@@ -159,11 +163,11 @@
   
 %p{:style => hidden_fields}
   %b= "Tem computador?"
-  = educator.has_pc
+  = educator.has_pc_to_s
   
 %p{:style => hidden_fields}
   %b= "Se não, onde acessa:"
-  = educator.where_use_pc
+  = educator.where_use_pc_to_s
   
 %p{:style => hidden_fields}
   %b=  "Quais"
