@@ -39,6 +39,8 @@ private
     if !current_user.nil?
       if current_user.admin?
         session[:city_id] ||= 1
+      elsif !current_user.educator_id.blank?
+        session[:city_id] ||= current_user.educator.core.city_id
       else
         session[:city_id] ||= current_user.cities.first.id
       end

@@ -13,7 +13,11 @@ class CoresController < ApplicationController
 
 
   def index
-    @cores = Core.all(:conditions => "city_id IN (#{@cities_ids})", :include => [:city], :order => "name ASC")
+    if current_user.try(:educator_id).blank?
+      @cores = Core.all(:conditions => "city_id IN (#{@cities_ids})", :include => [:city], :order => "name ASC")
+    else
+      @cores = [current_user.educator.core]
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @cores }

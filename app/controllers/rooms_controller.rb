@@ -3,7 +3,22 @@ class RoomsController < ApplicationController
   before_filter :load_data, :only => [:new, :create, :edit, :update]
 
   def index
-    @rooms = Room.all(:conditions => "core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))", :include => [:core, :coordinators, :students, :educators], :order => "name ASC")
+    if current_user.try(:educator_id).blank?
+      @rooms = Room.all(:conditions => "core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))", :include => [:core, :coordinators, :students, :educators], :order => "name ASC")
+    else
+      rooms_id = []
+      ActiveRecord::Base.connection.execute("SELECT room_id FROM educators_rooms 
+        WHERE educator_id = #{current_user.educator_id}").each do |r|
+          rooms_id << r.first
+      end
+      if rooms_id.count == 0
+        @rooms = []
+      else
+        rooms_id = rooms_id.join(',')
+        @rooms = Room.all(:conditions => "id IN (#{rooms_id}) AND core_id IS NOT NULL", 
+          :include => [:core, :coordinators, :students, :educators], :order => "name ASC")
+      end
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -88,9 +103,9 @@ class RoomsController < ApplicationController
 protected
 
   def load_data
-    @coordinators = Coordinator.all(:conditions => "core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))")
-    @educators = Educator.all(:conditions => "core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))")
-    @cores = Core.all(:conditions => "city_id IN (#{@cities_ids})").collect {|c| ["#{c.city.try(:name)} - #{c.name}", c.id]}
+    @coordinators = Coordinator.all(:conditions => "core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))", :order => "name ASC")
+    @educators = Educator.all(:conditions => "core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))", :order => "name ASC")
+    @cores = Core.all(:conditions => "city_id IN (#{@cities_ids})", :order => "name ASC").collect {|c| ["#{c.city.try(:name)} - #{c.name}", c.id]}
   end
 
 end

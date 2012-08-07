@@ -26,8 +26,13 @@ class StudentsController < ApplicationController
   end
 
   def index
-    @students = Student.all(:conditions => "students.core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))",
-      :include => [:educator, :core, :room], :order => "educators.name ASC, students.name ASC")
+    if current_user.try(:educator_id).blank?
+      @students = Student.all(:conditions => "students.core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))",
+        :include => [:educator, :core, :room], :order => "educators.name ASC, students.name ASC")
+    else
+      @students = Student.all(:conditions => "students.educator_id = #{current_user.educator_id}",
+        :include => [:educator, :core, :room], :order => "educators.name ASC, students.name ASC")
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -116,8 +121,14 @@ class StudentsController < ApplicationController
   end
 
   def load_data
-    @cores = Core.all(:conditions => "city_id IN (#{@cities_ids})").collect{|c| ["#{c.city.try(:name)} - #{c.community}", c.id]}
-    @educators = Educator.all(:conditions => "core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))").collect{|c| [c.name, c.id]}
+    if current_user.try(:educator_id).blank?
+      @cores = Core.all(:conditions => "city_id IN (#{@cities_ids})").collect{|c| ["#{c.city.try(:name)} - #{c.community}", c.id]}
+      @educators = Educator.all(:conditions => "core_id IN (SELECT id FROM cores WHERE city_id IN (#{@cities_ids}))").collect{|c| [c.name, c.id]}
+    else
+      core = current_user.educator.core
+      @cores =  [["#{core.city.try(:name)} - #{core.community}", core.id]]
+      @educators = [[current_user.educator.name, current_user.educator_id]]
+    end
     @genders = Coordinator::GENDERS
     @ethnicities = Coordinator::ETHNICITIES
     @ages = Student::AGES
@@ -131,7 +142,7 @@ class StudentsController < ApplicationController
     @house_types = Coordinator::HOUSE_TYPES
     @religions = Coordinator::RELIGIONS
     @occupations = Occupation.all(:order => "name ASC").collect{|c| [c.name, c.id]}
-    @rooms = []
+    @rooms = []    
   end
   
 end

@@ -64,8 +64,8 @@ class UsersController < ApplicationController
 protected
   def load_data
     @cities = City.all
-    cores_ids = Core.all(:conditions => "city_id IN (#{@cities_ids})").collect(&:id).join(',')
-    @educators = Educator.all(:conditions => "core_id IN (#{cores_ids})").collect{ |e| [e.name, e.id]}
+    cores_ids = Core.all(:conditions => "city_id IN (#{@cities_ids})", :order => "name ASC").collect(&:id).join(',')
+    @educators = Educator.all(:conditions => "core_id IN (#{cores_ids})", :order => "name ASC").collect{ |e| [e.name, e.id]}
   end
 end
 

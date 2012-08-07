@@ -2,6 +2,7 @@
 class User < ActiveRecord::Base
   attr_accessor :password_confirmation
   has_and_belongs_to_many :cities
+  belongs_to :educator
 
   ROLES = [['Administrador', 1], ['Coordenador', 2], ['Monitor', 3], ['Apenas Visualização', 4]]
 

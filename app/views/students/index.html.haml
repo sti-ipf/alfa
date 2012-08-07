@@ -18,8 +18,9 @@
 %h1.title= t('student.listing')
 .actions{:style => "width: 600px;"}
   = render '/layouts/shared/add_button', :new_label=>t('student.new'), :new_path => new_student_path, :permission => :students
-  #show_students_without_mother
-    = show_students_without_mother_or_all_students(1).html_safe
+  - if current_user.admin?
+    #show_students_without_mother
+      = show_students_without_mother_or_all_students(1).html_safe
       
 
 = render '/layouts/shared/filter_bar'
