@@ -1316,7 +1316,17 @@ a.more{
 }
 
 .right_menu ul.select{
-  margin-top:55px
+  margin-top:55px;
+  display:block;
+  width:350px;
+}
+
+.right_menu ul.select li{
+  float:right;
+}
+
+.right_menu ul.select select{
+  float:right;
 }
 
 .right_menu span{
