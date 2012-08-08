@@ -16,6 +16,7 @@ gem 'cancan'
 gem 'csv_builder'
 gem 'wkhtmltopdf'
 gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 group :development do 
   gem 'erb2haml'
 end
