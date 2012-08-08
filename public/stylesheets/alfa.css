@@ -1470,3 +1470,14 @@ a#close_presence_list{
   background: url("/images/novo.png") repeat scroll left -34px transparent;
   padding-right: 20px;
 }
+
+#report_header{
+  float: left;
+  width: 100%;
+  clear: both;
+}
+
+#report_header div{
+  clear: both;
+  display: block;
+}

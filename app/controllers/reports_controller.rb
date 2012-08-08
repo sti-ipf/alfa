@@ -10,9 +10,68 @@ class ReportsController < ApplicationController
   end
 
   def show
+    get_show_data
+    respond_to do |format|
+      format.js
+      format.html
+      format.pdf do
+        render :pdf => "teste"
+      end
+    end
+  end
+
+
+  def update_rooms
+    core = Core.find(params[:core_id])
+    rooms = core.rooms.collect{|c| [c.name, c.id]}
+    @rooms = []
+    @rooms << ['Todas', 0] if rooms.count > 1
+    rooms.each do |r|
+      @rooms << r
+    end
+    respond_to do |format|
+      format.js if request.xhr?
+    end
+  end
+
+  def show_second_report
+    get_second_report_data
+
+    respond_to do |format|
+      format.js
+      format.html
+    end
+  end
+
+  def show_full_report
+    get_show_data
+    get_second_report_data
+
+    respond_to do |format|
+      format.pdf do
+        render :pdf => "teste"
+      end
+    end
+  end
+
+private
+
+  def get_show_data
     @column = params[:column]
     @core_id = params[:core_id].to_i
     @room_id = params[:room_id].to_i
+    @city = City.find(session[:city_id]).name
+    if @core_id == 0
+      @core_name = 'Todos'
+    else
+      @core_name = Core.find(@core_id).name
+    end  
+    if @room_id == 0
+      @room_name = 'Todas'
+    else
+      @room_name = Room.find(@room_id).name
+    end
+
     data = Student.report_data(params[:core_id].to_i, params[:room_id].to_i, session[:city_id].to_i, params[:column])
     @graphic_title = get_graphic_title(params[:column])
     @data = []
@@ -34,32 +93,18 @@ class ReportsController < ApplicationController
       @data << "['#{legend}', #{d.total}]"
     end
     @data = @data.join(',')
-    respond_to do |format|
-      format.js
-      format.html
-    end
   end
 
-
-  def update_rooms
-    core = Core.find(params[:core_id])
-    rooms = core.rooms.collect{|c| [c.name, c.id]}
-    @rooms = []
-    @rooms << ['Todas', 0] if rooms.count > 1
-    rooms.each do |r|
-      @rooms << r
-    end
-    respond_to do |format|
-      format.js if request.xhr?
-    end
-  end
-
-  def show_second_report
+  def get_second_report_data
     data = Student.report_data(params[:core_id].to_i, params[:room_id].to_i, session[:city_id].to_i, params[:column], params[:second_column])
-    @graphic_title = get_graphic_title([params[:column], params[:second_column]])
+    @column = params[:column]
+    @second_column = params[:second_column]
+    @core_id = params[:core_id]
+    @room_id = params[:room_id]
+    @second_graphic_title = get_graphic_title([params[:column], params[:second_column]])
     @categories, categories_numbers = get_categories(params[:column])
     @second_categories, second_categories_numbers = get_categories(params[:second_column])
-    @data = []
+    @second_graphic_data = []
     
     array = []
     j = 0
@@ -78,23 +123,16 @@ class ReportsController < ApplicationController
       j += 1
     end
     array.each do |a|
-      @data << "{ name: '#{a.first}', data: [#{a.last}]}"
+      @second_graphic_data << "{ name: '#{a.first}', data: [#{a.last}]}"
     end
-    @data = @data.join(", ")
+    @second_graphic_data = @second_graphic_data.join(", ")
 
     categories = []
     @categories.each do |c|
       categories << "'#{c}'"
     end
     @categories = categories.join(", ")
-
-    respond_to do |format|
-      format.js
-      format.html
-    end
   end
-
-private
 
   def get_categories(column)
     array = []

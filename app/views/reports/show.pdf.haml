@@ -1,3 +1,10 @@
+%meta{:content => "text/html; charset=utf-8", "http-equiv" => "content-type"}
+- js_files = ['jquery.min.js', 'jquery_ujs.js', 'jquery-rails.js', 'picnet.table.filter.min.js', 'jquery.noty.js', 'jquery.maskedinput.js', 'spin.js', 'highcharts.js', 'application.js']
+- js_files.each do |js_file|
+  = wicked_pdf_javascript_include_tag js_file
+
+= render 'header'
+
 :javascript
   var chart;
   $(document).ready(function() {
@@ -6,6 +13,7 @@
         renderTo: 'container',
         plotBackgroundColor: null,
         plotBorderWidth: null,
+        width: 750,
         plotShadow: false
       },
       title: {
@@ -18,7 +26,10 @@
       },
       plotOptions: {
         pie: {
-          allowPointSelect: true,
+          animation: false,
+          shadow: false,
+          enableMouseTracking: false,
+          allowPointSelect: false,
           cursor: 'pointer',
           dataLabels: {
             enabled: true,
@@ -40,10 +51,6 @@
   });
 
 #container
-.second_report_links
-  = generate_graphic_links(:column => @column, :core_id => @core_id, :room_id => @room_id).html_safe
-  = link_to "Visualizar em pdf", show_report_path(:column => @column, :core_id => @core_id, :format => :pdf)
-#second_report
 
 :javascript
   $(document).ready(function() {
@@ -52,13 +59,4 @@
         $(this).remove();
       }
     })
-  });
-
-:javascript
-  $(document).ready(function() {
-    $('.second_report_link').click(function() {
-      $("#second_report").html("")
-      show_spinner('second_report');
-    });
-    
   });

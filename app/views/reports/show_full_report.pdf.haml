@@ -1,0 +1,133 @@
+%meta{:content => "text/html; charset=utf-8", "http-equiv" => "content-type"}
+
+= render 'header'
+
+- js_files = ['jquery.min.js', 'jquery_ujs.js', 'jquery-rails.js', 'picnet.table.filter.min.js', 'jquery.noty.js', 'jquery.maskedinput.js', 'spin.js', 'highcharts.js', 'application.js']
+- js_files.each do |js_file|
+  = wicked_pdf_javascript_include_tag js_file
+
+
+:javascript
+  var chart;
+  $(document).ready(function() {
+    chart = new Highcharts.Chart({
+      chart: {
+        renderTo: 'container',
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        width: 750,
+        plotShadow: false
+      },
+      title: {
+        text: '#{@graphic_title}'
+      },
+      tooltip: {
+        formatter: function() {
+                           return '<b>'+ this.point.name +'</b>: '+ this.y;
+                        }
+      },
+      plotOptions: {
+        pie: {
+          animation: false,
+          shadow: false,
+          enableMouseTracking: false,
+          allowPointSelect: false,
+          cursor: 'pointer',
+          dataLabels: {
+            enabled: true,
+            color: '#000000',
+            connectorColor: '#000000',
+            formatter: function() {
+                                 return this.point.name +': '+ Math.round(this.percentage * 10)/10 +' %';
+                              }
+          }
+        }
+      },
+      series: [{
+        type: 'pie',
+        name: '',
+        data: [#{@data}
+        ]
+      }]
+    });
+  });
+
+#container
+
+:javascript
+  var chart;
+  $(document).ready(function() {
+    chart = new Highcharts.Chart({
+      chart: {
+        renderTo: 'second_container',
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        width: 750,
+        plotShadow: false,
+        type: 'column'
+
+      },
+      title: {
+        text: '#{@second_graphic_title}'
+      },
+      xAxis: {
+        categories: [#{@categories}]
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: 'Total de alfabetizandos'
+        },
+        stackLabels: {
+          enabled: true,
+          style: {
+            fontWeight: 'bold',
+            color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+          }
+        }
+      },
+      legend: {
+        align: 'right',
+        x: -100,
+        verticalAlign: 'top',
+        y: 20,
+        floating: true,
+        backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColorSolid) || 'white',
+        borderColor: '#CCC',
+        borderWidth: 1,
+        shadow: false
+      },
+      tooltip: {
+        formatter: function() {
+          return '<b>'+ this.x +'</b><br/>'+
+            this.series.name +': '+ Math.round(this.percentage * 10)/10 +'%' +'<br/>'+
+            'Total: '+ this.y + ' de ' + this.point.stackTotal;
+        }
+      },
+      plotOptions: {
+        column: {
+          animation: false,
+          shadow: false,
+          enableMouseTracking: false,
+          allowPointSelect: false,
+          stacking: 'normal',
+          dataLabels: {
+            enabled: true,
+            color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+          }
+        }
+      },
+      series: [#{@second_graphic_data}]
+    });
+  });
+
+#second_container
+
+:javascript
+  $(document).ready(function() {
+    $("tspan").map(function(){
+      if ($(this).text() == "Highcharts.com"){
+        $(this).remove();
+      }
+    })
+  });

@@ -1,0 +1,13 @@
+#report_header
+  %div
+    %b Cidade - Etapa:
+    = @city
+  %div
+    %b Núcleo:
+    = @core_name
+  %div
+    %b Turma:
+    = @room_name
+  %div
+    %b Data da geração:
+    = DateTime.now.strftime("%d/%m/%Y %H:%M")

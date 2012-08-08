@@ -37,6 +37,7 @@ Alfa::Application.routes.draw do
   match 'reports' => 'reports#index', :as => 'reports'
   match 'show_report' => 'reports#show', :as => 'show_report'
   match 'report_update_rooms/:core_id' => 'reports#update_rooms', :as => 'report_update_rooms'
+  match 'show_full_report' => 'reports#show_full_report', :as => 'show_full_report'
 
   match 'show_second_report/:column/:second_column/:core_id/:room_id' => 'reports#show_second_report', :as => 'show_second_report'
   match 'students/:student_id/:month/show_presence_list_comments' => 'presence_list_comments#show', :as => 'show_presence_list_comments'

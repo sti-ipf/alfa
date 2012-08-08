@@ -1,3 +1,6 @@
+.second_report_links
+  = link_to "Visualizar em PDF", show_full_report_path(:column => @column, :second_column => @second_column, :core_id => @core_id, :room_id => @room_id, :format => :pdf), :style => "float: right;"
+
 :javascript
   var chart;
   $(document).ready(function() {
@@ -7,7 +10,7 @@
         type: 'column'
       },
       title: {
-        text: '#{@graphic_title}'
+        text: '#{@second_graphic_title}'
       },
       xAxis: {
         categories: [#{@categories}]
@@ -52,7 +55,7 @@
           }
         }
       },
-      series: [#{@data}]
+      series: [#{@second_graphic_data}]
     });
   });
 
