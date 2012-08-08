@@ -15,7 +15,7 @@ class ReportsController < ApplicationController
       format.js
       format.html
       format.pdf do
-        render :pdf => "teste"
+        render :pdf => "relatorio", :encoding => 'utf8'
       end
     end
   end
@@ -49,7 +49,7 @@ class ReportsController < ApplicationController
 
     respond_to do |format|
       format.pdf do
-        render :pdf => "teste"
+        render :pdf => "relatorio", :encoding => 'utf8'
       end
     end
   end
