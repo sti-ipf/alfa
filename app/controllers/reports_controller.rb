@@ -15,10 +15,7 @@ class ReportsController < ApplicationController
       format.js
       format.html
       format.pdf do
-        headless = Headless.new
-        headless.start
-        render :layout => false, :pdf => "relatorio"
-        headless.destroy
+        render :pdf => "relatorio"
       end
     end
   end
@@ -52,10 +49,7 @@ class ReportsController < ApplicationController
 
     respond_to do |format|
       format.pdf do
-        headless = Headless.new
-        headless.start
-        render :layout => false, :pdf => "relatorio"
-        headless.destroy
+        render :pdf => "relatorio"
       end
     end
   end
