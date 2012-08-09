@@ -14,6 +14,7 @@ gem 'authlogic', '3.0.3'
 gem 'fastercsv'
 gem 'cancan'
 gem 'csv_builder'
+gem 'headless'
 gem 'wicked_pdf'
 group :development do 
   gem 'erb2haml'
