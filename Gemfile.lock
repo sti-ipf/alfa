@@ -119,7 +119,6 @@ GEM
     warden (1.0.6)
       rack (>= 1.0)
     wicked_pdf (0.7.2)
-    wkhtmltopdf (0.1.2)
 
 PLATFORMS
   ruby
@@ -141,4 +140,3 @@ DEPENDENCIES
   rcov (= 0.9.9)
   rspec-rails (= 2.7.0)
   wicked_pdf
-  wkhtmltopdf
