@@ -42,7 +42,7 @@
 #container
 .second_report_links
   = generate_graphic_links(:column => @column, :core_id => @core_id, :room_id => @room_id).html_safe
-  = link_to "Visualizar em pdf", show_report_path(:column => @column, :core_id => @core_id, :format => :pdf)
+  = link_to "Visualizar em PDF", show_report_path(:column => @column, :core_id => @core_id, :format => :pdf)
 #second_report
 
 :javascript
