@@ -17,7 +17,7 @@ class ReportsController < ApplicationController
       format.pdf do
         headless = Headless.new
         headless.start
-        render :pdf => "relatorio"
+        render :layout => false, :pdf => "relatorio"
         headless.destroy
       end
     end
@@ -54,7 +54,7 @@ class ReportsController < ApplicationController
       format.pdf do
         headless = Headless.new
         headless.start
-        render :pdf => "relatorio"
+        render :layout => false, :pdf => "relatorio"
         headless.destroy
       end
     end
