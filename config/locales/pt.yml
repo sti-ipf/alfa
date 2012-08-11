@@ -470,7 +470,6 @@ pt:
     observation: "Observações gerais"
     identification_on: "Identificação dos dados realizada em "
     profession: "Profissão"
-
     house_type_desc: "Descrição do tipo de moradia"
     special_need_desc: "Descrição da necessidade especial"
     special_need_type: "Tipo da necessidade especial"
@@ -563,8 +562,6 @@ pt:
     use_social_network_desc: "Descrição do uso de redes socias"
     observation: "Observações gerais"
     identification_on: "Identificação dos dados realizada em "
-    profession: "Profissão"
-
     house_type_desc: "Descrição do tipo de moradia"
     special_need_desc: "Descrição da necessidade especial"
     special_need_type: "Tipo da necessidade especial"

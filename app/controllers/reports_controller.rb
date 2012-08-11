@@ -119,6 +119,10 @@ private
         i += 1
       end
       legend = @second_categories[j]
+      puts '-' * 100
+      puts tmp_array
+      puts legend
+      puts '-' * 100
       array << [legend, tmp_array.join(', ')]
       j += 1
     end
