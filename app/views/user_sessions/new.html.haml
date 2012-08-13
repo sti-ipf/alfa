@@ -1,14 +1,14 @@
-
-%h1.title{:style => "margin-top: -72px;"} Acesso
-- semantic_form_for @user_session, :html => {:id => 'formframe'} do |f|
-  %ul
-    .li
-      = f.label :username
-      %br
-      = f.text_field :username
-    .li
-      = f.label :password
-      %br
-      = f.password_field :password
-    = f.commit_button 'Acessar', :disable_with => I18n.t('please_wait')
+#login
+  %h1.title{:style => "margin-top: -72px; text-align: center;"} Acesso
+  - semantic_form_for @user_session, :html => {:id => 'formframe'} do |f|
+    %ul
+      .li
+        = f.label :username
+        %br
+        = f.text_field :username
+      .li
+        = f.label :password
+        %br
+        = f.password_field :password
+      = f.commit_button 'Acessar', :disable_with => I18n.t('please_wait')
 

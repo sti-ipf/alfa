@@ -1481,3 +1481,17 @@ a#close_presence_list{
   clear: both;
   display: block;
 }
+
+#login{
+  margin: 0 auto;
+  display: block;
+  width: 280px;
+}
+
+#login input{
+  width: 220px;
+}
+
+#login #user_session_submit{
+  width: 235px;
+}
