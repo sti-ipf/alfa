@@ -54,74 +54,58 @@
 
 #container
 
-:javascript
-  var chart;
-  $(document).ready(function() {
-    chart = new Highcharts.Chart({
-      chart: {
-        renderTo: 'second_container',
-        plotBackgroundColor: null,
-        plotBorderWidth: null,
-        width: 750,
-        plotShadow: false,
-        type: 'column'
-
-      },
-      title: {
-        text: '#{@second_graphic_title}'
-      },
-      xAxis: {
-        categories: [#{@categories}]
-      },
-      yAxis: {
-        min: 0,
-        title: {
-          text: 'Total de alfabetizandos'
+- i = 0
+- @graphics_data.each do |data|
+  :javascript
+    var chart;
+    $(document).ready(function() {
+      chart = new Highcharts.Chart({
+        chart: {
+          renderTo: 'graphic_container_#{i}',
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          width: 750,
+          plotShadow: false
         },
-        stackLabels: {
-          enabled: true,
-          style: {
-            fontWeight: 'bold',
-            color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+        title: {
+          text: '#{data[:title]}'
+        },
+        tooltip: {
+          formatter: function() {
+                             return '<b>'+ this.point.name +'</b>: '+ this.y;
+                          }
+        },
+        plotOptions: {
+          pie: {
+            animation: false,
+            shadow: false,
+            enableMouseTracking: false,
+            allowPointSelect: false,
+            cursor: 'pointer',
+            dataLabels: {
+              enabled: true,
+              color: '#000000',
+              connectorColor: '#000000',
+              formatter: function() {
+                                   return this.point.name +': '+ Math.round(this.percentage * 10)/10 +' %';
+                                }
+            }
           }
-        }
-      },
-      legend: {
-        align: 'right',
-        x: -100,
-        verticalAlign: 'top',
-        y: 20,
-        floating: true,
-        backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColorSolid) || 'white',
-        borderColor: '#CCC',
-        borderWidth: 1,
-        shadow: false
-      },
-      tooltip: {
-        formatter: function() {
-          return '<b>'+ this.x +'</b><br/>'+
-            this.series.name +': '+ Math.round(this.percentage * 10)/10 +'%' +'<br/>'+
-            'Total: '+ this.y + ' de ' + this.point.stackTotal;
-        }
-      },
-      plotOptions: {
-        column: {
-          animation: false,
-          shadow: false,
-          enableMouseTracking: false,
-          allowPointSelect: false,
-          stacking: 'normal',
-          dataLabels: {
-            enabled: true,
-            color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
-          }
-        }
-      },
-      series: [#{@second_graphic_data}]
+        },
+        series: [{
+          type: 'pie',
+          name: '',
+          data: [#{data[:data]}
+          ]
+        }]
+      });
     });
-  });
-
-#second_container
+  - i += 1
+- i = 0
+%h2= "Gráficos: #{@second_graphic_title}"
+- @graphics_data.each do |data|
+  %div{:id => "graphic_container_#{i}"}
+  - i += 1
 
 :javascript
   $(document).ready(function() {

@@ -104,38 +104,30 @@ private
     @second_graphic_title = get_graphic_title([params[:column], params[:second_column]])
     @categories, categories_numbers = get_categories(params[:column])
     @second_categories, second_categories_numbers = get_categories(params[:second_column])
-    @second_graphic_data = []
-    
-    array = []
-    j = 0
-    second_categories_numbers.each do |g|
-      tmp_array = []
-      i = 0
-      categories_numbers.each do |a|
+    @graphics_data = []
+    i = 0
+    categories_numbers.each do |c|
+      graphic_title = @categories[i]
+      j = 0
+      graphic_data = []
+      second_categories_numbers.each do |s|
+        legend = @second_categories[j]
+        value = 0
         data.each do |d|
-          tmp_array << d.total if eval("d.#{params[:second_column]}") == g && eval("d.#{params[:column]}") == a
+          if eval("d.#{params[:second_column]}") == s && eval("d.#{params[:column]}") == c
+            value = d.total 
+            break
+          end
         end
-        tmp_array << 0 if tmp_array[i].nil?
-        i += 1
+        j += 1
+        next if value.to_i == 0
+        graphic_data << "['#{legend}', #{value}]"
       end
-      legend = @second_categories[j]
-      puts '-' * 100
-      puts tmp_array
-      puts legend
-      puts '-' * 100
-      array << [legend, tmp_array.join(', ')]
-      j += 1
+      @graphics_data << {:title => graphic_title, :data => graphic_data.join(',')}
+      i += 1
     end
-    array.each do |a|
-      @second_graphic_data << "{ name: '#{a.first}', data: [#{a.last}]}"
-    end
-    @second_graphic_data = @second_graphic_data.join(", ")
+    
 
-    categories = []
-    @categories.each do |c|
-      categories << "'#{c}'"
-    end
-    @categories = categories.join(", ")
   end
 
   def get_categories(column)
