@@ -46,7 +46,7 @@
       %tr
         %td.student
           = link_to pp.student.name, student_path(:id => pp.student_id), :target => "_blank"
-          - status = Presence.find(presences.first).status
+          - status = Presence.find(presences.first).status.to_i
           - if status > Presence::WITH_CLASS
             .more_info_wrapper
               %a{:href=> "#", :id => "show_comments_#{pp.student_id}"}
