@@ -71,6 +71,12 @@ class PresencesListController < ApplicationController
     end
   end
 
+  def reopen
+    @presence_list = PresenceList.delete_all("month = #{params[:month]} AND room_id = #{params[:room_id]}")
+    
+    edit
+  end
+
   def finish
     presences = Presence.all(:conditions => "room_id = #{params[:room_id]} AND month = #{params[:month]}", :order => "student_id ASC")
     @room = Room.find(params[:room_id])

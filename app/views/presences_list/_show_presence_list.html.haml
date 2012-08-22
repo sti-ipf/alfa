@@ -1,6 +1,10 @@
 :javascript
   $("tbody tr:nth-child(even)").addClass("even");
   $("tbody tr:nth-child(odd)").addClass("odd");
+- if current_user.admin?
+  .actions
+    = link_to "Reabrir lista de presença", reopen_presence_list_path(:month => params[:month], :room_id => params[:room_id]), :id => "close_presence_list", :remote => true, :confirm => t('are_you_sure')
+
 %ul#presence_list_header
   %li
     %b Núcleo:

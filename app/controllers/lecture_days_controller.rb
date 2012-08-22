@@ -92,7 +92,11 @@ class LectureDaysController < ApplicationController
     @lecture_day.destroy
 
     respond_to do |format|
-      flash[:success] = 'Dia de aula apagado com sucesso'
+      if @lecture_day.errors.blank?
+        flash[:success] = 'Dia de aula apagado com sucesso'
+      else
+        flash[:error] = @lecture_day.errors.full_messages.first
+      end
       format.html { redirect_to(room_lecture_days_path(:room_id => params[:room_id])) }
       format.xml  { head :ok }
     end

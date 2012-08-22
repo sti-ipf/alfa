@@ -3,6 +3,7 @@ class LectureDay < ActiveRecord::Base
   has_many :presences, :dependent => :destroy
 
   after_save :create_presences, :update_presences_status
+  before_destroy :verify_if_presence_list_is_closed
 
   def lecture_on_to_date
     if !self.lecture_on.nil?
@@ -38,6 +39,14 @@ class LectureDay < ActiveRecord::Base
   end
 
 private
+
+  def verify_if_presence_list_is_closed
+    presence_list = PresenceList.first(:conditions => "month = #{self.month} AND room_id = #{self.room_id}")
+    if !presence_list.blank?
+      errors.add(:base, "Não é possível apagar o dia de aula, pois a lista de presença foi fechada")
+    end
+    errors.blank?
+  end
 
   def create_presences
     self.room.students.each do |s|
