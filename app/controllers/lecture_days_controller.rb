@@ -79,6 +79,7 @@ class LectureDaysController < ApplicationController
         format.html { redirect_to(room_lecture_days_path(:room_id => params[:room_id])) }
         format.xml  { head :ok }
       else
+        flash[:error] = @lecture_day.errors.full_messages.join(", ")
         format.html { render :action => "edit" }
         format.xml  { render :xml => @lecture_day.errors, :status => :unprocessable_entity }
       end
