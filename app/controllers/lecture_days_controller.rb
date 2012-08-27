@@ -43,7 +43,7 @@ class LectureDaysController < ApplicationController
   end
 
   def new_lecture_day
-    @lecture_day = LectureDay.create(:room_id => params[:room_id])
+    @lecture_day = LectureDay.create(:room_id => params[:room_id], :month => 0)
   end
 
   # GET /lecture_days/1/edit
