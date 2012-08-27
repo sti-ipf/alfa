@@ -5,6 +5,7 @@ class LectureDay < ActiveRecord::Base
   after_save :create_presences, :update_presences_status
   before_destroy :verify_if_presence_list_is_closed
   before_save :verify_if_presence_list_is_closed
+  validates_presence_of :month
 
   def lecture_on_to_date
     if !self.lecture_on.nil?
