@@ -82,7 +82,7 @@
         %tr{:id => "#{p[:student_id]}"}
           %td.student
             = link_to p[:student], student_path(:id => p[:student_id]), :target => "_blank"
-            - status = p[@lecture_days.first.id].status
+            - status = p[@lecture_days.first.id].try(:status)
             - if !status.blank?
               - if status > Presence::WITH_CLASS
                 .more_info_wrapper
