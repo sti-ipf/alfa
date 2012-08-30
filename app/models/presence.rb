@@ -10,4 +10,12 @@ class Presence < ActiveRecord::Base
   EVADED = 4
 
   STUDENT_STATUS = [["Frequente", ACTIVE], ["Ausente", AWAY], ["Evadido", EVADED]]
+
+  def self.create_presences(params = {})
+    @lecture_days = LectureDay.all(:conditions => "room_id = #{params[:room_id]} AND month = #{params[:month]}")
+    @lecture_days.each do |l|
+      Presence.create(:lecture_day_id => l.id, :student_id => params[:student_id], 
+        :room_id => params[:room_id], :month => params[:month])
+    end
+  end
 end

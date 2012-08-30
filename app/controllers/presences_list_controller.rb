@@ -123,6 +123,18 @@ class PresencesListController < ApplicationController
     edit
   end
 
+  def fix
+    @room = Room.find(params[:room_id])
+    @room.students.each do |s|
+      presences = Presence.all(:conditions => "student_id = #{s.id} AND room_id = #{@room.id} AND month = #{params[:month]}")
+      if presences.count == 0
+        Presence.create_presences(:room_id => @room.id, :student_id => s.id, :month => params[:month])
+      end
+    end
+    flash[:success] = t('presence_list.fixed')
+    redirect_to :back
+  end
+
 protected
 
   def get_presence_list_data

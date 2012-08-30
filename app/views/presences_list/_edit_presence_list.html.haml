@@ -78,6 +78,7 @@
           %td= link_to l.lecture_on_to_date.try(:strftime, '%d'), "#", :alt => "#{l.period}", :title => "#{l.period}", :class => "lecture_day_link"
         %td
     %tbody
+      - fix_presence_list = false
       - @presences.each do |p|
         %tr{:id => "#{p[:student_id]}"}
           %td.student
@@ -132,10 +133,12 @@
                     });
                   });
             - else
+              - fix_presence_list = true
               %td
 
           %td{:id => "#{p[:student_id]}_frequency"}
-
+- if fix_presence_list
+  = link_to 'Arrumar lista de presença', fix_presence_list_path(:room_id => @room.id, :month => @month), :class => 'fix_presence_list'
 :javascript
   $(document).ready(function() {
     $(".student_status").change(function() {

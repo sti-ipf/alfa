@@ -1495,3 +1495,20 @@ a#close_presence_list{
 #login #user_session_submit{
   width: 235px;
 }
+
+a.fix_presence_list{
+  background-color: #FF4040;
+  border: 1px solid #A61515;
+  color: white;
+  float: left;
+  font-weight: bold;
+  padding: 10px;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  width: 174px;
+}
+
+a:hover.fix_presence_list{
+  text-decoration: none !important;
+}

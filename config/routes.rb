@@ -29,6 +29,7 @@ Alfa::Application.routes.draw do
   match 'students_without_mother_name' => 'students#without_mother_name', :as => 'without_mother_name'
   match 'update_cancelled/:id' => 'lecture_days#update_cancelled', :as => 'update_cancelled'
   match 'new_lecture_day/:room_id' => 'lecture_days#new_lecture_day', :as => 'new_lecture_day'
+  match ':room_id/:month/fix_presence_list' => 'presences_list#fix', :as => 'fix_presence_list'
   match ':room_id/:month/finish_presence_list' => 'presences_list#finish', :as => 'finish_presence_list'
   match ':room_id/:month/reopen_presence_list' => 'presences_list#reopen', :as => 'reopen_presence_list'
   match ':room_id/presences_list' => 'presences_list#index', :as => 'presences_list'

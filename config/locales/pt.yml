@@ -42,6 +42,8 @@ pt:
   n_no: "Não"
   y_yes: "Sim"
   finish: "Finalizar"
+  presence_list:
+    fixed: "Lista de presença arrumada com sucesso"
   core:
     name: "Localidade"
     responsible: "Responsável"

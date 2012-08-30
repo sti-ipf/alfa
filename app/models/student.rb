@@ -5,6 +5,7 @@ class Student < ActiveRecord::Base
   belongs_to :occupation
   has_many :phones
   has_many :presence_lists
+  has_many :presences
   
   AGES = [[I18n.t("student.age.15_to_19"), 1], [I18n.t("student.age.20_to_29"), 2], [I18n.t("student.age.30_to_44"), 3], 
     [I18n.t("student.age.45_to_59"), 4], [I18n.t("student.age.up_to_60"), 5]]
