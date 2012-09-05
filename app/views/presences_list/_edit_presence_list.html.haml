@@ -36,7 +36,8 @@
     Não há atividades ou estudantes cadastrado nesta turma.
 - else
   .actions
-    = link_to "Fechar lista de presença", finish_presence_list_path(:month => params[:month], :room_id => params[:room_id]), :id => "close_presence_list", :remote => true, :confirm => t('are_you_sure')
+    - if can? :update, :presences
+      = link_to "Fechar lista de presença", finish_presence_list_path(:month => params[:month], :room_id => params[:room_id]), :id => "close_presence_list", :remote => true, :confirm => t('are_you_sure')
   %ul#presence_list_header
     %li
       %b Núcleo:
@@ -95,7 +96,9 @@
                           $.ajax({url: "/students/#{p[:student_id]}/presence_list_comments?month=#{params[:month]}"}); 
                         });
                       });
-            = select_tag :student_status, options_for_select(Presence::STUDENT_STATUS, :selected => status), :class => "student_status", :id => "#{params[:room_id]}_#{params[:month]}_#{p[:student_id]}"
+            - if cannot? :update, :presences
+              - select_disabled = true
+            = select_tag :student_status, options_for_select(Presence::STUDENT_STATUS, :selected => status), :disabled => select_disabled, :class => "student_status", :id => "#{params[:room_id]}_#{params[:month]}_#{p[:student_id]}"
 
           - @lecture_days.each do |l|
             - presence = p[l.id]
@@ -117,6 +120,8 @@
                   - klass = 'disabled'
                   - checkbox_class = 'disabled'
                   - style_class = ''
+                - if cannot? :update, :presences
+                  - disabled = true
 
                 %td{:class => "#{klass} #{style_class}"}= f.check_box :presence, :id => "presence_#{presence.id}", :disabled => disabled, :class => checkbox_class
                 :javascript
@@ -138,7 +143,8 @@
 
           %td{:id => "#{p[:student_id]}_frequency"}
 - if fix_presence_list
-  = link_to 'Arrumar lista de presença', fix_presence_list_path(:room_id => @room.id, :month => @month), :class => 'fix_presence_list'
+  - if can? :update, :presences
+    = link_to 'Arrumar lista de presença', fix_presence_list_path(:room_id => @room.id, :month => @month), :class => 'fix_presence_list'
 :javascript
   $(document).ready(function() {
     $(".student_status").change(function() {

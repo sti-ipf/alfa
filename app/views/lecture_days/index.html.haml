@@ -19,7 +19,8 @@
         %td{:class => 'first-td'}= lecture_day.lecture_on_to_date.try(:strftime, '%d/%m/%Y')
         %td= lecture_day.period
         %td
-          %div{:id => "cancelled_button_#{lecture_day.id}"}
-            = generate_cancelled_button(lecture_day.cancelled, lecture_day.id).html_safe
+          - if can? :update, lecture_day
+            %div{:id => "cancelled_button_#{lecture_day.id}"}
+              = generate_cancelled_button(lecture_day.cancelled, lecture_day.id).html_safe
         = render '/layouts/shared/edit_delete', :edit_path => edit_room_lecture_day_path(:room_id => params[:room_id], :id => lecture_day.id), :delete_obj => room_lecture_day_path(:id => lecture_day.id), :permission => :lecture_days
         

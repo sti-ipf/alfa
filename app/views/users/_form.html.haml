@@ -23,7 +23,7 @@
     %br
     = f.text_field :name
   %div
-    = f.label :username
+    = f.label "Usuário*"
     %br
     = f.text_field :username
   %div
@@ -31,11 +31,11 @@
     %br
     = f.text_field :email
   %div
-    = f.label :password
+    = f.label "Senha*"
     %br
     = f.password_field :password
   %div
-    = f.label :password_confirmation
+    = f.label "Confirmação da senha*"
     %br
     = f.password_field :password_confirmation
   -if current_user.admin?
