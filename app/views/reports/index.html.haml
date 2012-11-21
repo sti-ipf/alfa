@@ -1,10 +1,14 @@
+= javascript_include_tag 'charts.js'
 %h1.title Relatórios
 #report_form
   = form_tag show_report_path, :remote => true do
     %ul
       %li.first
         %label Informe o tipo de dado:
-        = select_tag :column, options_for_select([['Faixa etária', 'age'], ['Profissão', 'occupation_id'],['Raça', 'ethnicity'], ['Religião', 'religion'], ['Sexo', 'gender']])
+        = select_tag :column, options_for_select([['Faixa etária', 'age'], ['Profissão', 'occupation_id'],['Raça', 'ethnicity'], ['Religião', 'religion'], ['Sexo', 'gender'], ['Presença', 'presence']])
+      %li#reports_mes
+        %label Mês:
+        = select_tag :month, options_for_select([['Janeiro', 1], ['Fevereiro', 2],['Março', 3],['Abril', 4], ['Maio', 5], ['Junho', 6], ['Julho', 7], ['Agosto', 8],['Setembro', 9],['Outubro', 10], ['Novembro', 11], ['Dezembro', 12] ])
       %li
         %label Informe o núcleo:
         = select_tag :core_id, options_for_select(@cores)
@@ -16,10 +20,19 @@
 
   :javascript
     $(document).ready(function() {
+      $('#reports_mes').hide();
       $("#core_id").change(function() {
           var value = $(this).val();
           var address = "/report_update_rooms/" + value
           $.ajax({url: address});
+      });
+
+      $("#column").change(function() {
+        var value = $(this).val();
+        if(value == 'presence')
+          $('#reports_mes').show();
+        else
+          $('#reports_mes').hide();          
       });
     });
 #report_container

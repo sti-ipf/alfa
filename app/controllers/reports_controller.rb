@@ -10,7 +10,12 @@ class ReportsController < ApplicationController
   end
 
   def show
-    get_show_data
+    if(params[:column] == 'presence')
+      @chart_type = 'presence'
+      get_presence_data
+    else
+      get_show_data
+    end
     respond_to do |format|
       format.js
       format.html
@@ -126,9 +131,34 @@ private
       @graphics_data << {:title => graphic_title, :data => graphic_data.join(',')}
       i += 1
     end
-    
-
   end
+
+  def get_presence_data
+    month = params[:month]
+    @column = params[:column]
+    @core_id = params[:core_id].to_i
+    @room_id = params[:room_id].to_i
+    @city = City.find(session[:city_id]).name
+    if @core_id == 0
+      @core_name = 'Todos'
+    else
+      @core_name = Core.find(@core_id).name
+    end  
+    if @room_id == 0
+      @room_name = 'Todas'
+    else
+      @room_name = Room.find(@room_id).name
+    end
+
+    @graphic_title = get_graphic_title(params[:column])
+    if(!@room_id.nil? && @room_id != 0) 
+      @data = Presence.generate_students_report(@room_id, month)
+    elsif(!@core_id.nil? && @core_id != 0)
+      @data = Presence.generate_rooms_report(@core_id, month)
+    else  
+      @data = Presence.generate_cores_report(month)
+    end
+  end 
 
   def get_categories(column)
     array = []
