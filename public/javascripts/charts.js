@@ -8,6 +8,11 @@ function drawPresenceChart(title, xAxis, data)
       title: {
         text: 'Presença'
       },
+      tooltip: {
+      formatter: function() {
+                         return '<b>'+ this.series.name +'</b>: '+ (this.y % 1 == 0? this.y : this.y.toFixed(2));
+                      }
+    },
       xAxis: {
         categories: xAxis,
         labels: {
@@ -51,7 +56,7 @@ function drawPieChart(title, data)
     },
     tooltip: {
       formatter: function() {
-                         return '<b>'+ this.point.name +'</b>: '+ this.y;
+                         return '<b>'+ this.point.name +'</b>: '+ (this.y % 1 == 0? this.y : this.y.toFixed(2));
                       }
     },
     plotOptions: {
